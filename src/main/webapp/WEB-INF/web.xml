@@ -1,0 +1,11 @@
+<web-app>
+    <servlet>
+        <servlet-name>gwasanaeth</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gwasanaeth</servlet-name>
+        <url-pattern>/gwasanaeth/*</url-pattern>
+    </servlet-mapping>
+</web-app>
