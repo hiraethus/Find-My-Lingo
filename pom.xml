@@ -43,7 +43,7 @@
     </dependencies>
 
     <build>
-        <finalName>SampleSpringMaven</finalName>
+        <finalName>GwasanaethauCymraeg</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
