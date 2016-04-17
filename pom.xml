@@ -43,7 +43,6 @@
     </dependencies>
 
     <build>
-        <finalName>GwasanaethauCymraeg</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
