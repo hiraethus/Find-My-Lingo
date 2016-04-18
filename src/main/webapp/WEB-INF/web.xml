@@ -6,7 +6,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>gwasanaeth</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/gc/*</url-pattern>
     </servlet-mapping>
 
     <context-param>
