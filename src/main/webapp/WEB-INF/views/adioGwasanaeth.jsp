@@ -18,5 +18,5 @@
             <td><form:textarea path="disgrifiad" rows="5" cols="30" /></td>
     </table>
 
-    <input type="submit" value="Submit"/>
+    <input type="submit" value="Cyflwyno"/>
 </form:form>
