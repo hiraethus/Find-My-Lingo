@@ -1,6 +1,8 @@
 package com.clackjones.cymraeg;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/gwasanaethau/*")
 public class GwasanaethController {
+
+    @Autowired
+    private GwasanaethDao gwasanaethDao;
 
     @RequestMapping(path = "ychwanegu", method = RequestMethod.GET)
     public String addForm(Model model) {
@@ -21,9 +26,14 @@ public class GwasanaethController {
         return "adioGwasanaeth";
     }
 
-    @RequestMapping(path = "/ychwanegu", method = RequestMethod.POST)
+    @Transactional
+    @RequestMapping(path = "/", method = RequestMethod.POST)
     public @ResponseBody String submitForm(@ModelAttribute Gwasanaeth gwasanaeth, Model model) {
-        System.out.printf("Name : %s\n", gwasanaeth.getEnw());
-        return "Submitted";
+        GwasanaethEntity gwasanaethEntity = new GwasanaethEntity();
+        gwasanaethEntity.setEnw(gwasanaeth.getEnw());
+
+        gwasanaethDao.persist(gwasanaethEntity);
+
+        return gwasanaethEntity.getId().toString();
     }
 }

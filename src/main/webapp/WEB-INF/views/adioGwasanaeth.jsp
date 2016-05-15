@@ -3,7 +3,7 @@
 <html>
 <body>
 
-<form:form commandName="gwasanaeth" method="POST">
+<form:form action="/gc/gwasanaethau/" commandName="gwasanaeth" method="POST">
     <table>
         <tr>
             <td>Enw'r Wasanaeth</td>
