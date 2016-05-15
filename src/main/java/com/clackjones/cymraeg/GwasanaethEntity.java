@@ -12,6 +12,8 @@ public class GwasanaethEntity {
 
     private String enw;
     private String rhifFfon;
+    private String ebost;
+    private String disgrifiad;
 
     public Long getId() {
         return id;
@@ -31,5 +33,21 @@ public class GwasanaethEntity {
 
     public void setRhifFfon(String rhifFfon) {
         this.rhifFfon = rhifFfon;
+    }
+
+    public String getEbost() {
+        return ebost;
+    }
+
+    public void setEbost(String ebost) {
+        this.ebost = ebost;
+    }
+
+    public String getDisgrifiad() {
+        return disgrifiad;
+    }
+
+    public void setDisgrifiad(String disgrifiad) {
+        this.disgrifiad = disgrifiad;
     }
 }

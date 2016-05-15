@@ -16,6 +16,9 @@ public class GwasanaethController {
     @Autowired
     private GwasanaethDao gwasanaethDao;
 
+    @Autowired
+    private GwasanaethToGwasanaethEntityMapper mapper;
+
     @RequestMapping(path = "ychwanegu", method = RequestMethod.GET)
     public String addForm(Model model) {
         Gwasanaeth gwasanaeth = new Gwasanaeth();
@@ -29,11 +32,9 @@ public class GwasanaethController {
     @Transactional
     @RequestMapping(path = "/", method = RequestMethod.POST)
     public @ResponseBody String submitForm(@ModelAttribute Gwasanaeth gwasanaeth, Model model) {
-        GwasanaethEntity gwasanaethEntity = new GwasanaethEntity();
-        gwasanaethEntity.setEnw(gwasanaeth.getEnw());
-
+        GwasanaethEntity gwasanaethEntity = mapper.map(gwasanaeth);
         gwasanaethDao.persist(gwasanaethEntity);
 
-        return gwasanaethEntity.getId().toString();
+        return gwasanaethEntity.getRhifFfon().toString();
     }
 }
