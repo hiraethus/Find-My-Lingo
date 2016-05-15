@@ -1,10 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
-<html>
-<body>
-
 <form:form action="/gc/gwasanaethau/" commandName="gwasanaeth" method="POST">
-    <table>
+    <table class="table">
         <tr>
             <td>Enw'r Wasanaeth</td>
             <td><form:input path="enw" /></td>
@@ -22,8 +18,5 @@
             <td><form:textarea path="disgrifiad" rows="5" cols="30" /></td>
     </table>
 
-    <input type="submit" value="submit"/>
+    <input type="submit" value="Submit"/>
 </form:form>
-
-</body>
-</html>

@@ -11,6 +11,7 @@
 
     <properties>
         <spring.version>4.2.5.RELEASE</spring.version>
+        <apache.tiles.version>3.0.5</apache.tiles.version>
         <jdk.version>1.8</jdk.version>
     </properties>
 
@@ -31,6 +32,18 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-core</artifactId>
+            <version>${apache.tiles.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+            <version>${apache.tiles.version}</version>
         </dependency>
         
         <dependency>
