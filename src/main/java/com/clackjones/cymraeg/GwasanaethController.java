@@ -5,8 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/gwasanaethau/*")
@@ -21,16 +27,28 @@ public class GwasanaethController {
     @Autowired
     private GwasanaethToGwasanaethEntityMapper gwasanaethToEntity;
 
-    @RequestMapping(path = "ychwanegu", method = RequestMethod.GET)
-    public ModelAndView addForm() {
-        Gwasanaeth gwasanaeth = new Gwasanaeth();
+    @InitBinder
+    private void initBinder(WebDataBinder binder) {
+        binder.setValidator(new GwasanaethValidator());
+    }
 
-        return new ModelAndView("adioGwasanaeth", "gwasanaeth", gwasanaeth);
+    @RequestMapping(path = "ychwanegu", method = RequestMethod.GET)
+    public String addForm(Model model) {
+        if (!model.containsAttribute("gwasanaeth")) { model.addAttribute("gwasanaeth", new Gwasanaeth()); }
+
+        return "adioGwasanaeth";
     }
 
     @Transactional
     @RequestMapping(path = "/", method = RequestMethod.POST)
-    public ModelAndView submitForm(@ModelAttribute Gwasanaeth gwasanaeth, Model model) {
+    public ModelAndView submitForm(@Valid @ModelAttribute("gwasanaeth") Gwasanaeth gwasanaeth, BindingResult result,
+                                   RedirectAttributes attr) {
+        if (result.hasErrors()) {
+            attr.addFlashAttribute("org.springframework.validation.BindingResult.gwasanaeth", result);
+            attr.addFlashAttribute("gwasanaeth", gwasanaeth);
+            return new ModelAndView("redirect:ychwanegu");
+        }
+
         GwasanaethEntity gwasanaethEntity = gwasanaethToEntity.map(gwasanaeth);
         gwasanaethDao.persist(gwasanaethEntity);
 
@@ -43,7 +61,6 @@ public class GwasanaethController {
     @RequestMapping(path = "id/{id}", method = RequestMethod.GET)
     public ModelAndView viewGwasanaeth(@PathVariable("id") Long id) {
         GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(id);
-
         Gwasanaeth gwasanaeth = entityToGwasanaeth.map(gwasanaethEntity);
 
 
