@@ -18,4 +18,29 @@
             <td><form:textarea path="disgrifiad" rows="5" cols="30" readonly="true" /></td>
         </tr>
     </table>
+
+    <h4>Cyfeiriad</h4>
+
+    <table class="table">
+            <tr>
+                <td>Llinell Gyntaf</td>
+                <td><form:input path="cyfeiriadLlinellGyntaf"  readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Ail linell</td>
+                <td><form:input path="cyfeiriadAilLinell" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Dinas</td>
+                <td><form:input path="cyfeiriadDinas" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Sir</td>
+                <td><form:input path="cyfeiriadSir" readonly="true" /></td>
+            </tr>
+            <tr>
+                <td>Cod Post</td>
+                <td><form:input path="cyfeiriadCodPost" readonly="true" /></td>
+            </tr>
+    </table>
 </form:form>

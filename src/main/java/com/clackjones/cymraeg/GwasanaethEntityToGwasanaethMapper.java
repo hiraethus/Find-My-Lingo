@@ -11,6 +11,15 @@ public class GwasanaethEntityToGwasanaethMapper {
         gwasanaeth.setEbost(entity.getEbost());
         gwasanaeth.setDisgrifiad(entity.getDisgrifiad());
 
+        CyfeiriadEntity cyfEntity;
+        if ((cyfEntity = entity.getCyfeiriad()) != null) {
+            gwasanaeth.setCyfeiriadLlinellGyntaf(cyfEntity.getLlinellGyntaf());
+            gwasanaeth.setCyfeiriadAilLinell(cyfEntity.getAilLinell());
+            gwasanaeth.setCyfeiriadDinas(cyfEntity.getDinas());
+            gwasanaeth.setCyfeiriadSir(cyfEntity.getSir());
+            gwasanaeth.setCyfeiriadCodPost(cyfEntity.getCodPost());
+        }
+
         return gwasanaeth;
     }
 }

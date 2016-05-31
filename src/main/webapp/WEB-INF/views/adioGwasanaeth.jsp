@@ -23,5 +23,35 @@
         </tr>
     </table>
 
+    <h4>Cyfeiriad</h4>
+
+    <table class="table">
+            <tr>
+                <td>Llinell Gyntaf</td>
+                <td><form:input path="cyfeiriadLlinellGyntaf" /></td>
+                <td><form:errors path="cyfeiriadLlinellGyntaf" cssStyle="color: red;"/></td>
+            </tr>
+            <tr>
+                <td>Ail linell</td>
+                <td><form:input path="cyfeiriadAilLinell" /></td>
+                <td><form:errors path="cyfeiriadAilLinell" cssStyle="color: red;"/></td>
+            </tr>
+            <tr>
+                <td>Dinas</td>
+                <td><form:input path="cyfeiriadDinas" /></td>
+                <td><form:errors path="cyfeiriadDinas" cssStyle="color: red;"/></td>
+            </tr>
+            <tr>
+                <td>Sir</td>
+                <td><form:input path="cyfeiriadSir" /></td>
+                <td><form:errors path="cyfeiriadSir" cssStyle="color: red;"/></td>
+            </tr>
+            <tr>
+                <td>Cod Post</td>
+                <td><form:input path="cyfeiriadCodPost" /></td>
+                <td><form:errors path="cyfeiriadCodPost" cssStyle="color: red;"/></td>
+            </tr>
+    </table>
+
     <input type="submit" value="Cyflwyno"/>
 </form:form>
