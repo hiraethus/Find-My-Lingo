@@ -5,7 +5,7 @@ gwasanaethau p'un a'i bae eu bod yn bwytai, amgueddfeydd, trafnidiaeth
 cyhoeddus neu llywodraeth lleol.
 
 ## To-do
-* Validate Cyfeiriad
+* ~~Validate Cyfeiriad~~
 * Ychwanegu categoriau o wasanaeth i'r rhaglen
 * Adio ffordd o sgorio y wasanaeth a ddarparwyd yn Gymraeg
 * a.y.y.b
