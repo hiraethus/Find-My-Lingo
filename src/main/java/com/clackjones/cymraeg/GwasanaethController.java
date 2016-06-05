@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,9 +34,13 @@ public class GwasanaethController {
     @Autowired
     private CategoriEntityToCategoriMapper entityToCategori;
 
+    @Autowired
+    private CategoriEditor categoriEditor;
+
     @InitBinder
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(new GwasanaethValidator());
+        binder.registerCustomEditor(Categori.class, categoriEditor);
     }
 
     @RequestMapping(path = "ychwanegu", method = RequestMethod.GET)
