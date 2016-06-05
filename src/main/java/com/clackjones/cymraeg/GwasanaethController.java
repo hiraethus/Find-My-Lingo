@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/gwasanaethau/*")
@@ -27,16 +29,39 @@ public class GwasanaethController {
     @Autowired
     private GwasanaethToGwasanaethEntityMapper gwasanaethToEntity;
 
+    @Autowired
+    private CategoriDao categoriDao;
+
+    @Autowired
+    private CategoriEntityToCategoriMapper entityToCategori;
+
     @InitBinder
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(new GwasanaethValidator());
     }
 
     @RequestMapping(path = "ychwanegu", method = RequestMethod.GET)
-    public String addForm(Model model) {
-        if (!model.containsAttribute("gwasanaeth")) { model.addAttribute("gwasanaeth", new Gwasanaeth()); }
+    public ModelAndView addForm(Model model) {
+        Collection<CategoriEntity> categoriEntities = categoriDao.findAll();
+        List<Categori> categoris = categoriEntities.stream()
+                                                    .map(entity -> entityToCategori.map(entity))
+                                                    .collect(Collectors.toList());
 
-        return "adioGwasanaeth";
+        // for when incorrect details entered and we need to pass the
+        // same gwasanaeth back in
+        Gwasanaeth gwasanaeth;
+        if (model.containsAttribute("gwasanaeth")) {
+            gwasanaeth = (Gwasanaeth)model.asMap().get("gwasanaeth");
+        } else {
+            gwasanaeth = new Gwasanaeth();
+        }
+
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("gwasanaeth", gwasanaeth);
+        map.put("categoris", categoris);
+
+        return new ModelAndView("adioGwasanaeth", map);
     }
 
     @Transactional
@@ -50,11 +75,24 @@ public class GwasanaethController {
         }
 
         GwasanaethEntity gwasanaethEntity = gwasanaethToEntity.map(gwasanaeth);
+        setCategoriForGwasanaethEntity(gwasanaethEntity, gwasanaeth);
+
         gwasanaethDao.persist(gwasanaethEntity);
 
         Long id = gwasanaethEntity.getId();
 
         return new ModelAndView("redirect:id/"+id);
+    }
+
+    private void setCategoriForGwasanaethEntity(GwasanaethEntity entity, Gwasanaeth gwasanaeth) {
+        Categori categori = gwasanaeth.getCategori();
+        if (categori != null) {
+            // check to see if its in the database
+            CategoriEntity categoriEntity = categoriDao.findById(categori.getId());
+            if (categoriEntity != null) {
+                entity.setCategori(categoriEntity);
+            }
+        }
     }
 
     @Transactional

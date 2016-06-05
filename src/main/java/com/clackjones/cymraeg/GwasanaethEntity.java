@@ -3,6 +3,7 @@ package com.clackjones.cymraeg;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class GwasanaethEntity {
@@ -15,6 +16,9 @@ public class GwasanaethEntity {
     private String ebost;
     private String disgrifiad;
     private CyfeiriadEntity cyfeiriad;
+
+    @ManyToOne
+    private CategoriEntity categori;
 
     public Long getId() {
         return id;
@@ -58,5 +62,13 @@ public class GwasanaethEntity {
 
     public void setCyfeiriad(CyfeiriadEntity cyfeiriad) {
         this.cyfeiriad = cyfeiriad;
+    }
+
+    public CategoriEntity getCategori() {
+        return categori;
+    }
+
+    public void setCategori(CategoriEntity categori) {
+        this.categori = categori;
     }
 }

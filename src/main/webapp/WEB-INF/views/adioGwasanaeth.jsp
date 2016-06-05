@@ -1,10 +1,22 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
+
+
 <form:form action="/gc/gwasanaethau/" commandName="gwasanaeth" method="POST">
     <table class="table">
         <tr>
             <td>Enw'r Wasanaeth</td>
             <td><form:input path="enw" /></td>
             <td><form:errors path="enw" cssStyle="color: red;"/></td>
+        </tr>
+        <tr>
+            <td>Categori</td>
+            <td>
+                <form:select path="categori">
+                    <form:options items="${categoris}" itemLabel="categori" itemValue="id" />
+                </form:select>
+            </td>
         </tr>
         <tr>
             <td>Rhif Ffon</td>

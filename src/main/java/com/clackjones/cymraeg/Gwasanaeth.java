@@ -11,6 +11,7 @@ public class Gwasanaeth {
     private String cyfeiriadDinas;
     private String cyfeiriadSir;
     private String cyfeiriadCodPost;
+    private Categori categori;
 
     public String getEnw() {
         return enw;
@@ -52,7 +53,6 @@ public class Gwasanaeth {
         this.cyfeiriadLlinellGyntaf = cyfeiriadLlinellGyntaf;
     }
 
-
     public void setCyfeiriadAilLinell(String cyfeiriadAilLinell) {
         this.cyfeiriadAilLinell = cyfeiriadAilLinell;
     }
@@ -83,6 +83,14 @@ public class Gwasanaeth {
 
     public void setCyfeiriadCodPost(String cyfeiriadCodPost) {
         this.cyfeiriadCodPost = cyfeiriadCodPost;
+    }
+
+    public void setCategori(Categori categori) {
+        this.categori = categori;
+    }
+
+    public Categori getCategori() {
+        return categori;
     }
 
 }

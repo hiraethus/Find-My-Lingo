@@ -6,6 +6,10 @@
             <td><form:input path="enw" readonly="true" /></td>
         </tr>
         <tr>
+            <td>Categori</td>
+            <td><form:input path="categori" readonly="true" /></td>
+        </tr>
+        <tr>
             <td>Rhif Ffon</td>
             <td><form:input path="rhifFfon" readonly="true" /></td>
         </tr>
