@@ -1,0 +1,13 @@
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+    <New id="GwasanaethauDB" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/GwasanaethauDB</Arg>
+        <Arg>
+            <New class="org.h2.jdbcx.JdbcDataSource">
+                <Set name="url">jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</Set>
+                <Set name="User">""</Set>
+                <Set name="Password">""</Set>
+            </New>
+        </Arg>
+    </New>
+</Configure>
