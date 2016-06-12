@@ -7,7 +7,7 @@
         </tr>
         <tr>
             <td>Categori</td>
-            <td><form:input path="categori" readonly="true" /></td>
+            <td><form:input path="categori.categori" readonly="true" /></td>
         </tr>
         <tr>
             <td>Rhif Ffon</td>
