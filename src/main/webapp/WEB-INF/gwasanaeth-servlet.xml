@@ -27,17 +27,11 @@
         </property>
     </bean>
 
-    <!--<bean id="dataSource"-->
-          <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName" value="org.h2.Driver" />-->
-        <!--<property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1" />-->
-        <!--<property name="username" value="" />-->
-        <!--<property name="password" value="" />-->
-    <!--</bean>-->
-
-    <!--<bean id="dataSource" class="org.springframework.h2.JndiObjectFactoryBean">-->
-        <!--<property name="jndiName" value="jdbc/GwasanaethauDB"/>-->
-    <!--</bean>-->
+    <!-- Liquibase -->
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource" />
+        <property name="changeLog" value="classpath:liquibase/populate-categories.xml" />
+    </bean>
 
     <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
         <property name="jndiName" value="jdbc/GwasanaethauDB"/>
