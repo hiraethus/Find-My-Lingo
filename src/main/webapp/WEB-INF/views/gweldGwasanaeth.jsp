@@ -1,5 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<form:form action="/gc/gwasanaethau/" commandName="gwasanaeth">
+<form:form action="${pageContext.request.contextPath}/gwasanaethau/" commandName="gwasanaeth">
     <table class="table">
         <tr>
             <td>Enw'r Wasanaeth</td>

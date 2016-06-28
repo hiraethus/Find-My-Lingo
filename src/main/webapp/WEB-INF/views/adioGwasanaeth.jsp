@@ -3,7 +3,7 @@
 <%@ page isELIgnored="false" %>
 
 
-<form:form action="/gc/gwasanaethau/" commandName="gwasanaeth" method="POST">
+<form:form action="${pageContext.request.contextPath}/gwasanaethau/" commandName="gwasanaeth" method="POST">
     <table class="table">
         <tr>
             <td>Enw'r Wasanaeth</td>
