@@ -4,66 +4,61 @@
 
 
 <form:form action="${pageContext.request.contextPath}/gwasanaethau/" commandName="gwasanaeth" method="POST">
-    <table class="table">
-        <tr>
-            <td>Enw'r Wasanaeth</td>
-            <td><form:input path="enw" /></td>
-            <td><form:errors path="enw" cssStyle="color: red;"/></td>
-        </tr>
-        <tr>
-            <td>Categori</td>
-            <td>
-                <form:select path="categori">
-                    <form:options items="${categoris}" itemLabel="categori" itemValue="id" />
-                </form:select>
-            </td>
-        </tr>
-        <tr>
-            <td>Rhif Ffon</td>
-            <td><form:input path="rhifFfon" /></td>
-            <td><form:errors path="rhifFfon" cssStyle="color: red;"/></td>
-        </tr>
-        <tr>
-            <td>E-bost</td>
-            <td><form:input path="ebost" /></td>
-            <td><form:errors path="ebost" cssStyle="color: red;"/></td>
-        </tr>
-        <tr>
-            <td>Disgrifiad</td>
-            <td><form:textarea path="disgrifiad" rows="5" cols="30" /></td>
-            <td><form:errors path="disgrifiad" cssStyle="color: red;"/></td>
-        </tr>
-    </table>
+    <fieldset class="form-group">
+        <form:label path="enw">Enw'r Wasanaeth</form:label>
+        <form:input path="enw" class="form-control" />
+        <form:errors path="enw" cssStyle="color: red;"/>
+    </fieldset>
+    <fieldset class="form-group">
+        <form:label path="categori">Categori</form:label>
+        <form:select path="categori" class="form-control">
+            <form:options items="${categoris}" itemLabel="categori" itemValue="id" />
+        </form:select>
+    </fieldset>
+    <fieldset class="form-group">
+        <form:label path="rhifFfon">Rhif Ffon</form:label>
+        <form:input path="rhifFfon" class="form-control" />
+        <form:errors path="rhifFfon" cssStyle="color: red;"/>
+    </fieldset>
+    <fieldset class="form-group">
+        <form:label path="ebost">Ebost</form:label>
+        <form:input path="ebost" class="form-control" />
+        <form:errors path="ebost" cssStyle="color: red;"/>
+    </fieldset>
+    <fieldset class="form-group">
+        <form:label path="disgrifiad">Disgrifiad</form:label>
+        <form:textarea path="disgrifiad" rows="5" cols="30" class="form-control" />
+        <form:errors path="disgrifiad" cssStyle="color: red;"/>
+    </fieldset>
 
     <h4>Cyfeiriad</h4>
+    <fieldset class="form-group">
+        <form:label path="cyfeiriadLlinellGyntaf">Llinell Gyntaf</form:label>
+        <form:input path="cyfeiriadLlinellGyntaf" class="form-control"/>
+        <form:errors path="cyfeiriadLlinellGyntaf" cssStyle="color: red;"/>
+    </fieldset>
+    <fieldset class="form-group">
+        <form:label path="cyfeiriadAilLinell">Ail Linell</form:label>
+        <form:input path="cyfeiriadAilLinell" class="form-control"/>
+        <form:errors path="cyfeiriadAilLinell" cssStyle="color: red;"/>
+    </fieldset>
+    <fieldset class="form-group">
+        <form:label path="cyfeiriadDinas">Dinas</form:label>
+        <form:input path="cyfeiriadDinas" class="form-control"/>
+        <form:errors path="cyfeiriadDinas" cssStyle="color: red;"/>
+    </fieldset>
+    <fieldset class="form-group">
+        <form:label path="cyfeiriadSir">Sir</form:label>
+        <form:input path="cyfeiriadSir" class="form-control"/>
+        <form:errors path="cyfeiriadSir" cssStyle="color: red;"/>
+    </fieldset>
+    <fieldset class="form-group">
+        <form:label path="cyfeiriadCodPost">Cod Post</form:label>
+        <form:input path="cyfeiriadCodPost" class="form-control"/>
+        <form:errors path="cyfeiriadCodPost" cssStyle="color: red;"/>
+    </fieldset>
 
-    <table class="table">
-            <tr>
-                <td>Llinell Gyntaf</td>
-                <td><form:input path="cyfeiriadLlinellGyntaf" /></td>
-                <td><form:errors path="cyfeiriadLlinellGyntaf" cssStyle="color: red;"/></td>
-            </tr>
-            <tr>
-                <td>Ail linell</td>
-                <td><form:input path="cyfeiriadAilLinell" /></td>
-                <td><form:errors path="cyfeiriadAilLinell" cssStyle="color: red;"/></td>
-            </tr>
-            <tr>
-                <td>Dinas</td>
-                <td><form:input path="cyfeiriadDinas" /></td>
-                <td><form:errors path="cyfeiriadDinas" cssStyle="color: red;"/></td>
-            </tr>
-            <tr>
-                <td>Sir</td>
-                <td><form:input path="cyfeiriadSir" /></td>
-                <td><form:errors path="cyfeiriadSir" cssStyle="color: red;"/></td>
-            </tr>
-            <tr>
-                <td>Cod Post</td>
-                <td><form:input path="cyfeiriadCodPost" /></td>
-                <td><form:errors path="cyfeiriadCodPost" cssStyle="color: red;"/></td>
-            </tr>
-    </table>
-
-    <input type="submit" value="Cyflwyno"/>
+    <fieldset class="form-group">
+        <input type="submit" value="Cyflwyno" class="btn btn-primary" />
+    </fieldset>
 </form:form>
