@@ -1,14 +1,22 @@
 package com.clackjones.cymraeg;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 public class GwasanaethEntity {
     @Id
-    @GeneratedValue
+    @GenericGenerator(
+            name = "gwasanaeth-sequence",
+            strategy = "enhanced-table",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(
+                            name = "table_name",
+                            value = "gwasanaeth_sequence_table"
+                    )
+            })
+    @GeneratedValue(generator = "gwasanaeth-sequence", strategy=GenerationType.TABLE)
     private Long id;
 
     private String enw;

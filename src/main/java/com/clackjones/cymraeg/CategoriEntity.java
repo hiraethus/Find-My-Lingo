@@ -10,7 +10,7 @@ import java.util.Collection;
 })
 public class CategoriEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     protected String categori;
