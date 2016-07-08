@@ -1,50 +1,43 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<form:form action="${pageContext.request.contextPath}/gwasanaethau/" commandName="gwasanaeth">
-    <table class="table">
-        <tr>
-            <td>Enw'r Wasanaeth</td>
-            <td><form:input path="enw" readonly="true" /></td>
-        </tr>
-        <tr>
-            <td>Categori</td>
-            <td><form:input path="categori.categori" readonly="true" /></td>
-        </tr>
-        <tr>
-            <td>Rhif Ffon</td>
-            <td><form:input path="rhifFfon" readonly="true" /></td>
-        </tr>
-        <tr>
-            <td>E-bost</td>
-            <td><form:input path="ebost" readonly="true" /></td>
-        </tr>
-        <tr>
-            <td>Disgrifiad</td>
-            <td><form:textarea path="disgrifiad" rows="5" cols="30" readonly="true" /></td>
-        </tr>
-    </table>
+<%@ taglib prefix="c"
+           uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 
-    <h4>Cyfeiriad</h4>
 
-    <table class="table">
-            <tr>
-                <td>Llinell Gyntaf</td>
-                <td><form:input path="cyfeiriadLlinellGyntaf"  readonly="true" /></td>
-            </tr>
-            <tr>
-                <td>Ail linell</td>
-                <td><form:input path="cyfeiriadAilLinell" readonly="true" /></td>
-            </tr>
-            <tr>
-                <td>Dinas</td>
-                <td><form:input path="cyfeiriadDinas" readonly="true" /></td>
-            </tr>
-            <tr>
-                <td>Sir</td>
-                <td><form:input path="cyfeiriadSir" readonly="true" /></td>
-            </tr>
-            <tr>
-                <td>Cod Post</td>
-                <td><form:input path="cyfeiriadCodPost" readonly="true" /></td>
-            </tr>
-    </table>
-</form:form>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-12">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <a href="#" class="thumbnail">
+                <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=320%C3%97320&w=320&h=320" />
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Cyswllt</h2>
+            <div class="vcard">
+               <div class="adr">
+                  <div class="street-address">${gwasanaeth.cyfeiriadLlinellGyntaf}</div>
+                  <div class="extended-address">${gwasanaeth.cyfeiriadAilLinell}</div>
+                  <div class="locality">${gwasanaeth.cyfeiriadDinas}</div>
+                  <div class="region">${gwasanaeth.cyfeiriadSir}</div>
+                  <div class="postal-code">${gwasanaeth.cyfeiriadCodPost}</div>
+               </div>
+               <br />
+               <div class="tel">${gwasanaeth.rhifFfon}</div>
+               <div class="email">${gwasanaeth.ebost}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Disgrifiad</h2>
+        <pre>${gwasanaeth.disgrifiad}</pre>
+    </div>
+</div>
