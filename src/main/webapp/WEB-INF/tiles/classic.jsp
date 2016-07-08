@@ -1,4 +1,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="c"
+           uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,7 +23,7 @@
 
   <tiles:insertAttribute name="menu" />
   <div class="container">
-        <h3><tiles:getAsString name="heading"/></h3>
+        <h3><c:out value="${heading}" /></h3>
         <tiles:insertAttribute name="body" />
   </div>
 

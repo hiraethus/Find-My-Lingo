@@ -64,6 +64,8 @@ public class GwasanaethController {
         map.put("gwasanaeth", gwasanaeth);
         map.put("categoris", categoris);
 
+        map.put("heading", "Ychwanegu gwasanaeth");
+
         return new ModelAndView("adioGwasanaeth", map);
     }
 
@@ -105,7 +107,9 @@ public class GwasanaethController {
         Gwasanaeth gwasanaeth = entityToGwasanaeth.map(gwasanaethEntity);
 
 
-        return new ModelAndView("gweldGwasanaeth", "gwasanaeth", gwasanaeth);
+        ModelAndView modelAndView = new ModelAndView("gweldGwasanaeth", "gwasanaeth", gwasanaeth);
+        modelAndView.addObject("heading", gwasanaeth.getEnw());
+        return modelAndView;
     }
 
     @ExceptionHandler(NullPointerException.class)
