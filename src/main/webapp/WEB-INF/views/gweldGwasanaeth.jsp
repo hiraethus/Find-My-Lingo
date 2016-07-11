@@ -17,27 +17,99 @@
             </a>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-8">
+            <h2>Disgrifiad</h2>
+            <pre>${gwasanaeth.disgrifiad}</pre>
+
             <h2>Cyswllt</h2>
             <div class="vcard">
-               <div class="adr">
-                  <div class="street-address">${gwasanaeth.cyfeiriadLlinellGyntaf}</div>
-                  <div class="extended-address">${gwasanaeth.cyfeiriadAilLinell}</div>
-                  <div class="locality">${gwasanaeth.cyfeiriadDinas}</div>
-                  <div class="region">${gwasanaeth.cyfeiriadSir}</div>
-                  <div class="postal-code">${gwasanaeth.cyfeiriadCodPost}</div>
-               </div>
-               <br />
-               <div class="tel">${gwasanaeth.rhifFfon}</div>
-               <div class="email">${gwasanaeth.ebost}</div>
+                <div class="adr">
+                    <div class="street-address">${gwasanaeth.cyfeiriadLlinellGyntaf}</div>
+                    <div class="extended-address">${gwasanaeth.cyfeiriadAilLinell}</div>
+                    <div class="locality">${gwasanaeth.cyfeiriadDinas}</div>
+                    <div class="region">${gwasanaeth.cyfeiriadSir}</div>
+                    <div class="postal-code">${gwasanaeth.cyfeiriadCodPost}</div>
+                </div>
+                <br />
+                <div class="tel">${gwasanaeth.rhifFfon}</div>
+                <div class="email">${gwasanaeth.ebost}</div>
             </div>
-        </div>
+       </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        <h2>Disgrifiad</h2>
-        <pre>${gwasanaeth.disgrifiad}</pre>
+        <h2>Sylwadau</h2>
     </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        ${gwasanaeth.sylwadau.size()}
+        <c:forEach var="sylw" items="${gwasanaeth.sylwadau}">
+            <p>${sylw.sylw}</p>
+        </c:forEach>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- TODO pass gwasanaeth ID to form -->
+    <form:form action="${pageContext.request.contextPath}/gwasanaethau/cyflwynoSylw/${gwasanaeth.id}" commandName="sylw" method="POST" role="form">
+    <div class="panel panel-default">
+      <div class="panel-heading">Ychwanegu sylw</div>
+          <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+                <table class="table table-invisible">
+                    <tr>
+                        <th><form:label path="safonIaith">Safon Iaith</form:label></th>
+                        <c:forEach var="safon" items="${safonnau}">
+                             <td>
+                                 <label class="radio-inline">
+                                    <form:radiobutton path="safonIaith" value="${safon}" />${safon}
+                                </label>
+                             </td>
+                        </c:forEach>
+                    </tr
+                    <tr>
+                        <th><form:label path="safonArwyddiaeth">Safon Arwyddiaeth</form:label></th>
+                        <c:forEach var="safon" items="${safonnau}">
+                             <td>
+                                 <label class="radio-inline">
+                                    <form:radiobutton path="safonArwyddiaeth" value="${safon}" />${safon}
+                                </label>
+                             </td>
+                        </c:forEach>
+                    </tr>
+                    <tr>
+                        <th><form:label path="safonGwasanaeth">Safon Gwasanaeth</form:label></th>
+                        <c:forEach var="safon" items="${safonnau}">
+                             <td>
+                                 <label class="radio-inline">
+                                    <form:radiobutton path="safonGwasanaeth" value="${safon}" />${safon}
+                                </label>
+                             </td>
+                        </c:forEach>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="col-md-8">
+                <form:textarea path="sylw" rows="8" cols="30" class="form-control" placeholder="Sylwadau..." />
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-8">
+
+                <fieldset class="form-group">
+                    <input type="submit" value="Cyflwyno" class="btn btn-primary" />
+                </fieldset>
+              </div>
+          </div>
+      </div>
+    </div>
+    </form:form>
 </div>

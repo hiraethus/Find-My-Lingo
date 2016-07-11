@@ -3,6 +3,8 @@ package com.clackjones.cymraeg;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 public class GwasanaethEntity {
@@ -24,6 +26,9 @@ public class GwasanaethEntity {
     private String ebost;
     private String disgrifiad;
     private CyfeiriadEntity cyfeiriad;
+
+    @OneToMany(mappedBy = "gwasanaeth")
+    private Collection<SylwEntity> sylwadau = new ArrayList<>();
 
     @ManyToOne
     private CategoriEntity categori;
@@ -78,5 +83,18 @@ public class GwasanaethEntity {
 
     public void setCategori(CategoriEntity categori) {
         this.categori = categori;
+    }
+
+
+    public Collection<SylwEntity> getSylwadau() {
+        return sylwadau;
+    }
+
+    public void setSylwadau(Collection<SylwEntity> sylwadau) {
+        this.sylwadau = sylwadau;
+    }
+
+    public boolean hasSylwadau() {
+        return this.getSylwadau() != null && this.getSylwadau().size() > 0;
     }
 }

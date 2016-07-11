@@ -23,6 +23,9 @@ public class GwasanaethController {
     private GwasanaethDao gwasanaethDao;
 
     @Autowired
+    private SylwDao sylwDao;
+
+    @Autowired
     private GwasanaethEntityToGwasanaethMapper entityToGwasanaeth;
 
     @Autowired
@@ -37,10 +40,24 @@ public class GwasanaethController {
     @Autowired
     private CategoriEditor categoriEditor;
 
-    @InitBinder
+    @Autowired
+    private SylwToSylwEntityMapper sylwToEntity;
+
+    @Autowired
+    private SafonEditor safonEditor;
+
+    @Autowired
+    private SylwEntityToSylwMapper entityToSylw;
+
+    @InitBinder("gwasanaeth")
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(new GwasanaethValidator());
         binder.registerCustomEditor(Categori.class, categoriEditor);
+    }
+
+    @InitBinder("sylw")
+    private void initSylwBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(SafonEnum.class, safonEditor);
     }
 
     @RequestMapping(path = "ychwanegu", method = RequestMethod.GET)
@@ -106,10 +123,32 @@ public class GwasanaethController {
         GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(id);
         Gwasanaeth gwasanaeth = entityToGwasanaeth.map(gwasanaethEntity);
 
-
         ModelAndView modelAndView = new ModelAndView("gweldGwasanaeth", "gwasanaeth", gwasanaeth);
         modelAndView.addObject("heading", gwasanaeth.getEnw());
+        modelAndView.addObject("sylw", new Sylw());
+        modelAndView.addObject("safonnau", SafonEnum.values());
+
         return modelAndView;
+    }
+
+    @Transactional
+    @RequestMapping(path = "cyflwynoSylw/{gwasanaethId}", method = RequestMethod.POST)
+    public ModelAndView cyflwynoSylw(@ModelAttribute("sylw") Sylw sylw, @PathVariable("gwasanaethId") Long gwasanaethId) {
+        GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(gwasanaethId);
+
+        if (gwasanaethEntity == null) {
+            // TODO add error - gwasanaeth doesn't exist
+            throw new NullPointerException();
+        }
+
+        // TODO add validator for sylw
+        SylwEntity sylwEntity = sylwToEntity.map(sylw);
+        sylwEntity.setGwasanaeth(gwasanaethEntity);
+        sylwDao.persist(sylwEntity);
+
+        gwasanaethEntity.getSylwadau().add(sylwEntity);
+
+        return new ModelAndView("redirect:/gwasanaethau/id/"+gwasanaethId);
     }
 
     @ExceptionHandler(NullPointerException.class)

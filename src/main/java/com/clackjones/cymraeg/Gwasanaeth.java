@@ -1,7 +1,11 @@
 package com.clackjones.cymraeg;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Gwasanaeth {
 
+    private Long id;
     private String enw;
     private String rhifFfon;
     private String ebost;
@@ -12,6 +16,15 @@ public class Gwasanaeth {
     private String cyfeiriadSir;
     private String cyfeiriadCodPost;
     private Categori categori;
+    private Collection<Sylw> sylwadau = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getEnw() {
         return enw;
@@ -91,6 +104,14 @@ public class Gwasanaeth {
 
     public Categori getCategori() {
         return categori;
+    }
+
+    public Collection<Sylw> getSylwadau() {
+        return sylwadau;
+    }
+
+    public void setSylwadau(Collection<Sylw> sylwadau) {
+        this.sylwadau = sylwadau;
     }
 
 }
