@@ -45,17 +45,6 @@
 </div>
 
 <div class="row">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        ${gwasanaeth.sylwadau.size()}
-        <c:forEach var="sylw" items="${gwasanaeth.sylwadau}">
-            <p>${sylw.sylw}</p>
-        </c:forEach>
-      </div>
-    </div>
-</div>
-
-<div class="row">
     <!-- TODO pass gwasanaeth ID to form -->
     <form:form action="${pageContext.request.contextPath}/gwasanaethau/cyflwynoSylw/${gwasanaeth.id}" commandName="sylw" method="POST" role="form">
     <div class="panel panel-default">
@@ -88,9 +77,7 @@
                         <th><form:label path="safonGwasanaeth">Safon Gwasanaeth</form:label></th>
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
-                                 <label class="radio-inline">
-                                    <form:radiobutton path="safonGwasanaeth" value="${safon}" />${safon}
-                                </label>
+                                <form:radiobutton path="safonGwasanaeth" value="${safon}" />${safon}
                              </td>
                         </c:forEach>
                     </tr>
@@ -113,3 +100,54 @@
     </div>
     </form:form>
 </div>
+
+<c:forEach var="sylw" items="${gwasanaeth.sylwadau}">
+<div class="row">
+    <!-- TODO pass gwasanaeth ID to form -->
+    <div class="panel panel-default">
+      <div class="panel-heading">Dyddiad: ${sylw.amserSylw}</div>
+          <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+                <table class="table table-invisible">
+                    <tr>
+                        <th>Safon Iaith</th>
+                        <c:forEach var="safon" items="${safonnau}">
+                             <td>
+                                  <label class="radio-inline">
+                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonIaith }">checked="checked"</c:if> />${safon}
+                                  </label>
+                             </td>
+                        </c:forEach>
+                    </tr
+                    <tr>
+                        <th>Safon Arwyddiaeth</th>
+                        <c:forEach var="safon" items="${safonnau}">
+                             <td>
+                                  <label class="radio-inline">
+                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonArwyddiaeth }">checked="checked"</c:if> />${safon}
+                                  </label>
+                             </td>
+                        </c:forEach>
+                    </tr>
+                    <tr>
+                        <th>Safon Gwasanaeth</th>
+                        <c:forEach var="safon" items="${safonnau}">
+                             <td>
+                                  <label class="radio-inline">
+                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonGwasanaeth }">checked="checked"</c:if> />${safon}
+                                  </label>
+                             </td>
+                        </c:forEach>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="col-md-8">
+                ${sylw.sylw}
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+</c:forEach>
