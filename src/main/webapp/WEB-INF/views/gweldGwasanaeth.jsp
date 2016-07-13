@@ -111,7 +111,7 @@
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                   <label class="radio-inline">
-                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonIaith }">checked="checked"</c:if> />${safon}
+                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonIaith }">checked="checked"</c:if> disabled/>${safon}
                                   </label>
                              </td>
                         </c:forEach>
@@ -121,7 +121,7 @@
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                   <label class="radio-inline">
-                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonArwyddiaeth }">checked="checked"</c:if> />${safon}
+                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonArwyddiaeth }">checked="checked"</c:if> disabled/>${safon}
                                   </label>
                              </td>
                         </c:forEach>
@@ -131,7 +131,7 @@
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                   <label class="radio-inline">
-                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonGwasanaeth }">checked="checked"</c:if> />${safon}
+                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonGwasanaeth }">checked="checked"</c:if> disabled/>${safon}
                                   </label>
                              </td>
                         </c:forEach>
