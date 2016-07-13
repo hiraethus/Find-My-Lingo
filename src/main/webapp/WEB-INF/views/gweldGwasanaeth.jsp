@@ -19,7 +19,7 @@
 
         <div class="col-md-8">
             <h2>Disgrifiad</h2>
-            <pre>${gwasanaeth.disgrifiad}</pre>
+            <em>${gwasanaeth.disgrifiad}</em>
 
             <h2>Cyswllt</h2>
             <div class="vcard">
