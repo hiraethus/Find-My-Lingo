@@ -6,11 +6,6 @@
 
 <div class="jumbotron">
     <div class="row">
-        <div class="col-md-12">
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-4">
             <a href="#" class="thumbnail">
                 <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=320%C3%97320&w=320&h=320" />
@@ -20,6 +15,7 @@
         <div class="col-md-8">
             <h2>Disgrifiad</h2>
             <em>${gwasanaeth.disgrifiad}</em>
+            <div>Categori: <em>${gwasanaeth.categori.categori}</em></div>
 
             <h2>Cyswllt</h2>
             <div class="vcard">
