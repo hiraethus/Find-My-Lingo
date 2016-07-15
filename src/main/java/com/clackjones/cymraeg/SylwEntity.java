@@ -88,4 +88,9 @@ public class SylwEntity {
     public void setGwasanaeth(GwasanaethEntity gwasanaeth) {
         this.gwasanaeth = gwasanaeth;
     }
+
+    @PrePersist
+    void preInsertAmserSylw() {
+        this.amserSylw = new Date();
+    }
 }
