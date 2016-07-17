@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "GwasanaethEntity.findAll",
+                query = "SELECT g FROM GwasanaethEntity g")
+})
 public class GwasanaethEntity {
     @Id
     @GenericGenerator(

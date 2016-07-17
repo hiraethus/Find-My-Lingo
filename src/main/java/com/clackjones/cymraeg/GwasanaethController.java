@@ -118,6 +118,18 @@ public class GwasanaethController {
     }
 
     @Transactional
+    @RequestMapping(path = "/", method = RequestMethod.GET)
+    public ModelAndView listAllGwasanaethau() {
+        final Collection<GwasanaethEntity> gwasanaethauEntities = gwasanaethDao.findAll();
+        Collection<Gwasanaeth> gwasanaethau = gwasanaethauEntities.stream()
+                .map(gwasanaethEntity -> entityToGwasanaeth.map(gwasanaethEntity))
+                .collect(Collectors.toSet());
+
+        return new ModelAndView("rhestrGwasanaeth", "gwasanaethau", gwasanaethau);
+
+    }
+
+    @Transactional
     @RequestMapping(path = "id/{id}", method = RequestMethod.GET)
     public ModelAndView viewGwasanaeth(@PathVariable("id") Long id) {
         GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(id);

@@ -14,4 +14,10 @@
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body" value="/WEB-INF/views/gweldGwasanaeth.jsp" />
     </definition>
+
+    <definition name="rhestrGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
+        <put-attribute name="title" value="Gwasanaethau Cymraeg - Rhestr" />
+        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/rhestrGwasanaeth.jsp" />
+    </definition>
 </tiles-definitions>
