@@ -16,7 +16,7 @@
                 <td>
                     <a href='<c:url value="${pageContext.request.contextPath}/gwasanaethau/id/${gwasanaeth.id}" />'>${gwasanaeth.enw}</a>
                 </td>
-                <td><code>Categori (TODO)</code></td>
+                <td>${gwasanaeth.categori.categori}</td>
                 <td>${gwasanaeth.cyfeiriadDinas}</td>
             </tr>
             </c:forEach>
