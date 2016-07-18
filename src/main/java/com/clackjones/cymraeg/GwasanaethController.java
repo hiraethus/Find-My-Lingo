@@ -119,14 +119,28 @@ public class GwasanaethController {
 
     @Transactional
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public ModelAndView listAllGwasanaethau() {
+    public ModelAndView listAllGwasanaethau(@RequestParam Map<String, String> params) {
+
         final Collection<GwasanaethEntity> gwasanaethauEntities = gwasanaethDao.findAll();
-        Collection<Gwasanaeth> gwasanaethau = gwasanaethauEntities.stream()
+        List<Gwasanaeth> gwasanaethau = gwasanaethauEntities.stream()
                 .map(gwasanaethEntity -> entityToGwasanaeth.map(gwasanaethEntity))
-                .collect(Collectors.toSet());
+                .sorted(Comparator.comparing(Gwasanaeth::getCyfeiriadDinas, String::compareToIgnoreCase)
+                .thenComparing(Comparator.comparing(Gwasanaeth::getEnw, String::compareToIgnoreCase)))
+                .collect(Collectors.toList());
 
-        return new ModelAndView("rhestrGwasanaeth", "gwasanaethau", gwasanaethau);
+        String dinas = params.getOrDefault("dinas", "popeth");
+        List<Gwasanaeth> filteredGwasanaethau;
+        if (dinas.equals("popeth")) {
+            filteredGwasanaethau = gwasanaethau;
+        } else {
+            filteredGwasanaethau = gwasanaethau.stream()
+                    .filter(g -> g.getCyfeiriadDinas().equals(dinas)).collect(Collectors.toList());
+        }
 
+        ModelAndView modelAndView = new ModelAndView("rhestrGwasanaeth", "gwasanaethau", filteredGwasanaethau);
+
+        modelAndView.addObject("heading", "Rhestr gwasanaethau");
+        return modelAndView;
     }
 
     @Transactional

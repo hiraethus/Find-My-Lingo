@@ -2,6 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 
+<c:if test="${not empty param.dinas}">
+<div class="alert alert-info" role="alert">
+    <p>Hidlo i ddangos gwasanaethau dinas <em>${param.dinas}</em> yn unig. <a href='<c:url value="${pageContext.request.contextPath}/gwasanaethau/" />'>Ailosod</a></p>
+</div>
+</c:if>
+
 <div class="">
     <table class="table table-striped">
         <thead>
@@ -10,14 +16,17 @@
             <th>Dinas</th>
         </thead>
         <tbody>
-
             <c:forEach var="gwasanaeth" items="${gwasanaethau}">
             <tr>
                 <td>
                     <a href='<c:url value="${pageContext.request.contextPath}/gwasanaethau/id/${gwasanaeth.id}" />'>${gwasanaeth.enw}</a>
                 </td>
                 <td>${gwasanaeth.categori.categori}</td>
-                <td>${gwasanaeth.cyfeiriadDinas}</td>
+                <td>
+                    <a href='<c:url value="${pageContext.request.contextPath}/gwasanaethau/?dinas=${gwasanaeth.cyfeiriadDinas}" />'>
+                        ${gwasanaeth.cyfeiriadDinas}
+                    </a>
+                </td>
             </tr>
             </c:forEach>
         </tbody>
