@@ -129,15 +129,18 @@ public class GwasanaethController {
                 .collect(Collectors.toList());
 
         String dinas = params.getOrDefault("dinas", "popeth");
-        List<Gwasanaeth> filteredGwasanaethau;
-        if (dinas.equals("popeth")) {
-            filteredGwasanaethau = gwasanaethau;
-        } else {
-            filteredGwasanaethau = gwasanaethau.stream()
+        if (!dinas.equals("popeth")) {
+            gwasanaethau = gwasanaethau.stream()
                     .filter(g -> g.getCyfeiriadDinas().equals(dinas)).collect(Collectors.toList());
         }
 
-        ModelAndView modelAndView = new ModelAndView("rhestrGwasanaeth", "gwasanaethau", filteredGwasanaethau);
+        String categori = params.getOrDefault("categori", "popeth");
+        if (!categori.equals("popeth")) {
+            gwasanaethau = gwasanaethau.stream()
+                    .filter(g -> g.getCategori().getCategori().equals(categori)).collect(Collectors.toList());
+        }
+
+        ModelAndView modelAndView = new ModelAndView("rhestrGwasanaeth", "gwasanaethau", gwasanaethau);
 
         modelAndView.addObject("heading", "Rhestr gwasanaethau");
         return modelAndView;

@@ -14,6 +14,19 @@
 </div>
 </c:if>
 
+<c:if test="${not empty param.categori}">
+<div class="alert alert-warning" role="alert">
+    <p>Hidlo i ddangos gwasanaethau y categori <em>${param.categori}</em> yn unig. <a href='<c:url value="/gwasanaethau/">
+        <c:forEach var="prm" items="${param}">
+            <c:if test="${prm.key != 'categori'}">
+                <c:param name="${prm.key}" value="${prm.value}"/>
+            </c:if>
+        </c:forEach>
+    </c:url>'>Ailosod</a></p>
+</div>
+</c:if>
+
+
 <ul>
 
 </ul>
@@ -21,7 +34,7 @@
     <table class="table table-striped">
         <thead>
             <th>Enw</th>
-            <th>Math</th>
+            <th>Categori</th>
             <th>Dinas</th>
         </thead>
         <tbody>
@@ -30,7 +43,18 @@
                 <td>
                     <a href='<c:url value="/gwasanaethau/id/${gwasanaeth.id}" />'>${gwasanaeth.enw}</a>
                 </td>
-                <td>${gwasanaeth.categori.categori}</td>
+                <td>
+                    <a href='<c:url value="">
+                        <c:param name="categori" value="${gwasanaeth.categori.categori}" />
+                        <c:forEach var="prm" items="${param}">
+                            <c:if test="${prm.key != 'categori'}">
+                                <c:param name="${prm.key}" value="${prm.value}"/>
+                            </c:if>
+                        </c:forEach>
+                        </c:url>'>
+                        ${gwasanaeth.categori.categori}
+                    </a>
+                </td>
                 <td>
                     <a href='<c:url value="">
                         <c:param name="dinas" value="${gwasanaeth.cyfeiriadDinas}" />
