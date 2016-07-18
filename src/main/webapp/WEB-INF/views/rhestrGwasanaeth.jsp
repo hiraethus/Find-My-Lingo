@@ -4,10 +4,19 @@
 
 <c:if test="${not empty param.dinas}">
 <div class="alert alert-info" role="alert">
-    <p>Hidlo i ddangos gwasanaethau dinas <em>${param.dinas}</em> yn unig. <a href='<c:url value="/gwasanaethau/" />'>Ailosod</a></p>
+    <p>Hidlo i ddangos gwasanaethau dinas <em>${param.dinas}</em> yn unig. <a href='<c:url value="/gwasanaethau/">
+        <c:forEach var="prm" items="${param}">
+            <c:if test="${prm.key != 'dinas'}">
+                <c:param name="${prm.key}" value="${prm.value}"/>
+            </c:if>
+        </c:forEach>
+    </c:url>'>Ailosod</a></p>
 </div>
 </c:if>
 
+<ul>
+
+</ul>
 <div class="">
     <table class="table table-striped">
         <thead>
@@ -23,7 +32,14 @@
                 </td>
                 <td>${gwasanaeth.categori.categori}</td>
                 <td>
-                    <a href='<c:url value="/gwasanaethau/?dinas=${gwasanaeth.cyfeiriadDinas}" />'>
+                    <a href='<c:url value="">
+                        <c:param name="dinas" value="${gwasanaeth.cyfeiriadDinas}" />
+                        <c:forEach var="prm" items="${param}">
+                            <c:if test="${prm.key != 'dinas'}">
+                                <c:param name="${prm.key}" value="${prm.value}"/>
+                            </c:if>
+                        </c:forEach>
+                    </c:url>'>
                         ${gwasanaeth.cyfeiriadDinas}
                     </a>
                 </td>
