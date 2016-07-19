@@ -1,16 +1,14 @@
 # Gwasanaethau Cymraeg
 
-Dyma fy ymdrech i ddatblygu rhaglen we er mwyn i'r Cymru gallu rhannu 
-gwasanaethau p'un a'i bae eu bod yn bwytai, amgueddfeydd, trafnidiaeth 
-cyhoeddus neu llywodraeth lleol.
+Gwasanaethau Cymraeg is a side project to enable speakers of [[Welsh|https://en.wikipedia.org/wiki/Welsh_language]] 
+to use Welsh-language services in their local area. I intend for this project to 
+allow businesses and local authorities to create profiles for their own services 
+and to allow people to rate the standard of the service provided to them 
+through the medium of Welsh.
 
-## To-do
-* ~~Validate Cyfeiriad~~
-* ~~Ychwanegu categoriau o wasanaeth i'r rhaglen~~
-  + ~~Ychwanegu sgript SQL/Liquibase i rhedeg ar gychwyn llwytho'r rhaglen i sicrhau bod categoriau arferol (e.g. bwytai) yn cael eu llwytho~~
-  + Caniatau adio categoriau yn y we neu fel set-up script i weinydd y rhaglen
-  + yn gweldGwasanaeth.jsp, sicrhau y dangosir enw'r categori, nid enw'r Class (h.y. 'com.clackjones.cymraeg.Categori')
-* Adio ffordd o sgorio y wasanaeth a ddarparwyd yn Gymraeg
-* a.y.y.b
+The intention of this project is to make this codebase generic and well 
+documented such that other technically minded people might host their own 
+portals for their respective minority languages.
 
-![Screenshot](https://raw.githubusercontent.com/hiraethus/gwasanaethau-cymraeg/master/screenshot.png)
+## Setup instructions
+_To follow_
