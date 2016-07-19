@@ -6,15 +6,26 @@
 <html>
   <head>
     <title><tiles:getAsString name="title"/></title>
+    <meta charset="UTF-8">
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 70px;
+    <style type="text/css">
+        html {
+          position: relative;
+          min-height: 100%;
         }
-
-        h3 {
-            padding-bottom: 30px;
+        body {
+          /* Margin bottom by footer height */
+          padding-top: 70px;
+          margin-bottom: 60px;
+        }
+        .footer {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          /* Set the fixed height of the footer here */
+          height: 60px;
+          background-color: #f5f5f5;
         }
     </style>
   </head>
@@ -28,6 +39,10 @@
         </div>
         <tiles:insertAttribute name="body" />
   </div>
+
+  <footer class="footer">
+        <tiles:insertAttribute name="footer" />
+  </footer>
 
 
   </body>

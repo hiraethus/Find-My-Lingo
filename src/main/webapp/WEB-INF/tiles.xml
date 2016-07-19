@@ -7,17 +7,20 @@
         <put-attribute name="title" value="Gwasanaethau Cymraeg - Ychwanegu" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body" value="/WEB-INF/views/adioGwasanaeth.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
     <definition name="gweldGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
         <put-attribute name="title" value="Gwasanaethau Cymraeg - Gweld" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body" value="/WEB-INF/views/gweldGwasanaeth.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
     <definition name="rhestrGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
         <put-attribute name="title" value="Gwasanaethau Cymraeg - Rhestr" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body" value="/WEB-INF/views/rhestrGwasanaeth.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 </tiles-definitions>
