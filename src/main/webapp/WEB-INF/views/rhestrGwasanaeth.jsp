@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 
+<h2>Rhestr Gwasanaethau</h2>
 <c:if test="${not empty param.dinas}">
 <div class="alert alert-info" role="alert">
     <p>Hidlo i ddangos gwasanaethau dinas <em>${param.dinas}</em> yn unig. <a href='<c:url value="/gwasanaethau/">

@@ -17,7 +17,7 @@
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
-    <definition name="rhestrGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
+    <definition name="rhestrGwasanaeth" template="/WEB-INF/tiles/title-page.jsp">
         <put-attribute name="title" value="Gwasanaethau Cymraeg - Rhestr" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body" value="/WEB-INF/views/rhestrGwasanaeth.jsp" />
