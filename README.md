@@ -11,4 +11,4 @@ documented such that other technically minded people might host their own
 portals for their respective minority languages.
 
 ## Setup instructions
-_To follow_
+Please see the [Installation Guide](//github.com/hiraethus/gwasanaethau-cymraeg/wiki/Installation Guide) in the wiki
