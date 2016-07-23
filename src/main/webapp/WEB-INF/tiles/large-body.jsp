@@ -34,27 +34,6 @@
 
   <tiles:insertAttribute name="menu" />
   <div class="container">
-        <div class="jumbotron">
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=480%C3%97480&w=480&h=480" />
-                    </div>
-                </div>
-                <div class="col-md-8">
-                            <h1>Gwasanaethau Cymraeg</h1>
-
-                <p>
-                    Prosiect yw Gwasanaethau Cymraeg i alluogi siaradwyr yr iaith Gymraeg i ddarganfod gwasanaethau
-                    cyfrwng cymraeg yn eu hardal.
-                    Os ydych chi yn perchen ar caffi, bwyti, yn gweithio i lywodraeth lleol neu yn darparu gwasanaeth preifat
-                    trwy gyfrwng y Gymraeg, byswn ni yn eich croesawi i gofrestru eich hun gyda'r ffurflen uchod.
-                </p>
-                </div>
-            </div>
-        </div>
-
         <tiles:insertAttribute name="body" />
   </div>
 
