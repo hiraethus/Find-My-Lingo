@@ -1,6 +1,7 @@
 <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core" %>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<%@ page isELIgnored="false" %>
+<nav class="navbar navbar-fixed-top" style="background-color: #fff">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -17,6 +18,11 @@
         <li><a href="#amdanom">Amdanom</a></li>
         <li><a href="#cysylltwch">Cysylltwch</a></li>
       </ul>
+      <c:if test="${not empty pageContext.request.remoteUser}">
+      <ul class="nav navbar-right">
+        <li><a><span class="glyphicon glyphicon glyphicon-user" aria-hidden="true"></span> Shwmae, <c:out value="${pageContext.request.remoteUser}"/></a></li>
+      </ul>
+      </c:if>
     </div><!--/.nav-collapse -->
   </div>
 </nav>
