@@ -1,0 +1,31 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+
+    <http use-expressions="true" auto-config="true">
+        <intercept-url pattern="/gwasanaethau/ychwanegu" method="GET"
+                       access="hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')" />
+
+        <intercept-url pattern="/gwasanaethau/" method="POST"
+                       access="hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')" />
+
+        <intercept-url pattern="/**" access="permitAll" />
+
+        <form-login default-target-url="/gwasanaethau/" login-page="/mewngofnodi" />
+        <logout logout-success-url="/gwasanaethau/?allgofnodi" />
+    </http>
+
+    <global-method-security pre-post-annotations="enabled" />
+
+    <authentication-manager >
+        <authentication-provider>
+            <user-service>
+                <user name="bill"  password="abc123"  authorities="ROLE_USER" />
+                <user name="sian"  password="abc123"  authorities="ROLE_SERVICE_OWNER" />
+                <user name="meic"   password="root123" authorities="ROLE_ADMIN,ROLE_SERVICE_OWNER,ROLE_USER" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>

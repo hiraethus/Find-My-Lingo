@@ -2,6 +2,8 @@ package com.clackjones.cymraeg;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -61,6 +63,7 @@ public class GwasanaethController {
     }
 
     @RequestMapping(path = "ychwanegu", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')")
     public ModelAndView addForm(Model model) {
         Collection<CategoriEntity> categoriEntities = categoriDao.findAll();
         List<Categori> categoris = categoriEntities.stream()
