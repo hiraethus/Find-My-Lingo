@@ -7,7 +7,9 @@ public class CategoriEntityToCategoriMapper {
     public Categori map(final CategoriEntity entity) {
         Categori categori = new Categori();
         categori.setId(entity.getId());
-        categori.setCategori(entity.getCategori());
+        if (entity.getCategori() != null) {
+            categori.setCategori(entity.getCategori());
+        }
 
         return categori;
     }

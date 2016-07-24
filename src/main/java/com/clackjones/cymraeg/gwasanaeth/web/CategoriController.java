@@ -14,15 +14,12 @@ import com.clackjones.cymraeg.*;
 public class CategoriController {
 
     @Autowired
-    private CategoriDao categoriDao;
+    private CategoriManager categoriManager;
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @Transactional
     public String categori(@RequestParam(value="name") String categoriName) {
-        CategoriEntity categoriEntity = new CategoriEntity();
-        categoriEntity.setCategori(categoriName);
-
-        categoriDao.persist(categoriEntity);
+        categoriManager.saveCategori(categoriName);
 
         return "success!";
     }

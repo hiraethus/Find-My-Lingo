@@ -29,17 +29,10 @@ public class GwasanaethController {
     private GwasanaethEntityToGwasanaethMapper entityToGwasanaeth;
 
     @Autowired
-    private GwasanaethToGwasanaethEntityMapper gwasanaethToEntity;
-
-    @Autowired
-    private CategoriDao categoriDao;
-
-    @Autowired
-    private CategoriEntityToCategoriMapper entityToCategori;
+    private CategoriManager categoriManager;
 
     @Autowired
     private CategoriEditor categoriEditor;
-
 
     @Autowired
     private SafonEditor safonEditor;
@@ -61,10 +54,7 @@ public class GwasanaethController {
     @RequestMapping(path = "ychwanegu", method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')")
     public ModelAndView addForm(Model model) {
-        Collection<CategoriEntity> categoriEntities = categoriDao.findAll();
-        List<Categori> categoris = categoriEntities.stream()
-                                                    .map(entity -> entityToCategori.map(entity))
-                                                    .collect(Collectors.toList());
+        List<Categori> categoris = categoriManager.findAll();
 
         // for when incorrect details entered and we need to pass the
         // same gwasanaeth back in
@@ -85,7 +75,6 @@ public class GwasanaethController {
         return new ModelAndView("adioGwasanaeth", map);
     }
 
-    @Transactional
     @RequestMapping(path = "/", method = RequestMethod.POST)
     public ModelAndView submitForm(@Valid @ModelAttribute("gwasanaeth") Gwasanaeth gwasanaeth, BindingResult result,
                                    RedirectAttributes attr) {
@@ -95,25 +84,9 @@ public class GwasanaethController {
             return new ModelAndView("redirect:ychwanegu");
         }
 
-        GwasanaethEntity gwasanaethEntity = gwasanaethToEntity.map(gwasanaeth);
-        setCategoriForGwasanaethEntity(gwasanaethEntity, gwasanaeth);
-
-        gwasanaethDao.persist(gwasanaethEntity);
-
-        Long id = gwasanaethEntity.getId();
+        Long id = gwasanaethManager.saveGwasanaeth(gwasanaeth);
 
         return new ModelAndView("redirect:id/"+id);
-    }
-
-    private void setCategoriForGwasanaethEntity(GwasanaethEntity entity, Gwasanaeth gwasanaeth) {
-        Categori categori = gwasanaeth.getCategori();
-        if (categori != null) {
-            // check to see if its in the database
-            CategoriEntity categoriEntity = categoriDao.findById(categori.getId());
-            if (categoriEntity != null) {
-                entity.setCategori(categoriEntity);
-            }
-        }
     }
 
     @Transactional

@@ -14,10 +14,24 @@ public class GwasanaethManager {
     private SylwEntityToSylwMapper entityToSylw;
 
     @Autowired
+    private SylwDao sylwDao;
+
+    @Autowired
     private GwasanaethDao gwasanaethDao;
 
     @Autowired
-    private SylwDao sylwDao;
+    private GwasanaethToGwasanaethEntityMapper gwasanaethToEntity;
+
+    /**
+     * @return the ID of the persisted Gwasanaeth
+     */
+    @Transactional
+    public Long saveGwasanaeth(Gwasanaeth gwasanaeth) {
+        GwasanaethEntity gwasanaethEntity = gwasanaethToEntity.map(gwasanaeth);
+        gwasanaethDao.persist(gwasanaethEntity);
+
+        return gwasanaethEntity.getId();
+    }
 
     @Transactional
     public void addSylwForGwasanaethWithId(long gwasanaethId, Sylw sylw) {

@@ -1,10 +1,14 @@
 package com.clackjones.cymraeg;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class GwasanaethToGwasanaethEntityMapper {
+    @Autowired
+    private CategoriDao categoriDao;
+
     public GwasanaethEntity map(Gwasanaeth gwasanaeth) {
         GwasanaethEntity entity = new GwasanaethEntity();
         entity.setEnw(gwasanaeth.getEnw());
@@ -23,6 +27,10 @@ public class GwasanaethToGwasanaethEntityMapper {
             entity.setCyfeiriad(cyfEntity);
         }
 
+        if (gwasanaeth.getCategori() != null) {
+            setCategoriForGwasanaethEntity(entity, gwasanaeth);
+        }
+
         return entity;
     }
 
@@ -32,5 +40,16 @@ public class GwasanaethToGwasanaethEntityMapper {
                 || gwasanaeth.getCyfeiriadDinas() != null
                 || gwasanaeth.getCyfeiriadSir() != null
                 || gwasanaeth.getCyfeiriadCodPost() != null;
+    }
+
+    private void setCategoriForGwasanaethEntity(GwasanaethEntity entity, Gwasanaeth gwasanaeth) {
+        Categori categori = gwasanaeth.getCategori();
+        if (categori != null) {
+            // check to see if its in the database
+            CategoriEntity categoriEntity = categoriDao.findById(categori.getId());
+            if (categoriEntity != null) {
+                entity.setCategori(categoriEntity);
+            }
+        }
     }
 }

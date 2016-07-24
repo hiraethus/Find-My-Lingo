@@ -8,7 +8,7 @@ import java.util.Collection;
         @NamedQuery(name = "CategoriEntity.findAll",
                 query = "SELECT c FROM CategoriEntity c")
 })
-public class CategoriEntity {
+class CategoriEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
