@@ -1,6 +1,6 @@
 package com.clackjones.cymraeg;
 
-public enum Safon {
+enum Safon {
     DA,
     GWEDDOL,
     GWAEL

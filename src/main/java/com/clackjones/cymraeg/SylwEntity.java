@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class SylwEntity {
+class SylwEntity {
     @Id
     @GenericGenerator(
             name = "sylw-sequence",

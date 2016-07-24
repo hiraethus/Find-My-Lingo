@@ -26,9 +26,6 @@ public class GwasanaethController {
     private GwasanaethDao gwasanaethDao;
 
     @Autowired
-    private SylwDao sylwDao;
-
-    @Autowired
     private GwasanaethEntityToGwasanaethMapper entityToGwasanaeth;
 
     @Autowired
@@ -43,14 +40,12 @@ public class GwasanaethController {
     @Autowired
     private CategoriEditor categoriEditor;
 
-    @Autowired
-    private SylwToSylwEntityMapper sylwToEntity;
 
     @Autowired
     private SafonEditor safonEditor;
 
     @Autowired
-    private SylwEntityToSylwMapper entityToSylw;
+    private GwasanaethManager gwasanaethManager;
 
     @InitBinder("gwasanaeth")
     private void initBinder(WebDataBinder binder) {
@@ -164,22 +159,9 @@ public class GwasanaethController {
         return modelAndView;
     }
 
-    @Transactional
     @RequestMapping(path = "cyflwynoSylw/{gwasanaethId}", method = RequestMethod.POST)
     public ModelAndView cyflwynoSylw(@ModelAttribute("sylw") Sylw sylw, @PathVariable("gwasanaethId") Long gwasanaethId) {
-        GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(gwasanaethId);
-
-        if (gwasanaethEntity == null) {
-            // TODO add error - gwasanaeth doesn't exist
-            throw new NullPointerException();
-        }
-
-        // TODO add validator for sylw
-        SylwEntity sylwEntity = sylwToEntity.map(sylw);
-        sylwEntity.setGwasanaeth(gwasanaethEntity);
-        sylwDao.persist(sylwEntity);
-
-        gwasanaethEntity.getSylwadau().add(sylwEntity);
+        gwasanaethManager.addSylwForGwasanaethWithId(gwasanaethId, sylw);
 
         return new ModelAndView("redirect:/gwasanaethau/id/"+gwasanaethId);
     }

@@ -3,7 +3,7 @@ package com.clackjones.cymraeg;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SylwEntityToSylwMapper {
+class SylwEntityToSylwMapper {
 
     public Sylw map(SylwEntity sylwEntity) {
         Sylw sylw = new Sylw();
