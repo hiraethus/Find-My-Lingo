@@ -14,19 +14,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import com.clackjones.cymraeg.*;
 
 @Controller
 @RequestMapping("/gwasanaethau/*")
 public class GwasanaethController {
-
-    @Autowired
-    private GwasanaethDao gwasanaethDao;
-
-    @Autowired
-    private GwasanaethEntityToGwasanaethMapper entityToGwasanaeth;
 
     @Autowired
     private CategoriManager categoriManager;
@@ -65,7 +58,6 @@ public class GwasanaethController {
             gwasanaeth = new Gwasanaeth();
         }
 
-
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("gwasanaeth", gwasanaeth);
         map.put("categoris", categoris);
@@ -93,36 +85,18 @@ public class GwasanaethController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView listAllGwasanaethau(@RequestParam Map<String, String> params) {
 
-        final Collection<GwasanaethEntity> gwasanaethauEntities = gwasanaethDao.findAll();
-        List<Gwasanaeth> gwasanaethau = gwasanaethauEntities.stream()
-                .map(gwasanaethEntity -> entityToGwasanaeth.map(gwasanaethEntity))
-                .sorted(Comparator.comparing(Gwasanaeth::getCyfeiriadDinas, String::compareToIgnoreCase)
-                .thenComparing(Comparator.comparing(Gwasanaeth::getEnw, String::compareToIgnoreCase)))
-                .collect(Collectors.toList());
-
-        String dinas = params.getOrDefault("dinas", "popeth");
-        if (!dinas.equals("popeth")) {
-            gwasanaethau = gwasanaethau.stream()
-                    .filter(g -> g.getCyfeiriadDinas().equals(dinas)).collect(Collectors.toList());
-        }
-
-        String categori = params.getOrDefault("categori", "popeth");
-        if (!categori.equals("popeth")) {
-            gwasanaethau = gwasanaethau.stream()
-                    .filter(g -> g.getCategori().getCategori().equals(categori)).collect(Collectors.toList());
-        }
+        List<Gwasanaeth> gwasanaethau =
+                gwasanaethManager.findAllWithConditionsAlphabetically(params.getOrDefault("dinas", null),
+                    params.getOrDefault("categori", null));
 
         ModelAndView modelAndView = new ModelAndView("rhestrGwasanaeth", "gwasanaethau", gwasanaethau);
-
         modelAndView.addObject("heading", "Rhestr gwasanaethau");
         return modelAndView;
     }
 
-    @Transactional
     @RequestMapping(path = "id/{id}", method = RequestMethod.GET)
     public ModelAndView viewGwasanaeth(@PathVariable("id") Long id) {
-        GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(id);
-        Gwasanaeth gwasanaeth = entityToGwasanaeth.map(gwasanaethEntity);
+        Gwasanaeth gwasanaeth = gwasanaethManager.findById(id);
 
         ModelAndView modelAndView = new ModelAndView("gweldGwasanaeth", "gwasanaeth", gwasanaeth);
         modelAndView.addObject("heading", gwasanaeth.getEnw());

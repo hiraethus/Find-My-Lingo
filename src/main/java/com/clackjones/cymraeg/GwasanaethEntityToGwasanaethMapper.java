@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Component
-public class GwasanaethEntityToGwasanaethMapper {
+class GwasanaethEntityToGwasanaethMapper {
 
     @Autowired
     private CategoriEntityToCategoriMapper entityToCategory;

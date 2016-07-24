@@ -4,6 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Service
 public class GwasanaethManager {
 
@@ -21,6 +27,36 @@ public class GwasanaethManager {
 
     @Autowired
     private GwasanaethToGwasanaethEntityMapper gwasanaethToEntity;
+
+    @Autowired
+    private GwasanaethEntityToGwasanaethMapper entityToGwasanaeth;
+
+    @Transactional
+    public Gwasanaeth findById(Long id) {
+        GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(id);
+
+        return entityToGwasanaeth.map(gwasanaethEntity);
+    }
+
+    @Transactional
+    public List<Gwasanaeth> findAllWithConditionsAlphabetically(String dinasToFilter, String categoriToFilter) {
+        final Collection<GwasanaethEntity> gwasanaethauEntities = gwasanaethDao.findAll();
+        Stream<Gwasanaeth> gwasanaethauStream = gwasanaethauEntities.stream()
+                .map(gwasanaethEntity -> entityToGwasanaeth.map(gwasanaethEntity));
+
+        if (dinasToFilter != null) {
+            gwasanaethauStream = gwasanaethauStream.filter(g -> g.getCyfeiriadDinas().equals(dinasToFilter));
+        }
+
+        if (categoriToFilter != null) {
+            gwasanaethauStream = gwasanaethauStream.filter(g -> g.getCategori().getCategori().equals(categoriToFilter));
+        }
+
+        gwasanaethauStream = gwasanaethauStream.sorted(Comparator.comparing(Gwasanaeth::getCyfeiriadDinas, String::compareToIgnoreCase)
+                .thenComparing(Comparator.comparing(Gwasanaeth::getEnw, String::compareToIgnoreCase)));
+
+        return gwasanaethauStream.collect(Collectors.toList());
+    }
 
     /**
      * @return the ID of the persisted Gwasanaeth
