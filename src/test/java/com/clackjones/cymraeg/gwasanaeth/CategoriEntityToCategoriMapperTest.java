@@ -1,4 +1,4 @@
-package com.clackjones.cymraeg;
+package com.clackjones.cymraeg.gwasanaeth;
 
 import static org.hamcrest.core.IsEqual.*;
 import org.junit.Test;

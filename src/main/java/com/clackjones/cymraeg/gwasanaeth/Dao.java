@@ -1,4 +1,4 @@
-package com.clackjones.cymraeg;
+package com.clackjones.cymraeg.gwasanaeth;
 
 
 public interface Dao<K, E> {
