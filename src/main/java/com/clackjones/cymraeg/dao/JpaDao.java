@@ -1,4 +1,4 @@
-package com.clackjones.cymraeg.gwasanaeth;
+package com.clackjones.cymraeg.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
