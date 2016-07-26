@@ -4,7 +4,7 @@
         <Arg>/GwasanaethauDB</Arg>
         <Arg>
             <New class="org.h2.jdbcx.JdbcDataSource">
-                <Set name="url">jdbc:h2:file:~/GWASANAETHAU"</Set>
+                <Set name="url">jdbc:h2:file:~/gwasanaethau-cymraeg</Set>
                 <Set name="User">""</Set>
                 <Set name="Password">""</Set>
             </New>
