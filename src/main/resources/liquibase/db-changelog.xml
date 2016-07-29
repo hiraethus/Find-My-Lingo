@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="hiraethus" id="load-categori-data-001">
+        <insert tableName="CategoriEntity">
+            <column name="id" value="1"/>
+            <column name="categori" value="bwyti"/>
+        </insert>
+        <insert tableName="CategoriEntity">
+            <column name="id" value="2"/>
+            <column name="categori" value="tafarn"/>
+        </insert>
+        <insert tableName="CategoriEntity">
+            <column name="id" value="3"/>
+            <column name="categori" value="llywodraeth"/>
+        </insert>
+        <insert tableName="CategoriEntity">
+            <column name="id" value="4"/>
+            <column name="categori" value="coffi"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="security-jdbcDaoImpl-tables-001" author="hiraethus">
+        <createTable tableName="users">
+            <column name="username" type="varchar(50)" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="password" type="varchar(50)" >
+                <constraints nullable="false" />
+            </column>
+            <column name="enabled" type="bit" >
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="security-jdbcDaoImpl-tables-002" author="hiraethus">
+        <createTable tableName="authorities">
+            <column name="username" type="varchar(50)" >
+                <constraints nullable="false" />
+            </column>
+            <column name="authority" type="varchar(50)" >
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="authorities" indexName="idx_user_auth">
+            <column name="username" />
+            <column name="authority" />
+        </createIndex>
+
+        <createTable tableName="groups">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="group_name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createTable tableName="group_authorities">
+            <column name="group_id" type="bigint">
+                 <constraints nullable="false" />
+            </column>
+            <column name="authority" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createTable tableName="group_members">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="username" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="group_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="group_id"
+                                 baseTableName="group_authorities"
+                                 constraintName="fk_group_authorities_group"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="groups"/>
+
+        <addForeignKeyConstraint baseColumnNames="group_id"
+                                 baseTableName="group_members"
+                                 constraintName="fk_group_members_group"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="groups"/>
+    </changeSet>
+</databaseChangeLog>

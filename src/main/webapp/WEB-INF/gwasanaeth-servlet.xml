@@ -32,7 +32,7 @@
     <!-- Liquibase -->
     <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
         <property name="dataSource" ref="dataSource" />
-        <property name="changeLog" value="classpath:liquibase/populate-categories.xml" />
+        <property name="changeLog" value="classpath:liquibase/db-changelog.xml" />
     </bean>
 
 

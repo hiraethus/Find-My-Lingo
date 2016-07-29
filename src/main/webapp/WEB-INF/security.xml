@@ -19,6 +19,10 @@
 
     <global-method-security pre-post-annotations="enabled" />
 
+    <beans:bean id="jdbcDaoImpl" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+        <beans:property name="dataSource" ref="dataSource" />
+    </beans:bean>
+
     <authentication-manager >
         <authentication-provider>
             <password-encoder hash="sha-256">
