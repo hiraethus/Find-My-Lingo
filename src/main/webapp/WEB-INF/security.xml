@@ -21,10 +21,13 @@
 
     <authentication-manager >
         <authentication-provider>
+            <password-encoder hash="sha-256">
+                <salt-source user-property="username" />
+            </password-encoder>
             <user-service>
-                <user name="bill"  password="abc123"  authorities="ROLE_USER" />
-                <user name="sian"  password="abc123"  authorities="ROLE_SERVICE_OWNER" />
-                <user name="meic"   password="root123" authorities="ROLE_ADMIN,ROLE_SERVICE_OWNER,ROLE_USER" />
+                <user name="bill"  password="76f026bf57f1cd546f13831f6254ad19b0df93a6224e5ae8c7d32cef8b8bb839"  authorities="ROLE_USER" />
+                <user name="sian"  password="18c0b0d8cc9038f92f9ff45688f7c75e07d85c838dbbaa7b0823480f822e20af"  authorities="ROLE_SERVICE_OWNER" />
+                <user name="meic"   password="4e28db2ceb8f7b1504b444d1d835565d5236a7a7bdcdf8df9b0fe06a3018873b" authorities="ROLE_ADMIN,ROLE_SERVICE_OWNER,ROLE_USER" />
             </user-service>
         </authentication-provider>
     </authentication-manager>
