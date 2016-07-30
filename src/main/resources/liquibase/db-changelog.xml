@@ -30,7 +30,7 @@
             <column name="username" type="varchar(50)" >
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="password" type="varchar(50)" >
+            <column name="password" type="varchar(64)" >
                 <constraints nullable="false" />
             </column>
             <column name="enabled" type="bit" >
