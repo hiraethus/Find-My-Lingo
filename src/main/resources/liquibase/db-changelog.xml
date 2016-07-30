@@ -64,6 +64,12 @@
             </column>
         </createTable>
 
+        <addAutoIncrement columnDataType="bigint"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="6000"
+                          tableName="groups"/>
+
         <createTable tableName="group_authorities">
             <column name="group_id" type="bigint">
                  <constraints nullable="false" />
@@ -100,5 +106,50 @@
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
                                  referencedTableName="groups"/>
+    </changeSet>
+
+    <changeSet author="hiraethus" id="security-jdbcDaoImpl-tables-003">
+        <insert tableName="groups">
+            <column name="group_name" value="end_users" />
+        </insert>
+
+        <insert tableName="group_authorities">
+            <column name="authority" value="ROLE_CREATE_GWASANAETH" />
+            <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'end_users')" />
+        </insert>
+        <insert tableName="group_authorities">
+            <column name="authority" value="ROLE_ADD_COMMENT" />
+            <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'end_users')" />
+        </insert>
+    </changeSet>
+
+
+    <changeSet author="hiraethus" id="test-user-data-001">
+        <insert tableName="users">
+            <column name="username" value="bill" />
+            <column name="password" value="76f026bf57f1cd546f13831f6254ad19b0df93a6224e5ae8c7d32cef8b8bb839" />
+            <column name="enabled" valueBoolean="true" />
+        </insert>
+        <insert tableName="users">
+            <column name="username" value="sian" />
+            <column name="password" value="18c0b0d8cc9038f92f9ff45688f7c75e07d85c838dbbaa7b0823480f822e20af" />
+            <column name="enabled" valueBoolean="true" />
+        </insert>
+        <insert tableName="users">
+            <column name="username" value="meic" />
+            <column name="password" value="4e28db2ceb8f7b1504b444d1d835565d5236a7a7bdcdf8df9b0fe06a3018873b" />
+            <column name="enabled" valueBoolean="true" />
+        </insert>
+    </changeSet>
+
+    <changeSet author="hiraethus" id="test-user-data-002">
+        <insert tableName="group_members">
+            <column name="username" value="sian" />
+            <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'end_users')" />
+        </insert>
+        <insert tableName="group_members">
+            <column name="username" value="bill" />
+            <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'end_users')" />
+        </insert>
     </changeSet>
 </databaseChangeLog>
