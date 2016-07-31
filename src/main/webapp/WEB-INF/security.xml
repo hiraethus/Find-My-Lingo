@@ -19,7 +19,7 @@
 
     <global-method-security pre-post-annotations="enabled" />
 
-    <beans:bean id="jdbcDaoImpl" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+    <beans:bean id="jdbcUserDetailsManager" class="org.springframework.security.provisioning.JdbcUserDetailsManager">
         <beans:property name="dataSource" ref="dataSource" />
         <!-- only allow permissions to be given through groups, not assigned directly to users -->
         <beans:property name="enableAuthorities" value="false" />
@@ -27,7 +27,7 @@
     </beans:bean>
 
     <authentication-manager >
-        <authentication-provider user-service-ref="jdbcDaoImpl">
+        <authentication-provider user-service-ref="jdbcUserDetailsManager">
             <password-encoder hash="sha-256">
                 <salt-source user-property="username" />
             </password-encoder>
