@@ -11,6 +11,15 @@
     </div>
 </div>
 </c:if>
+<c:if test="${not empty registrationSuccessful}" >
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-success" role="alert">
+            ${registrationSuccessful}
+        </div>
+    </div>
+</div>
+</c:if>
 
 <div class="jumbotron">
 
