@@ -1,7 +1,6 @@
 package com.clackjones.cymraeg.registration;
 
-/**
- * Created by mike on 31/07/16.
- */
 public enum RegistrationExceptionType {
+    USER_ALREADY_EXISTS,
+    UNMATCHED_PASSWORDS, USER_TOO_LONG, PASS_TOO_SHORT;
 }
