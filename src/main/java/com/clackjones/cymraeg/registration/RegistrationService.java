@@ -13,6 +13,8 @@ public class RegistrationService {
     private JdbcUserDetailsManager jdbcUserDetailsManager;
     @Autowired
     private UserPassValidator userPassValidator;
+    @Autowired
+    private PasswordEncryption passwordEncryption;
 
 
     public boolean register(RegistrationDetails details) throws RegistrationException {
@@ -21,6 +23,8 @@ public class RegistrationService {
         if (jdbcUserDetailsManager.userExists(details.getUsername())) {
             throw new RegistrationException("This user already exists", RegistrationExceptionType.USER_ALREADY_EXISTS);
         }
+
+        passwordEncryption.encryptPassword(details);
 
         jdbcUserDetailsManager.createUser(user(details));
         jdbcUserDetailsManager.addUserToGroup(details.getUsername(), "end_users");

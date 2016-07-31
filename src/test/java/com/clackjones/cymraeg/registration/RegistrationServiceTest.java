@@ -20,6 +20,8 @@ public class RegistrationServiceTest {
     private JdbcUserDetailsManager jdbcUserDetailsManager;
     @Mock
     private UserPassValidator userPassValidator;
+    @Mock
+    private PasswordEncryption passwordEncryption;
 
     @InjectMocks
     private RegistrationService registrationService;
@@ -87,9 +89,9 @@ public class RegistrationServiceTest {
         // when
         boolean success = registrationService.register(regDetails);
 
-
         // then
         then(jdbcUserDetailsManager).should(times(1)).createUser(any());
+        then(passwordEncryption).should(times(1)).encryptPassword(regDetails);
         then(jdbcUserDetailsManager).should(times(1)).addUserToGroup(username, "end_users");
 
         assertThat(success, is(true));
