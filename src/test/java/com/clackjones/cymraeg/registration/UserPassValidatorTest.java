@@ -62,6 +62,35 @@ public class UserPassValidatorTest {
     }
 
     @Test
+    public void shouldThrowExceptionWhenUsernameTooShort() {
+        // given
+        UserPassValidator validator = new UserPassValidator();
+        RegistrationDetails details = new RegistrationDetails();
+
+        int tooShortLength = UserPassValidator.MIN_USER_LENGTH - 1;
+        char[] tooShortUser = new char[tooShortLength];
+        Arrays.fill(tooShortUser, 'a');
+        String username = new String(tooShortUser);
+
+        details.setUsername(username);
+        details.setPassword("password1");
+        details.setPasswordSecondTimeEntered("password1");
+
+        // when
+        RegistrationException r = null;
+        try {
+            validator.validate(details);
+        } catch (RegistrationException e) {
+            r = e;
+        }
+
+        // then
+        assertThat(r, notNullValue());
+        assertThat(r.getKind(), is(RegistrationExceptionType.USER_TOO_SHORT));
+        assertThat(r.getMessage(), equalTo("Username is too short. Must be longer than " + UserPassValidator.MIN_USER_LENGTH));
+    }
+
+    @Test
     public void shouldThrowExceptionWhenPasswordTooShort() {
         // given
         UserPassValidator validator = new UserPassValidator();

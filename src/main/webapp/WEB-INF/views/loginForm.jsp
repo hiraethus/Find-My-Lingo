@@ -55,6 +55,11 @@
                             Mae'r enw defnyddwir yn rhy hir. Ceisiwch eto.
                         </div>
                         </c:when>
+                        <c:when test="${registrationError == 'USER_TOO_SHORT'}">
+                        <div class="alert alert-danger" role="alert">
+                            Mae'r enw defnyddwir yn rhy fyr. Ceisiwch eto.
+                        </div>
+                        </c:when>
                         <c:when test="${registrationError == 'PASS_TOO_SHORT'}">
                         <div class="alert alert-danger" role="alert">
                             Mae'r cyfrinair yn rhy fyr. Ceisiwch eto.
