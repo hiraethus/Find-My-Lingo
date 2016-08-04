@@ -5,6 +5,112 @@
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="hiraethus (generated)" id="1470319172303-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="CategoriEntity">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="categori" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-2" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="CategoriEntity_GwasanaethEntity">
+            <column name="CategoriEntity_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gwasanaethau_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-3" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="GwasanaethEntity">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ailLinell" type="VARCHAR(255)"/>
+            <column name="codPost" type="VARCHAR(255)"/>
+            <column name="dinas" type="VARCHAR(255)"/>
+            <column name="llinellGyntaf" type="VARCHAR(255)"/>
+            <column name="sir" type="VARCHAR(255)"/>
+            <column name="disgrifiad" type="VARCHAR(255)"/>
+            <column name="ebost" type="VARCHAR(255)"/>
+            <column name="enw" type="VARCHAR(255)"/>
+            <column name="rhifFfon" type="VARCHAR(255)"/>
+            <column name="categori_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="SylwEntity">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amserSylw" type="time"/>
+            <column name="safonArwyddiaeth" type="VARCHAR(255)"/>
+            <column name="safonGwasanaeth" type="VARCHAR(255)"/>
+            <column name="safonIaith" type="VARCHAR(255)"/>
+            <column name="sylw" type="TEXT"/>
+            <column name="gwasanaeth_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-9" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="gwasanaeth_sequence_table">
+            <column name="sequence_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="next_val" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-10" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="sylw_sequence_table">
+            <column name="sequence_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="next_val" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-12" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="id" tableName="GwasanaethEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-13" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="id" tableName="SylwEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-14" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="sequence_name" tableName="gwasanaeth_sequence_table"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-15" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="sequence_name" tableName="sylw_sequence_table"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-17" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="gwasanaethau_id" constraintName="UK_4hhd5wbm4aixcnuempp7e0gnf" tableName="CategoriEntity_GwasanaethEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-18" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="FK9syulk1p31f0c6kq6e81fr2p" tableName="GwasanaethEntity">
+            <column name="categori_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-19" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="FKbw8f3jb6d89xw1edi7j5frkvr" tableName="CategoriEntity_GwasanaethEntity">
+            <column name="CategoriEntity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-20" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createIndex indexName="FKtjosv1qjk08gslc80mqc9l30v" tableName="SylwEntity">
+            <column name="gwasanaeth_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-24" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="categori_id" baseTableName="GwasanaethEntity" constraintName="FK9syulk1p31f0c6kq6e81fr2p" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="CategoriEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-25" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="CategoriEntity_id" baseTableName="CategoriEntity_GwasanaethEntity" constraintName="FKbw8f3jb6d89xw1edi7j5frkvr" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="CategoriEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-26" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="gwasanaethau_id" baseTableName="CategoriEntity_GwasanaethEntity" constraintName="FKj6jpo0h1djwbuu37i3gt3ocm7" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="GwasanaethEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-27" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="gwasanaeth_id" baseTableName="SylwEntity" constraintName="FKtjosv1qjk08gslc80mqc9l30v" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="GwasanaethEntity"/>
+    </changeSet>
 
     <changeSet author="hiraethus" id="load-categori-data-001">
         <insert tableName="CategoriEntity">
