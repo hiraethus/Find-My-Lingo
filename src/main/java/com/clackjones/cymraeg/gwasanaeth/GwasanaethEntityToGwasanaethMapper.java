@@ -44,6 +44,8 @@ class GwasanaethEntityToGwasanaethMapper {
             gwasanaeth.setSylwadau(sylwadau);
         }
 
+        if (entity.getOwnerUsername() != null) gwasanaeth.setOwner(entity.getOwnerUsername());
+
         return gwasanaeth;
     }
 }

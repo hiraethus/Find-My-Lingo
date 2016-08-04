@@ -17,6 +17,7 @@ public class Gwasanaeth {
     private String cyfeiriadCodPost;
     private Categori categori;
     private Collection<Sylw> sylwadau = new ArrayList<>();
+    private String owner;
 
     public Long getId() {
         return id;
@@ -114,4 +115,11 @@ public class Gwasanaeth {
         this.sylwadau = sylwadau;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 }

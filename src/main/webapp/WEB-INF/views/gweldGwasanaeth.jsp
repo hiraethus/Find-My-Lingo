@@ -16,6 +16,7 @@
             <h2>Disgrifiad</h2>
             <em>${gwasanaeth.disgrifiad}</em>
             <div>Categori: <em>${gwasanaeth.categori.categori}</em></div>
+            <div>Cynhelir y proffil yma gan: <em>${gwasanaeth.owner}</em></div>
 
             <h2>Cyswllt</h2>
             <div class="vcard">
