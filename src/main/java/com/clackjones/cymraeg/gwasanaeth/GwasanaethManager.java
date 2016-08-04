@@ -62,8 +62,9 @@ public class GwasanaethManager {
      * @return the ID of the persisted Gwasanaeth
      */
     @Transactional
-    public Long saveGwasanaeth(Gwasanaeth gwasanaeth) {
+    public Long saveGwasanaeth(Gwasanaeth gwasanaeth, String username) {
         GwasanaethEntity gwasanaethEntity = gwasanaethToEntity.map(gwasanaeth);
+        gwasanaethEntity.setOwnerUsername(username);
         gwasanaethDao.persist(gwasanaethEntity);
 
         return gwasanaethEntity.getId();

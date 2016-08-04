@@ -228,4 +228,17 @@
             <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'end_users')" />
         </insert>
     </changeSet>
+
+    <changeSet id="user-reference-to-gwasanaethau" author="hiraethus">
+        <addColumn tableName="GwasanaethEntity">
+            <column name="OWNER_USERNAME" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="OWNER_USERNAME" baseTableName="GwasanaethEntity" constraintName="fk_to_user"
+                                 onDelete="RESTRICT"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="username"
+                                 referencedTableName="users" />
+    </changeSet>
 </databaseChangeLog>

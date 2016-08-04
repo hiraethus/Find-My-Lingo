@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -68,14 +69,14 @@ public class GwasanaethController {
 
     @RequestMapping(path = "/", method = RequestMethod.POST)
     public ModelAndView submitForm(@Valid @ModelAttribute("gwasanaeth") Gwasanaeth gwasanaeth, BindingResult result,
-                                   RedirectAttributes attr) {
+                                   RedirectAttributes attr, Principal principal) {
         if (result.hasErrors()) {
             attr.addFlashAttribute("org.springframework.validation.BindingResult.gwasanaeth", result);
             attr.addFlashAttribute("gwasanaeth", gwasanaeth);
             return new ModelAndView("redirect:ychwanegu");
         }
 
-        Long id = gwasanaethManager.saveGwasanaeth(gwasanaeth);
+        Long id = gwasanaethManager.saveGwasanaeth(gwasanaeth, principal.getName());
 
         return new ModelAndView("redirect:id/"+id);
     }

@@ -37,6 +37,9 @@ public class GwasanaethEntity {
     @ManyToOne
     private CategoriEntity categori;
 
+    @Column(name = "OWNER_USERNAME", nullable = false)
+    private String ownerUsername;
+
     public Long getId() {
         return id;
     }
@@ -100,5 +103,13 @@ public class GwasanaethEntity {
 
     public boolean hasSylwadau() {
         return this.getSylwadau() != null && this.getSylwadau().size() > 0;
+    }
+
+    public String getOwnerUsername() {
+        return ownerUsername;
+    }
+
+    public void setOwnerUsername(String ownerUsername) {
+        this.ownerUsername = ownerUsername;
     }
 }
