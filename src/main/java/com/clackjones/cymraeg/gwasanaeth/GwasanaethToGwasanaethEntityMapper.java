@@ -10,7 +10,11 @@ class GwasanaethToGwasanaethEntityMapper {
     private CategoriDao categoriDao;
 
     public GwasanaethEntity map(Gwasanaeth gwasanaeth) {
-        GwasanaethEntity entity = new GwasanaethEntity();
+        return map(gwasanaeth, new GwasanaethEntity());
+    }
+
+
+    public GwasanaethEntity map(Gwasanaeth gwasanaeth, GwasanaethEntity entity) {
         entity.setEnw(gwasanaeth.getEnw());
         entity.setRhifFfon(gwasanaeth.getRhifFfon());
         entity.setEbost(gwasanaeth.getEbost());

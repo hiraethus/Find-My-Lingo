@@ -15,6 +15,10 @@ public abstract class JpaDao<K, E> implements Dao<K, E> {
         this.entityClass = (Class) genericSuperclass.getActualTypeArguments()[1];
     }
 
+    public void merge(E entity) {
+        entityManager.merge(entity);
+    }
+
     @Override
     public void persist(E entity) {
         entityManager.persist(entity);

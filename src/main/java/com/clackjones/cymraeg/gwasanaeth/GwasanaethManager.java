@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.naming.NoPermissionException;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -85,5 +86,25 @@ public class GwasanaethManager {
         sylwDao.persist(sylwEntity);
 
         gwasanaethEntity.getSylwadau().add(sylwEntity);
+    }
+
+    @Transactional
+    public void updateGwasanaeth(Gwasanaeth gwasanaeth, String name) throws GwasanaethNotFound, NoPermissionException {
+        if (gwasanaeth.getId() == null) {
+            throw new NullPointerException("Gwasanaeth ID not provided");
+        }
+
+        GwasanaethEntity entity = gwasanaethDao.findById(gwasanaeth.getId());
+        if (entity  == null) {
+            throw new GwasanaethNotFound(String.format("Couldn't find Gwasanaeth with id %d\n", gwasanaeth.getId()));
+        }
+
+        if (!entity.getOwnerUsername().equals(name)) {
+            throw new NoPermissionException(
+                    String.format("User %s doesn't have permission to modify this gwasanaeth",name));
+        }
+
+        gwasanaethToEntity.map(gwasanaeth, entity);
+        gwasanaethDao.merge(entity);
     }
 }

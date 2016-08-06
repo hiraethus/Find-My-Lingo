@@ -6,7 +6,22 @@
     <definition name="adioGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
         <put-attribute name="title" value="Gwasanaethau Cymraeg - Ychwanegu" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/adioGwasanaeth.jsp" />
+        <put-attribute name="body">
+            <definition template="/WEB-INF/views/adioGwasanaeth.jsp">
+                <put-attribute name="formMethod" value="POST" />
+            </definition>
+        </put-attribute>
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+    </definition>
+
+    <definition name="adolyguGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
+        <put-attribute name="title" value="Gwasanaethau Cymraeg - Adolygu" />
+        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="body">
+            <definition template="/WEB-INF/views/adioGwasanaeth.jsp">
+                <put-attribute name="formMethod" value="PUT" />
+            </definition>
+        </put-attribute>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 

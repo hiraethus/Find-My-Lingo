@@ -1,9 +1,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ page isELIgnored="false" %>
 
-
-<form:form action="${pageContext.request.contextPath}/gwasanaethau/" commandName="gwasanaeth" method="POST">
+<c:set var="httpMethod"><tiles:getAsString name='formMethod' /></c:set>
+<form:form action="${pageContext.request.contextPath}/gwasanaethau/" commandName="gwasanaeth" method='${httpMethod}'>
+    <form:hidden path="id" />
     <fieldset class="form-group">
         <form:label path="enw">Enw'r Wasanaeth</form:label>
         <form:input path="enw" class="form-control" />

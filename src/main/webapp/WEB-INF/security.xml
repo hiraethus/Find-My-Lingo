@@ -8,7 +8,13 @@
         <intercept-url pattern="/gwasanaethau/ychwanegu" method="GET"
                        access="hasRole('ROLE_CREATE_GWASANAETH')" />
 
+        <intercept-url pattern="/gwasanaethau/adolygu/**" method="GET"
+                       access="hasRole('ROLE_CREATE_GWASANAETH')" />
+
         <intercept-url pattern="/gwasanaethau/" method="POST"
+                       access="hasRole('ROLE_CREATE_GWASANAETH')" />
+
+        <intercept-url pattern="/gwasanaethau/" method="PUT"
                        access="hasRole('ROLE_CREATE_GWASANAETH')" />
 
         <intercept-url pattern="/**" access="permitAll" />

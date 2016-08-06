@@ -3,6 +3,7 @@ package com.clackjones.cymraeg.gwasanaeth.web;
 import com.clackjones.cymraeg.gwasanaeth.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.naming.NoPermissionException;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.*;
@@ -79,6 +81,48 @@ public class GwasanaethController {
         Long id = gwasanaethManager.saveGwasanaeth(gwasanaeth, principal.getName());
 
         return new ModelAndView("redirect:id/"+id);
+    }
+
+    @RequestMapping(path = "/", method = RequestMethod.PUT)
+    public ModelAndView updateGwasanaeth(@Valid @ModelAttribute("gwasanaeth") Gwasanaeth gwasanaeth, BindingResult result,
+                                   RedirectAttributes attr, Principal principal) {
+        if (result.hasErrors()) {
+            attr.addFlashAttribute("org.springframework.validation.BindingResult.gwasanaeth", result);
+            attr.addFlashAttribute("gwasanaeth", gwasanaeth);
+            return new ModelAndView("redirect:adolygu");
+        }
+
+        try {
+            gwasanaethManager.updateGwasanaeth(gwasanaeth, principal.getName());
+        } catch (GwasanaethNotFound gwasanaethNotFound) {
+            throw new NullPointerException(gwasanaethNotFound.getMessage());
+        } catch (NoPermissionException e) {
+            throw new AccessDeniedException(e.getMessage());
+        }
+
+        return new ModelAndView("redirect:id/"+gwasanaeth.getId());
+    }
+
+
+    @RequestMapping(path = "adolygu/{gwasanaethId}", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')")
+    public ModelAndView adolyguGwasanaeth(@PathVariable("gwasanaethId") Long gwasanaethId,
+                                          Principal principal) {
+        Gwasanaeth gwasanaeth = gwasanaethManager.findById(gwasanaethId);
+
+        String name = principal.getName();
+        if (!gwasanaeth.getOwner().equals(name)) {
+            throw new AccessDeniedException(
+                    String.format("User %s doesn't have permission to modify this gwasanaeth",name));
+        }
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("gwasanaeth", gwasanaeth);
+        map.put("categoris", categoriManager.findAll());
+
+        map.put("heading", "Adolygu gwasanaeth");
+
+        return new ModelAndView("adolyguGwasanaeth", map);
     }
 
     @Transactional
