@@ -1,4 +1,4 @@
-package com.clackjones.cymraeg.registration;
+package com.clackjones.cymraeg.user;
 
 interface PasswordEncryption {
     void encryptPassword(RegistrationDetails regDetails);

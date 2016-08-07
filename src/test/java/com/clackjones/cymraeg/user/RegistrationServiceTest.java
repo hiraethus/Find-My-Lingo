@@ -1,4 +1,4 @@
-package com.clackjones.cymraeg.registration;
+package com.clackjones.cymraeg.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

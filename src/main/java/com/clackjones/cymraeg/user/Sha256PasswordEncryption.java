@@ -1,4 +1,4 @@
-package com.clackjones.cymraeg.registration;
+package com.clackjones.cymraeg.user;
 
 import org.springframework.stereotype.Component;
 import static org.apache.commons.codec.digest.DigestUtils.sha256Hex;

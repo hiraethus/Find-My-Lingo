@@ -1,8 +1,8 @@
 package com.clackjones.cymraeg.login.web;
 
-import com.clackjones.cymraeg.registration.RegistrationDetails;
-import com.clackjones.cymraeg.registration.RegistrationException;
-import com.clackjones.cymraeg.registration.RegistrationService;
+import com.clackjones.cymraeg.user.RegistrationDetails;
+import com.clackjones.cymraeg.user.RegistrationException;
+import com.clackjones.cymraeg.user.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

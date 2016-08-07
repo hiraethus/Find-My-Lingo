@@ -1,4 +1,4 @@
-package com.clackjones.cymraeg.registration;
+package com.clackjones.cymraeg.user;
 
 public class RegistrationException extends Exception {
     private final RegistrationExceptionType kind;

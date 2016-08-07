@@ -1,4 +1,4 @@
-package com.clackjones.cymraeg.registration;
+package com.clackjones.cymraeg.user;
 
 public enum RegistrationExceptionType {
     USER_ALREADY_EXISTS,

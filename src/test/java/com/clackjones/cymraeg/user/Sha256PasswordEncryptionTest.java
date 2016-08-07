@@ -1,4 +1,4 @@
-package com.clackjones.cymraeg.registration;
+package com.clackjones.cymraeg.user;
 
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
