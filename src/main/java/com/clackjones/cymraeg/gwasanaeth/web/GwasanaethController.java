@@ -133,7 +133,7 @@ public class GwasanaethController {
                 gwasanaethManager.findAllWithConditionsAlphabetically(params.getOrDefault("dinas", null),
                     params.getOrDefault("categori", null));
 
-        ModelAndView modelAndView = new ModelAndView("rhestrGwasanaeth", "gwasanaethau", gwasanaethau);
+        ModelAndView modelAndView = new ModelAndView("tudalenFlaen", "gwasanaethau", gwasanaethau);
         modelAndView.addObject("heading", "Rhestr gwasanaethau");
         return modelAndView;
     }

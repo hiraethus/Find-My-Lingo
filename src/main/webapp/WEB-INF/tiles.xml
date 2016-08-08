@@ -32,12 +32,23 @@
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
-    <definition name="rhestrGwasanaeth" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Gwasanaethau Cymraeg - Rhestr" />
+    <definition name="tudalenFlaen" template="/WEB-INF/tiles/large-body.jsp">
+        <put-attribute name="title" value="Gwasanaethau Cymraeg - Croeso" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/rhestrGwasanaeth.jsp" />
+        <put-attribute name="body">
+            <definition template="/WEB-INF/views/frontPage.jsp">
+                <put-attribute name="rhestrGwasanaethau" value="/WEB-INF/components/rhestrGwasanaethau.jsp" />
+            </definition>
+        </put-attribute>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
+
+    <!--<definition name="proffil" template="/WEB-INF/tiles/large-body.jsp">-->
+        <!--<put-attribute name="title" value="Gwasanaethau Cymraeg - Proffil" />-->
+        <!--<put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />-->
+        <!--<put-attribute name="body" value="/WEB-INF/views/rhestrGwasanaeth.jsp" />-->
+        <!--<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />-->
+    <!--</definition>-->
 
     <definition name="loginForm" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Gwasanaethau Cymraeg - Logio mewn" />
