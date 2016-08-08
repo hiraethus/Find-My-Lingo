@@ -44,5 +44,9 @@ public class UserEntity {
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
     }
+
+    public Collection<GwasanaethEntity> getGwasanaethau() {
+        return gwasanaethau;
+    }
 }
 
