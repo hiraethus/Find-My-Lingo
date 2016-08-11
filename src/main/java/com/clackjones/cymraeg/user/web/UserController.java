@@ -1,9 +1,6 @@
 package com.clackjones.cymraeg.user.web;
 
-import com.clackjones.cymraeg.user.User;
-import com.clackjones.cymraeg.user.UserDao;
-import com.clackjones.cymraeg.user.UserEntity;
-import com.clackjones.cymraeg.user.UserEntityToUserMapper;
+import com.clackjones.cymraeg.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,13 +13,8 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/defnyddiwr")
 public class UserController {
-
-    // Extract to service
     @Autowired
-    private UserDao userDao;
-
-    @Autowired
-    private UserEntityToUserMapper entityToUserMapper;
+    private UserManager userManager;
 
     @RequestMapping(path = "/proffil", method = RequestMethod.GET)
     @Transactional
@@ -33,10 +25,7 @@ public class UserController {
         }
 
         String username = principal.getName();
-
-        // get gwasanaethau
-        UserEntity userEntity = userDao.findById(username);
-        User user = entityToUserMapper.map(userEntity);
+        User user = userManager.findUserByUsername(username);
 
         // display them
         ModelAndView view = new ModelAndView("proffil");

@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class UserEntityToUserMapper {
+class UserEntityToUserMapper {
 
     @Autowired
     private GwasanaethEntityToGwasanaethMapper entityToGwasanaethMapper;
 
-    public User map(UserEntity userEntity) {
+    User map(UserEntity userEntity) {
         if (userEntity == null) {
             return null;
         }
