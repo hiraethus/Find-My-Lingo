@@ -1,10 +1,9 @@
 package com.clackjones.cymraeg.user.web;
 
-import com.clackjones.cymraeg.gwasanaeth.Gwasanaeth;
-import com.clackjones.cymraeg.gwasanaeth.GwasanaethEntity;
-import com.clackjones.cymraeg.gwasanaeth.GwasanaethEntityToGwasanaethMapper;
+import com.clackjones.cymraeg.user.User;
 import com.clackjones.cymraeg.user.UserDao;
 import com.clackjones.cymraeg.user.UserEntity;
+import com.clackjones.cymraeg.user.UserEntityToUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/defnyddiwr")
@@ -25,7 +22,7 @@ public class UserController {
     private UserDao userDao;
 
     @Autowired
-    private GwasanaethEntityToGwasanaethMapper entityToGwasanaeth;
+    private UserEntityToUserMapper entityToUserMapper;
 
     @RequestMapping(path = "/proffil", method = RequestMethod.GET)
     @Transactional
@@ -39,14 +36,11 @@ public class UserController {
 
         // get gwasanaethau
         UserEntity userEntity = userDao.findById(username);
-        Collection<Gwasanaeth> myGwasanaethau =
-                userEntity.getGwasanaethau().stream()
-                    .map(entity -> entityToGwasanaeth.map(entity))
-                    .collect(Collectors.toSet());
+        User user = entityToUserMapper.map(userEntity);
 
         // display them
         ModelAndView view = new ModelAndView("proffil");
-        view.addObject("gwasanaethau", myGwasanaethau);
+        view.addObject("gwasanaethau", user.getGwasanaethau());
 
         return view;
     }

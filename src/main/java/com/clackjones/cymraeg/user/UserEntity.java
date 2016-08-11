@@ -48,5 +48,9 @@ public class UserEntity {
     public Collection<GwasanaethEntity> getGwasanaethau() {
         return gwasanaethau;
     }
+
+    public void setGwasanaethau(Collection<GwasanaethEntity> gwasanaethau) {
+        this.gwasanaethau = gwasanaethau;
+    }
 }
 
