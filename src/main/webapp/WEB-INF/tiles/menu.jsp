@@ -24,7 +24,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <c:if test="${not empty pageContext.request.remoteUser}">
-        <li><a><span class="glyphicon glyphicon glyphicon-user" aria-hidden="true"></span> Shwmae, <c:out value="${pageContext.request.remoteUser}"/></a></li>
+        <li><a href='<c:url value="/defnyddiwr/proffil" />'><span class="glyphicon glyphicon glyphicon-user" aria-hidden="true"></span> Fy Mhroffil</a></li>
         <li>
             <c:url var="logoutUrl" value="/logout"/>
             <form class="form-inline" action="${logoutUrl}" method="post">
