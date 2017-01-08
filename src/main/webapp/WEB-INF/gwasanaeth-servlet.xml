@@ -66,6 +66,8 @@
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
+    <mvc:resources mapping="/images/**" location="/images/" />
+
     <mvc:annotation-driven />
 
 

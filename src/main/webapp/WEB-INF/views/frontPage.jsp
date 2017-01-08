@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="thumbnail">
-                <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=480%C3%97480&w=480&h=480" />
+                <img src="${pageContext.request.contextPath}/images/gwasanaethau_cymraeg_logo.png" />
             </div>
         </div>
         <div class="col-md-8">
