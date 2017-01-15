@@ -25,15 +25,20 @@
 
     <div class="row">
         <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="${pageContext.request.contextPath}/images/gwasanaethau_cymraeg_logo.png" />
+            <div class="gwasanaethau-logo">
+                <div class="logo-square">
+                    <div class="gwasanaethau-text">GWASANAETHAU</div>
+                </div>
+                <div class="cymraeg-text">
+                    .CYMRU
+                </div>
             </div>
         </div>
         <div class="col-md-8">
-                    <h1>Gwasanaethau Cymraeg</h1>
+                    <h1>Gwasanaethau Cymru</h1>
 
         <p>
-            Prosiect yw Gwasanaethau Cymraeg i alluogi siaradwyr yr iaith Gymraeg i ddarganfod gwasanaethau
+            Prosiect yw Gwasanaethau Cymru i alluogi siaradwyr yr iaith Gymraeg i ddarganfod gwasanaethau
             cyfrwng cymraeg yn eu hardal.
             Os ydych chi yn perchen ar caffi, bwyti, yn gweithio i lywodraeth lleol neu yn darparu gwasanaeth preifat
             trwy gyfrwng y Gymraeg, byswn ni yn eich croesawi i gofrestru eich hun gyda'r ffurflen uchod.
