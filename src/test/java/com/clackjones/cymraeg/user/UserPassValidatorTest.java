@@ -1,19 +1,31 @@
 package com.clackjones.cymraeg.user;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import static org.mockito.BDDMockito.*;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class UserPassValidatorTest {
+    @Mock
+    private EmailValidator emailValidator;
+    @InjectMocks
+    UserPassValidator validator;
 
     @Test
     public void shouldThrowExceptionWhenPasswordsDontMatch() {
         // given
-        UserPassValidator validator = new UserPassValidator();
+        given(emailValidator.isEmailValid(any())).willReturn(true);
         RegistrationDetails details = new RegistrationDetails();
+
         details.setUsername("user");
         details.setPassword("password1");
         details.setPasswordSecondTimeEntered("password1_unmatched");
@@ -35,7 +47,7 @@ public class UserPassValidatorTest {
     @Test
     public void shouldThrowExceptionWhenUsernameTooLong() {
         // given
-        UserPassValidator validator = new UserPassValidator();
+        given(emailValidator.isEmailValid(any())).willReturn(true);
         RegistrationDetails details = new RegistrationDetails();
 
         int tooLongLength = UserPassValidator.MAX_USER_LENGTH + 1;
@@ -64,7 +76,7 @@ public class UserPassValidatorTest {
     @Test
     public void shouldThrowExceptionWhenUsernameTooShort() {
         // given
-        UserPassValidator validator = new UserPassValidator();
+        given(emailValidator.isEmailValid(any())).willReturn(true);
         RegistrationDetails details = new RegistrationDetails();
 
         int tooShortLength = UserPassValidator.MIN_USER_LENGTH - 1;
@@ -93,7 +105,7 @@ public class UserPassValidatorTest {
     @Test
     public void shouldThrowExceptionWhenPasswordTooShort() {
         // given
-        UserPassValidator validator = new UserPassValidator();
+        given(emailValidator.isEmailValid(any())).willReturn(true);
         RegistrationDetails details = new RegistrationDetails();
 
         int tooShortLength = UserPassValidator.MIN_PASSWORD_LENGTH - 1;
@@ -120,9 +132,37 @@ public class UserPassValidatorTest {
     }
 
     @Test
+    public void shouldThrowExceptionWhenUsernameNotEmail() {
+        // given
+        given(emailValidator.isEmailValid(any())).willReturn(false);
+        RegistrationDetails details = new RegistrationDetails();
+
+        char[] tooShortPass = new char[ UserPassValidator.MIN_PASSWORD_LENGTH ];
+        Arrays.fill(tooShortPass, 'a');
+        String password = new String(tooShortPass);
+
+        details.setUsername("invalid_email");
+        details.setPassword(password);
+        details.setPasswordSecondTimeEntered(password);
+
+        // when
+        RegistrationException r = null;
+        try {
+            validator.validate(details);
+        } catch (RegistrationException e) {
+            r = e;
+        }
+
+        // then
+        assertThat(r, notNullValue());
+        assertThat(r.getKind(), is(RegistrationExceptionType.INVALID_USERNAME_EMAIL));
+        assertThat(r.getMessage(), equalTo("Username is invalid email"));
+    }
+
+    @Test
     public void shouldReturnTrueWhenCriteriaSatisfied() throws Exception {
         // given
-        UserPassValidator validator = new UserPassValidator();
+        given(emailValidator.isEmailValid(any())).willReturn(true);
         RegistrationDetails details = new RegistrationDetails();
 
         int permissibleLengthUser = UserPassValidator.MAX_USER_LENGTH;

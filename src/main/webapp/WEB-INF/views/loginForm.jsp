@@ -18,7 +18,7 @@
             <form class="form-signin" action="<c:url value='/login' />" method="POST">
                 <h2 class="form-signin-heading">Logiwch i mewn</h2>
                 <fieldset class="form-group">
-                    <label for="username">Enw Defnyddiwr</label>
+                    <label for="username">Cyfeiriad ebost</label>
                     <input type="username" id="username" name="username" class="form-control" required autofocus />
                 </fieldset>
                 <fieldset class="form-group">
@@ -40,6 +40,11 @@
                 <h2>Cofrestrwch</h2>
                 <c:if test="${not empty registrationError}">
                     <c:choose>
+                        <c:when test="${registrationError == 'INVALID_USERNAME_EMAIL'}">
+                        <div class="alert alert-danger" role="alert">
+                            Rhaid defnyddio cyfeiriad ebost fel enw defnyddiwr. Ceisiwch eto.
+                        </div>
+                        </c:when>
                         <c:when test="${registrationError == 'USER_ALREADY_EXISTS'}">
                         <div class="alert alert-danger" role="alert">
                             Cofrestrwyd yr enw defnyddiwr yma yn barod. Ceisiwch eto.
@@ -68,7 +73,7 @@
                     </c:choose>
                 </c:if>
                 <fieldset class="form-group">
-                    <form:label path="username">Enw Defnyddiwr</form:label>
+                    <form:label path="username">Cyfeiriad ebost</form:label>
                     <form:input path="username" class="form-control" />
                     <form:errors path="username" cssStyle="color: red;"/>
                 </fieldset>
