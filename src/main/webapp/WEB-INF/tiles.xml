@@ -54,6 +54,17 @@
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
+    <definition name="contact" template="/WEB-INF/tiles/large-body.jsp">
+        <put-attribute name="title" value="Gwasanaethau Cymraeg - Cysylltwch" />
+        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="body">
+            <definition template="/WEB-INF/views/contact.jsp">
+                <put-attribute name="rhestrGwasanaethau" value="/WEB-INF/components/rhestrGwasanaethau.jsp" />
+            </definition>
+        </put-attribute>
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+    </definition>
+
     <definition name="loginForm" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Gwasanaethau Cymraeg - Logio mewn" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />

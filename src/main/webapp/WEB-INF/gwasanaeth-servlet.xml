@@ -69,6 +69,8 @@
     <mvc:resources mapping="/images/**" location="/images/" />
     <mvc:resources mapping="/css/**" location="/css/" />
 
+    <mvc:view-controller path="/cysylltwch/**" view-name="contact"/>
+
     <mvc:annotation-driven />
 
 

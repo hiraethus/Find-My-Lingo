@@ -19,8 +19,7 @@
         <sec:authorize access="hasRole('ROLE_CREATE_GWASANAETH')">
           <li><a href='<c:url value="/ychwanegu" />'>Ychwanegu Gwasanaeth</a></li>
         </sec:authorize>
-        <li><a href="#amdanom">Amdanom</a></li>
-        <li><a href="#cysylltwch">Cysylltwch</a></li>
+        <li><a href="cysylltwch">Cysylltwch</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <c:if test="${not empty pageContext.request.remoteUser}">
@@ -34,7 +33,7 @@
         </li>
         </c:if>
         <c:if test="${empty pageContext.request.remoteUser}">
-            <li><a href='<c:url value="/mewngofnodi" />'>Mewngofnodi</a></li>
+            <li><a href='<c:url value="/mewngofnodi" />'>Mewngofnodi/Cofrestru</a></li>
         </c:if>
       </ul>
     </div><!--/.nav-collapse -->
