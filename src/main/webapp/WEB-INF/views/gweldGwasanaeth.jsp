@@ -36,7 +36,7 @@
     </div>
     <sec:authorize access="isAuthenticated()">
     <div class="row">
-        <a href="<c:url value='/gwasanaethau/adolygu/${gwasanaeth.id}' />">
+        <a href="<c:url value='/adolygu/${gwasanaeth.id}' />">
         <div style="float: right; display: block;">
             Adolygu
         </div>
@@ -53,7 +53,7 @@
 
 <div class="row">
     <!-- TODO pass gwasanaeth ID to form -->
-    <form:form action="${pageContext.request.contextPath}/gwasanaethau/cyflwynoSylw/${gwasanaeth.id}" commandName="sylw" method="POST" role="form">
+    <form:form action="${pageContext.request.contextPath}/cyflwynoSylw/${gwasanaeth.id}" commandName="sylw" method="POST" role="form">
     <div class="panel panel-default">
       <div class="panel-heading">Ychwanegu sylw</div>
           <div class="panel-body">

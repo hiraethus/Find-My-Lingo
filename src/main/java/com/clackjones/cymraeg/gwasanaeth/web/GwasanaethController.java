@@ -20,7 +20,7 @@ import java.security.Principal;
 import java.util.*;
 
 @Controller
-@RequestMapping("/gwasanaethau/*")
+@RequestMapping("/")
 public class GwasanaethController {
 
     @Autowired

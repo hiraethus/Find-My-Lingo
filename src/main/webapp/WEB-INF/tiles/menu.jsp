@@ -15,9 +15,9 @@
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
 
-        <li><a href='<c:url value="/gwasanaethau/" />'>Adref</a></li>
+        <li><a href='<c:url value="/" />'>Adref</a></li>
         <sec:authorize access="hasRole('ROLE_CREATE_GWASANAETH')">
-          <li><a href='<c:url value="/gwasanaethau/ychwanegu" />'>Ychwanegu Gwasanaeth</a></li>
+          <li><a href='<c:url value="/ychwanegu" />'>Ychwanegu Gwasanaeth</a></li>
         </sec:authorize>
         <li><a href="#amdanom">Amdanom</a></li>
         <li><a href="#cysylltwch">Cysylltwch</a></li>

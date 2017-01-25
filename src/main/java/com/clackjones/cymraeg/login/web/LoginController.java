@@ -39,11 +39,11 @@ public class LoginController {
             registrationDetailsNoPass.setUsername(registrationDetails.getUsername());
             attr.addFlashAttribute("registrationDetails", registrationDetailsNoPass);
 
-            return new ModelAndView ("redirect:/mewngofnodi");
+            return new ModelAndView ("redirect:/");
         }
 
         attr.addFlashAttribute("registrationSuccessful", String.format("Cofrestrwyd %s yn llwyddianus! Cewch mewngofnodi nawr.", registrationDetails.getUsername()));
-        return new ModelAndView ("redirect:/gwasanaethau/");
+        return new ModelAndView ("redirect:/");
     }
 
 }
