@@ -12,7 +12,7 @@
       </button>
       <div class="navbar-brand">Gwasanaethau Cymru</div>
     </div>
-    <div id="navbar" class="collapse navbar-collapse">
+    <div id="navbar">
       <ul class="nav navbar-nav">
 
         <li><a href='<c:url value="/" />'>Adref</a></li>
@@ -36,6 +36,6 @@
             <li><a href='<c:url value="/mewngofnodi" />'>Mewngofnodi/Cofrestru</a></li>
         </c:if>
       </ul>
-    </div><!--/.nav-collapse -->
+    </div>
   </div>
 </nav>
