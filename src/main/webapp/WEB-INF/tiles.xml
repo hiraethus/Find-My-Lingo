@@ -4,7 +4,7 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <definition name="adioGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
-        <put-attribute name="title" value="Gwasanaethau Cymraeg - Ychwanegu" />
+        <put-attribute name="title" value="Gwasanaethau Cymru - Ychwanegu" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body">
             <definition template="/WEB-INF/views/adioGwasanaeth.jsp">
@@ -15,7 +15,7 @@
     </definition>
 
     <definition name="adolyguGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
-        <put-attribute name="title" value="Gwasanaethau Cymraeg - Adolygu" />
+        <put-attribute name="title" value="Gwasanaethau Cymru - Adolygu" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body">
             <definition template="/WEB-INF/views/adioGwasanaeth.jsp">
@@ -26,14 +26,14 @@
     </definition>
 
     <definition name="gweldGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
-        <put-attribute name="title" value="Gwasanaethau Cymraeg - Gweld" />
+        <put-attribute name="title" value="Gwasanaethau Cymru - Gweld" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body" value="/WEB-INF/views/gweldGwasanaeth.jsp" />
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
     <definition name="tudalenFlaen" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Gwasanaethau Cymraeg - Croeso" />
+        <put-attribute name="title" value="Gwasanaethau Cymru - Croeso" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body">
             <definition template="/WEB-INF/views/frontPage.jsp">
@@ -44,7 +44,7 @@
     </definition>
 
     <definition name="proffil" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Gwasanaethau Cymraeg - Proffil" />
+        <put-attribute name="title" value="Gwasanaethau Cymru - Proffil" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body">
             <definition template="/WEB-INF/views/profile.jsp">
@@ -55,7 +55,7 @@
     </definition>
 
     <definition name="contact" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Gwasanaethau Cymraeg - Cysylltwch" />
+        <put-attribute name="title" value="Gwasanaethau Cymru - Cysylltwch" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body">
             <definition template="/WEB-INF/views/contact.jsp">
@@ -66,7 +66,7 @@
     </definition>
 
     <definition name="loginForm" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Gwasanaethau Cymraeg - Logio mewn" />
+        <put-attribute name="title" value="Gwasanaethau Cymru - Logio mewn" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body" value="/WEB-INF/views/loginForm.jsp" />
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
