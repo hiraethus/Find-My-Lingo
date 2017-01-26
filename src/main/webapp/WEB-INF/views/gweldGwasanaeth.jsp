@@ -7,11 +7,6 @@
 
 <div class="jumbotron">
     <div class="row">
-        <div class="col-md-4">
-            <a href="#" class="thumbnail">
-                <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=320%C3%97320&w=320&h=320" />
-            </a>
-        </div>
 
         <div class="col-md-8">
             <h2>Disgrifiad</h2>
