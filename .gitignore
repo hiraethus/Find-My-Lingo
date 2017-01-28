@@ -1,3 +1,4 @@
 .idea/
 gwasanaeth-gymraeg-website.iml
 target/
+.vagrant/

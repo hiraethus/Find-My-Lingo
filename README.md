@@ -11,4 +11,5 @@ documented such that other technically minded people might host their own
 portals for their respective minority languages.
 
 ## Setup instructions
-Please see the [Installation Guide](//github.com/hiraethus/gwasanaethau-cymraeg/wiki/Installation Guide) in the wiki
+* To develop this application, use vagrant to provision a machine. See the vagrant_instructions.md
+* Please see the [Installation Guide](//github.com/hiraethus/gwasanaethau-cymraeg/wiki/Installation Guide) in the wiki (work in progress)
