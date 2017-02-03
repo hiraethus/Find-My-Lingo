@@ -154,7 +154,7 @@ public class GwasanaethController {
     public ModelAndView cyflwynoSylw(@ModelAttribute("sylw") Sylw sylw, @PathVariable("gwasanaethId") Long gwasanaethId) {
         gwasanaethManager.addSylwForGwasanaethWithId(gwasanaethId, sylw);
 
-        return new ModelAndView("redirect:/gwasanaethau/id/"+gwasanaethId);
+        return new ModelAndView("redirect:/id/"+gwasanaethId);
     }
 
     @ExceptionHandler(NullPointerException.class)
