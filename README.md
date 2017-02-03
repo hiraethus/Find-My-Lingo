@@ -1,6 +1,8 @@
-# Gwasanaethau Cymraeg
+# Gwasanaethau Cymru
 
-Gwasanaethau Cymraeg is a side project to enable speakers of [Welsh](https://en.wikipedia.org/wiki/Welsh_language) 
+[http://gwasanaethau.cymru/](http://gwasanaethau.cymru/)
+
+Gwasanaethau Cymru is a side project to enable speakers of [Welsh](https://en.wikipedia.org/wiki/Welsh_language) 
 to use Welsh-language services in their local area. I intend for this project to 
 allow businesses and local authorities to create profiles for their own services 
 and to allow people to rate the standard of the service provided to them 
