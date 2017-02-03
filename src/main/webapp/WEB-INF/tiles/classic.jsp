@@ -10,25 +10,7 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/logo.css" rel="stylesheet" />
-    <style type="text/css">
-        html {
-          position: relative;
-          min-height: 100%;
-        }
-        body {
-          /* Margin bottom by footer height */
-          padding-top: 70px;
-          margin-bottom: 60px;
-        }
-        .footer {
-          position: absolute;
-          bottom: 0;
-          width: 100%;
-          /* Set the fixed height of the footer here */
-          height: 60px;
-          background-color: #f5f5f5;
-        }
-    </style>
+    <link href="${pageContext.request.contextPath}/css/sticky-footer.css" rel="stylesheet" />
   </head>
   <body>
 
