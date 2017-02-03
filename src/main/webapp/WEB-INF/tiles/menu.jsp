@@ -7,7 +7,7 @@
       <ul class="nav nav-pills pull-right">
         <li><a href='<c:url value="/" />'>Adref</a></li>
         <li><a href='<c:url value="/adio" />'>Adio Gwasanaeth</a></li>
-        <li><a href="cysylltwch">Cysylltwch</a></li>
+        <li><a href="amdanom">Amdanom</a></li>
         <c:if test="${not empty pageContext.request.remoteUser}">
         <li><a href='<c:url value="/defnyddiwr/proffil" />'><span class="glyphicon glyphicon glyphicon-user" aria-hidden="true"></span> Fy Ngwasanaethau</a></li>
         <li>

@@ -35,14 +35,9 @@
             </div>
         </div>
         <div class="col-md-8">
-                    <h1>Gwasanaethau Cymru</h1>
-
-        <p>
-            Prosiect yw Gwasanaethau Cymru i alluogi siaradwyr yr iaith Gymraeg i ddarganfod gwasanaethau
-            cyfrwng cymraeg yn eu hardal.
-            Os ydych chi yn perchen ar caffi, bwyti, yn gweithio i lywodraeth lleol neu yn darparu gwasanaeth preifat
-            trwy gyfrwng y Gymraeg, byswn ni yn eich croesawi i gofrestru eich hun gyda'r ffurflen uchod.
-        </p>
+            <h1>Gwasanaethau Cymru</h1>
+            <p>Adiwch eich busnes neu gwasanaeth cyhoeddus i hysbysebu bod chi'n darparu gwasanaeth dwyieithog</p>
+            <a href='<c:url value="/adio" />' class="btn btn-primary">Adio Gwasanaeth</a>
         </div>
     </div>
 </div>

@@ -69,7 +69,7 @@
     <mvc:resources mapping="/images/**" location="/images/" />
     <mvc:resources mapping="/css/**" location="/css/" />
 
-    <mvc:view-controller path="/cysylltwch/**" view-name="contact"/>
+    <mvc:view-controller path="/amdanom/**" view-name="contact"/>
 
     <mvc:annotation-driven />
 
