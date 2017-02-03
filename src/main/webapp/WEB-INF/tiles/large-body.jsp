@@ -33,8 +33,8 @@
   <body>
 
 
-  <tiles:insertAttribute name="menu" />
   <div class="container">
+        <tiles:insertAttribute name="menu" />
         <tiles:insertAttribute name="body" />
   </div>
 
