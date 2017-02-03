@@ -29,3 +29,14 @@
     padding-top: 9em;
     float: left;
 }
+
+.mini-logo-square {
+    background-color: #DD2233;
+    box-shadow: 0.1em 0.1em 0.1em #888888;
+    display: block;
+    float: left;
+    height: 2em;
+    margin-right: 0.5em;
+    padding: 2px;
+    width: 2em;
+}

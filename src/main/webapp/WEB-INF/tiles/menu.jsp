@@ -22,6 +22,7 @@
           <li><a href='<c:url value="/mewngofnodi" />'>Mewngofnodi/Cofrestru</a></li>
         </c:if>
       </ul>
+      <div class="mini-logo-square"></div>
     <h3 class="text-muted">Gwasanaethau Cymru</h3>
   </nav>
 </div>
