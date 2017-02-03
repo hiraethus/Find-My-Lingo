@@ -24,14 +24,12 @@
 <div class="jumbotron">
 
     <div class="row">
-        <div class="col-md-4">
-            <div class="gwasanaethau-logo">
-                <div class="logo-square">
-                    <div class="gwasanaethau-text">GWASANAETHAU</div>
-                </div>
-                <div class="cymraeg-text">
-                    .CYMRU
-                </div>
+        <div>
+            <div class="logo-square">
+                <div class="gwasanaethau-text">GWASANAETHAU</div>
+            </div>
+            <div class="cymraeg-text">
+                .CYMRU
             </div>
         </div>
         <div class="col-md-8">
