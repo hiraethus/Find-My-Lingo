@@ -37,7 +37,7 @@
         <div class="col-md-8">
             <h1>Gwasanaethau Cymru</h1>
             <p>Adiwch eich busnes neu gwasanaeth cyhoeddus i hysbysebu bod chi'n darparu gwasanaeth dwyieithog</p>
-            <a href='<c:url value="/adio" />' class="btn btn-primary">Adio Gwasanaeth</a>
+            <a href='<c:url value="/adio" />' class="btn btn-primary btn-lg">Adio Gwasanaeth</a>
         </div>
     </div>
 </div>
