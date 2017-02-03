@@ -5,7 +5,7 @@
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd">
 
     <http use-expressions="true" auto-config="true">
-        <intercept-url pattern="/ychwanegu" method="GET"
+        <intercept-url pattern="/adio" method="GET"
                        access="hasRole('ROLE_CREATE_GWASANAETH')" />
 
         <intercept-url pattern="/adolygu/**" method="GET"

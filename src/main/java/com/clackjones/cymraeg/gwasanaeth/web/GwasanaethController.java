@@ -46,7 +46,7 @@ public class GwasanaethController {
         binder.registerCustomEditor(SafonEnum.class, safonEditor);
     }
 
-    @RequestMapping(path = "ychwanegu", method = RequestMethod.GET)
+    @RequestMapping(path = "adio", method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')")
     public ModelAndView addForm(Model model) {
         List<Categori> categoris = categoriManager.findAll();
@@ -64,7 +64,7 @@ public class GwasanaethController {
         map.put("gwasanaeth", gwasanaeth);
         map.put("categoris", categoris);
 
-        map.put("heading", "Ychwanegu gwasanaeth");
+        map.put("heading", "Adio gwasanaeth");
 
         return new ModelAndView("adioGwasanaeth", map);
     }
@@ -75,7 +75,7 @@ public class GwasanaethController {
         if (result.hasErrors()) {
             attr.addFlashAttribute("org.springframework.validation.BindingResult.gwasanaeth", result);
             attr.addFlashAttribute("gwasanaeth", gwasanaeth);
-            return new ModelAndView("redirect:ychwanegu");
+            return new ModelAndView("redirect:adio");
         }
 
         Long id = gwasanaethManager.saveGwasanaeth(gwasanaeth, principal.getName());

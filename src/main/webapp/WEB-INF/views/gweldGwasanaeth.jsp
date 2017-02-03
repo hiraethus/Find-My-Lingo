@@ -50,7 +50,7 @@
     <!-- TODO pass gwasanaeth ID to form -->
     <form:form action="${pageContext.request.contextPath}/cyflwynoSylw/${gwasanaeth.id}" commandName="sylw" method="POST" role="form">
     <div class="panel panel-default">
-      <div class="panel-heading">Ychwanegu sylw</div>
+      <div class="panel-heading">Adio sylw</div>
           <div class="panel-body">
           <div class="row">
             <div class="col-md-4">

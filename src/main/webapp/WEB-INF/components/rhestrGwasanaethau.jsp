@@ -3,7 +3,7 @@
 
 <c:if test="${empty gwasanaethau}">
     <div class="alert alert-info" role="alert">
-        <p>Gwag! Ychwanegwch gwasanaethau eich hun trwy clicio 'Ychwanegu Gwasanaeth' uchod</p>
+        <p>Gwag! Ychwanegwch gwasanaethau eich hun trwy clicio 'Adio Gwasanaeth' uchod</p>
     </div>
 </c:if>
 
