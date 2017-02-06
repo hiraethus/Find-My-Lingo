@@ -2,6 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page isELIgnored="false" %>
 
+<div><a href="?locale=en_US">English</a> | <a href="?locale=cy">Cymraeg</a></div>
 <div class="header clearfix">
   <nav>
       <ul class="nav nav-pills pull-right">
