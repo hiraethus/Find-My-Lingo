@@ -1,2 +1,4 @@
-<p style="text-align: center; margin-bottom: 0">&copy; 2016 Gwasanaethau Cymru</p>
-<p style="text-align: center"><em>Ni chaniateir cop&iuml;o na defnyddio cynnwys y wefan hon mewn unrhyw modd arall heb ganiat&acirc;d</em></p>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<p style="text-align: center; margin-bottom: 0">&copy; 2016 <spring:message code="service.wales" /></p>
+<p style="text-align: center"><em><spring:message code="copyright.notice" /></em></p>
