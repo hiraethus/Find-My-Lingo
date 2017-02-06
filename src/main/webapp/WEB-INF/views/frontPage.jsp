@@ -1,12 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
 
 <c:if test="${param.allgofnodi ne null}" >
 <div class="row">
     <div class="col-lg-12">
         <div class="alert alert-success" role="alert">
-            <p>Allgofnodwyd yn llwyddianus</p>
+
+            <p><spring:message code="logout.successful" /></p>
         </div>
     </div>
 </div>
@@ -33,12 +35,12 @@
             </div>
         </div>
         <div class="col-md-8">
-            <h1>Gwasanaethau Cymru</h1>
-            <p>Adiwch eich busnes neu gwasanaeth cyhoeddus i hysbysebu bod chi'n darparu gwasanaeth dwyieithog</p>
-            <a href='<c:url value="/adio" />' class="btn btn-primary btn-lg">Adio Gwasanaeth</a>
+            <h1><spring:message code="service.wales" /></h1>
+            <p><spring:message code="welcome.add.business" /></p>
+            <a href='<c:url value="/adio" />' class="btn btn-primary btn-lg"><spring:message code="service.add" /></a>
         </div>
     </div>
 </div>
 
-<h2>Rhestr Gwasanaethau</h2>
+<h2><spring:message code="service.list" /></h2>
 <tiles:insertAttribute name="rhestrGwasanaethau" />
