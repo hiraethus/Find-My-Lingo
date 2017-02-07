@@ -7,7 +7,7 @@
 # you're doing.
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-16.04"
-  config.vm.network "public_network"
+  config.vm.network "private_network", type: "dhcp"
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "1024"
