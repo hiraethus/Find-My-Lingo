@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
 
 <c:if test="${empty gwasanaethau}">
     <div class="alert alert-info" role="alert">
-        <p>Gwag! Ychwanegwch gwasanaethau eich hun trwy clicio 'Adio Gwasanaeth' uchod</p>
+        <p><spring:message code="list.empty.notification" /></p>
     </div>
 </c:if>
 
@@ -36,9 +37,9 @@
 <div class="">
     <table class="table table-striped">
         <thead>
-            <th>Enw</th>
-            <th>Categori</th>
-            <th>Dinas</th>
+            <th><spring:message code="list.name" /></th>
+            <th><spring:message code="list.category" /></th>
+            <th><spring:message code="list.city" /></th>
         </thead>
         <tbody>
             <c:forEach var="gwasanaeth" items="${gwasanaethau}">
