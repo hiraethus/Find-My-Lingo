@@ -19,7 +19,7 @@
     <bean id="myEmf"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="com.clackjones.cymraeg" />
+        <property name="packagesToScan" value="com.clackjones.cymraeg.gwasanaeth" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="showSql" value="false" />
