@@ -36,7 +36,7 @@
     </bean>
 
 
-    <jee:jndi-lookup id="dataSource" jndi-name="/GwasanaethauDB"
+    <jee:jndi-lookup id="dataSource" jndi-name="GwasanaethauDB"
                      cache="true"
                      resource-ref="true"
                      lookup-on-startup="false"
