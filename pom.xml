@@ -13,7 +13,6 @@
         <spring.version>4.2.5.RELEASE</spring.version>
         <spring.security.version>4.1.1.RELEASE</spring.security.version>
         <apache.tiles.version>3.0.5</apache.tiles.version>
-        <jdk.version>1.7</jdk.version>
     </properties>
 
     <dependencies>
@@ -149,8 +148,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
+                    <source>1.8</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
             <plugin>
