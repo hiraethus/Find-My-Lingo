@@ -57,7 +57,7 @@
                 <form:errors path="cyfeiriadSir" cssStyle="color: red;"/>
             </fieldset>
             <fieldset class="form-group">
-                <form:label path="cyfeiriadCodPost"><spring:message code="form.county" /></form:label>
+                <form:label path="cyfeiriadCodPost"><spring:message code="form.postcode" /></form:label>
                 <form:input path="cyfeiriadCodPost" class="form-control"/>
                 <form:errors path="cyfeiriadCodPost" cssStyle="color: red;"/>
             </fieldset>
