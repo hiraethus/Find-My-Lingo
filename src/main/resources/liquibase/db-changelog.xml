@@ -132,7 +132,7 @@
     </changeSet>
 
     <changeSet id="security-jdbcDaoImpl-tables-001" author="hiraethus" >
-        <createTable tableName="the_users">
+        <createTable tableName="users">
             <column name="username" type="varchar(50)" >
                 <constraints primaryKey="true" nullable="false" />
             </column>
@@ -239,6 +239,6 @@
                                  onDelete="RESTRICT"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="username"
-                                 referencedTableName="the_users" />
+                                 referencedTableName="users" />
     </changeSet>
 </databaseChangeLog>
