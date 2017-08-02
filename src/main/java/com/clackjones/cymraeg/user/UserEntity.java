@@ -5,7 +5,7 @@ import com.clackjones.cymraeg.gwasanaeth.GwasanaethEntity;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Entity(name = "the_users")
+@Entity(name = "users")
 class UserEntity {
     @Id
     @Column(name = "username", length = 50, nullable = false)
