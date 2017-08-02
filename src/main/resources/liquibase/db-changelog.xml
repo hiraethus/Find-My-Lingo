@@ -112,7 +112,7 @@
         <addForeignKeyConstraint baseColumnNames="gwasanaeth_id" baseTableName="SylwEntity" constraintName="FKtjosv1qjk08gslc80mqc9l30v" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="GwasanaethEntity"/>
     </changeSet>
 
-    <changeSet author="hiraethus" id="load-categori-data-001">
+    <changeSet author="hiraethus" id="load-categori-data-001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
         <insert tableName="CategoriEntity">
             <column name="id" value="1"/>
             <column name="categori" value="bwyti"/>
@@ -131,8 +131,8 @@
         </insert>
     </changeSet>
 
-    <changeSet id="security-jdbcDaoImpl-tables-001" author="hiraethus">
-        <createTable tableName="users">
+    <changeSet id="security-jdbcDaoImpl-tables-001" author="hiraethus" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="the_users">
             <column name="username" type="varchar(50)" >
                 <constraints primaryKey="true" nullable="false" />
             </column>
@@ -229,7 +229,7 @@
         </insert>
     </changeSet>
 
-    <changeSet id="user-reference-to-gwasanaethau" author="hiraethus">
+    <changeSet id="user-reference-to-gwasanaethau" author="hiraethus" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
         <addColumn tableName="GwasanaethEntity">
             <column name="OWNER_USERNAME" type="varchar(50)">
                 <constraints nullable="false" />
@@ -239,6 +239,6 @@
                                  onDelete="RESTRICT"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="username"
-                                 referencedTableName="users" />
+                                 referencedTableName="the_users" />
     </changeSet>
 </databaseChangeLog>
