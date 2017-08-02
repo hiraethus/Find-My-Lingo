@@ -4,9 +4,9 @@
         <Arg>GwasanaethauDB</Arg>
         <Arg>
             <New class="org.h2.jdbcx.JdbcDataSource">
-                <Set name="url">jdbc:h2:file:~/gwasanaethau-cymraeg/gwasanaethau_db;IGNORECASE=TRUE;</Set>
-                <Set name="User">lol</Set>
-                <Set name="Password">lol</Set>
+                <Set name="url">jdbc:h2:file:~/gwasanaethau-cymraeg/gwasanaethau_db;IGNORECASE=TRUE</Set>
+                <Set name="User">usr</Set>
+                <Set name="Password">passwd</Set>
             </New>
         </Arg>
     </New>

@@ -5,7 +5,7 @@
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-    <changeSet author="hiraethus (generated)" id="1470319172303-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-1" >
         <createTable tableName="CategoriEntity">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -13,7 +13,7 @@
             <column name="categori" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-2" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-2" >
         <createTable tableName="CategoriEntity_GwasanaethEntity">
             <column name="CategoriEntity_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -23,7 +23,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-3" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-3" >
         <createTable tableName="GwasanaethEntity">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -40,7 +40,7 @@
             <column name="categori_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-4" >
         <createTable tableName="SylwEntity">
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -53,7 +53,7 @@
             <column name="gwasanaeth_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-9" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-9" >
         <createTable tableName="gwasanaeth_sequence_table">
             <column name="sequence_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -61,7 +61,7 @@
             <column name="next_val" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-10" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-10" >
         <createTable tableName="sylw_sequence_table">
             <column name="sequence_name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -69,50 +69,50 @@
             <column name="next_val" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-12" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-12" >
         <addPrimaryKey columnNames="id" tableName="GwasanaethEntity"/>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-13" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-13" >
         <addPrimaryKey columnNames="id" tableName="SylwEntity"/>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-14" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-14" >
         <addPrimaryKey columnNames="sequence_name" tableName="gwasanaeth_sequence_table"/>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-15" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-15" >
         <addPrimaryKey columnNames="sequence_name" tableName="sylw_sequence_table"/>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-17" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-17" >
         <addUniqueConstraint columnNames="gwasanaethau_id" constraintName="UK_4hhd5wbm4aixcnuempp7e0gnf" tableName="CategoriEntity_GwasanaethEntity"/>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-18" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-18" >
         <createIndex indexName="FK9syulk1p31f0c6kq6e81fr2p" tableName="GwasanaethEntity">
             <column name="categori_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-19" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-19" >
         <createIndex indexName="FKbw8f3jb6d89xw1edi7j5frkvr" tableName="CategoriEntity_GwasanaethEntity">
             <column name="CategoriEntity_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-20" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-20" >
         <createIndex indexName="FKtjosv1qjk08gslc80mqc9l30v" tableName="SylwEntity">
             <column name="gwasanaeth_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-24" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-24" >
         <addForeignKeyConstraint baseColumnNames="categori_id" baseTableName="GwasanaethEntity" constraintName="FK9syulk1p31f0c6kq6e81fr2p" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="CategoriEntity"/>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-25" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-25" >
         <addForeignKeyConstraint baseColumnNames="CategoriEntity_id" baseTableName="CategoriEntity_GwasanaethEntity" constraintName="FKbw8f3jb6d89xw1edi7j5frkvr" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="CategoriEntity"/>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-26" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-26" >
         <addForeignKeyConstraint baseColumnNames="gwasanaethau_id" baseTableName="CategoriEntity_GwasanaethEntity" constraintName="FKj6jpo0h1djwbuu37i3gt3ocm7" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="GwasanaethEntity"/>
     </changeSet>
-    <changeSet author="hiraethus (generated)" id="1470319172303-27" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus (generated)" id="1470319172303-27" >
         <addForeignKeyConstraint baseColumnNames="gwasanaeth_id" baseTableName="SylwEntity" constraintName="FKtjosv1qjk08gslc80mqc9l30v" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="GwasanaethEntity"/>
     </changeSet>
 
-    <changeSet author="hiraethus" id="load-categori-data-001" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="hiraethus" id="load-categori-data-001" >
         <insert tableName="CategoriEntity">
             <column name="id" value="1"/>
             <column name="categori" value="bwyti"/>
@@ -131,7 +131,7 @@
         </insert>
     </changeSet>
 
-    <changeSet id="security-jdbcDaoImpl-tables-001" author="hiraethus" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet id="security-jdbcDaoImpl-tables-001" author="hiraethus" >
         <createTable tableName="the_users">
             <column name="username" type="varchar(50)" >
                 <constraints primaryKey="true" nullable="false" />
@@ -229,7 +229,7 @@
         </insert>
     </changeSet>
 
-    <changeSet id="user-reference-to-gwasanaethau" author="hiraethus" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet id="user-reference-to-gwasanaethau" author="hiraethus" >
         <addColumn tableName="GwasanaethEntity">
             <column name="OWNER_USERNAME" type="varchar(50)">
                 <constraints nullable="false" />
