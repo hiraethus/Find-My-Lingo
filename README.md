@@ -17,3 +17,9 @@ portals for their respective minority languages.
 * Please see the [Installation Guide](//github.com/hiraethus/gwasanaethau-cymraeg/wiki/Installation Guide) in the wiki (work in progress)
 * Create RESTful interface for Android App
 * Create thick client in AngularJS
+
+## Errors to Fix/To-Do:
+* Apostrophes replaced with &amp;amp;#39; when user adds a service
+* Zip code only accepts xxxx xxx format, must also accept xxx xxx
+* Have email field filled in when adding service
+* Send confirmation email after user registers
