@@ -1,12 +1,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
 
 <c:if test="${param.error ne null}" >
 <div class="row">
     <div class="col-lg-12">
         <div class="alert alert-danger" role="alert">
-            <p>Enw defnyddiwr neu cyfrinair anghywir. Ceisiwch eto.</p>
+            <p><spring:message code="login.invalid.username" /></p>
         </div>
     </div>
 </div>
@@ -16,19 +17,19 @@
     <div class="col-lg-6">
         <div class="jumbotron">
             <form class="form-signin" action="<c:url value='/login' />" method="POST">
-                <h2 class="form-signin-heading">Logiwch i mewn</h2>
+                <h2 class="form-signin-heading"><spring:message code="login.login" /></h2>
                 <fieldset class="form-group">
-                    <label for="username">Cyfeiriad ebost</label>
+                    <label for="username"><spring:message code="login.email.address" /></label>
                     <input type="username" id="username" name="username" class="form-control" required autofocus />
                 </fieldset>
                 <fieldset class="form-group">
-                    <label for="password">Cyfrinair</label>
+                    <label for="password"><spring:message code="login.password" /></label>
                    <input type="password" id="password"  name="password" class="form-control" required />
                 </fieldset>
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 
                 <fieldset class="form-group">
-                    <input class="btn btn-primary" type="submit" value="Cofnodi mewn" />
+                    <input class="btn btn-primary" type="submit" value="<spring:message code='login.login' />" />
                 </fieldset>
             </form>
 
@@ -37,17 +38,17 @@
     <div class="col-lg-6">
         <div class="jumbotron">
             <form:form action="${pageContext.request.contextPath}/mewngofnodi/cofrestru" commandName="registrationDetails" method="POST">
-                <h2>Cofrestrwch</h2>
+                <h2><spring:message code="login.register" /></h2>
                 <c:if test="${not empty registrationError}">
                     <c:choose>
                         <c:when test="${registrationError == 'INVALID_USERNAME_EMAIL'}">
                         <div class="alert alert-danger" role="alert">
-                            Rhaid defnyddio cyfeiriad ebost fel enw defnyddiwr. Ceisiwch eto.
+                            <spring:message code="login.username.must.be.email" />
                         </div>
                         </c:when>
                         <c:when test="${registrationError == 'USER_ALREADY_EXISTS'}">
                         <div class="alert alert-danger" role="alert">
-                            Cofrestrwyd yr enw defnyddiwr yma yn barod. Ceisiwch eto.
+                            <spring:message code="login.already.registered" />
                         </div>
                         </c:when>
                         <c:when test="${registrationError == 'UNMATCHED_PASSWORDS'}">
@@ -73,23 +74,23 @@
                     </c:choose>
                 </c:if>
                 <fieldset class="form-group">
-                    <form:label path="username">Cyfeiriad ebost</form:label>
+                    <form:label path="username"><spring:message code="login.email.address" /></form:label>
                     <form:input path="username" class="form-control" />
                     <form:errors path="username" cssStyle="color: red;"/>
                 </fieldset>
                 <fieldset class="form-group">
-                    <form:label path="password">Cyfrinair</form:label>
+                    <form:label path="password"><spring:message code="login.password" /></form:label>
                     <form:input path="password" type="password" class="form-control" />
                     <form:errors path="password" cssStyle="color: red;"/>
                 </fieldset>
                 <fieldset class="form-group">
-                    <form:label path="passwordSecondTimeEntered">Cyfrinair Ail-waith</form:label>
+                    <form:label path="passwordSecondTimeEntered"><spring:message code="login.password.reenter" /></form:label>
                     <form:input path="passwordSecondTimeEntered" type="password" class="form-control" />
                     <form:errors path="passwordSecondTimeEntered" cssStyle="color: red;"/>
                 </fieldset>
 
                 <fieldset class="form-group">
-                    <input type="submit" value="Cyflwyno" class="btn btn-primary" />
+                    <input type="submit" value="<spring:message code='login.submit' />" class="btn btn-primary" />
                 </fieldset>
             </form:form>
         </div>
