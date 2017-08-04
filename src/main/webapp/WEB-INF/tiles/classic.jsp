@@ -18,7 +18,7 @@
   <div class="container">
         <tiles:insertAttribute name="menu" />
         <div class="page-header">
-            <h1><c:out value="${heading}" /></h1>
+            <h1>${heading}</h1>
         </div>
         <tiles:insertAttribute name="body" />
   </div>
