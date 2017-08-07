@@ -25,4 +25,4 @@ portals for their respective minority languages.
 * Send confirmation email after user registers
 * Make "Gwasanaethau Cymru" at top left link to homepage
 * When user selects English, keep every webpage in English until they choose Cymraeg. And vice versa.
-* Add "Search Services" to left of "Add a Service" button.
+* Add "Search Services" next to "Add a Service" button.
