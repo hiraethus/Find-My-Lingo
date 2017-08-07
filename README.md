@@ -25,5 +25,5 @@ portals for their respective minority languages.
 * Send confirmation email after user registers
 * Make "Gwasanaethau Cymru" at top left link to homepage
 * When user selects English, keep every webpage in English until they choose Cymraeg. And vice versa.
-* Add "Search Services" button to left of "Add a Service" button. When click the button, a search bar appears underneath the buttons and whatever the user searches filters out the selections under "Service List". Search bar has different tabs, one to search by name, one by type, one by location. Auto-complete.
+* Add "Search Services" button to left of "Add a Service" button. When click the button, a search bar appears underneath the buttons and whatever the user searches filters out the selections under "Service List". Search bar has different tabs, one to search by name, one by type, one by location. Instead of tabs could have dropdown bar before the search bar that says "Search by..." and the options are name, type and location. Auto-complete.
 * Little arrows next to Name, Category and City so that user can list things in alphabetical order. 
