@@ -2,3 +2,4 @@
 gwasanaeth-gymraeg-website.iml
 target/
 .vagrant/
+src/main/resources/codepo_gb

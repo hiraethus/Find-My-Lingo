@@ -1,5 +1,7 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
+import com.clackjones.cymraeg.address.AddressFinder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -9,10 +11,9 @@ import java.util.regex.Pattern;
 
 @Component
 public class GwasanaethValidator implements Validator {
-
+    @Autowired
+    private AddressFinder addressFinder;
     private Pattern phoneRegex = Pattern.compile("\\d{5}\\s\\d{6}");
-    private Pattern codPostRegex = Pattern.compile("\\p{Upper}{2}\\d{2}\\s\\d\\p{Upper}{2}");
-
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -36,7 +37,7 @@ public class GwasanaethValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(e, "cyfeiriadSir", "sir.is.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(e, "cyfeiriadCodPost", "cosPost.is.required");
 
-        if (!isCodPostValid(gwasanaeth.getCyfeiriadCodPost())) {
+        if (!addressFinder.isValidPostcode(gwasanaeth.getCyfeiriadCodPost())) {
             e.rejectValue("cyfeiriadCodPost", "invalid.codPost");
         }
     }
@@ -47,9 +48,4 @@ public class GwasanaethValidator implements Validator {
         return isRhifFfonEmpty || phoneRegex.matcher(rhifFfon).matches();
     }
 
-    private boolean isCodPostValid(final String codPost) {
-        boolean isCodPostEmpty = codPost != null && codPost.trim().length() == 0;
-
-        return isCodPostEmpty || codPostRegex.matcher(codPost).matches();
-    }
 }
