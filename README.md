@@ -18,9 +18,12 @@ portals for their respective minority languages.
 * Create RESTful interface for Android App
 * Create thick client in AngularJS
 
+# Trello Board
+https://trello.com/b/hoIxSnjp/gwasanaethau-cymru-kanban
+
 ## Errors to Fix/To-Do:
 * Apostrophes replaced with &amp;amp;#39; when user adds a service
-* Zip code only accepts xxxx xxx format, must also accept xxx xxx
+* ~~Zip code only accepts xxxx xxx format, must also accept xxx xxx~~
 * Have email field filled in when adding service
 * Send confirmation email after user registers
 * Make "Gwasanaethau Cymru" at top left link to homepage
