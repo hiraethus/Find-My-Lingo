@@ -38,10 +38,14 @@ public class GwasanaethController {
     @Autowired
     private GwasanaethValidator gwasanaethValidator;
 
-    @InitBinder
+    @InitBinder("gwasanaeth")
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(gwasanaethValidator);
         binder.registerCustomEditor(Categori.class, categoriEditor);
+    }
+
+    @InitBinder("sylw")
+    public void initSylwBinder(WebDataBinder binder) {
         binder.registerCustomEditor(SafonEnum.class, safonEditor);
     }
 
