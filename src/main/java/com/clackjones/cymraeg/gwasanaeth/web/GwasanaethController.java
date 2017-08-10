@@ -51,7 +51,7 @@ public class GwasanaethController {
 
     @RequestMapping(path = "adio", method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')")
-    public ModelAndView addForm(Model model) {
+    public ModelAndView addForm(Model model, Principal principal) {
         List<Categori> categoris = categoriManager.findAll();
 
         // for when incorrect details entered and we need to pass the
@@ -61,6 +61,7 @@ public class GwasanaethController {
             gwasanaeth = (Gwasanaeth)model.asMap().get("gwasanaeth");
         } else {
             gwasanaeth = new Gwasanaeth();
+            gwasanaeth.setEbost(principal.getName());
         }
 
         Map<String, Object> map = new HashMap<String, Object>();
