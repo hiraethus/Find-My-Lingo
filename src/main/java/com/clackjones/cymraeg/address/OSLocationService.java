@@ -22,6 +22,11 @@ public class OSLocationService implements LocationService {
 
     @Override
     public boolean isValidPostcode(String postcode) {
+        return findLocationForPostcode(postcode).isPresent();
+    }
+
+    @Override
+    public Optional<GeoLocation> findLocationForPostcode(String postcode) {
         File postcodeDir = null;
         try {
             postcodeDir = retrievePostcodeDir();
@@ -41,8 +46,7 @@ public class OSLocationService implements LocationService {
         String letterPrefix = null;
 
         if (!m.find()) {
-            // TODO malformed postcode: Invalid prefix
-            return false;
+            return Optional.empty();
         }
 
         String postcodePrefix = m.group().toLowerCase();
@@ -50,20 +54,30 @@ public class OSLocationService implements LocationService {
         File[] matchedPostcodeFile = postcodeDir.listFiles(f -> f.getName().equals(postcodePrefix + ".csv"));
         if (matchedPostcodeFile.length == 0) {
             // postcode doesn't exist
-            return false;
+            return Optional.empty();
         }
 
         try {
             Stream<String> fileStream = Files.lines(matchedPostcodeFile[0].toPath());
-            Optional<String> foundPostcode = fileStream.filter(line -> line.split(",")[0].equals("\"" + postcodeNoWhitespace + "\""))
-                    .findFirst();
+            Optional<GeoLocation> foundPostcode = fileStream
+                    .map(line -> line.split(","))
+                    .filter(record -> record[0].equals("\"" + postcodeNoWhitespace + "\""))
+                    .findFirst()
+                    .map(record -> recordToGeoLocation(record));
 
-            return foundPostcode.isPresent();
+            return foundPostcode;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return false;
+        return Optional.empty();
+    }
+
+    private static GeoLocation recordToGeoLocation(String[] record) {
+        String postcode = record[0].substring(1,1); // trim quotes
+        long eastings = Long.valueOf(record[2]);
+        long northings = Long.valueOf(record[3]);
+        return new GeoLocation(postcode, eastings, northings);
     }
 
     private File retrievePostcodeDir() throws FileNotFoundException, URISyntaxException {
