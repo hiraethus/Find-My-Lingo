@@ -30,6 +30,6 @@
         </c:if>
       </ul>
       <div class="mini-logo-square"></div>
-    <h3 class="text-muted"><spring:message code="service.wales" /></h3>
+    <a href="/"><h3 class="text-muted"><spring:message code="service.wales" /></h3></a>
   </nav>
 </div>
