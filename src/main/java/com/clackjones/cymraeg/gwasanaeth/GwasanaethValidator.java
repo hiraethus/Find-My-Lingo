@@ -1,6 +1,6 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
-import com.clackjones.cymraeg.address.AddressFinder;
+import com.clackjones.cymraeg.address.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 @Component
 public class GwasanaethValidator implements Validator {
     @Autowired
-    private AddressFinder addressFinder;
+    private LocationService locationService;
     private Pattern phoneRegex = Pattern.compile("\\d{5}\\s\\d{6}");
 
     @Override
@@ -37,7 +37,7 @@ public class GwasanaethValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(e, "cyfeiriadSir", "sir.is.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(e, "cyfeiriadCodPost", "cosPost.is.required");
 
-        if (!addressFinder.isValidPostcode(gwasanaeth.getCyfeiriadCodPost())) {
+        if (!locationService.isValidPostcode(gwasanaeth.getCyfeiriadCodPost())) {
             e.rejectValue("cyfeiriadCodPost", "invalid.codPost");
         }
     }

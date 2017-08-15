@@ -14,11 +14,11 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 /**
- * Implements the AddressFinder interface by using data from
+ * Implements the LocationService interface by using data from
  * the Ordnance Survey's 'Open Names' and 'Code-Point Open' project.
  */
 @Component
-public class OSAddressFinder implements AddressFinder {
+public class OSLocationService implements LocationService {
 
     @Override
     public boolean isValidPostcode(String postcode) {
