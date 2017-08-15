@@ -61,7 +61,7 @@ public class OSLocationService implements LocationService {
             Stream<String> fileStream = Files.lines(matchedPostcodeFile[0].toPath());
             Optional<GeoLocation> foundPostcode = fileStream
                     .map(line -> line.split(","))
-                    .filter(record -> record[0].equals("\"" + postcodeNoWhitespace + "\""))
+                    .filter(record -> postcodesMatching(record[0], postcodeNoWhitespace))
                     .findFirst()
                     .map(record -> recordToGeoLocation(record));
 
@@ -74,10 +74,17 @@ public class OSLocationService implements LocationService {
     }
 
     private static GeoLocation recordToGeoLocation(String[] record) {
-        String postcode = record[0].substring(1,1); // trim quotes
+        String postcode = record[0].substring(1, record[0].length() - 1); // trim quotes
         long eastings = Long.valueOf(record[2]);
         long northings = Long.valueOf(record[3]);
         return new GeoLocation(postcode, eastings, northings);
+    }
+
+    private static boolean postcodesMatching(String thisPostcode, String thatPostcode) {
+        String cleanedThis = thisPostcode.replaceAll("[^\\p{Alnum}]+", "").toLowerCase();
+        String cleanedThat = thatPostcode.replaceAll("[^\\p{Alnum}]+", "").toLowerCase();
+
+        return cleanedThis.equals(cleanedThat);
     }
 
     private File retrievePostcodeDir() throws FileNotFoundException, URISyntaxException {
