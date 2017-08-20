@@ -4,6 +4,9 @@ import javax.xml.stream.Location;
 import java.util.Optional;
 
 public interface LocationService {
-    boolean isValidPostcode(String postcode);
+    default boolean isValidPostcode(String postcode) {
+        return findLocationForPostcode(postcode).isPresent();
+    }
+
     Optional<GeoLocation> findLocationForPostcode(String postcode);
 }

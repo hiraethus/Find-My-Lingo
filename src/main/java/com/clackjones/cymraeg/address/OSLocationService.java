@@ -21,11 +21,6 @@ import java.util.stream.Stream;
 public class OSLocationService implements LocationService {
 
     @Override
-    public boolean isValidPostcode(String postcode) {
-        return findLocationForPostcode(postcode).isPresent();
-    }
-
-    @Override
     public Optional<GeoLocation> findLocationForPostcode(String postcode) {
         File postcodeDir = null;
         try {
