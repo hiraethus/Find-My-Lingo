@@ -17,7 +17,6 @@ import java.util.stream.Stream;
  * Implements the LocationService interface by using data from
  * the Ordnance Survey's 'Open Names' and 'Code-Point Open' project.
  */
-@Component
 public class OSLocationService implements LocationService {
 
     @Override
