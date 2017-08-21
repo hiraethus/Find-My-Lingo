@@ -48,7 +48,7 @@
                     <a href='<c:url value="/id/${gwasanaeth.id}" />'>${gwasanaeth.enw}</a>
                 </td>
                 <td>
-                    <a href='<c:url value="">
+                    <a class="${gwasanaeth.categori.categori}" href='<c:url value="">
                         <c:param name="categori" value="${gwasanaeth.categori.categori}" />
                         <c:forEach var="prm" items="${param}">
                             <c:if test="${prm.key != 'categori'}">
@@ -56,7 +56,7 @@
                             </c:if>
                         </c:forEach>
                         </c:url>'>
-                        ${gwasanaeth.categori.categori}
+                        <spring:message code="${gwasanaeth.categori.categori}" />
                     </a>
                 </td>
                 <td>

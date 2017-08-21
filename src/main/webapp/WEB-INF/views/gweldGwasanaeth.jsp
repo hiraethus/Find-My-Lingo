@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page isELIgnored="false" %>
 
@@ -11,7 +12,7 @@
         <div class="col-lg-6">
             <h2>Disgrifiad</h2>
             <em>${gwasanaeth.disgrifiad}</em>
-            <div>Categori: <em>${gwasanaeth.categori.categori}</em></div>
+            <div>Categori: <span class="${gwasanaeth.categori.categori}"><spring:message code="${gwasanaeth.categori.categori}" /></span></div>
             <div>Cynhelir y proffil yma gan: <em>${gwasanaeth.owner}</em></div>
 
             <h2>Cyswllt</h2>
