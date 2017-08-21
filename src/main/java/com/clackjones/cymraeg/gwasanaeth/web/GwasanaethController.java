@@ -1,5 +1,7 @@
 package com.clackjones.cymraeg.gwasanaeth.web;
 
+import com.clackjones.cymraeg.address.GeoLocation;
+import com.clackjones.cymraeg.address.LocationService;
 import com.clackjones.cymraeg.gwasanaeth.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +36,9 @@ public class GwasanaethController {
 
     @Autowired
     private GwasanaethManager gwasanaethManager;
+
+    @Autowired
+    private LocationService locationService;
 
     @Autowired
     private GwasanaethValidator gwasanaethValidator;
@@ -150,6 +155,11 @@ public class GwasanaethController {
         modelAndView.addObject("heading", gwasanaeth.getEnw());
         modelAndView.addObject("sylw", new Sylw());
         modelAndView.addObject("safonnau", SafonEnum.values());
+
+        Optional<GeoLocation> geoLocation = locationService.findLocationForPostcode(gwasanaeth.getCyfeiriadCodPost());
+        if (geoLocation.isPresent()) {
+            modelAndView.addObject("geolocation", geoLocation.get());
+        }
 
         return modelAndView;
     }

@@ -8,7 +8,7 @@
 <div class="jumbotron">
     <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-lg-6">
             <h2>Disgrifiad</h2>
             <em>${gwasanaeth.disgrifiad}</em>
             <div>Categori: <em>${gwasanaeth.categori.categori}</em></div>
@@ -28,6 +28,11 @@
                 <div class="email">${gwasanaeth.ebost}</div>
             </div>
        </div>
+       <c:if test="${geolocation != null}">
+       <div class="col-lg-6">
+        <div id="map"></div>
+       </div>
+       </c:if>
     </div>
     <sec:authorize access="isAuthenticated()">
     <div class="row">
@@ -53,7 +58,7 @@
       <div class="panel-heading">Adio sylw</div>
           <div class="panel-body">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-xs-6">
                 <table class="table table-invisible">
                     <tr>
                         <th><form:label path="safonIaith">Safon Iaith</form:label></th>
@@ -86,7 +91,7 @@
                 </table>
 
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-6">
                 <form:textarea path="sylw" rows="8" cols="30" class="form-control" placeholder="Sylwadau..." />
             </div>
           </div>
@@ -110,7 +115,7 @@
       <div class="panel-heading">Dyddiad: ${sylw.amserSylw}</div>
           <div class="panel-body">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-xs-8">
                 <table class="table table-invisible">
                     <tr>
                         <th>Safon Iaith</th>
@@ -145,7 +150,7 @@
                 </table>
 
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-6">
                 ${sylw.sylw}
             </div>
           </div>
@@ -153,3 +158,29 @@
     </div>
 </div>
 </c:forEach>
+<c:if test="${geolocation != null}">
+<script type="text/javascript">
+    var map;
+    var latLng = {lat: ${geolocation.latitude}, lng: ${geolocation.longitude}};
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: latLng,
+            zoom: 15
+        });
+
+        var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            title: '${gwasanaeth.enw}'
+            });
+
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb8tWZz5wUmn-81Cfx5-YNwLmYG2CYqEE&v=3.29&callback=initMap" type="text/javascript"></script>
+<style>
+    #map {
+        height: 30em;
+        width: 30em;
+    }
+</style>
+</c:if>
