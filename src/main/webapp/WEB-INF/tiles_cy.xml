@@ -13,4 +13,16 @@
     </put-attribute>
     <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 </definition>
+
+<definition name="adioGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
+    <put-attribute name="title" value="Gwasanaethau Cymru - Adio" />
+    <put-attribute name="heading" value="Adio Gwasanaeth" /> <!-- should be Adio gwasanaeth or the english -->
+    <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+    <put-attribute name="body">
+        <definition template="/WEB-INF/views/adioGwasanaeth.jsp">
+            <put-attribute name="formMethod" value="POST" />
+        </definition>
+    </put-attribute>
+    <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+</definition>
 </tiles-definitions>

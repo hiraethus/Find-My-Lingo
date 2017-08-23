@@ -3,16 +3,7 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition name="adioGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
-        <put-attribute name="title" value="Gwasanaethau Cymru - Adio" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
-        <put-attribute name="body">
-            <definition template="/WEB-INF/views/adioGwasanaeth.jsp">
-                <put-attribute name="formMethod" value="POST" />
-            </definition>
-        </put-attribute>
-        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
-    </definition>
+
 
     <definition name="adolyguGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
         <put-attribute name="title" value="Gwasanaethau Cymru - Adolygu" />

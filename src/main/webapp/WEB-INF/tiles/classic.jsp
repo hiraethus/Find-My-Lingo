@@ -1,4 +1,5 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="tilesx" uri="http://tiles.apache.org/tags-tiles-extras" %>
 <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
@@ -14,7 +15,7 @@
     <link href="${pageContext.request.contextPath}/css/categories.css" rel="stylesheet" />
   </head>
   <body>
-
+  <tilesx:useAttribute name="heading" ignore="true" />
 
   <div class="container">
         <tiles:insertAttribute name="menu" />

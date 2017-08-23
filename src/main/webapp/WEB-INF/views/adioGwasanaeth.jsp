@@ -10,7 +10,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <h4>Nodweddion</h4>
+            <h4><spring:message code="form.details" /></h4>
             <fieldset class="form-group">
                 <form:label path="enw"><spring:message code="form.service.name" /></form:label>
                 <form:input path="enw" class="form-control" />
@@ -35,7 +35,7 @@
         </div>
 
         <div class="col-md-6">
-            <h4>Cyfeiriad</h4>
+            <h4><spring:message code="form.address" /></h4>
             <fieldset class="form-group">
                 <form:label path="cyfeiriadLlinellGyntaf"><spring:message code="form.first.line" /></form:label>
                 <form:input path="cyfeiriadLlinellGyntaf" class="form-control"/>

@@ -73,8 +73,6 @@ public class GwasanaethController {
         map.put("gwasanaeth", gwasanaeth);
         map.put("categoris", categoris);
 
-        map.put("heading", "Adio gwasanaeth");
-
         return new ModelAndView("adioGwasanaeth", map);
     }
 
