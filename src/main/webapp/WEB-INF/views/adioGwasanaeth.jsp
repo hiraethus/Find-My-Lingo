@@ -19,7 +19,17 @@
             <fieldset class="form-group">
                 <form:label path="categori"><spring:message code="form.category" /></form:label>
                 <form:select path="categori" class="form-control">
-                    <form:options items="${categoris}" itemLabel="categori" itemValue="id" />
+                    <c:forEach var="c" items="${categoris}">
+                    <c:choose>
+                        <c:when test="${gwasanaeth.categori.id == c.id}">
+                            <form:option value="${c.id}" label="${c.categori}" selected="selected" />
+                        </c:when>
+                        <c:otherwise>
+                            <form:option value="${c.id}" label="${c.categori}" />
+                        </c:otherwise>
+                    </c:choose>
+                    </c:forEach>
+
                 </form:select>
             </fieldset>
             <fieldset class="form-group">
