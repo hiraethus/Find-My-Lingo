@@ -4,6 +4,7 @@ import com.clackjones.cymraeg.address.GeoLocation;
 import com.clackjones.cymraeg.address.LocationService;
 import com.clackjones.cymraeg.gwasanaeth.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.Resource;
 import javax.naming.NoPermissionException;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")
@@ -43,6 +46,9 @@ public class GwasanaethController {
     @Autowired
     private GwasanaethValidator gwasanaethValidator;
 
+    @Resource(name = "messageSource")
+    private MessageSource messageSource;
+
     @InitBinder("gwasanaeth")
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(gwasanaethValidator);
@@ -56,7 +62,7 @@ public class GwasanaethController {
 
     @RequestMapping(path = "adio", method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')")
-    public ModelAndView addForm(Model model, Principal principal) {
+    public ModelAndView addForm(Model model, Principal principal, Locale locale) {
         List<Categori> categoris = categoriManager.findAll();
 
         // for when incorrect details entered and we need to pass the
@@ -71,7 +77,7 @@ public class GwasanaethController {
 
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("gwasanaeth", gwasanaeth);
-        map.put("categoris", categoris);
+        map.put("categoris", localizedCategoris(locale));
 
         return new ModelAndView("adioGwasanaeth", map);
     }
@@ -114,7 +120,7 @@ public class GwasanaethController {
     @RequestMapping(path = "adolygu/{gwasanaethId}", method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')")
     public ModelAndView adolyguGwasanaeth(@PathVariable("gwasanaethId") Long gwasanaethId,
-                                          Principal principal) {
+                                          Principal principal, Locale locale) {
         Gwasanaeth gwasanaeth = gwasanaethManager.findById(gwasanaethId);
 
         String name = principal.getName();
@@ -125,9 +131,19 @@ public class GwasanaethController {
 
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("gwasanaeth", gwasanaeth);
-        map.put("categoris", categoriManager.findAll());
-        
+        map.put("categoris", localizedCategoris(locale));
         return new ModelAndView("adolyguGwasanaeth", map);
+    }
+
+    private List<Categori> localizedCategoris(Locale locale) {
+        return categoriManager.findAll().stream().map(c -> {
+            Categori localizedCategori = new Categori();
+            localizedCategori.setId(c.getId());
+            String localizedCategoriName = messageSource.getMessage(c.getCategori(), null, locale);
+            localizedCategori.setCategori(localizedCategoriName);
+
+            return localizedCategori;
+        }).collect(Collectors.toList());
     }
 
     @Transactional
