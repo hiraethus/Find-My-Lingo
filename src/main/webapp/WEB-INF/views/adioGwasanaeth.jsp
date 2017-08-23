@@ -13,12 +13,12 @@
             <h4><spring:message code="form.details" /></h4>
             <fieldset class="form-group">
                 <form:label path="enw"><spring:message code="form.service.name" /></form:label>
-                <form:input path="enw" class="form-control" />
+                <form:input path="enw" htmlEscape="false" class="form-control" />
                 <form:errors path="enw" cssStyle="color: red;"/>
             </fieldset>
             <fieldset class="form-group">
                 <form:label path="categori"><spring:message code="form.category" /></form:label>
-                <form:select path="categori" class="form-control">
+                <form:select path="categori" cssClass="form-control">
                     <c:forEach var="c" items="${categoris}">
                     <c:choose>
                         <c:when test="${gwasanaeth.categori.id == c.id}">
