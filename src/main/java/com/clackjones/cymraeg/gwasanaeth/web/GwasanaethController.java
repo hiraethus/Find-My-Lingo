@@ -126,9 +126,7 @@ public class GwasanaethController {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("gwasanaeth", gwasanaeth);
         map.put("categoris", categoriManager.findAll());
-
-        map.put("heading", "Adolygu gwasanaeth");
-
+        
         return new ModelAndView("adolyguGwasanaeth", map);
     }
 
