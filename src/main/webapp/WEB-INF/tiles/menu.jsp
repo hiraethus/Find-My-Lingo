@@ -9,7 +9,7 @@
       <ul class="nav nav-pills pull-right">
         <li><a href='<c:url value="/" />'><spring:message code="menu.home" /></a></li>
         <li><a href='<c:url value="/adio" />'><spring:message code="service.add" /></a></li>
-        <li><a href="amdanom"><spring:message code="menu.aboutus" /></a></li>
+        <li><a href="/amdanom"><spring:message code="menu.aboutus" /></a></li>
         <c:if test="${not empty pageContext.request.remoteUser}">
         <li>
             <a href='<c:url value="/defnyddiwr/proffil" />'>
