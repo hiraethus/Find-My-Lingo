@@ -30,5 +30,5 @@ https://trello.com/b/hoIxSnjp/gwasanaethau-cymru-kanban
 * When user selects English, keep every webpage in English until they choose Cymraeg. And vice versa.
 * Add "Search Services" button to left of "Add a Service" button. When click the button, a search bar appears underneath the buttons and whatever the user searches filters out the selections under "Service List". Search bar has different tabs, one to search by name, one by type, one by location. Instead of tabs could have dropdown bar before the search bar that says "Search by..." and the options are name, type and location. Auto-complete.
 * Little arrows next to Name, Category and City so that user can list things in alphabetical order.
-* Homepage and Add a Service layouts shifted to left and the other two pages are shifted to right
+* Homepage and Add a Service layouts shifted to left and the other two pages are shifted to right, change so that all 4 are the same
 * Ask user for username during registration so that My Services page says "[insert username here]'s profile"
