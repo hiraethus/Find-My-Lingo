@@ -96,4 +96,28 @@ public class RegistrationServiceTest {
 
         assertThat(success, is(true));
     }
+
+    public void shouldReturnTrueIfUserExistsInDB() {
+        // given
+        String username = "user@example.com";
+        RegistrationDetails regDetails = new RegistrationDetails();
+        regDetails.setUsername(username);
+
+        given(jdbcUserDetailsManager.userExists(username)).willReturn(true);
+
+        // then
+        assertThat(registrationService.userExists(username), equalTo(true));
+    }
+
+    public void shouldReturnFalseIfUserDoesNotExistInDB() {
+        // given
+        String username = "user@example.com";
+        RegistrationDetails regDetails = new RegistrationDetails();
+        regDetails.setUsername(username);
+
+        given(jdbcUserDetailsManager.userExists(username)).willReturn(false);
+
+        // then
+        assertThat(registrationService.userExists(username), equalTo(false));
+    }
 }

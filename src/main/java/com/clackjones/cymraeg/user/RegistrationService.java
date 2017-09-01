@@ -35,4 +35,8 @@ public class RegistrationService {
     private User user(RegistrationDetails details) {
         return new User(details.getUsername(), details.getPassword(), Collections.emptyList());
     }
+
+    public boolean userExists(String email) {
+        return jdbcUserDetailsManager.userExists(email);
+    }
 }
