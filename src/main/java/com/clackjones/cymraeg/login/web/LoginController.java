@@ -75,8 +75,8 @@ public class LoginController {
             return new ModelAndView ("redirect:ailosod");
         }
 
-        // TODO: send email
-        // TODO: go to "Check your Email" page
+        String resetToken = registrationService.createResetToken(registrationDetails);
+        // TODO registrationService.sendResetToken(registrationDetails, resetToken, locale);
 
         throw new UnsupportedOperationException("Not yet implemented");
     }

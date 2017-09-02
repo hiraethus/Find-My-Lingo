@@ -23,8 +23,15 @@ public class RegistrationServiceTest {
     @Mock
     private PasswordEncryption passwordEncryption;
 
+    @Mock
+    private UserDao userDao;
+
+    @Mock
+    private PasswordResetTokenDao passwordDao;
+
     @InjectMocks
     private RegistrationService registrationService;
+
 
     @Test
     public void shouldThrowExceptionWhenUserPassValidationFails() throws Exception {
@@ -97,6 +104,7 @@ public class RegistrationServiceTest {
         assertThat(success, is(true));
     }
 
+    @Test
     public void shouldReturnTrueIfUserExistsInDB() {
         // given
         String username = "user@example.com";
@@ -109,6 +117,7 @@ public class RegistrationServiceTest {
         assertThat(registrationService.userExists(username), equalTo(true));
     }
 
+    @Test
     public void shouldReturnFalseIfUserDoesNotExistInDB() {
         // given
         String username = "user@example.com";
@@ -119,5 +128,27 @@ public class RegistrationServiceTest {
 
         // then
         assertThat(registrationService.userExists(username), equalTo(false));
+    }
+
+    @Test
+    public void shouldReturnPasswordResetTokenAndPersistToDb() {
+        // given
+        String email = "user@example.com";
+        UserEntity user = new UserEntity();
+        user.setEnabled(true);
+        user.setUsername(email);
+
+        RegistrationDetails details = new RegistrationDetails();
+        details.setUsername(email);
+
+        given(userDao.findById(email)).willReturn(user);
+
+        // when
+        String token = registrationService.createResetToken(details);
+
+        // then
+        assertThat(token, notNullValue());
+        verify(userDao, times(1)).findById(email);
+        verify(passwordDao, times(1)).persist(any());
     }
 }

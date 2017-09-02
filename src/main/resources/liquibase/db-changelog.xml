@@ -241,4 +241,33 @@
                                  referencedColumnNames="username"
                                  referencedTableName="users" />
     </changeSet>
+
+    <changeSet id="create-password-token-table" author="hiraethus" >
+        <createTable tableName="PasswordResetTokenEntity">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="token" type="varchar(255)" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="CREATION_TS" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-password-token-table-2" author="hiraethus" >
+        <addColumn tableName="PasswordResetTokenEntity">
+            <column name="USERNAME" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="USERNAME" baseTableName="PasswordResetTokenEntity"
+                                 constraintName="fk_pass_token_to_user"
+                                 onDelete="RESTRICT"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="username"
+                                 referencedTableName="users" />
+    </changeSet>
+
 </databaseChangeLog>

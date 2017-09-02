@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.UUID;
 
 @Service
 public class RegistrationService {
@@ -15,6 +17,10 @@ public class RegistrationService {
     private UserPassValidator userPassValidator;
     @Autowired
     private PasswordEncryption passwordEncryption;
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private PasswordResetTokenDao tokenDao;
 
 
     public boolean register(RegistrationDetails details) throws RegistrationException {
@@ -38,5 +44,16 @@ public class RegistrationService {
 
     public boolean userExists(String email) {
         return jdbcUserDetailsManager.userExists(email);
+    }
+
+    @Transactional
+    public String createResetToken(RegistrationDetails regDetails) {
+        String email = regDetails.getUsername();
+
+        UserEntity userEntity = userDao.findById(email);
+        String token = UUID.randomUUID().toString();
+        tokenDao.persist(new PasswordResetTokenEntity(token, userEntity));
+
+        return token;
     }
 }
