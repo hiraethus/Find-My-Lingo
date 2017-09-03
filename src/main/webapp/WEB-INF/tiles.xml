@@ -47,4 +47,11 @@
         <put-attribute name="body" value="/WEB-INF/views/resetPassword.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
+
+    <definition name="checkEmail" template="/WEB-INF/tiles/large-body.jsp">
+        <put-attribute name="title" value="Gwasanaethau Cymru - Check Email" />
+        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/checkEmail.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+    </definition>
 </tiles-definitions>

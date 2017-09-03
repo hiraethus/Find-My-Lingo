@@ -78,6 +78,6 @@ public class LoginController {
         String resetToken = registrationService.createResetToken(registrationDetails);
         registrationService.sendResetTokenEmail(registrationDetails, resetToken, locale);
 
-        throw new UnsupportedOperationException("Not yet implemented");
+        return new ModelAndView ("checkEmail");
     }
 }
