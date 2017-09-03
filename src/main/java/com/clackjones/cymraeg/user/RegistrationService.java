@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.access.method.P;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -20,11 +21,11 @@ public class RegistrationService {
     @Autowired
     private UserPassValidator userPassValidator;
     @Autowired
-    private PasswordEncryption passwordEncryption;
-    @Autowired
     private UserDao userDao;
     @Autowired
     private PasswordResetTokenDao tokenDao;
+    @Autowired
+    private Sha256PasswordEncryption passwordEncryption;
 
     @Autowired
     private MessageSource messageSource;
@@ -79,5 +80,35 @@ public class RegistrationService {
         message.setSubject(resetEmailSubject);
 
         mailSender.send(message);
+    }
+
+    @Transactional
+    public void resetPassword(RegistrationDetails registrationDetails, String token) throws RegistrationException{
+        String email = registrationDetails.getUsername();
+        if (!userExists(email)) {
+            throw new RegistrationException("Could not find email", RegistrationExceptionType.INVALID_USERNAME_EMAIL);
+        }
+
+        boolean passwordsMatch = registrationDetails.getPassword()
+                .equals(registrationDetails.getPasswordSecondTimeEntered());
+
+        if (!passwordsMatch) {
+            throw new RegistrationException("Passwords do not match", RegistrationExceptionType.UNMATCHED_PASSWORDS);
+        }
+
+        UserEntity userEntity = userDao.findById(registrationDetails.getUsername());
+        PasswordResetTokenEntity tokenEntity =
+                tokenDao.findByEmailAndToken(userEntity, token);
+
+        if (tokenEntity == null) {
+            throw new RegistrationException("Invalid token, please try resetting your password again",
+                    RegistrationExceptionType.INVALID_RESET_TOKEN);
+        }
+
+        passwordEncryption.encryptPassword(registrationDetails);
+        userEntity.setPassword(registrationDetails.getPassword());
+        userDao.merge(userEntity);
+
+        // TODO delete token
     }
 }

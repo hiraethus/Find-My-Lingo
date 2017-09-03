@@ -54,4 +54,18 @@
         <put-attribute name="body" value="/WEB-INF/views/checkEmail.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
+
+    <definition name="enterNewPassword" template="/WEB-INF/tiles/large-body.jsp">
+        <put-attribute name="title" value="Gwasanaethau Cymru - Enter new password" />
+        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/enterNewPassword.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+    </definition>
+
+    <definition name="passwordChangedSuccessfully" template="/WEB-INF/tiles/large-body.jsp">
+        <put-attribute name="title" value="Gwasanaethau Cymru - Changed password successfully" />
+        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/passwordChangedSuccessfully.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+    </definition>
 </tiles-definitions>

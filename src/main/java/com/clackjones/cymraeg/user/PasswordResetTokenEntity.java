@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.util.Calendar;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "PasswordResetTokenEntity.findByEmailAndToken",
+                query = "SELECT p FROM PasswordResetTokenEntity p WHERE p.token = :token AND p.user = :user")
+})
 class PasswordResetTokenEntity {
     private static final int EXPIRATION = 60 * 24;
 
@@ -17,9 +21,10 @@ class PasswordResetTokenEntity {
     @JoinColumn(nullable = false, name = "username")
     private UserEntity user;
 
-
     @Column(name="CREATION_TS", insertable=false, updatable=false)
     private Calendar dateCreated;
+
+    public PasswordResetTokenEntity() {}
 
     public PasswordResetTokenEntity(String token, UserEntity user) {
         this.token = token;

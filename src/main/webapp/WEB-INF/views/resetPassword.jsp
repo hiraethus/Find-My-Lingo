@@ -6,10 +6,6 @@
 <div class="row">
     <div class="jumbotron">
         <h2><spring:message code="registration.reset.password" /></h2>
-        <p><spring:message code="registration.reset.provide.password" /></p>
-        <c:if test="${not empty emailNotFoundError}">
-            <div class="alert alert-danger" role="alert">${emailNotFoundError}</div>
-        </c:if>
         <form:form action="${pageContext.request.contextPath}/mewngofnodi/ailosod" commandName="registrationDetails" method="POST" class="form-signin">
             <fieldset class="form-group">
                 <form:label path="username"><spring:message code="login.email.address" /></form:label>

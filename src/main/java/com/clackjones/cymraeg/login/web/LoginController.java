@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -79,5 +80,26 @@ public class LoginController {
         registrationService.sendResetTokenEmail(registrationDetails, resetToken, locale);
 
         return new ModelAndView ("checkEmail");
+    }
+
+    @RequestMapping(path = "/ailosod/tocyn/{token}", method = RequestMethod.GET)
+    public ModelAndView enterNewPassword(@PathVariable("token") String token,
+                                         @ModelAttribute("registrationDetails") RegistrationDetails registrationDetails) {
+        ModelAndView resetPasswordView =  new ModelAndView("enterNewPassword");
+        resetPasswordView.addObject("token", token);
+
+        return resetPasswordView;
+    }
+
+    @RequestMapping(path = "/ailosod/tocyn/{token}", method = RequestMethod.POST)
+    public ModelAndView submitNewPassword(@PathVariable("token") String token,
+                                         @ModelAttribute("registrationDetails") RegistrationDetails registrationDetails) {
+
+        try {
+            registrationService.resetPassword(registrationDetails, token);
+        } catch(RegistrationException exc) {
+            // todo deal with exception
+        }
+        return new ModelAndView("passwordChangedSuccessfully");
     }
 }
