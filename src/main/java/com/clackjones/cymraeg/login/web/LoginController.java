@@ -76,7 +76,7 @@ public class LoginController {
         }
 
         String resetToken = registrationService.createResetToken(registrationDetails);
-        // TODO registrationService.sendResetToken(registrationDetails, resetToken, locale);
+        registrationService.sendResetTokenEmail(registrationDetails, resetToken, locale);
 
         throw new UnsupportedOperationException("Not yet implemented");
     }
