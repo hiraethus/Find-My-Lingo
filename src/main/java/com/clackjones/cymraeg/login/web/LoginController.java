@@ -93,12 +93,13 @@ public class LoginController {
 
     @RequestMapping(path = "/ailosod/tocyn/{token}", method = RequestMethod.POST)
     public ModelAndView submitNewPassword(@PathVariable("token") String token,
-                                         @ModelAttribute("registrationDetails") RegistrationDetails registrationDetails) {
-
+                                         @ModelAttribute("registrationDetails") RegistrationDetails registrationDetails,
+                                          RedirectAttributes attr) {
         try {
             registrationService.resetPassword(registrationDetails, token);
         } catch(RegistrationException exc) {
-            // todo deal with exception
+            attr.addFlashAttribute("registrationException", exc.getKind());
+            return new ModelAndView("redirect:/mewngofnodi/ailosod/tocyn/{token}");
         }
         return new ModelAndView("passwordChangedSuccessfully");
     }

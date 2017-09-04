@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.access.method.P;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.UUID;
@@ -97,18 +97,24 @@ public class RegistrationService {
         }
 
         UserEntity userEntity = userDao.findById(registrationDetails.getUsername());
-        PasswordResetTokenEntity tokenEntity =
-                tokenDao.findByEmailAndToken(userEntity, token);
 
-        if (tokenEntity == null) {
-            throw new RegistrationException("Invalid token, please try resetting your password again",
-                    RegistrationExceptionType.INVALID_RESET_TOKEN);
+
+        PasswordResetTokenEntity tokenEntity;
+        try {
+            tokenEntity = tokenDao.findByEmailAndToken(userEntity, token);
+        } catch (NoResultException exc) {
+            tokenEntity = null;
+        }
+
+        if (tokenEntity == null || tokenEntity.isExpired()) {
+            throw new RegistrationException("Your password reset token may have expired. Please try and reset your password again.",
+                    RegistrationExceptionType.PASSWORD_TOKEN_EXPIRED);
         }
 
         passwordEncryption.encryptPassword(registrationDetails);
         userEntity.setPassword(registrationDetails.getPassword());
         userDao.merge(userEntity);
 
-        // TODO delete token
+        tokenDao.remove(tokenEntity);
     }
 }

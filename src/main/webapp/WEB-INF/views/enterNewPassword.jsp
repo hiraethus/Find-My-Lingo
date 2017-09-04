@@ -7,8 +7,20 @@
     <div class="jumbotron">
         <h2><spring:message code="registration.reset.password" /></h2>
         <p><spring:message code="registration.reset.provide.password" /></p>
-        <c:if test="${not empty emailNotFoundError}">
-            <div class="alert alert-danger" role="alert">${emailNotFoundError}</div>
+
+        <c:if test="${not empty registrationException}">
+            <c:choose>
+                <c:when test="${registrationException == 'INVALID_USERNAME_EMAIL'}">
+                    <div class="alert alert-danger" role="alert"><spring:message code="registration.email.not.found" /></div>
+                </c:when>
+                <c:when test="${registrationException == 'UNMATCHED_PASSWORDS'}">
+                    <div class="alert alert-danger" role="alert"><spring:message code="registration.reset.password.not.matching" /></div>
+                </c:when>
+                <c:when test="${registrationException == 'PASSWORD_TOKEN_EXPIRED'}">
+                    <div class="alert alert-danger" role="alert"><spring:message code="registration.reset.password.token.expired" /></div>
+                </c:when>
+            </c:choose>
+
         </c:if>
         <form:form action="${pageContext.request.contextPath}/mewngofnodi/ailosod/tocyn/${token}" commandName="registrationDetails" method="POST" class="form-signin">
                 <fieldset class="form-group">

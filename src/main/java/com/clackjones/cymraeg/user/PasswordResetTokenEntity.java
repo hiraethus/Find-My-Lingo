@@ -46,4 +46,12 @@ class PasswordResetTokenEntity {
     public Calendar getDateCreated() {
         return dateCreated;
     }
+
+    public boolean isExpired() {
+        Calendar expirationDate = (Calendar)this.dateCreated.clone();
+        expirationDate.add(Calendar.HOUR, 24);
+        Calendar now = Calendar.getInstance();
+
+        return now.after(expirationDate);
+    }
 }
