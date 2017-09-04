@@ -12,11 +12,16 @@ The intention of this project is to make this codebase generic and well
 documented such that other technically minded people might host their own 
 portals for their respective minority languages.
 
-## Setup instructions
-* To develop this application, use vagrant to provision a machine. See the vagrant_instructions.md
-* Please see the [Installation Guide](//github.com/hiraethus/gwasanaethau-cymraeg/wiki/Installation Guide) in the wiki (work in progress)
-* Create RESTful interface for Android App
-* Create thick client in AngularJS
+## To run with Jetty:
+- Ensure you have Maven 3 Installed
+- To make sure the server can send email, create a small file in your home directory called application.properties with credentials for a gmail account:
+```
+mail.username=gmail_username
+mail.password=p@sSw0RD
+```
+- Clone this repository
+- cd into the repository and type `mvn jetty:run`
+- Visit the web application on `localhost:8080` in your browser.
 
-# Trello Board
-https://trello.com/b/hoIxSnjp/gwasanaethau-cymru-kanban
+## Setup instructions
+* Full installation instructions will be available at [Installation Guide](https://github.com/hiraethus/gwasanaethau-cymraeg/wiki/Installation Guide) in the wiki
