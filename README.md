@@ -24,4 +24,4 @@ mail.password=p@sSw0RD
 - Visit the web application on `localhost:8080` in your browser.
 
 ## Setup instructions
-* Full installation instructions will be available at [Installation Guide](https://github.com/hiraethus/gwasanaethau-cymraeg/wiki/Installation Guide) in the wiki
+* Full installation instructions will be available at [Installation Guide](https://github.com/hiraethus/gwasanaethau-cymraeg/wiki/Installation%20Guide) in the wiki
