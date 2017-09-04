@@ -13,7 +13,7 @@ documented such that other technically minded people might host their own
 portals for their respective minority languages.
 
 ## To run with Jetty:
-- Ensure you have Maven 3 Installed
+- Ensure you have Maven 3 and Java JDK 8 installed
 - To make sure the server can send email, create a small file in your home directory called application.properties with credentials for a gmail account:
 ```
 mail.username=gmail_username
