@@ -11,8 +11,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Service
 public class GwasanaethManager {
+    final static Logger logger = LoggerFactory.getLogger(GwasanaethManager.class);
 
     @Autowired
     private SylwToSylwEntityMapper sylwToEntity;
@@ -34,6 +38,7 @@ public class GwasanaethManager {
 
     @Transactional
     public Gwasanaeth findById(Long id) {
+
         GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(id);
 
         return entityToGwasanaeth.map(gwasanaethEntity);
@@ -41,6 +46,7 @@ public class GwasanaethManager {
 
     @Transactional
     public List<Gwasanaeth> findAllWithConditionsAlphabetically(String dinasToFilter, String categoriToFilter) {
+        logger.info("Searching for Services filtered by city: {} and categori: {}", dinasToFilter, categoriToFilter);
         final Collection<GwasanaethEntity> gwasanaethauEntities = gwasanaethDao.findAll();
         Stream<Gwasanaeth> gwasanaethauStream = gwasanaethauEntities.stream()
                 .map(gwasanaethEntity -> entityToGwasanaeth.map(gwasanaethEntity));
@@ -73,9 +79,11 @@ public class GwasanaethManager {
 
     @Transactional
     public void addSylwForGwasanaethWithId(long gwasanaethId, Sylw sylw) {
+        logger.info("Adding comment '{}' to Service number {}", gwasanaethId, sylw.getSylw());
         GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(gwasanaethId);
 
         if (gwasanaethEntity == null) {
+            logger.warn("Could not add comment because service number {} doesn't exist", gwasanaethId);
             // TODO add error - gwasanaeth doesn't exist
             throw new NullPointerException();
         }
@@ -90,6 +98,7 @@ public class GwasanaethManager {
 
     @Transactional
     public void updateGwasanaeth(Gwasanaeth gwasanaeth, String name) throws GwasanaethNotFound, NoPermissionException {
+        logger.info("Updating details for Service number {}", gwasanaeth.getId());
         if (gwasanaeth.getId() == null) {
             throw new NullPointerException("Gwasanaeth ID not provided");
         }
