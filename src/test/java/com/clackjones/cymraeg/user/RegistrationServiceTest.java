@@ -21,7 +21,7 @@ public class RegistrationServiceTest {
     @Mock
     private UserPassValidator userPassValidator;
     @Mock
-    private PasswordEncryption passwordEncryption;
+    private Sha256PasswordEncryption passwordEncryption;
 
     @Mock
     private UserDao userDao;
