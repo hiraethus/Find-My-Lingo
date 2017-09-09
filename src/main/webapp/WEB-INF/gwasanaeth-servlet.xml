@@ -4,18 +4,24 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="
  http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans.xsd
  http://www.springframework.org/schema/context
  http://www.springframework.org/schema/context/spring-context.xsd
  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+ http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd
  http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
  http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
     <context:property-placeholder location="file:${user.home}/application.properties" />
     <context:component-scan base-package="com.clackjones.cymraeg"/>
     <context:annotation-config/>
+
+    <task:annotation-driven executor="myExecutor" scheduler="myScheduler"/>
+    <task:executor id="myExecutor" pool-size="5"/>
+    <task:scheduler id="myScheduler" pool-size="10"/>
 
     <bean id="myEmf"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

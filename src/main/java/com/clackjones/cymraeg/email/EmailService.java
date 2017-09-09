@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.Locale;
@@ -24,6 +25,7 @@ public class EmailService {
         this.messageSource = messageSource;
     }
 
+    @Async
     public void createAndSendResetTokenEmail(RegistrationDetails registrationDetails, String resetToken, Locale locale) {
         logger.info("Sending Email Reset Token to user {} with token {}",
                 registrationDetails.getUsername(), resetToken);
