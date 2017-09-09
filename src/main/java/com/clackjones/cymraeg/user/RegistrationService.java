@@ -1,12 +1,14 @@
 package com.clackjones.cymraeg.user;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Service;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
@@ -16,6 +18,8 @@ import java.util.UUID;
 
 @Service
 public class RegistrationService {
+    final static Logger logger = LoggerFactory.getLogger(RegistrationService.class);
+
     @Autowired
     private JdbcUserDetailsManager jdbcUserDetailsManager;
     @Autowired
@@ -38,13 +42,15 @@ public class RegistrationService {
         userPassValidator.validate(details);
 
         if (jdbcUserDetailsManager.userExists(details.getUsername())) {
+            logger.info("Unable to register user as username, {}, already exists", details.getUsername());
             throw new RegistrationException("This user already exists", RegistrationExceptionType.USER_ALREADY_EXISTS);
         }
 
         passwordEncryption.encryptPassword(details);
-
         jdbcUserDetailsManager.createUser(user(details));
         jdbcUserDetailsManager.addUserToGroup(details.getUsername(), "end_users");
+
+        logger.info("Registered user with username {}", details.getUsername());
 
         return true;
     }

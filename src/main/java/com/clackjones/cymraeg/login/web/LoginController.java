@@ -38,7 +38,7 @@ public class LoginController {
 
     @RequestMapping(path = "/cofrestru", method= RequestMethod.POST)
     public ModelAndView registerEndUser(@ModelAttribute("registrationDetails") RegistrationDetails registrationDetails,
-                                        RedirectAttributes attr) {
+                                        RedirectAttributes attr, Locale locale) {
         try {
             registrationService.register(registrationDetails);
         } catch (RegistrationException e) {
@@ -51,7 +51,9 @@ public class LoginController {
             return new ModelAndView ("redirect:/");
         }
 
-        attr.addFlashAttribute("registrationSuccessful", String.format("Cofrestrwyd %s yn llwyddianus! Cewch mewngofnodi nawr.", registrationDetails.getUsername()));
+        String regSuccessfulMessage = messageSource.getMessage("registration.successful",
+                new Object[]{registrationDetails.getUsername()}, locale);
+        attr.addFlashAttribute("registrationSuccessful", regSuccessfulMessage);
         return new ModelAndView ("redirect:/");
     }
 
