@@ -4,8 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
 import java.util.Collections;
-import java.util.Locale;
 import java.util.UUID;
 
 @Service
@@ -33,9 +30,6 @@ public class RegistrationService {
 
     @Autowired
     private MessageSource messageSource;
-
-    @Autowired
-    private MailSender mailSender;
 
 
     public boolean register(RegistrationDetails details) throws RegistrationException {
@@ -72,20 +66,6 @@ public class RegistrationService {
         tokenDao.persist(new PasswordResetTokenEntity(token, userEntity));
 
         return token;
-    }
-
-    public void sendResetTokenEmail(RegistrationDetails registrationDetails, String resetToken, Locale locale) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(registrationDetails.getUsername());
-
-        String resetEmailContent = messageSource.getMessage("registration.reset.email",
-                new String[]{resetToken}, locale);
-        message.setText(resetEmailContent);
-        String resetEmailSubject = messageSource.getMessage("registration.reset.email.subject",
-                null, locale);
-        message.setSubject(resetEmailSubject);
-
-        mailSender.send(message);
     }
 
     @Transactional
