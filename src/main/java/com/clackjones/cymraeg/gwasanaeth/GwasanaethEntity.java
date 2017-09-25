@@ -9,7 +9,9 @@ import java.util.Collection;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "GwasanaethEntity.findAll",
-                query = "SELECT g FROM GwasanaethEntity g")
+                query = "SELECT g FROM GwasanaethEntity g"),
+        @NamedQuery(name = "GwasanaethEntity.findByEnwOrDinas",
+                query = "SELECT g from GwasanaethEntity g WHERE g.enw LIKE ? OR g.cyfeiriad.dinas LIKE ?")
 })
 public class GwasanaethEntity {
     @Id

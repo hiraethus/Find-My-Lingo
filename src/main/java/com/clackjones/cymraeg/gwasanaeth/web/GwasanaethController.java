@@ -151,7 +151,9 @@ public class GwasanaethController {
     public ModelAndView listAllGwasanaethau(@RequestParam Map<String, String> params) {
 
         List<Gwasanaeth> gwasanaethau =
-                gwasanaethManager.findAllWithConditionsAlphabetically(params.getOrDefault("dinas", null),
+                gwasanaethManager.freeSearchByNameAndCity(
+                        params.getOrDefault("searchTerm", null),
+                        params.getOrDefault("dinas", null),
                     params.getOrDefault("categori", null));
 
         ModelAndView modelAndView = new ModelAndView("tudalenFlaen", "gwasanaethau", gwasanaethau);

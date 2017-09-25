@@ -45,24 +45,33 @@ public class GwasanaethManager {
     }
 
     @Transactional
-    public List<Gwasanaeth> findAllWithConditionsAlphabetically(String dinasToFilter, String categoriToFilter) {
+    public List<Gwasanaeth> freeSearchByNameAndCity(String searchTerm, String dinasToFilter, String categoriToFilter) {
+        logger.info("Searching for Services by name and city with search term {}", searchTerm);
         logger.info("Searching for Services filtered by city: {} and categori: {}", dinasToFilter, categoriToFilter);
-        final Collection<GwasanaethEntity> gwasanaethauEntities = gwasanaethDao.findAll();
-        Stream<Gwasanaeth> gwasanaethauStream = gwasanaethauEntities.stream()
-                .map(gwasanaethEntity -> entityToGwasanaeth.map(gwasanaethEntity));
 
-        if (dinasToFilter != null) {
-            gwasanaethauStream = gwasanaethauStream.filter(g -> g.getCyfeiriadDinas().equals(dinasToFilter));
+        Collection<GwasanaethEntity> result;
+        if (searchTerm != null) {
+            result = gwasanaethDao.findByEnwOrDinas(searchTerm);
+        } else {
+            result = gwasanaethDao.findAll();
         }
+        Stream<Gwasanaeth> gwasanaethauStream = result.stream()
+                .map(entityToGwasanaeth::map)
+                .filter(g -> matchesDinas(g, dinasToFilter))
+                .filter(g -> matchesCategori(g, categoriToFilter));
 
-        if (categoriToFilter != null) {
-            gwasanaethauStream = gwasanaethauStream.filter(g -> g.getCategori().getCategori().equals(categoriToFilter));
-        }
-
-        gwasanaethauStream = gwasanaethauStream.sorted(Comparator.comparing(Gwasanaeth::getCyfeiriadDinas, String::compareToIgnoreCase)
+        Stream<Gwasanaeth> sortedResults = gwasanaethauStream.sorted(Comparator.comparing(Gwasanaeth::getCyfeiriadDinas, String::compareToIgnoreCase)
                 .thenComparing(Comparator.comparing(Gwasanaeth::getEnw, String::compareToIgnoreCase)));
 
-        return gwasanaethauStream.collect(Collectors.toList());
+        return sortedResults.collect(Collectors.toList());
+    }
+
+    private boolean matchesDinas(Gwasanaeth gwasanaeth, String dinas) {
+        return dinas == null || gwasanaeth.getCyfeiriadDinas().equals(dinas);
+    }
+
+    private boolean matchesCategori(Gwasanaeth gwasanaeth, String categori) {
+        return categori == null || gwasanaeth.getCategori().getCategori().equals(categori);
     }
 
     /**

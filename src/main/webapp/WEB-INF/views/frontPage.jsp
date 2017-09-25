@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
@@ -37,7 +38,12 @@
         <div class="col-md-8">
             <h1><spring:message code="service.wales" /></h1>
             <p><spring:message code="welcome.add.business" /></p>
-            <a href='<c:url value="/adio" />' class="btn btn-primary btn-lg"><spring:message code="service.add" /></a>
+            <form method="GET" class="form-inline">
+                <div class="form-group">
+                    <input name="searchTerm" class="form-control" type="text" required />
+                    <input class="btn btn-default" type="submit" value="<spring:message code='frontpage.search' />"  />
+                </div>
+            </form>
         </div>
     </div>
 </div>

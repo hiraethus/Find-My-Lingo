@@ -2,6 +2,42 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
 
+<c:if test="${not empty param.dinas}">
+<div class="alert alert-info" role="alert">
+    <p><spring:message code="filter.city" arguments="${param.dinas}" /> <a href='<c:url value="/">
+        <c:forEach var="prm" items="${param}">
+            <c:if test="${prm.key != 'dinas'}">
+                <c:param name="${prm.key}" value="${prm.value}"/>
+            </c:if>
+        </c:forEach>
+    </c:url>'><spring:message code='filter.reset' /></a></p>
+</div>
+</c:if>
+
+<c:if test="${not empty param.categori}">
+<div class="alert alert-warning" role="alert">
+    <p><spring:message code="filter.categori" arguments="${param.categori}" /> <a href='<c:url value="/">
+        <c:forEach var="prm" items="${param}">
+            <c:if test="${prm.key != 'categori'}">
+                <c:param name="${prm.key}" value="${prm.value}"/>
+            </c:if>
+        </c:forEach>
+    </c:url>'><spring:message code='filter.reset' /></a></p>
+</div>
+</c:if>
+
+<c:if test="${not empty param.searchTerm}">
+<div class="alert alert-warning" role="alert">
+    <p><spring:message code="filter.searchterm" arguments="${param.searchTerm}" /> <a href='<c:url value="/">
+        <c:forEach var="prm" items="${param}">
+            <c:if test="${prm.key != 'searchTerm'}">
+                <c:param name="${prm.key}" value="${prm.value}"/>
+            </c:if>
+        </c:forEach>
+    </c:url>'><spring:message code='filter.reset' /></a></p>
+</div>
+</c:if>
+
 <c:if test="${empty gwasanaethau}">
     <div class="alert alert-info" role="alert">
         <p><spring:message code="list.empty.notification" /></p>
@@ -9,30 +45,6 @@
 </c:if>
 
 <c:if test="${not empty gwasanaethau}">
-
-<c:if test="${not empty param.dinas}">
-<div class="alert alert-info" role="alert">
-    <p>Hidlo i ddangos gwasanaethau dinas <em>${param.dinas}</em> yn unig. <a href='<c:url value="/">
-        <c:forEach var="prm" items="${param}">
-            <c:if test="${prm.key != 'dinas'}">
-                <c:param name="${prm.key}" value="${prm.value}"/>
-            </c:if>
-        </c:forEach>
-    </c:url>'>Ailosod</a></p>
-</div>
-</c:if>
-
-<c:if test="${not empty param.categori}">
-<div class="alert alert-warning" role="alert">
-    <p>Hidlo i ddangos gwasanaethau y categori <em>${param.categori}</em> yn unig. <a href='<c:url value="/">
-        <c:forEach var="prm" items="${param}">
-            <c:if test="${prm.key != 'categori'}">
-                <c:param name="${prm.key}" value="${prm.value}"/>
-            </c:if>
-        </c:forEach>
-    </c:url>'>Ailosod</a></p>
-</div>
-</c:if>
 
 <div class="">
     <table class="table table-striped">
