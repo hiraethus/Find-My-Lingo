@@ -8,7 +8,7 @@
   <head>
     <title><tiles:getAsString name="title"/></title>
     <meta charset="UTF-8">
-
+    <link rel="shortcut icon" href="/images/favicon.ico" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/logo.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/sticky-footer.css" rel="stylesheet" />
