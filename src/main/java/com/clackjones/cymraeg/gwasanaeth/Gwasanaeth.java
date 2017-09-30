@@ -1,7 +1,10 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
+import com.clackjones.cymraeg.address.GeoLocation;
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 public class Gwasanaeth {
 
@@ -18,6 +21,7 @@ public class Gwasanaeth {
     private Categori categori;
     private Collection<Sylw> sylwadau = new ArrayList<>();
     private String owner;
+    private GeoLocation geoLocation;
 
     public Long getId() {
         return id;
@@ -121,5 +125,13 @@ public class Gwasanaeth {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public GeoLocation getGeoLocation() {
+        return geoLocation;
+    }
+
+    public void setGeoLocation(GeoLocation geoLocation) {
+        this.geoLocation = geoLocation;
     }
 }

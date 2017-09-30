@@ -29,7 +29,7 @@
                 <div class="email">${gwasanaeth.ebost}</div>
             </div>
        </div>
-       <c:if test="${geolocation != null}">
+       <c:if test="${gwasanaeth.geoLocation != null}">
        <div class="col-lg-6">
         <div id="map"></div>
        </div>
@@ -159,10 +159,10 @@
     </div>
 </div>
 </c:forEach>
-<c:if test="${geolocation != null}">
+<c:if test="${gwasanaeth.geoLocation != null}">
 <script type="text/javascript">
     var map;
-    var latLng = {lat: ${geolocation.latitude}, lng: ${geolocation.longitude}};
+    var latLng = {lat: ${gwasanaeth.geoLocation.latitude}, lng: ${gwasanaeth.geoLocation.longitude}};
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: latLng,
