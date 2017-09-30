@@ -10,12 +10,12 @@
     <div class="row">
 
         <div class="col-lg-6">
-            <h2>Disgrifiad</h2>
+            <h2><spring:message code='service.description' /></h2>
             <em>${gwasanaeth.disgrifiad}</em>
-            <div>Categori: <span class="${gwasanaeth.categori.categori}"><spring:message code="${gwasanaeth.categori.categori}" /></span></div>
-            <div>Cynhelir y proffil yma gan: <em>${gwasanaeth.owner}</em></div>
+            <div><spring:message code='service.category' />: <span class="${gwasanaeth.categori.categori}"><spring:message code="${gwasanaeth.categori.categori}" /></span></div>
+            <div><spring:message code='service.maintained.by' arguments='${gwasanaeth.owner}' /></div>
 
-            <h2>Cyswllt</h2>
+            <h2><spring:message code='service.contact' /></h2>
             <div class="vcard">
                 <div class="adr">
                     <div class="street-address">${gwasanaeth.cyfeiriadLlinellGyntaf}</div>
@@ -39,7 +39,7 @@
     <div class="row">
         <a href="<c:url value='/adolygu/${gwasanaeth.id}' />">
         <div style="float: right; display: block;">
-            Adolygu
+            <spring:message code='service.edit' />
         </div>
         </a>
     </div>
@@ -48,21 +48,23 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h2>Sylwadau</h2>
+        <h2><spring:message code='service.comments' /></h2>
     </div>
 </div>
 
 <div class="row">
-    <!-- TODO pass gwasanaeth ID to form -->
     <form:form action="${pageContext.request.contextPath}/cyflwynoSylw/${gwasanaeth.id}" commandName="sylw" method="POST" role="form">
     <div class="panel panel-default">
-      <div class="panel-heading">Adio sylw</div>
+      <div class="panel-heading"><spring:message code='service.comment.add' /></div>
           <div class="panel-body">
           <div class="row">
+              <div class="col-xs-6">
+                  <form:textarea path="sylw" rows="8" cols="30" class="form-control" />
+              </div>
             <div class="col-xs-6">
                 <table class="table table-invisible">
                     <tr>
-                        <th><form:label path="safonIaith">Safon Iaith</form:label></th>
+                        <th><form:label path="safonIaith"><spring:message code='service.comment.language.quality' /></form:label></th>
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                  <label class="radio-inline">
@@ -72,7 +74,7 @@
                         </c:forEach>
                     </tr
                     <tr>
-                        <th><form:label path="safonArwyddiaeth">Safon Arwyddiaeth</form:label></th>
+                        <th><form:label path="safonArwyddiaeth"><spring:message code='service.comment.signage.quality' /></form:label></th>
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                  <label class="radio-inline">
@@ -82,7 +84,7 @@
                         </c:forEach>
                     </tr>
                     <tr>
-                        <th><form:label path="safonGwasanaeth">Safon Gwasanaeth</form:label></th>
+                        <th><form:label path="safonGwasanaeth"><spring:message code='service.comment.service.quality' /></form:label></th>
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                 <form:radiobutton path="safonGwasanaeth" value="${safon}" />${safon}
@@ -90,19 +92,11 @@
                         </c:forEach>
                     </tr>
                 </table>
-
-            </div>
-            <div class="col-xs-6">
-                <form:textarea path="sylw" rows="8" cols="30" class="form-control" placeholder="Sylwadau..." />
-            </div>
-          </div>
-          <div class="row">
-              <div class="col-md-8">
-
                 <fieldset class="form-group">
-                    <input type="submit" value="Cyflwyno" class="btn btn-primary" />
+                    <input type="submit" value="<spring:message code='service.comment.submit' />" class="btn btn-primary" />
                 </fieldset>
-              </div>
+            </div>
+
           </div>
       </div>
     </div>
@@ -111,15 +105,17 @@
 
 <c:forEach var="sylw" items="${gwasanaeth.sylwadau}">
 <div class="row">
-    <!-- TODO pass gwasanaeth ID to form -->
     <div class="panel panel-default">
-      <div class="panel-heading">Dyddiad: ${sylw.amserSylw}</div>
+      <div class="panel-heading"><spring:message code='service.comment.date' />: ${sylw.amserSylw}</div>
           <div class="panel-body">
           <div class="row">
-            <div class="col-xs-8">
+          <div class="col-xs-6">
+              ${sylw.sylw}
+          </div>
+            <div class="col-xs-6">
                 <table class="table table-invisible">
                     <tr>
-                        <th>Safon Iaith</th>
+                        <th><spring:message code='service.comment.language.quality' /></th>
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                   <label class="radio-inline">
@@ -129,7 +125,7 @@
                         </c:forEach>
                     </tr
                     <tr>
-                        <th>Safon Arwyddiaeth</th>
+                        <th><spring:message code='service.comment.signage.quality' /></th>
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                   <label class="radio-inline">
@@ -139,7 +135,7 @@
                         </c:forEach>
                     </tr>
                     <tr>
-                        <th>Safon Gwasanaeth</th>
+                        <th><spring:message code='service.comment.service.quality' /></th>
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                   <label class="radio-inline">
@@ -150,9 +146,6 @@
                     </tr>
                 </table>
 
-            </div>
-            <div class="col-xs-6">
-                ${sylw.sylw}
             </div>
           </div>
       </div>
