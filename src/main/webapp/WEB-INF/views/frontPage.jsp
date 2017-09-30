@@ -24,29 +24,35 @@
 </div>
 </c:if>
 
-<div class="jumbotron">
+<div class="container">
 
     <div class="row">
-        <div>
-            <div class="logo-square">
-                <div class="gwasanaethau-text">GWASANAETHAU</div>
-            </div>
-            <div class="cymraeg-text">
-                .CYMRU
-            </div>
+        <div class="col-md-3">
+            <span>
+                <div class="logo-square">
+                    <div class="gwasanaethau-text">GWASANAETHAU</div>
+                </div>
+                <div class="cymraeg-text">
+                    .CYMRU
+                </div>
+            </span>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9" style="overflow: hidden">
             <h1><spring:message code="service.wales" /></h1>
-            <p><spring:message code="welcome.add.business" /></p>
+            <p style="padding-top: 1em;"><spring:message code="welcome.add.business" /></p>
             <form method="GET" class="form-inline">
-                <div class="form-group">
-                    <input name="searchTerm" class="form-control" type="text" required />
-                    <input class="btn btn-default" type="submit" value="<spring:message code='frontpage.search' />"  />
+                <div class="form-group" style="width: 100%">
+                    <input name="searchTerm" class="form-control" type="text" style="width: calc(80% - 7em);" required />
+                    <button class="btn btn-default" type="submit" style="width: 6.5em">
+                        <span class="glyphicon glyphicon-search"></span> <spring:message code='frontpage.search' />
+                    </button>
                 </div>
             </form>
         </div>
     </div>
+    <div class="row">
+        <h2><spring:message code="service.list" /></h2>
+        <tiles:insertAttribute name="rhestrGwasanaethau" />
+    </div>
 </div>
 
-<h2><spring:message code="service.list" /></h2>
-<tiles:insertAttribute name="rhestrGwasanaethau" />
