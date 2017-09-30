@@ -44,7 +44,7 @@ public class RegistrationService {
     }
 
 
-    public boolean register(RegistrationDetails details) throws RegistrationException {
+    public boolean register(RegistrationDetails details, Locale locale) throws RegistrationException {
         userPassValidator.validate(details);
 
         if (jdbcUserDetailsManager.userExists(details.getUsername())) {
@@ -56,6 +56,7 @@ public class RegistrationService {
         jdbcUserDetailsManager.createUser(user(details));
         jdbcUserDetailsManager.addUserToGroup(details.getUsername(), "end_users");
 
+        emailService.createAndSendRegistrationSuccessEmail(details, locale);
         logger.info("Registered user with username {}", details.getUsername());
 
         return true;

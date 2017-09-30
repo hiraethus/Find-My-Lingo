@@ -53,7 +53,7 @@ public class RegistrationServiceTest {
         // when
         RegistrationException r = null;
         try {
-            registrationService.register(regDetails);
+            registrationService.register(regDetails, Locale.ENGLISH);
         } catch (RegistrationException e) {
             r = e;
         }
@@ -77,7 +77,7 @@ public class RegistrationServiceTest {
         // when
         RegistrationException r = null;
         try {
-            registrationService.register(regDetails);
+            registrationService.register(regDetails, Locale.ENGLISH);
         } catch (RegistrationException e) {
             r = e;
         }
@@ -100,7 +100,7 @@ public class RegistrationServiceTest {
         given(jdbcUserDetailsManager.userExists(username)).willReturn(false);
 
         // when
-        boolean success = registrationService.register(regDetails);
+        boolean success = registrationService.register(regDetails, Locale.ENGLISH);
 
         // then
         then(jdbcUserDetailsManager).should(times(1)).createUser(any());

@@ -46,4 +46,24 @@ public class EmailService {
 
         return message;
     }
+
+    public void createAndSendRegistrationSuccessEmail(RegistrationDetails regDetails, Locale locale) {
+        logger.info("Sending registration success email to {}", regDetails.getUsername());
+        SimpleMailMessage message = createRegSuccessEmail(regDetails, locale);
+        mailSender.send(message);
+    }
+
+    private SimpleMailMessage createRegSuccessEmail(RegistrationDetails regDetails, Locale locale) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(regDetails.getUsername());
+
+        String emailContent = messageSource.getMessage("registration.successful.email",
+                new String[]{regDetails.getUsername()}, locale);
+        message.setText(emailContent);
+        String emailSubject = messageSource.getMessage("registration.successful.email.subject",
+                null, locale);
+        message.setSubject(emailSubject);
+
+        return message;
+    }
 }

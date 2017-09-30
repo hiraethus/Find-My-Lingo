@@ -40,7 +40,7 @@ public class LoginController {
     public ModelAndView registerEndUser(@ModelAttribute("registrationDetails") RegistrationDetails registrationDetails,
                                         RedirectAttributes attr, Locale locale) {
         try {
-            registrationService.register(registrationDetails);
+            registrationService.register(registrationDetails, locale);
         } catch (RegistrationException e) {
             attr.addFlashAttribute("registrationError", e.getKind());
 
