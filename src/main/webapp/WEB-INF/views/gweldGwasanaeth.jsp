@@ -5,6 +5,31 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page isELIgnored="false" %>
 
+<style type="text/css">
+    input[type='radio'] {
+        background: none;
+    }
+
+    input[type='radio'] + label {
+        font-size: 1.5em;
+    }
+
+    input[type='radio'] + label.DA:after {
+        content: "\1F44C";
+    }
+
+    input[type='radio'] + label.GWEDDOL:after {
+        content: "\1F44D";
+    }
+
+    input[type='radio'] + label.GWAEL:after {
+        content: "\1F44E";
+    }
+
+     input[type='radio']:checked + label:after {
+            box-shadow: 0 4px 2px -2px gray;
+     }
+</style>
 
 <div class="jumbotron">
     <div class="row">
@@ -68,7 +93,7 @@
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                  <label class="radio-inline">
-                                    <form:radiobutton path="safonIaith" value="${safon}" />${safon}
+                                    <form:radiobutton path="safonIaith" value="${safon}"  /><label class="${safon}"></label>
                                 </label>
                              </td>
                         </c:forEach>
@@ -78,7 +103,7 @@
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                  <label class="radio-inline">
-                                    <form:radiobutton path="safonArwyddiaeth" value="${safon}" />${safon}
+                                    <form:radiobutton path="safonArwyddiaeth" value="${safon}" /><label class="${safon}"></label>
                                 </label>
                              </td>
                         </c:forEach>
@@ -87,7 +112,9 @@
                         <th><form:label path="safonGwasanaeth"><spring:message code='service.comment.service.quality' /></form:label></th>
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
-                                <form:radiobutton path="safonGwasanaeth" value="${safon}" />${safon}
+                                <label class="radio-inline">
+                                    <form:radiobutton path="safonGwasanaeth" value="${safon}" /><label class="${safon}"></label>
+                                </label>
                              </td>
                         </c:forEach>
                     </tr>
@@ -119,7 +146,8 @@
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                   <label class="radio-inline">
-                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonIaith }">checked="checked"</c:if> disabled/>${safon}
+                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonIaith }">checked="checked"</c:if> disabled/>
+                                    <label class="${safon}"></label>
                                   </label>
                              </td>
                         </c:forEach>
@@ -129,7 +157,8 @@
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                   <label class="radio-inline">
-                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonArwyddiaeth }">checked="checked"</c:if> disabled/>${safon}
+                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonArwyddiaeth }">checked="checked"</c:if> disabled/>
+                                    <label class="${safon}"></label>
                                   </label>
                              </td>
                         </c:forEach>
@@ -139,7 +168,8 @@
                         <c:forEach var="safon" items="${safonnau}">
                              <td>
                                   <label class="radio-inline">
-                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonGwasanaeth }">checked="checked"</c:if> disabled/>${safon}
+                                    <input type="radio" value="${safon}" <c:if test="${ safon == sylw.safonGwasanaeth }">checked="checked"</c:if> disabled/>
+                                    <label class="${safon}"></label>
                                   </label>
                              </td>
                         </c:forEach>
