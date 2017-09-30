@@ -1,5 +1,6 @@
 package com.clackjones.cymraeg.user;
 
+import com.clackjones.cymraeg.email.EmailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -11,6 +12,8 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.BDDMockito.*;
 
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
+
+import java.util.Locale;
 
 import static org.junit.Assert.*;
 
@@ -28,6 +31,11 @@ public class RegistrationServiceTest {
 
     @Mock
     private PasswordResetTokenDao passwordDao;
+    @Mock
+    private EmailService emailService;
+
+    @Mock
+    private PasswordTokenGenerator userIDProvider;
 
     @InjectMocks
     private RegistrationService registrationService;
@@ -131,7 +139,7 @@ public class RegistrationServiceTest {
     }
 
     @Test
-    public void shouldReturnPasswordResetTokenAndPersistToDb() {
+    public void shouldResetTokenAndPersistToDbAndSendEmail() {
         // given
         String email = "user@example.com";
         UserEntity user = new UserEntity();
@@ -141,14 +149,16 @@ public class RegistrationServiceTest {
         RegistrationDetails details = new RegistrationDetails();
         details.setUsername(email);
 
-        given(userDao.findById(email)).willReturn(user);
+        String uuid = "AAA111";
 
-        // when
-        String token = registrationService.createResetToken(details);
+        given(userDao.findById(email)).willReturn(user);
+        given(userIDProvider.generateToken()).willReturn(uuid);
+
+        registrationService.sendResetToken(details, Locale.ENGLISH);
 
         // then
-        assertThat(token, notNullValue());
         verify(userDao, times(1)).findById(email);
         verify(passwordDao, times(1)).persist(any());
+        verify(emailService, times(1)).createAndSendResetTokenEmail(details, uuid, Locale.ENGLISH);
     }
 }

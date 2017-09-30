@@ -1,6 +1,5 @@
 package com.clackjones.cymraeg.login.web;
 
-import com.clackjones.cymraeg.email.EmailService;
 import com.clackjones.cymraeg.user.RegistrationDetails;
 import com.clackjones.cymraeg.user.RegistrationException;
 import com.clackjones.cymraeg.user.RegistrationService;
@@ -24,8 +23,6 @@ public class LoginController {
 
     @Autowired
     private RegistrationService registrationService;
-    @Autowired
-    private EmailService emailService;
 
     @Resource
     private MessageSource messageSource;
@@ -81,9 +78,7 @@ public class LoginController {
             return new ModelAndView ("redirect:ailosod");
         }
 
-        String resetToken = registrationService.createResetToken(registrationDetails);
-        emailService.createAndSendResetTokenEmail(registrationDetails,
-                resetToken, locale);
+        registrationService.sendResetToken(registrationDetails, locale);
 
         return new ModelAndView ("checkEmail");
     }
