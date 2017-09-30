@@ -3,7 +3,6 @@ package com.clackjones.cymraeg.user;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Service;
@@ -17,19 +16,25 @@ import java.util.UUID;
 public class RegistrationService {
     final static Logger logger = LoggerFactory.getLogger(RegistrationService.class);
 
-    @Autowired
     private JdbcUserDetailsManager jdbcUserDetailsManager;
-    @Autowired
     private UserPassValidator userPassValidator;
-    @Autowired
     private UserDao userDao;
-    @Autowired
     private PasswordResetTokenDao tokenDao;
-    @Autowired
     private Sha256PasswordEncryption passwordEncryption;
 
     @Autowired
-    private MessageSource messageSource;
+    public RegistrationService(
+        JdbcUserDetailsManager jdbcUserDetailsManager,
+        UserPassValidator userPassValidator,
+        UserDao userDao,
+        PasswordResetTokenDao tokenDao,
+        Sha256PasswordEncryption passwordEncryption) {
+            this.jdbcUserDetailsManager = jdbcUserDetailsManager;
+            this.userPassValidator = userPassValidator;
+            this.userDao = userDao;
+            this.tokenDao = tokenDao;
+            this.passwordEncryption = passwordEncryption;
+    }
 
 
     public boolean register(RegistrationDetails details) throws RegistrationException {
