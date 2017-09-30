@@ -39,7 +39,7 @@ public class GwasanaethController {
     private SafonEditor safonEditor;
 
     @Autowired
-    private GwasanaethManager gwasanaethManager;
+    private GwasanaethService gwasanaethService;
 
     @Autowired
     private GwasanaethValidator gwasanaethValidator;
@@ -89,7 +89,7 @@ public class GwasanaethController {
             return new ModelAndView("redirect:adio");
         }
 
-        Long id = gwasanaethManager.saveGwasanaeth(gwasanaeth, principal.getName());
+        Long id = gwasanaethService.saveGwasanaeth(gwasanaeth, principal.getName());
 
         return new ModelAndView("redirect:id/"+id);
     }
@@ -104,7 +104,7 @@ public class GwasanaethController {
         }
 
         try {
-            gwasanaethManager.updateGwasanaeth(gwasanaeth, principal.getName());
+            gwasanaethService.updateGwasanaeth(gwasanaeth, principal.getName());
         } catch (GwasanaethNotFound gwasanaethNotFound) {
             throw new NullPointerException(gwasanaethNotFound.getMessage());
         } catch (NoPermissionException e) {
@@ -119,7 +119,7 @@ public class GwasanaethController {
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')")
     public ModelAndView adolyguGwasanaeth(@PathVariable("gwasanaethId") Long gwasanaethId,
                                           Principal principal, Locale locale) {
-        Gwasanaeth gwasanaeth = gwasanaethManager.findById(gwasanaethId);
+        Gwasanaeth gwasanaeth = gwasanaethService.findById(gwasanaethId);
 
         String name = principal.getName();
         if (!gwasanaeth.getOwner().equals(name)) {
@@ -149,7 +149,7 @@ public class GwasanaethController {
     public ModelAndView listAllGwasanaethau(@RequestParam Map<String, String> params) {
 
         List<Gwasanaeth> gwasanaethau =
-                gwasanaethManager.freeSearchByNameAndCity(
+                gwasanaethService.freeSearchByNameAndCity(
                         params.getOrDefault("searchTerm", null),
                         params.getOrDefault("dinas", null),
                     params.getOrDefault("categori", null));
@@ -161,7 +161,7 @@ public class GwasanaethController {
 
     @RequestMapping(path = "id/{id}", method = RequestMethod.GET)
     public ModelAndView viewGwasanaeth(@PathVariable("id") Long id) {
-        Gwasanaeth gwasanaeth = gwasanaethManager.findById(id);
+        Gwasanaeth gwasanaeth = gwasanaethService.findById(id);
 
         ModelAndView modelAndView = new ModelAndView("gweldGwasanaeth", "gwasanaeth", gwasanaeth);
         modelAndView.addObject("heading", gwasanaeth.getEnw());
@@ -173,7 +173,7 @@ public class GwasanaethController {
 
     @RequestMapping(path = "cyflwynoSylw/{gwasanaethId}", method = RequestMethod.POST)
     public ModelAndView cyflwynoSylw(@ModelAttribute("sylw") Sylw sylw, @PathVariable("gwasanaethId") Long gwasanaethId) {
-        gwasanaethManager.addSylwForGwasanaethWithId(gwasanaethId, sylw);
+        gwasanaethService.addSylwForGwasanaethWithId(gwasanaethId, sylw);
 
         return new ModelAndView("redirect:/id/"+gwasanaethId);
     }

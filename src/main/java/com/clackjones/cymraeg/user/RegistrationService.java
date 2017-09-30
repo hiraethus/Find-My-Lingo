@@ -89,15 +89,12 @@ public class RegistrationService {
             throw new RegistrationException("Could not find email", RegistrationExceptionType.INVALID_USERNAME_EMAIL);
         }
 
-        boolean passwordsMatch = registrationDetails.getPassword()
-                .equals(registrationDetails.getPasswordSecondTimeEntered());
-
-        if (!passwordsMatch) {
+        if (!registrationDetails.passwordsMatch()) {
             logger.info("Could not reset {} password - passwords don't match", email);
             throw new RegistrationException("Passwords do not match", RegistrationExceptionType.UNMATCHED_PASSWORDS);
         }
 
-        UserEntity userEntity = userDao.findById(registrationDetails.getUsername());
+        UserEntity userEntity = userDao.findById(email);
 
         PasswordResetTokenEntity tokenEntity;
         try {

@@ -1,5 +1,7 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,30 +13,33 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Service
-public class GwasanaethManager {
-    final static Logger logger = LoggerFactory.getLogger(GwasanaethManager.class);
+public class GwasanaethService {
+    final static Logger logger = LoggerFactory.getLogger(GwasanaethService.class);
 
-    @Autowired
     private SylwToSylwEntityMapper sylwToEntity;
-
-    @Autowired
     private SylwEntityToSylwMapper entityToSylw;
-
-    @Autowired
     private SylwDao sylwDao;
-
-    @Autowired
     private GwasanaethDao gwasanaethDao;
-
-    @Autowired
     private GwasanaethToGwasanaethEntityMapper gwasanaethToEntity;
+    private GwasanaethEntityToGwasanaethMapper entityToGwasanaeth;
 
     @Autowired
-    private GwasanaethEntityToGwasanaethMapper entityToGwasanaeth;
+    public GwasanaethService(
+            SylwToSylwEntityMapper sylwToEntity,
+            SylwEntityToSylwMapper entityToSylw,
+            SylwDao sylwDao,
+            GwasanaethDao gwasanaethDao,
+            GwasanaethToGwasanaethEntityMapper gwasanaethToEntity,
+            GwasanaethEntityToGwasanaethMapper entityToGwasanaeth
+    ) {
+        this.sylwToEntity = sylwToEntity;
+        this.entityToSylw = entityToSylw;
+        this.sylwDao = sylwDao;
+        this.gwasanaethDao = gwasanaethDao;
+        this.gwasanaethToEntity = gwasanaethToEntity;
+        this.entityToGwasanaeth = entityToGwasanaeth;
+    }
 
     @Transactional
     public Gwasanaeth findById(Long id) {

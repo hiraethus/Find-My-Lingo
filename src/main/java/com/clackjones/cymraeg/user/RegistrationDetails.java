@@ -28,4 +28,8 @@ public class RegistrationDetails {
     public void setPasswordSecondTimeEntered(String passwordSecondTimeEntered) {
         this.passwordSecondTimeEntered = passwordSecondTimeEntered;
     }
+
+    public boolean passwordsMatch() {
+        return password.equals(passwordSecondTimeEntered);
+    }
 }
