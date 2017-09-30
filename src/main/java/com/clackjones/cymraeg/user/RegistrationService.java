@@ -21,7 +21,7 @@ public class RegistrationService {
     private UserPassValidator userPassValidator;
     private UserDao userDao;
     private PasswordResetTokenDao tokenDao;
-    private Sha256PasswordEncryption passwordEncryption;
+    private PasswordEncryption passwordEncryption;
     private EmailService emailService;
     private PasswordTokenGenerator tokenGenerator;
 
@@ -31,7 +31,7 @@ public class RegistrationService {
         UserPassValidator userPassValidator,
         UserDao userDao,
         PasswordResetTokenDao tokenDao,
-        Sha256PasswordEncryption passwordEncryption,
+        PasswordEncryption passwordEncryption,
         EmailService emailService,
         PasswordTokenGenerator tokenGenerator) {
             this.jdbcUserDetailsManager = jdbcUserDetailsManager;

@@ -3,19 +3,17 @@ package com.clackjones.cymraeg.user;
 import com.clackjones.cymraeg.email.EmailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.mockito.BDDMockito.*;
-
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 import java.util.Locale;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
+import static org.mockito.BDDMockito.any;
+import static org.mockito.BDDMockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RegistrationServiceTest {
@@ -24,7 +22,7 @@ public class RegistrationServiceTest {
     @Mock
     private UserPassValidator userPassValidator;
     @Mock
-    private Sha256PasswordEncryption passwordEncryption;
+    private PasswordEncryption passwordEncryption;
 
     @Mock
     private UserDao userDao;
