@@ -33,14 +33,7 @@
 
     <div class="row">
         <div class="col-md-3">
-            <span>
-                <div class="logo-square">
-                    <div class="gwasanaethau-text">GWASANAETHAU</div>
-                </div>
-                <div class="cymraeg-text">
-                    .CYMRU
-                </div>
-            </span>
+            <a class="twitter-timeline" data-theme="light" data-link-color="#E81C4F" href="https://twitter.com/gwasanaethaucym?ref_src=twsrc%5Etfw">Tweets by gwasanaethaucym</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
         <div class="col-md-9" style="overflow: hidden">
             <h1><spring:message code="service.wales" /></h1>
