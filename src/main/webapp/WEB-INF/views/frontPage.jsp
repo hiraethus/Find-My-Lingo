@@ -3,7 +3,12 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
-
+<style>
+.loader {
+ border-top: 16px solid blue;
+ border-bottom: 16px solid blue;
+}
+</style>
 <c:if test="${param.allgofnodi ne null}" >
 <div class="row">
     <div class="col-lg-12">
@@ -40,19 +45,14 @@
         <div class="col-md-9" style="overflow: hidden">
             <h1><spring:message code="service.wales" /></h1>
             <p style="padding-top: 1em;"><spring:message code="welcome.add.business" /></p>
-            <form method="GET" class="form-inline">
-                <div class="form-group" style="width: 100%">
-                    <input name="searchTerm" class="form-control" type="text" style="width: calc(80% - 7em);" required />
-                    <button class="btn btn-default" type="submit" style="width: 6.5em">
-                        <span class="glyphicon glyphicon-search"></span> <spring:message code='frontpage.search' />
-                    </button>
+                <div class="form-inline" style="width: 100%">
+                    <input name="searchTerm" class="form-control" type="text" style="width: calc(80% - 7em);"
+                        placeholder="<spring:message code='search.name.or.city' />"
+                        required ic-get-from="/search" ic-trigger-on="keyup changed"
+                         ic-trigger-delay="500ms" ic-target="#result-table" />
                 </div>
-            </form>
+                <div id="result-table"></div>
         </div>
-    </div>
-    <div class="row">
-        <h2><spring:message code="service.list" /></h2>
-        <tiles:insertAttribute name="rhestrGwasanaethau" />
     </div>
 </div>
 

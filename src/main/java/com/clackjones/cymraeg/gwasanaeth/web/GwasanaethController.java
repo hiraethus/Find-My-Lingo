@@ -145,18 +145,21 @@ public class GwasanaethController {
     }
 
     @Transactional
-    @RequestMapping(path = "/", method = RequestMethod.GET)
+    @RequestMapping(path = "/search", method = RequestMethod.GET)
     public ModelAndView listAllGwasanaethau(@RequestParam Map<String, String> params) {
-
         List<Gwasanaeth> gwasanaethau =
                 gwasanaethService.freeSearchByNameAndCity(
                         params.getOrDefault("searchTerm", null),
                         params.getOrDefault("dinas", null),
                     params.getOrDefault("categori", null));
 
-        ModelAndView modelAndView = new ModelAndView("tudalenFlaen", "gwasanaethau", gwasanaethau);
-        modelAndView.addObject("heading", "Rhestr gwasanaethau");
+        ModelAndView modelAndView = new ModelAndView("searchTable", "gwasanaethau", gwasanaethau);
         return modelAndView;
+    }
+
+    @RequestMapping(path = "/", method = RequestMethod.GET)
+    public ModelAndView frontPage() {
+        return new ModelAndView("tudalenFlaen");
     }
 
     @RequestMapping(path = "id/{id}", method = RequestMethod.GET)

@@ -68,4 +68,8 @@
         <put-attribute name="body" value="/WEB-INF/views/passwordChangedSuccessfully.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
+
+    <!-- intercooler js ajax views -->
+    <definition name="searchTable" template="/WEB-INF/components/rhestrGwasanaethau.jsp">
+    </definition>
 </tiles-definitions>
