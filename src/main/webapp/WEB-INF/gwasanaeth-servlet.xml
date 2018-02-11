@@ -15,7 +15,6 @@
  http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
  http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
-    <context:property-placeholder location="file:${user.home}/application.properties" />
     <context:component-scan base-package="com.clackjones.cymraeg"/>
     <context:annotation-config/>
 
@@ -111,8 +110,8 @@
         <property name="host"><value>smtp.gmail.com</value></property>
         <property name="port"><value>587</value></property>
         <property name="protocol"><value>smtp</value></property>
-        <property name="username"><value>${mail.username}</value></property>
-        <property name="password"><value>${mail.password}</value></property>
+        <property name="username"><value>#{systemEnvironment['MAIL_USER']}</value></property>
+        <property name="password"><value>#{systemEnvironment['MAIL_PWD']}</value></property>
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.smtp.auth">true</prop>

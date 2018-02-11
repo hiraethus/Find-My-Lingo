@@ -12,6 +12,16 @@ The intention of this project is to make this codebase generic and well
 documented such that other technically minded people might host their own 
 portals for their respective minority languages.
 
+## Heroku setup instructions
+- Set-up postgres on Heroku
+```
+heroku addons:create heroku-postgresql
+```
+
+- Add config vars for your gmail username and password that you wish to send mail from:
+    - MAIL_USER
+    - MAIL_PWD
+
 ## To run with Jetty:
 - Ensure you have Maven 3 and Java JDK 8 installed
 - To make sure the server can send email, create a small file in your home directory called application.properties with credentials for a gmail account:
