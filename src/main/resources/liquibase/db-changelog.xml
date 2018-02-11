@@ -139,7 +139,7 @@
             <column name="password" type="varchar(64)" >
                 <constraints nullable="false" />
             </column>
-            <column name="enabled" type="bit" >
+            <column name="enabled" type="boolean" >
                 <constraints nullable="false" />
             </column>
         </createTable>
