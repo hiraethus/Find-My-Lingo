@@ -23,7 +23,7 @@
     <task:scheduler id="myScheduler" pool-size="10"/>
 
     <bean id="myEmf"
-          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+          class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan" value="com.clackjones.cymraeg" />
         <property name="jpaVendorAdapter">
