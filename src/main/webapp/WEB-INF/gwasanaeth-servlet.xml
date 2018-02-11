@@ -43,11 +43,24 @@
     </bean>
 
 
-    <jee:jndi-lookup id="dataSource" jndi-name="GwasanaethauDB"
-                     cache="true"
-                     resource-ref="true"
-                     lookup-on-startup="false"
-                     proxy-interface="javax.sql.DataSource" />
+    <bean class="java.net.URI" id="dbUrl">
+        <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
+    </bean>
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }" />
+        <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }" />
+        <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }" />
+        <!--<property name="socketTimeout" value="10"/>-->
+
+        <property name="connectionProperties">
+            <props>
+                <prop key="socketTimeout">10</prop>
+            </props>
+        </property>
+    </bean>
 
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="myEmf" />
