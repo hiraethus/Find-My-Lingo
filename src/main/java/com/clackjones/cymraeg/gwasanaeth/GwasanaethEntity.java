@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-@Table("\"\"GwasanaethEntity")
+@Table(name="\"GwasanaethEntity\"")
 @NamedQueries({
         @NamedQuery(name = "GwasanaethEntity.findAll",
                 query = "SELECT g FROM GwasanaethEntity g"),
