@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Table(name="\"CategoriEntity\"")
 @NamedQueries({
         @NamedQuery(name = "CategoriEntity.findAll",
                 query = "SELECT c FROM CategoriEntity c")
