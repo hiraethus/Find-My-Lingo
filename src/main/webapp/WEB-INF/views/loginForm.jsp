@@ -37,7 +37,7 @@
     </div>
     <div class="col-lg-6">
         <div class="jumbotron">
-            <form:form action="${pageContext.request.contextPath}/mewngofnodi/cofrestru" commandName="registrationDetails" method="POST">
+            <form:form action="${pageContext.request.contextPath}/mewngofnodi/cofrestru" modelAttribute="registrationDetails" method="POST">
                 <h2><spring:message code="login.register" /></h2>
                 <c:if test="${not empty registrationError}">
                     <c:choose>

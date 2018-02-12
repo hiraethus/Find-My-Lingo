@@ -78,7 +78,7 @@
 </div>
 
 <div class="row">
-    <form:form action="${pageContext.request.contextPath}/cyflwynoSylw/${gwasanaeth.id}" commandName="sylw" method="POST" role="form">
+    <form:form action="${pageContext.request.contextPath}/cyflwynoSylw/${gwasanaeth.id}" modelAttribute="sylw" method="POST" role="form">
     <div class="panel panel-default">
       <div class="panel-heading"><spring:message code='service.comment.add' /></div>
           <div class="panel-body">

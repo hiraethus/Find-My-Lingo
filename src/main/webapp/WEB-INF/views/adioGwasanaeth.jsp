@@ -5,7 +5,7 @@
 <%@ page isELIgnored="false" %>
 
 <c:set var="httpMethod"><tiles:getAsString name='formMethod' /></c:set>
-<form:form action="${pageContext.request.contextPath}/" commandName="gwasanaeth" method='${httpMethod}'>
+<form:form action="${pageContext.request.contextPath}/" modelAttribute="gwasanaeth" method='${httpMethod}'>
     <form:hidden path="id" />
 
     <div class="row">

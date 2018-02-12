@@ -22,7 +22,7 @@
             </c:choose>
 
         </c:if>
-        <form:form action="${pageContext.request.contextPath}/mewngofnodi/ailosod/tocyn/${token}" commandName="registrationDetails" method="POST" class="form-signin">
+        <form:form action="${pageContext.request.contextPath}/mewngofnodi/ailosod/tocyn/${token}" modelAttribute="registrationDetails" method="POST" class="form-signin">
                 <fieldset class="form-group">
                     <form:label path="username"><spring:message code="login.email.address" /></form:label>
                     <form:input path="username" class="form-control" />

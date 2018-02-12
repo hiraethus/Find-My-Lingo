@@ -6,7 +6,7 @@
 <div class="row">
     <div class="jumbotron">
         <h2><spring:message code="registration.reset.password" /></h2>
-        <form:form action="${pageContext.request.contextPath}/mewngofnodi/ailosod" commandName="registrationDetails" method="POST" class="form-signin">
+        <form:form action="${pageContext.request.contextPath}/mewngofnodi/ailosod" modelAttribute="registrationDetails" method="POST" class="form-signin">
             <fieldset class="form-group">
                 <form:label path="username"><spring:message code="login.email.address" /></form:label>
                 <form:input path="username" class="form-control" />
