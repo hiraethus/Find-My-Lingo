@@ -21,8 +21,6 @@ public class RegistrationServiceTest {
     private JdbcUserDetailsManager jdbcUserDetailsManager;
     @Mock
     private UserPassValidator userPassValidator;
-    @Mock
-    private PasswordEncryption passwordEncryption;
 
     @Mock
     private UserDao userDao;
@@ -104,7 +102,6 @@ public class RegistrationServiceTest {
 
         // then
         then(jdbcUserDetailsManager).should(times(1)).createUser(any());
-        then(passwordEncryption).should(times(1)).encryptPassword(regDetails);
         then(jdbcUserDetailsManager).should(times(1)).addUserToGroup(username, "end_users");
 
         assertThat(success, is(true));

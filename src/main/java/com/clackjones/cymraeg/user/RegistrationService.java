@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,9 +23,10 @@ public class RegistrationService {
     private UserPassValidator userPassValidator;
     private UserDao userDao;
     private PasswordResetTokenDao tokenDao;
-    private PasswordEncryption passwordEncryption;
     private EmailService emailService;
     private PasswordTokenGenerator tokenGenerator;
+
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public RegistrationService(
@@ -31,14 +34,13 @@ public class RegistrationService {
         UserPassValidator userPassValidator,
         UserDao userDao,
         PasswordResetTokenDao tokenDao,
-        PasswordEncryption passwordEncryption,
         EmailService emailService,
         PasswordTokenGenerator tokenGenerator) {
             this.jdbcUserDetailsManager = jdbcUserDetailsManager;
             this.userPassValidator = userPassValidator;
             this.userDao = userDao;
             this.tokenDao = tokenDao;
-            this.passwordEncryption = passwordEncryption;
+        this.passwordEncoder = new BCryptPasswordEncoder();
         this.emailService = emailService;
         this.tokenGenerator = tokenGenerator;
     }
@@ -52,7 +54,7 @@ public class RegistrationService {
             throw new RegistrationException("This user already exists", RegistrationExceptionType.USER_ALREADY_EXISTS);
         }
 
-        passwordEncryption.encryptPassword(details);
+        encryptPassword(details);
         jdbcUserDetailsManager.createUser(user(details));
         jdbcUserDetailsManager.addUserToGroup(details.getUsername(), "end_users");
 
@@ -60,6 +62,10 @@ public class RegistrationService {
         logger.info("Registered user with username {}", details.getUsername());
 
         return true;
+    }
+
+    private void encryptPassword(RegistrationDetails regDetails) {
+        regDetails.setPassword(passwordEncoder.encode(regDetails.getPassword()));
     }
 
     private User user(RegistrationDetails details) {
@@ -110,7 +116,7 @@ public class RegistrationService {
                     RegistrationExceptionType.PASSWORD_TOKEN_EXPIRED);
         }
 
-        passwordEncryption.encryptPassword(registrationDetails);
+        encryptPassword(registrationDetails);
         userEntity.setPassword(registrationDetails.getPassword());
         userDao.merge(userEntity);
 
