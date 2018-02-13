@@ -22,16 +22,16 @@ heroku addons:create heroku-postgresql
     - MAIL_USER
     - MAIL_PWD
 
-## To run with Jetty:
-- Ensure you have Maven 3 and Java JDK 8 installed
-- To make sure the server can send email, create a small file in your home directory called application.properties with credentials for a gmail account:
+## Run locally (Connect to Live Database)
+- put `DATABASE_URL` in your CLI environment variables
+```bash
+export DATABASE_URL=$(heroku config:get DATABASE_URL)
 ```
-mail.username=gmail_username
-mail.password=p@sSw0RD
+
+- Run the java command
+```bash
+java -jar target/dependency/webapp-runner.jar target/*.war
 ```
-- Clone this repository
-- cd into the repository and type `mvn jetty:run`
-- Visit the web application on `localhost:8080` in your browser.
 
 ## Setup instructions
 * Full installation instructions will be available at [Installation Guide](https://github.com/hiraethus/gwasanaethau-cymraeg/wiki/Installation%20Guide) in the wiki
