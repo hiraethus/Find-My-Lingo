@@ -8,9 +8,9 @@
     <title><tiles:getAsString name="title"/></title>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="/images/favicon.ico" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="http://cdn.intercoolerjs.org/intercooler-1.1.2.min.js"></script>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/intercooler-js/intercooler.min.js"></script>
     <link href="${pageContext.request.contextPath}/css/logo.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/sticky-footer.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/categories.css" rel="stylesheet" />
