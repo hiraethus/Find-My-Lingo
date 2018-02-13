@@ -19,8 +19,4 @@ appender("CONSOLE", ConsoleAppender) {
 }
 
 root(OFF, ["Console-Appender"])
-logger("com.clackjones.cymraeg", INFO, ["CONSOLE", "FILE"])
-
-// logging hibernate
-logger("org.hibernate.SQL", DEBUG, ["CONSOLE", "FILE"])
-logger("org.hibernate.type", TRACE, ["CONSOLE", "FILE"])
+logger("com.clackjones.cymraeg", TRACE, ["CONSOLE"])
