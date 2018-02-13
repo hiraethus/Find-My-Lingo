@@ -1,13 +1,24 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class CyfeiriadEntity {
+
+    @Column(name = "\"llinellGyntaf\"")
     protected String llinellGyntaf;
+
+    @Column(name = "\"ailLinell\"")
     protected String ailLinell;
+
+    @Column(name = "\"dinas\"")
     protected String dinas;
+
+    @Column(name = "\"sir\"")
     protected String sir;
+
+    @Column(name = "\"codPost\"")
     protected String codPost;
 
     protected CyfeiriadEntity() { }

@@ -28,10 +28,18 @@ public class GwasanaethEntity {
     @GeneratedValue(generator = "gwasanaeth-sequence", strategy=GenerationType.TABLE)
     private Long id;
 
+    @Column(name = "\"name\"")
     private String enw;
+
+    @Column(name = "\"rhifFfon\"")
     private String rhifFfon;
+
+    @Column(name = "\"ebost\"")
     private String ebost;
+
+    @Column(name = "\"disgrifiad\"")
     private String disgrifiad;
+
     private CyfeiriadEntity cyfeiriad;
 
     @OneToMany(mappedBy = "gwasanaeth")
