@@ -25,8 +25,8 @@ class GwasanaethDao extends JpaDao<Long, GwasanaethEntity> implements Dao<Long, 
 
         TypedQuery<GwasanaethEntity> query =
                 entityManager.createNamedQuery("GwasanaethEntity.findByEnwOrDinas", GwasanaethEntity.class)
-                .setParameter(1, "%"+searchTerm+"%")
-                .setParameter(2, "%"+searchTerm+"%");
+                .setParameter("name", "%"+searchTerm+"%")
+                .setParameter("city", "%"+searchTerm+"%");
 
         return query.getResultList();
     }

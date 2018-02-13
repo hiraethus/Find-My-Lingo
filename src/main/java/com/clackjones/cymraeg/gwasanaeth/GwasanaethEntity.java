@@ -12,7 +12,7 @@ import java.util.Collection;
         @NamedQuery(name = "GwasanaethEntity.findAll",
                 query = "SELECT g FROM GwasanaethEntity g"),
         @NamedQuery(name = "GwasanaethEntity.findByEnwOrDinas",
-                query = "SELECT g from GwasanaethEntity g WHERE g.enw LIKE ? OR g.cyfeiriad.dinas LIKE ?")
+                query = "SELECT g from GwasanaethEntity g WHERE g.enw LIKE :name OR g.cyfeiriad.dinas LIKE :city")
 })
 public class GwasanaethEntity {
     @Id
