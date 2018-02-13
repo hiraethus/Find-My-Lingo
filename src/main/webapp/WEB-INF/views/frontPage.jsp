@@ -9,7 +9,7 @@
  border-bottom: 16px solid blue;
 }
 
-@media (max-width:961px)  {
+@media (max-width:1081px)  {
     div.twitter {
         display: none;
     }
