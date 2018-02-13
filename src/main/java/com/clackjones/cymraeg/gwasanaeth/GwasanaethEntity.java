@@ -28,7 +28,7 @@ public class GwasanaethEntity {
     @GeneratedValue(generator = "gwasanaeth-sequence", strategy=GenerationType.TABLE)
     private Long id;
 
-    @Column(name = "\"name\"")
+    @Column(name = "\"enw\"")
     private String enw;
 
     @Column(name = "\"rhifFfon\"")
