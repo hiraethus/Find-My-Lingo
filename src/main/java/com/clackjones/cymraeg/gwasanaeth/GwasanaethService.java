@@ -55,7 +55,7 @@ public class GwasanaethService {
         logger.info("Searching for Services filtered by city: {} and categori: {}", dinasToFilter, categoriToFilter);
 
         Collection<GwasanaethEntity> result;
-        if (searchTerm != null) {
+        if (searchTerm != null && !searchTerm.isEmpty()) {
             result = gwasanaethDao.findByEnwOrDinas(searchTerm);
         } else {
             result = gwasanaethDao.findAll();
