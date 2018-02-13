@@ -8,6 +8,12 @@
  border-top: 16px solid blue;
  border-bottom: 16px solid blue;
 }
+
+@media (max-width:961px)  {
+    div.twitter {
+        display: none;
+    }
+}
 </style>
 <c:if test="${param.allgofnodi ne null}" >
 <div class="row">
@@ -32,7 +38,7 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 twitter">
             <a class="twitter-timeline" data-theme="light" data-link-color="#E81C4F" href="https://twitter.com/gwasanaethaucym?ref_src=twsrc%5Etfw">Tweets by gwasanaethaucym</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
         <div class="col-md-9" style="overflow: hidden">
