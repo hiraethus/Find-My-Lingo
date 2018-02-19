@@ -12,7 +12,10 @@ import java.util.Collection;
         @NamedQuery(name = "GwasanaethEntity.findAll",
                 query = "SELECT g FROM GwasanaethEntity g"),
         @NamedQuery(name = "GwasanaethEntity.findByEnwOrDinas",
-                query = "SELECT g from GwasanaethEntity g WHERE g.enw LIKE :name OR g.cyfeiriad.dinas LIKE :city")
+                query = "SELECT g from GwasanaethEntity g WHERE g.enw LIKE :name OR g.cyfeiriad.dinas LIKE :city"),
+        @NamedQuery(name = "GwasanaethEntity.findUniqueFirstCharacters",
+                query = "SELECT DISTINCT LEFT(g.enw, 1) FROM GwasanaethauEntity g")
+
 })
 public class GwasanaethEntity {
     @Id

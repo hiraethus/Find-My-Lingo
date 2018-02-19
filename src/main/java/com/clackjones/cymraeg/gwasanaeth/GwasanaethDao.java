@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 class GwasanaethDao extends JpaDao<Long, GwasanaethEntity> implements Dao<Long, GwasanaethEntity> {
@@ -29,5 +31,15 @@ class GwasanaethDao extends JpaDao<Long, GwasanaethEntity> implements Dao<Long, 
                 .setParameter("city", "%"+searchTerm+"%");
 
         return query.getResultList();
+    }
+
+    public List<String> findUniqueFirstCharacters() {
+        logger.trace("findUniqueFirstCharacters()");
+
+        TypedQuery<String> query = entityManager.createNamedQuery("GwasanaethEntity.findUniqueFirstCharacters", String.class);
+
+        return query.getResultList().stream()
+                .map(letter -> letter.toUpperCase())
+                .sorted().collect(Collectors.toList());
     }
 }
