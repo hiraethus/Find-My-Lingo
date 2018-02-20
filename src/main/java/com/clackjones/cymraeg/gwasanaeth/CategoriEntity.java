@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name="\"CategoriEntity\"")
+@Table(name="CategoriEntity")
 @NamedQueries({
         @NamedQuery(name = "CategoriEntity.findAll",
                 query = "SELECT c FROM CategoriEntity c")
@@ -14,7 +14,7 @@ class CategoriEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "\"categori\"")
+    @Column(name = "categori")
     protected String categori;
 
     public Long getId() {

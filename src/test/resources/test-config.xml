@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:gwascym;DB_CLOSE_DELAY=-1"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <bean id="dbDialect" class="java.lang.String">
+        <constructor-arg value="org.hibernate.dialect.H2Dialect"/>
+    </bean>
+
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource" />
+        <property name="changeLog" value="classpath:liquibase/db-changelog.xml" />
+    </bean>
+
+    <bean id="liquibase2" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource" />
+        <property name="changeLog" value="/liquibase/db-changelog-test-users.xml" />
+    </bean>
+
+    <bean id="liquibase3" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource" />
+        <property name="changeLog" value="/liquibase/db-gwasanaeth-dao.xml" />
+    </bean>
+
+    <!-- mock out the mail service as won't need during test -->
+    <bean id="dao" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="org.springframework.mail.MailSender" />
+    </bean>
+
+
+    <import resource="classpath:META-INF/annotated-beans.xml"/>
+    <import resource="classpath:META-INF/jpa-context.xml"/>
+    <import resource="classpath:META-INF/security.xml"/>
+</beans>

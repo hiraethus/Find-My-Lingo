@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-@Table(name="\"GwasanaethEntity\"")
+@Table(name="GwasanaethEntity")
 @NamedQueries({
         @NamedQuery(name = "GwasanaethEntity.findAll",
                 query = "SELECT g FROM GwasanaethEntity g"),
         @NamedQuery(name = "GwasanaethEntity.findByEnwOrDinas",
                 query = "SELECT g from GwasanaethEntity g WHERE g.enw LIKE :name OR g.cyfeiriad.dinas LIKE :city"),
         @NamedQuery(name = "GwasanaethEntity.findUniqueFirstCharacters",
-                query = "SELECT DISTINCT LEFT(g.enw, 1) FROM GwasanaethauEntity g")
+                query = "SELECT DISTINCT UPPER(SUBSTRING(g.enw, 1, 1)) AS first_letter FROM GwasanaethEntity g ORDER BY first_letter ASC")
 
 })
 public class GwasanaethEntity {
@@ -31,16 +31,16 @@ public class GwasanaethEntity {
     @GeneratedValue(generator = "gwasanaeth-sequence", strategy=GenerationType.TABLE)
     private Long id;
 
-    @Column(name = "\"enw\"")
+    @Column(name = "enw")
     private String enw;
 
-    @Column(name = "\"rhifFfon\"")
+    @Column(name = "rhifFfon")
     private String rhifFfon;
 
-    @Column(name = "\"ebost\"")
+    @Column(name = "ebost")
     private String ebost;
 
-    @Column(name = "\"disgrifiad\"")
+    @Column(name = "disgrifiad")
     private String disgrifiad;
 
     private CyfeiriadEntity cyfeiriad;

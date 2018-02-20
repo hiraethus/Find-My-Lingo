@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Calendar;
 
 @Entity
-@Table(name="\"PasswordResetTokenEntity\"")
+@Table(name="PasswordResetTokenEntity")
 @NamedQueries({
         @NamedQuery(name = "PasswordResetTokenEntity.findByEmailAndToken",
                 query = "SELECT p FROM PasswordResetTokenEntity p WHERE p.token = :token AND p.user = :user")

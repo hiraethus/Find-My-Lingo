@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="\"SylwEntity\"")
+@Table(name="SylwEntity")
 class SylwEntity {
     @Id
     @GenericGenerator(
@@ -21,22 +21,22 @@ class SylwEntity {
     @GeneratedValue(generator = "sylw-sequence", strategy= GenerationType.TABLE)
     private Long id;
 
-    @Column(name = "\"safonArwyddiaeth\"")
+    @Column(name = "safonArwyddiaeth")
     @Enumerated(EnumType.STRING)
     private  Safon safonArwyddiaeth;
 
-    @Column(name = "\"safonIaith\"")
+    @Column(name = "safonIaith")
     @Enumerated(EnumType.STRING)
     private Safon safonIaith;
 
-    @Column(name = "\"safonGwasanaeth\"")
+    @Column(name = "safonGwasanaeth")
     @Enumerated(EnumType.STRING)
     private Safon safonGwasanaeth;
 
-    @Column(name = "\"sylw\"", columnDefinition = "text")
+    @Column(name = "sylw", columnDefinition = "text")
     private String sylw;
 
-    @Column(name = "\"amserSylw\"")
+    @Column(name = "amserSylw")
     @Temporal(TemporalType.TIME)
     private Date amserSylw;
 

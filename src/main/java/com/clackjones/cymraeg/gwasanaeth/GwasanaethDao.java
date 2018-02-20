@@ -38,8 +38,9 @@ class GwasanaethDao extends JpaDao<Long, GwasanaethEntity> implements Dao<Long, 
 
         TypedQuery<String> query = entityManager.createNamedQuery("GwasanaethEntity.findUniqueFirstCharacters", String.class);
 
-        return query.getResultList().stream()
-                .map(letter -> letter.toUpperCase())
-                .sorted().collect(Collectors.toList());
+        List<String> result = query.getResultList();
+
+        return result;
+
     }
 }

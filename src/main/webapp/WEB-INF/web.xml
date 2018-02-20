@@ -47,6 +47,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/gwasanaeth-servlet.xml,
+            classpath:META-INF/annotated-beans.xml,
             classpath:META-INF/heroku-datasource.xml,
             classpath:META-INF/jpa-context.xml,
             classpath:META-INF/liquibase-context.xml,
