@@ -56,7 +56,7 @@ public class GwasanaethService {
 
         Collection<GwasanaethEntity> result;
         if (searchTerm != null && !searchTerm.isEmpty()) {
-            result = gwasanaethDao.findByEnwOrDinas(searchTerm);
+            result = gwasanaethDao.findByCityOrServiceName(searchTerm);
         } else {
             result = gwasanaethDao.findAll();
         }

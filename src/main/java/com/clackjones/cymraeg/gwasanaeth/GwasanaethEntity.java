@@ -11,7 +11,7 @@ import java.util.Collection;
 @NamedQueries({
         @NamedQuery(name = "GwasanaethEntity.findAll",
                 query = "SELECT g FROM GwasanaethEntity g"),
-        @NamedQuery(name = "GwasanaethEntity.findByEnwOrDinas",
+        @NamedQuery(name = "GwasanaethEntity.findByCityOrServiceName",
                 query = "SELECT g from GwasanaethEntity g WHERE g.enw LIKE :name OR g.cyfeiriad.dinas LIKE :city"),
         @NamedQuery(name = "GwasanaethEntity.findUniqueFirstCharacters",
                 query = "SELECT DISTINCT UPPER(SUBSTRING(g.enw, 1, 1)) AS first_letter FROM GwasanaethEntity g ORDER BY first_letter ASC")

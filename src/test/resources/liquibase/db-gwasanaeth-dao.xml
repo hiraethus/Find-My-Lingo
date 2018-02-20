@@ -19,5 +19,11 @@
             <column name="enw" value="aaa" />
             <column name="OWNER_USERNAME" value="sian" />
         </insert>
+        <insert tableName="GwasanaethEntity">
+            <column name="id" value="4" />
+            <column name="enw" value="aaa" />
+            <column name="dinas" value="YDdinas" />
+            <column name="OWNER_USERNAME" value="sian" />
+        </insert>
     </changeSet>
 </databaseChangeLog>

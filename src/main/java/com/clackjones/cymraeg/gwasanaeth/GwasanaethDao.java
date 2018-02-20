@@ -22,11 +22,11 @@ class GwasanaethDao extends JpaDao<Long, GwasanaethEntity> implements Dao<Long, 
         return query.getResultList();
     }
 
-    public Collection<GwasanaethEntity> findByEnwOrDinas(String searchTerm) {
-        logger.trace("findByEnwOrDinas({})", searchTerm);
+    public Collection<GwasanaethEntity> findByCityOrServiceName(String searchTerm) {
+        logger.trace("findByCityOrServiceName({})", searchTerm);
 
         TypedQuery<GwasanaethEntity> query =
-                entityManager.createNamedQuery("GwasanaethEntity.findByEnwOrDinas", GwasanaethEntity.class)
+                entityManager.createNamedQuery("GwasanaethEntity.findByCityOrServiceName", GwasanaethEntity.class)
                 .setParameter("name", "%"+searchTerm+"%")
                 .setParameter("city", "%"+searchTerm+"%");
 

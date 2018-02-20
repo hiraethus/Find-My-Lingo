@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -46,13 +47,38 @@ public class GwasanaethDaoTest {
         assertThat(result.get(2), equalTo("D"));
     }
 
-    @Ignore
+    @Test
+    public void shouldReturnSingleForServiceName() {
+        // given have 3 three services (see resources/liquibase/db-gwasanaeth-dao.xml)
+
+        // when
+        Collection<GwasanaethEntity> result = gwasanaethDao.findByCityOrServiceName("Baa");
+
+        // then
+        assertThat(result.size(), is(1));
+        GwasanaethEntity entity = result.iterator().next();
+        assertThat(entity.getEnw(), equalTo("Baa"));
+    }
+
+    @Test
+    public void shouldReturnSingleForCity() {
+        // given have 3 three services (see resources/liquibase/db-gwasanaeth-dao.xml)
+
+        // when
+        Collection<GwasanaethEntity> result = gwasanaethDao.findByCityOrServiceName("YDdinas");
+
+        // then
+        assertThat(result.size(), is(1));
+        GwasanaethEntity entity = result.iterator().next();
+        assertThat(entity.getCyfeiriad().getDinas(), equalTo("YDdinas"));
+    }
+
     @Test
     // useful to troubleshoot
     public void listTables() throws SQLException {
         Connection c = dataSource.getConnection();
         Statement stmt = c.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS");
+        ResultSet rs = stmt.executeQuery("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'GWASANAETHENTITY'");
 
         while (rs.next()) {
             System.out.println(rs.getString("COLUMN_NAME"));
