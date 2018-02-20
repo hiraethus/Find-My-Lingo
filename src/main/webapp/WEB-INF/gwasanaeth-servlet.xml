@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="
  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
- http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
- http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
- http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+ http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
     <context:component-scan base-package="com.clackjones.cymraeg"/>
     <context:annotation-config/>
@@ -18,63 +15,8 @@
     <task:executor id="myExecutor" pool-size="5"/>
     <task:scheduler id="myScheduler" pool-size="10"/>
 
-    <bean id="myEmf"
-          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="com.clackjones.cymraeg" />
-        <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="showSql" value="false" />
-                <property name="generateDdl" value="false" />
-                <property name="databasePlatform" value="org.hibernate.dialect.PostgreSQL91Dialect"/>
-            </bean>
-        </property>
-    </bean>
-
-    <!-- Liquibase -->
-    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
-        <property name="dataSource" ref="dataSource" />
-        <property name="changeLog" value="classpath:liquibase/db-changelog.xml" />
-    </bean>
-
-
-    <bean class="java.net.URI" id="dbUrl">
-        <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
-    </bean>
-
-    <bean id="dataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory" />
-        <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }" />
-        <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }" />
-        <!--<property name="socketTimeout" value="10"/>-->
-
-        <property name="connectionProperties">
-            <props>
-                <prop key="socketTimeout">10</prop>
-            </props>
-        </property>
-    </bean>
-
-    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="myEmf" />
-    </bean>
-    <tx:annotation-driven transaction-manager="txManager" />
-
-    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-        <property name="definitions">
-            <list>
-                <value>/WEB-INF/tiles.xml</value>
-                <value>/WEB-INF/tiles_en.xml</value>
-                <value>/WEB-INF/tiles_cy.xml</value>
-            </list>
-        </property>
-    </bean>
-
-
-    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+    <bean id="dbDialect" class="java.lang.String">
+        <constructor-arg value="org.hibernate.dialect.PostgreSQL91Dialect"/>
     </bean>
 
     <bean id="messageSource"
@@ -89,36 +31,5 @@
     </bean>
 
      <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
-
-    <mvc:interceptors>
-        <ref bean="localeChangeInterceptor"/>
-    </mvc:interceptors>
-
-    <mvc:resources mapping="/images/**" location="/images/" />
-    <mvc:resources mapping="/css/**" location="/css/" />
-
-    <mvc:view-controller path="/amdanom/**" view-name="contact"/>
-
-    <mvc:annotation-driven />
-
-    <mvc:resources mapping="/webjars/**" location="/webjars/">
-        <mvc:resource-chain resource-cache="false" />
-    </mvc:resources>
-    <!-- email -->
-    <bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
-        <property name="host"><value>smtp.gmail.com</value></property>
-        <property name="port"><value>587</value></property>
-        <property name="protocol"><value>smtp</value></property>
-        <property name="username"><value>#{systemEnvironment['MAIL_USER']}</value></property>
-        <property name="password"><value>#{systemEnvironment['MAIL_PWD']}</value></property>
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.smtp.quitwait">false</prop>
-            </props>
-        </property>
-    </bean>
-
 
 </beans>

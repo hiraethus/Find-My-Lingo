@@ -45,7 +45,15 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/gwasanaeth-servlet.xml,/WEB-INF/security.xml</param-value>
+        <param-value>
+            /WEB-INF/gwasanaeth-servlet.xml,
+            /WEB-INF/heroku-datasource.xml,
+            /WEB-INF/jpa-context.xml,
+            /WEB-INF/liquibase-context.xml,
+            /WEB-INF/mail.xml,
+            /WEB-INF/security.xml,
+            /WEB-INF/ui.xml
+        </param-value>
     </context-param>
 
     <listener>
