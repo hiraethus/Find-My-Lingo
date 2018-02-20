@@ -47,12 +47,12 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/gwasanaeth-servlet.xml,
-            /WEB-INF/heroku-datasource.xml,
-            /WEB-INF/jpa-context.xml,
-            /WEB-INF/liquibase-context.xml,
-            /WEB-INF/mail.xml,
-            /WEB-INF/security.xml,
-            /WEB-INF/ui.xml
+            classpath:META-INF/heroku-datasource.xml,
+            classpath:META-INF/jpa-context.xml,
+            classpath:META-INF/liquibase-context.xml,
+            classpath:META-INF/mail.xml,
+            classpath:META-INF/security.xml,
+            classpath:META-INF/ui.xml
         </param-value>
     </context-param>
 
