@@ -130,4 +130,8 @@ public class GwasanaethService {
         gwasanaethToEntity.map(gwasanaeth, entity);
         gwasanaethDao.merge(entity);
     }
+
+    public List<String> calculateAZServiceNames() {
+        return gwasanaethDao.findUniqueFirstCharacters();
+    }
 }
