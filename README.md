@@ -12,21 +12,11 @@ The intention of this project is to make this codebase generic and well
 documented such that other technically minded people might host their own 
 portals for their respective minority languages.
 
-## Heroku setup instructions
-- Set-up postgres on Heroku
-```
-heroku addons:create heroku-postgresql
-```
 
+## Run locally with H2
 - Add config vars for your gmail username and password that you wish to send mail from:
     - MAIL_USER
     - MAIL_PWD
-
-## Run locally (Connect to Live Database)
-- put `DATABASE_URL` in your CLI environment variables
-```bash
-export DATABASE_URL=$(heroku config:get DATABASE_URL)
-```
 
 - Run the java command
 ```bash
