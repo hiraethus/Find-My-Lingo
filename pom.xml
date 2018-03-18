@@ -203,14 +203,13 @@
             <version>0.30</version>
         </dependency>
 
-        <!-- testing -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.196</version>
-            <scope>test</scope>
         </dependency>
 
+        <!-- testing -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
