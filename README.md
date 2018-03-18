@@ -18,8 +18,9 @@ portals for their respective minority languages.
     - MAIL_USER
     - MAIL_PWD
 
-- Run the java command
+- Run the following commands
 ```bash
+mvn clean package
 java -jar target/dependency/webapp-runner.jar target/*.war
 ```
 
