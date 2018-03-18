@@ -59,7 +59,7 @@ public class GwasanaethController {
     }
 
     @RequestMapping(path = "adio", method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')")
+    @PreAuthorize("hasRole('ROLE_CREATE_GWASANAETH')")
     public ModelAndView addForm(Model model, Principal principal, Locale locale) {
         List<Categori> categoris = categoriManager.findAll();
 
@@ -95,6 +95,7 @@ public class GwasanaethController {
     }
 
     @RequestMapping(path = "/", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('ROLE_CREATE_GWASANAETH')")
     public ModelAndView updateGwasanaeth(@Valid @ModelAttribute("gwasanaeth") Gwasanaeth gwasanaeth, BindingResult result,
                                    RedirectAttributes attr, Principal principal) {
         if (result.hasErrors()) {
@@ -116,7 +117,7 @@ public class GwasanaethController {
 
 
     @RequestMapping(path = "adolygu/{gwasanaethId}", method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SERVICE_OWNER')")
+    @PreAuthorize("hasRole('ROLE_CREATE_GWASANAETH')")
     public ModelAndView adolyguGwasanaeth(@PathVariable("gwasanaethId") Long gwasanaethId,
                                           Principal principal, Locale locale) {
         Gwasanaeth gwasanaeth = gwasanaethService.findById(gwasanaethId);
@@ -175,6 +176,7 @@ public class GwasanaethController {
     }
 
     @RequestMapping(path = "cyflwynoSylw/{gwasanaethId}", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ROLE_ADD_COMMENT')")
     public ModelAndView cyflwynoSylw(@ModelAttribute("sylw") Sylw sylw, @PathVariable("gwasanaethId") Long gwasanaethId) {
         gwasanaethService.addSylwForGwasanaethWithId(gwasanaethId, sylw);
 
