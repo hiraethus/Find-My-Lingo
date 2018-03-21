@@ -18,6 +18,18 @@ portals for their respective minority languages.
     - MAIL_USER
     - MAIL_PWD
 
+Linux:
+```bash
+MAIL_USER=<your-gmail-username>
+MAIL_PWD=<your-gmail-pwd>
+```
+
+Windows:
+```cmd
+set MAIL_USER=<your-gmail-username>
+set MAIL_PWD=<your-gmail-pwd>
+```
+
 - Run the following commands
 ```bash
 mvn clean package
