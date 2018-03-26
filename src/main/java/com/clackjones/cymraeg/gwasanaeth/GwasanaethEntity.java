@@ -12,7 +12,7 @@ import java.util.Collection;
         @NamedQuery(name = "GwasanaethEntity.findAll",
                 query = "SELECT g FROM GwasanaethEntity g"),
         @NamedQuery(name = "GwasanaethEntity.findByCityOrServiceName",
-                query = "SELECT g from GwasanaethEntity g WHERE g.enw LIKE :name OR g.cyfeiriad.dinas LIKE :city"),
+                query = "SELECT g from GwasanaethEntity g WHERE UPPER(g.enw) LIKE UPPER(:name) OR UPPER(g.cyfeiriad.dinas) LIKE UPPER(:city)"),
         @NamedQuery(name = "GwasanaethEntity.findUniqueFirstCharacters",
                 query = "SELECT DISTINCT UPPER(SUBSTRING(g.enw, 1, 1)) AS first_letter FROM GwasanaethEntity g ORDER BY first_letter ASC")
 
