@@ -270,4 +270,10 @@
                                  referencedTableName="users" />
     </changeSet>
 
+    <changeSet author="hiraethus (generated)" id="20180407-change-datatype-amsersylw" >
+        <modifyDataType columnName="amserSylw"
+                        newDataType="datetime"
+                        tableName="SylwEntity"/>
+    </changeSet>
+
 </databaseChangeLog>

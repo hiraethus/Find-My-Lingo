@@ -37,7 +37,7 @@ class SylwEntity {
     private String sylw;
 
     @Column(name = "amserSylw")
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.DATE)
     private Date amserSylw;
 
     @ManyToOne

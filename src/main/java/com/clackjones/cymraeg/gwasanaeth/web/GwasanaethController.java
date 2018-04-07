@@ -19,10 +19,7 @@ import javax.annotation.Resource;
 import javax.naming.NoPermissionException;
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -178,6 +175,7 @@ public class GwasanaethController {
     @RequestMapping(path = "cyflwynoSylw/{gwasanaethId}", method = RequestMethod.POST)
     @PreAuthorize("hasRole('ROLE_ADD_COMMENT')")
     public ModelAndView cyflwynoSylw(@ModelAttribute("sylw") Sylw sylw, @PathVariable("gwasanaethId") Long gwasanaethId) {
+        sylw.setAmserSylw(new Date());
         gwasanaethService.addSylwForGwasanaethWithId(gwasanaethId, sylw);
 
         return new ModelAndView("redirect:/id/"+gwasanaethId);

@@ -1,6 +1,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core" %>
+           <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page isELIgnored="false" %>
@@ -133,7 +135,7 @@
 <c:forEach var="sylw" items="${gwasanaeth.sylwadau}">
 <div class="row">
     <div class="panel panel-default">
-      <div class="panel-heading"><spring:message code='service.comment.date' />: ${sylw.amserSylw}</div>
+      <div class="panel-heading"><spring:message code='service.comment.date' />: <fmt:formatDate value="${sylw.amserSylw}" type='date' /></div>
           <div class="panel-body">
           <div class="row">
           <div class="col-xs-6">
