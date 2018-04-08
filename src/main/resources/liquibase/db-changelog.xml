@@ -276,4 +276,12 @@
                         tableName="SylwEntity"/>
     </changeSet>
 
+    <changeSet id="create-nickname-column" author="hiraethus" >
+        <addColumn tableName="users">
+            <column name="NICKNAME" type="varchar(50)">
+                <constraints nullable="true" /> <!-- TODO: make not nullable after manually adding nicknames to existing -->
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
