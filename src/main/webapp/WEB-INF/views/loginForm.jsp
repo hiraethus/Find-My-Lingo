@@ -78,6 +78,10 @@
                     <form:input path="username" class="form-control" />
                     <form:errors path="username" cssStyle="color: red;"/>
                 </fieldset>
+                <fieldset:label path="nickname">
+                    <form:label path="nickname"><spring:message code="login.nickname" /></form:label>
+                    <form:input path="nickname" class="form-control" />
+                </fieldset:label>
                 <fieldset class="form-group">
                     <form:label path="password"><spring:message code="login.password" /></form:label>
                     <form:input path="password" type="password" class="form-control" />

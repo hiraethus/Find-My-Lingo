@@ -2,6 +2,7 @@ package com.clackjones.cymraeg.user;
 
 public class RegistrationDetails {
     private String username;
+    private String nickname;
     private String password;
     private String passwordSecondTimeEntered;
 
@@ -27,6 +28,14 @@ public class RegistrationDetails {
 
     public void setPasswordSecondTimeEntered(String passwordSecondTimeEntered) {
         this.passwordSecondTimeEntered = passwordSecondTimeEntered;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public boolean passwordsMatch() {
