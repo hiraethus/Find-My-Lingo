@@ -17,6 +17,9 @@ class UserEntity {
     @Column(name = "enabled", nullable = false)
     private boolean isEnabled;
 
+    @Column(name = "nickname", nullable = true)
+    private String nickname;
+
     @OneToMany
     @JoinColumn(name = "OWNER_USERNAME", referencedColumnName = "username")
     private Collection<GwasanaethEntity> gwasanaethau;
@@ -27,6 +30,14 @@ class UserEntity {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPassword() {

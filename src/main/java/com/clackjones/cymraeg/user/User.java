@@ -8,6 +8,7 @@ public class User {
     private String username;
     private boolean isEnabled;
     private Collection<Gwasanaeth> gwasanaethau;
+    private String nickname;
 
     public String getUsername() {
         return username;
@@ -31,5 +32,13 @@ public class User {
 
     public void setGwasanaethau(Collection<Gwasanaeth> gwasanaethau) {
         this.gwasanaethau = gwasanaethau;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

@@ -23,6 +23,7 @@ class UserEntityToUserMapper {
         User user = new User();
 
         if (userEntity.getUsername() != null) user.setUsername(userEntity.getUsername());
+        if (userEntity.getNickname() != null) user.setNickname(userEntity.getNickname());
 
         user.setGwasanaethau(mapGwasanaethau(userEntity));
 

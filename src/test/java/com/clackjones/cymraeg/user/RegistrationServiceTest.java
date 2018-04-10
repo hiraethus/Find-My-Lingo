@@ -88,6 +88,34 @@ public class RegistrationServiceTest {
     }
 
     @Test
+    public void shouldThrowExceptionWhenNicknameAlreadyExists() {
+        // given
+        final String existingNick = "existingnick";
+
+        final String username = "someuser";
+        RegistrationDetails regDetails = new RegistrationDetails();
+        regDetails.setUsername(username);
+        regDetails.setPassword("pass123");
+        regDetails.setNickname(existingNick);
+
+        given(userDao.nicknameExists(existingNick)).willReturn(true);
+
+        // when
+        RegistrationException r = null;
+        try {
+            registrationService.register(regDetails, Locale.ENGLISH);
+        } catch (RegistrationException e) {
+            r = e;
+        }
+
+        // then
+        assertThat(r, notNullValue());
+        assertThat(r.getKind(), is(RegistrationExceptionType.NICKNAME_ALREADY_EXISTS));
+        then(jdbcUserDetailsManager).should(never()).createUser(any());
+        then(jdbcUserDetailsManager).should(never()).addUserToGroup(username, "end_users");
+    }
+
+    @Test
     public void shouldRegisterSuccessfullyWhenUsernameValid() throws Exception {
         // given
         final String username = "someuser";

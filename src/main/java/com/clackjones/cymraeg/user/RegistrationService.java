@@ -54,6 +54,11 @@ public class RegistrationService {
             throw new RegistrationException("This user already exists", RegistrationExceptionType.USER_ALREADY_EXISTS);
         }
 
+        if (userDao.nicknameExists(details.getNickname())) {
+            logger.info("Unable to register user as nickname, {}, already exists", details.getNickname());
+            throw new RegistrationException("This nickname already exists", RegistrationExceptionType.NICKNAME_ALREADY_EXISTS);
+        }
+
         encryptPassword(details);
         jdbcUserDetailsManager.createUser(user(details));
         jdbcUserDetailsManager.addUserToGroup(details.getUsername(), "end_users");

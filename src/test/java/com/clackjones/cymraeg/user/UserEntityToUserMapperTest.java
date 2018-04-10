@@ -34,6 +34,7 @@ public class UserEntityToUserMapperTest {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername("User123");
         userEntity.setPassword("pass789021");
+        userEntity.setNickname("henry");
 
         List<GwasanaethEntity> gwasanaethEntities = new ArrayList<>();
         for (int i = 0; i < 3; ++i) {
@@ -48,6 +49,7 @@ public class UserEntityToUserMapperTest {
         assertThat(result.getUsername(), equalTo("User123"));
         assertThat(result.getGwasanaethau(), notNullValue());
         assertThat(result.getGwasanaethau().size(), equalTo(3));
+        assertThat(result.getNickname(), equalTo("henry"));
 
         then(entityToGwasanaethMapper).should(times(3)).map(any());
     }
