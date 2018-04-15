@@ -28,6 +28,7 @@ public class UserController {
         // display them
         ModelAndView view = new ModelAndView("proffil");
         view.addObject("gwasanaethau", user.getGwasanaethau());
+        view.addObject("user", user);
 
         return view;
     }
