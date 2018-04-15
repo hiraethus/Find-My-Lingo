@@ -58,7 +58,7 @@ public class RegistrationServiceTest {
 
         // then
         assertThat(r, notNullValue());
-        then(jdbcUserDetailsManager).should(never()).createUser(any());
+//        then(jdbcUserDetailsManager).should(never()).createUser(any());
         then(jdbcUserDetailsManager).should(never()).addUserToGroup(username, "end_users");
     }
 
@@ -111,7 +111,7 @@ public class RegistrationServiceTest {
         // then
         assertThat(r, notNullValue());
         assertThat(r.getKind(), is(RegistrationExceptionType.NICKNAME_ALREADY_EXISTS));
-        then(jdbcUserDetailsManager).should(never()).createUser(any());
+//        then(jdbcUserDetailsManager).should(never()).createUser(any());
         then(jdbcUserDetailsManager).should(never()).addUserToGroup(username, "end_users");
     }
 
@@ -129,7 +129,7 @@ public class RegistrationServiceTest {
         boolean success = registrationService.register(regDetails, Locale.ENGLISH);
 
         // then
-        then(jdbcUserDetailsManager).should(times(1)).createUser(any());
+//        then(jdbcUserDetailsManager).should(times(1)).createUser(any());
         then(jdbcUserDetailsManager).should(times(1)).addUserToGroup(username, "end_users");
 
         assertThat(success, is(true));

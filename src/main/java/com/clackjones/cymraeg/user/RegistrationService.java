@@ -46,6 +46,7 @@ public class RegistrationService {
     }
 
 
+    @Transactional
     public boolean register(RegistrationDetails details, Locale locale) throws RegistrationException {
         userPassValidator.validate(details);
 
@@ -60,13 +61,22 @@ public class RegistrationService {
         }
 
         encryptPassword(details);
-        jdbcUserDetailsManager.createUser(user(details));
+        createUser(details);
         jdbcUserDetailsManager.addUserToGroup(details.getUsername(), "end_users");
 
         emailService.createAndSendRegistrationSuccessEmail(details, locale);
         logger.info("Registered user with username {}", details.getUsername());
 
         return true;
+    }
+
+    public void createUser(RegistrationDetails details) {
+        UserEntity entity = new UserEntity();
+        entity.setNickname(details.getNickname());
+        entity.setUsername(details.getUsername());
+        entity.setPassword(details.getPassword());
+        entity.setEnabled(true);
+        userDao.persist(entity);
     }
 
     private void encryptPassword(RegistrationDetails regDetails) {

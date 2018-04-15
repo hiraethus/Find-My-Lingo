@@ -9,12 +9,14 @@ import javax.persistence.TypedQuery;
 @Repository
 class UserDao extends JpaDao<String, UserEntity> implements Dao<String, UserEntity> {
     public boolean nicknameExists(String nickname) {
-        TypedQuery<Integer> query = entityManager.createQuery(
+        TypedQuery<Long> query = entityManager.createQuery(
                 "SELECT COUNT(*) FROM users u WHERE u.nickname = :nick",
-                Integer.class);
+                Long.class);
 
         query.setParameter("nick", nickname);
 
         return query.getSingleResult() > 0;
     }
+
+
 }
