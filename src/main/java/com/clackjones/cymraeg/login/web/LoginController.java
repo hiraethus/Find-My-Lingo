@@ -48,7 +48,7 @@ public class LoginController {
             registrationDetailsNoPass.setUsername(registrationDetails.getUsername());
             attr.addFlashAttribute("registrationDetails", registrationDetailsNoPass);
 
-            return new ModelAndView ("redirect:/");
+            return new ModelAndView ("redirect:/mewngofnodi");
         }
 
         String regSuccessfulMessage = messageSource.getMessage("registration.successful",

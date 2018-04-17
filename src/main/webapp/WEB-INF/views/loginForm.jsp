@@ -51,6 +51,11 @@
                             <spring:message code="login.already.registered" />
                         </div>
                         </c:when>
+                        <c:when test="${registrationError == 'NICKNAME_ALREADY_EXISTS'}">
+                        <div class="alert alert-danger" role="alert">
+                            <spring:message code="nickname.already.registered" />
+                        </div>
+                        </c:when>
                         <c:when test="${registrationError == 'UNMATCHED_PASSWORDS'}">
                         <div class="alert alert-danger" role="alert">
                             Nid yw'r cyfrineiriau yn cyfateb. Ceisiwch eto.
