@@ -53,7 +53,8 @@
             classpath:META-INF/liquibase-context.xml,
             classpath:META-INF/mail.xml,
             classpath:META-INF/security.xml,
-            classpath:META-INF/ui.xml
+            classpath:META-INF/ui.xml,
+            classpath:META-INF/webflow.xml
         </param-value>
     </context-param>
 
