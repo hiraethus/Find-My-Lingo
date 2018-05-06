@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="/images/favicon.ico" />
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="webjars/intercooler-js/intercooler.min.js"></script>
     <link href="${pageContext.request.contextPath}/css/logo.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/sticky-footer.css" rel="stylesheet" />

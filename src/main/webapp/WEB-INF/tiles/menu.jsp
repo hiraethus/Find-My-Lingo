@@ -4,32 +4,49 @@
 <%@ page isELIgnored="false" %>
 
 <div><a href="?locale=en_US">English</a> | <a href="?locale=cy">Cymraeg</a></div>
-<div class="header clearfix">
-  <nav>
-      <ul class="nav nav-pills pull-right">
-        <li><a href='<c:url value="/" />'><spring:message code="menu.home" /></a></li>
-        <li><a href='<c:url value="/adio" />'><spring:message code="service.add" /></a></li>
-        <li><a href="/amdanom"><spring:message code="menu.aboutus" /></a></li>
-        <c:if test="${not empty pageContext.request.remoteUser}">
-        <li>
-            <a href='<c:url value="/defnyddiwr/proffil" />'>
-                <span class="glyphicon glyphicon glyphicon-user" aria-hidden="true">
-                </span> <spring:message code="menu.my.services" />
-            </a>
-        </li>
-        <li>
-          <c:url var="logoutUrl" value="/logout"/>
-          <form class="form-inline" action="${logoutUrl}" method="post">
-            <input class="btn btn-primary" type="submit" value="<spring:message code='menu.logout' />"  style="margin-top: .5em" />
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Find my Lingo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href='<c:url value="/" />'><spring:message code="menu.home" /><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href='<c:url value="/adio" />'><spring:message code="service.add" /></a></li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/amdanom"><spring:message code="menu.aboutus" /></a>
+      </li>
+
+    <c:choose>
+      <c:when test="${empty pageContext.request.remoteUser}">
+        <span class="navbar-text">
+          <a href='<c:url value="/mewngofnodi" />'><spring:message code="menu.login.or.register" /></a>
+        </span>
+      </c:when>
+      <c:otherwise>
+      <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 <spring:message code="menu.my.services" />
+               </a>
+               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                 <a class="dropdown-item" href="<c:url value="/defnyddiwr/proffil" />"><spring:message code="menu.my.services" /></a>
+                 <div class="dropdown-divider"></div>
+                 <a onclick="$('#logoutButton').click();" class="dropdown-item" href="#"><spring:message code='menu.logout' /></a>
+               </div>
+             </li>
+        </ul>
+        <c:url var="logoutUrl" value="/logout"/>
+        <form style="display: none" action="${logoutUrl}" method="post">
+            <input id="logoutButton" type="submit" />
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-          </form>
-        </li>
-        </c:if>
-        <c:if test="${empty pageContext.request.remoteUser}">
-          <li><a href='<c:url value="/mewngofnodi" />'><spring:message code="menu.login.or.register" /></a></li>
-        </c:if>
-      </ul>
-      <div class="mini-logo-square"></div>
-    <a href="/"><h3 class="text-muted"><spring:message code="service.wales" /></h3></a>
-  </nav>
-</div>
+        </form>
+      </c:otherwise>
+    </c:choose>
+  </div>
+</nav>
+
