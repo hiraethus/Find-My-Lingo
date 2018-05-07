@@ -5,8 +5,14 @@
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
     <view-state id="chooseServiceLanguage" view="chooseServiceLanguage">
-        <transition on="selectLang" to="chooseCategory"/>
+        <transition on="selectLang" to="chooseCategory" />
     </view-state>
+
     <view-state id="chooseCategory" view="chooseCategory">
+        <transition on="selectCategory" to="chooseLocation" />
+    </view-state>
+
+    <view-state id="chooseLocation" view="chooseLocation">
+        <transition on="selectLocation" to="searchResults" />
     </view-state>
 </flow>
