@@ -43,7 +43,7 @@
 
 <form:form style="display: none;" action="${flowExecutionUrl}" method="post">
   <input type="text" name="language" id="language" />
-  <input id="submit" type="submit" name="_eventId_selectLang" value="Welsh" />
+  <input id="submit" type="submit" name="_eventId_selectLang" />
 </form:form>
 
 <script type="text/javascript">
