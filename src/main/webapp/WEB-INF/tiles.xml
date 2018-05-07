@@ -34,6 +34,13 @@
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
+    <definition name="chooseServiceLanguage" template="/WEB-INF/tiles/large-body.jsp">
+        <put-attribute name="title" value="Gwasanaethau Cymru - 1. Language Selection" />
+        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/languageSelection.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+    </definition>
+
     <definition name="loginForm" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Gwasanaethau Cymru - Logio mewn" />
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />

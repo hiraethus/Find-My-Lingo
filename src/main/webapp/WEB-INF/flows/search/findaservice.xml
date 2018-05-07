@@ -4,8 +4,8 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
-    <view-state id="page1" view="tudalenFlaen">
-        <transition on="success" to="page2"/>
+    <view-state id="chooseServiceLanguage" view="chooseServiceLanguage">
+        <transition on="selectLang" to="page2"/>
         <transition on="failure" to="page3"/>
     </view-state>
     <view-state id="page2" view="tudalenFlaen">
