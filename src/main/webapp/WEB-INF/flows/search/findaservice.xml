@@ -6,13 +6,18 @@
 
     <view-state id="chooseServiceLanguage" view="chooseServiceLanguage">
         <transition on="selectLang" to="chooseCategory" />
+        <transition on="next" to="chooseCategory" />
     </view-state>
 
     <view-state id="chooseCategory" view="chooseCategory">
         <transition on="selectCategory" to="chooseLocation" />
+        <transition on="next" to="chooseLocation" />
+        <transition on="previous" to="chooseServiceLanguage" />
+
     </view-state>
 
     <view-state id="chooseLocation" view="chooseLocation">
         <transition on="selectLocation" to="searchResults" />
+        <transition on="previous" to="chooseCategory" />
     </view-state>
 </flow>
