@@ -18,12 +18,21 @@
 <div class="row">
 
 <div class="text-centered">
-<form:form class="form-inline" action="${flowExecutionUrl}" method="post">
+<form:form class="form-inline" action="${flowExecutionUrl}" method="post" modelAttribute="searchCriteria">
   <div class="form-group">
     <label for="location">Location</label>
-    <input type="text" id="location" class="form-control mx-sm-3" />
+    <form:input path="city" id="city" class="form-control mx-sm-3" />
     <input class="btn btn-primary" type="submit" name="_eventId_selectLocation" value="Go!" />
   </div>
 </form:form>
 </div>
+</div>
+
+
+<div class="row">
+<ul class="list-group">
+  <li class="list-group-item"><em>Language</em> ${searchCriteria.language}</li>
+  <li class="list-group-item"><em>Category</em> ${searchCriteria.category}</li>
+  <li class="list-group-item"><em>Location</em> ${searchCriteria.city}</li>
+</ul>
 </div>

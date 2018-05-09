@@ -4,19 +4,27 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
-    <view-state id="chooseServiceLanguage" view="chooseServiceLanguage">
+    <var name="searchCriteria" class="com.clackjones.cymraeg.gwasanaeth.web.GwasanaethSearchCriteria" />
+    <!--<on-start>
+    <evaluate result="flowScope.searchCriteria" expression="new com.clackjones.cymraeg.gwasanaeth.web.GwasanaethSearchCriteria()" />
+    </on-start>
+   <on-start>
+        <evaluate expression="beanFromResource" result="flowScope.searchCriteria"></evaluate>
+    </on-start>-->
+
+    <view-state id="chooseServiceLanguage" view="chooseServiceLanguage" model="searchCriteria">
         <transition on="selectLang" to="chooseCategory" />
         <transition on="next" to="chooseCategory" />
     </view-state>
 
-    <view-state id="chooseCategory" view="chooseCategory">
+    <view-state id="chooseCategory" view="chooseCategory" model="searchCriteria">
         <transition on="selectCategory" to="chooseLocation" />
         <transition on="next" to="chooseLocation" />
         <transition on="previous" to="chooseServiceLanguage" />
 
     </view-state>
 
-    <view-state id="chooseLocation" view="chooseLocation">
+    <view-state id="chooseLocation" view="chooseLocation" model="searchCriteria">
         <transition on="selectLocation" to="searchResults" />
         <transition on="previous" to="chooseCategory" />
     </view-state>

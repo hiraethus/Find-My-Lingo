@@ -53,8 +53,16 @@
 </div>
 
 
-<form:form style="display: none;" action="${flowExecutionUrl}" method="post">
-  <input type="text" name="language" id="language" />
+<div class="row">
+<ul class="list-group">
+  <li class="list-group-item"><em>Language</em> ${searchCriteria.language}</li>
+  <li class="list-group-item"><em>Category</em> ${searchCriteria.category}</li>
+  <li class="list-group-item"><em>Location</em> ${searchCriteria.city}</li>
+</ul>
+</div>
+
+<form:form style="display: none;" action="${flowExecutionUrl}" method="post" modelAttribute="searchCriteria">
+  <form:input path="language" id="language" />
   <input id="submit" type="submit" name="_eventId_selectLang" />
 </form:form>
 
