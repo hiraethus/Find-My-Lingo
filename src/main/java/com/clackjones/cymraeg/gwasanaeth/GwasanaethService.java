@@ -1,5 +1,6 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
+import com.clackjones.cymraeg.gwasanaeth.web.GwasanaethSearchCriteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,12 @@ public class GwasanaethService {
         GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(id);
 
         return entityToGwasanaeth.map(gwasanaethEntity);
+    }
+
+    @Transactional
+    public List<Gwasanaeth> searchForServices(GwasanaethSearchCriteria searchCriteria) {
+        // TODO: add language
+        return freeSearchByNameAndCity(null, searchCriteria.getCity(), searchCriteria.getCategory());
     }
 
     @Transactional

@@ -5,12 +5,6 @@
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
     <var name="searchCriteria" class="com.clackjones.cymraeg.gwasanaeth.web.GwasanaethSearchCriteria" />
-    <!--<on-start>
-    <evaluate result="flowScope.searchCriteria" expression="new com.clackjones.cymraeg.gwasanaeth.web.GwasanaethSearchCriteria()" />
-    </on-start>
-   <on-start>
-        <evaluate expression="beanFromResource" result="flowScope.searchCriteria"></evaluate>
-    </on-start>-->
 
     <view-state id="chooseServiceLanguage" view="chooseServiceLanguage" model="searchCriteria">
         <transition on="selectLang" to="chooseCategory" />
@@ -25,7 +19,13 @@
     </view-state>
 
     <view-state id="chooseLocation" view="chooseLocation" model="searchCriteria">
-        <transition on="selectLocation" to="searchResults" />
+        <transition on="selectLocation" to="showSearchResults" />
         <transition on="previous" to="chooseCategory" />
+    </view-state>
+
+    <view-state id="showSearchResults" view="showSearchResults" model="searchCriteria">
+        <on-entry>
+            <evaluate expression="gwasanaethService.searchForServices(searchCriteria)" result="viewScope.gwasanaethau" />
+        </on-entry>
     </view-state>
 </flow>
