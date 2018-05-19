@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
-public class Gwasanaeth {
+public class Gwasanaeth implements java.io.Serializable {
 
     private Long id;
     private String enw;

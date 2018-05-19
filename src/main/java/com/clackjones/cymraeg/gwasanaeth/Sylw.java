@@ -2,7 +2,7 @@ package com.clackjones.cymraeg.gwasanaeth;
 
 import java.util.Date;
 
-public class Sylw {
+public class Sylw implements java.io.Serializable {
     private Long id;
     private SafonEnum safonArwyddiaeth;
     private SafonEnum safonIaith;

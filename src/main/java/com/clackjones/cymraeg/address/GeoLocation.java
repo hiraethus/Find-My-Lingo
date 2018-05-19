@@ -1,6 +1,6 @@
 package com.clackjones.cymraeg.address;
 
-public class GeoLocation {
+public class GeoLocation implements java.io.Serializable {
     private String postcode;
     private long eastings;
     private long northings;

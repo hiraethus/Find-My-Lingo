@@ -53,7 +53,8 @@ public class GwasanaethService {
     @Transactional
     public List<Gwasanaeth> searchForServices(GwasanaethSearchCriteria searchCriteria) {
         // TODO: add language
-        return freeSearchByNameAndCity(null, searchCriteria.getCity(), searchCriteria.getCategory());
+        Collection<GwasanaethEntity> result = gwasanaethDao.findByCategoryAndCity(searchCriteria.getCategory(), searchCriteria.getCity());
+        return result.stream().map(entityToGwasanaeth::map).collect(Collectors.toList());
     }
 
     @Transactional
