@@ -17,33 +17,17 @@
     <h3>2. Choose a category</h3>
 </div>
 <div class="row">
-  <div class="col-sm-4">
-  <a href="#" onclick="chooseCategory('restaurant')">
-      <div class="card">
-        <div class="card-body">
-          <div class="card-text">Restaurant</div>
-        </div>
-      </div>
-  </a>
-  </div>
-  <div class="col-sm-4">
-  <a href="#" onclick="chooseCategory('coffeeshop')">
-      <div class="card">
-        <div class="card-body">
-          <div class="card-text">Coffee shop</div>
-        </div>
-      </div>
-  </a>
-  </div>
-  <div class="col-sm-4">
-  <a href="#" onclick="chooseCategory('library')">
-      <div class="card">
-        <div class="card-body">
-          <div class="card-text">Library</div>
-        </div>
-      </div>
-  </a>
-  </div>
+  <c:forEach var="category" items="${categories}">
+    <div class="col-sm-4">
+        <a href="#" onclick="chooseCategory('${category.categori}')">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">${category.categori}</div>
+                </div>
+            </div>
+        </a>
+    </div>
+  </c:forEach>
 </div>
 
 <div class="row">

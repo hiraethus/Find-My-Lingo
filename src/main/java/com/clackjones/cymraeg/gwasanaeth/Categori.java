@@ -1,6 +1,6 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
-public class Categori {
+public class Categori implements java.io.Serializable {
     private Long id;
     private String categori;
 

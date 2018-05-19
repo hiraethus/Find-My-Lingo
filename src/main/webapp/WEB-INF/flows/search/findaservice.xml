@@ -11,7 +11,11 @@
         <transition on="next" to="chooseCategory" />
     </view-state>
 
+    <!-- todo load categories from category manager -->
     <view-state id="chooseCategory" view="chooseCategory" model="searchCriteria">
+        <on-entry>
+            <evaluate expression="categoriManager.findAll()" result="viewScope.categories" />
+        </on-entry>
         <transition on="selectCategory" to="chooseLocation" />
         <transition on="next" to="chooseLocation" />
         <transition on="previous" to="chooseServiceLanguage" />
