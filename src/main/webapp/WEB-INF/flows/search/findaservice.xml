@@ -7,6 +7,12 @@
     <var name="searchCriteria" class="com.clackjones.cymraeg.gwasanaeth.web.GwasanaethSearchCriteria" />
 
     <view-state id="chooseServiceLanguage" view="chooseServiceLanguage" model="searchCriteria">
+        <!-- TODO after add languages to db
+        <on-entry>
+            <evaluate expression="languageService.listAllLanguages()" result="viewScope.languages" />
+        </on-entry>
+        TODO then modify JSP to show them
+        -->
         <transition on="selectLang" to="chooseCategory" />
         <transition on="next" to="chooseCategory" />
     </view-state>

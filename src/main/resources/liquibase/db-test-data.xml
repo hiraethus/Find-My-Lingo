@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="hiraethus" id="load-categori-data-001" >
+        <insert tableName="CategoriEntity">
+            <column name="id" value="1"/>
+            <column name="categori" value="bwyti"/>
+        </insert>
+        <insert tableName="CategoriEntity">
+            <column name="id" value="2"/>
+            <column name="categori" value="tafarn"/>
+        </insert>
+        <insert tableName="CategoriEntity">
+            <column name="id" value="3"/>
+            <column name="categori" value="llywodraeth"/>
+        </insert>
+        <insert tableName="CategoriEntity">
+            <column name="id" value="4"/>
+            <column name="categori" value="coffi"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="hiraethus" id="insert-test-languages" >
+        <insert tableName="LanguageEntity">
+            <column name="id" value="1"/>
+            <column name="native_lang_name" value="Cymraeg"/>
+        </insert>
+        <insert tableName="LanguageEntity">
+            <column name="id" value="2"/>
+            <column name="native_lang_name" value="Francais"/>
+        </insert>
+        <insert tableName="LanguageEntity">
+            <column name="id" value="3"/>
+            <column name="native_lang_name" value="English"/>
+        </insert>
+        <insert tableName="LanguageEntity">
+            <column name="id" value="4"/>
+            <column name="native_lang_name" value="Nederlands"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

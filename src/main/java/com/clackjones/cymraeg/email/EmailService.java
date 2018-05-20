@@ -50,6 +50,7 @@ public class EmailService {
     public void createAndSendRegistrationSuccessEmail(RegistrationDetails regDetails, Locale locale) {
         logger.info("Sending registration success email to {}", regDetails.getUsername());
         SimpleMailMessage message = createRegSuccessEmail(regDetails, locale);
+        logger.info("Registration message: " + message.getText());
         mailSender.send(message);
     }
 

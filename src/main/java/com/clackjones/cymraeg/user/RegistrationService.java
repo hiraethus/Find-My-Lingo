@@ -64,7 +64,7 @@ public class RegistrationService {
         createUser(details);
         jdbcUserDetailsManager.addUserToGroup(details.getUsername(), "end_users");
 
-        emailService.createAndSendRegistrationSuccessEmail(details, locale);
+        // TODO reintroduce emailService.createAndSendRegistrationSuccessEmail(details, locale);
         logger.info("Registered user with username {}", details.getUsername());
 
         return true;

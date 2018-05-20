@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="hiraethus (generated)" id="1470319172303-1" >
+        <createTable tableName="CategoriEntity">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="categori" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-2" >
+        <createTable tableName="CategoriEntity_GwasanaethEntity">
+            <column name="CategoriEntity_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gwasanaethau_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-3" >
+        <createTable tableName="GwasanaethEntity">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ailLinell" type="VARCHAR(255)"/>
+            <column name="codPost" type="VARCHAR(255)"/>
+            <column name="dinas" type="VARCHAR(255)"/>
+            <column name="llinellGyntaf" type="VARCHAR(255)"/>
+            <column name="sir" type="VARCHAR(255)"/>
+            <column name="disgrifiad" type="VARCHAR(255)"/>
+            <column name="ebost" type="VARCHAR(255)"/>
+            <column name="enw" type="VARCHAR(255)"/>
+            <column name="rhifFfon" type="VARCHAR(255)"/>
+            <column name="categori_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-4" >
+        <createTable tableName="SylwEntity">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amserSylw" type="time"/>
+            <column name="safonArwyddiaeth" type="VARCHAR(255)"/>
+            <column name="safonGwasanaeth" type="VARCHAR(255)"/>
+            <column name="safonIaith" type="VARCHAR(255)"/>
+            <column name="sylw" type="TEXT"/>
+            <column name="gwasanaeth_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-9" >
+        <createTable tableName="gwasanaeth_sequence_table">
+            <column name="sequence_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="next_val" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-10" >
+        <createTable tableName="sylw_sequence_table">
+            <column name="sequence_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="next_val" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-12" >
+        <addPrimaryKey columnNames="id" tableName="GwasanaethEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-13" >
+        <addPrimaryKey columnNames="id" tableName="SylwEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-14" >
+        <addPrimaryKey columnNames="sequence_name" tableName="gwasanaeth_sequence_table"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-15" >
+        <addPrimaryKey columnNames="sequence_name" tableName="sylw_sequence_table"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-17" >
+        <addUniqueConstraint columnNames="gwasanaethau_id" constraintName="UK_4hhd5wbm4aixcnuempp7e0gnf" tableName="CategoriEntity_GwasanaethEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-18" >
+        <createIndex indexName="FK9syulk1p31f0c6kq6e81fr2p" tableName="GwasanaethEntity">
+            <column name="categori_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-19" >
+        <createIndex indexName="FKbw8f3jb6d89xw1edi7j5frkvr" tableName="CategoriEntity_GwasanaethEntity">
+            <column name="CategoriEntity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-20" >
+        <createIndex indexName="FKtjosv1qjk08gslc80mqc9l30v" tableName="SylwEntity">
+            <column name="gwasanaeth_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-24" >
+        <addForeignKeyConstraint baseColumnNames="categori_id" baseTableName="GwasanaethEntity" constraintName="FK9syulk1p31f0c6kq6e81fr2p" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="CategoriEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-25" >
+        <addForeignKeyConstraint baseColumnNames="CategoriEntity_id" baseTableName="CategoriEntity_GwasanaethEntity" constraintName="FKbw8f3jb6d89xw1edi7j5frkvr" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="CategoriEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-26" >
+        <addForeignKeyConstraint baseColumnNames="gwasanaethau_id" baseTableName="CategoriEntity_GwasanaethEntity" constraintName="FKj6jpo0h1djwbuu37i3gt3ocm7" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="GwasanaethEntity"/>
+    </changeSet>
+    <changeSet author="hiraethus (generated)" id="1470319172303-27" >
+        <addForeignKeyConstraint baseColumnNames="gwasanaeth_id" baseTableName="SylwEntity" constraintName="FKtjosv1qjk08gslc80mqc9l30v" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="GwasanaethEntity"/>
+    </changeSet>
+
+    <changeSet id="security-jdbcDaoImpl-tables-001" author="hiraethus" >
+        <createTable tableName="users">
+            <column name="username" type="varchar(50)" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="password" type="varchar(64)" >
+                <constraints nullable="false" />
+            </column>
+            <column name="enabled" type="boolean" >
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="security-jdbcDaoImpl-tables-002" author="hiraethus">
+        <createTable tableName="authorities">
+            <column name="username" type="varchar(50)" >
+                <constraints nullable="false" />
+            </column>
+            <column name="authority" type="varchar(50)" >
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="authorities" indexName="idx_user_auth">
+            <column name="username" />
+            <column name="authority" />
+        </createIndex>
+
+        <createTable tableName="groups">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="group_name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addAutoIncrement columnDataType="bigint"
+                          columnName="id"
+                          incrementBy="1"
+                          startWith="6000"
+                          tableName="groups"/>
+
+        <createTable tableName="group_authorities">
+            <column name="group_id" type="bigint">
+                 <constraints nullable="false" />
+            </column>
+            <column name="authority" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createTable tableName="group_members">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="username" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="group_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="group_id"
+                                 baseTableName="group_authorities"
+                                 constraintName="fk_group_authorities_group"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="groups"/>
+
+        <addForeignKeyConstraint baseColumnNames="group_id"
+                                 baseTableName="group_members"
+                                 constraintName="fk_group_members_group"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="groups"/>
+    </changeSet>
+
+    <changeSet author="hiraethus" id="security-jdbcDaoImpl-tables-003">
+        <insert tableName="groups">
+            <column name="group_name" value="end_users" />
+        </insert>
+
+        <insert tableName="group_authorities">
+            <column name="authority" value="ROLE_CREATE_GWASANAETH" />
+            <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'end_users')" />
+        </insert>
+        <insert tableName="group_authorities">
+            <column name="authority" value="ROLE_ADD_COMMENT" />
+            <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'end_users')" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="user-reference-to-gwasanaethau" author="hiraethus" >
+        <addColumn tableName="GwasanaethEntity">
+            <column name="OWNER_USERNAME" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="OWNER_USERNAME" baseTableName="GwasanaethEntity" constraintName="fk_to_user"
+                                 onDelete="RESTRICT"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="username"
+                                 referencedTableName="users" />
+    </changeSet>
+
+    <changeSet id="create-password-token-table" author="hiraethus" >
+        <createTable tableName="PasswordResetTokenEntity">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="token" type="varchar(255)" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="CREATION_TS" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-password-token-table-2" author="hiraethus" >
+        <addColumn tableName="PasswordResetTokenEntity">
+            <column name="USERNAME" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="USERNAME" baseTableName="PasswordResetTokenEntity"
+                                 constraintName="fk_pass_token_to_user"
+                                 onDelete="RESTRICT"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="username"
+                                 referencedTableName="users" />
+    </changeSet>
+
+    <changeSet author="hiraethus (generated)" id="20180407-change-datatype-amsersylw" >
+        <modifyDataType columnName="amserSylw"
+                        newDataType="datetime"
+                        tableName="SylwEntity"/>
+    </changeSet>
+
+    <changeSet id="create-nickname-column" author="hiraethus" >
+        <addColumn tableName="users">
+            <column name="NICKNAME" type="varchar(50)">
+                <constraints nullable="true" /> <!-- TODO: make not nullable after manually adding nicknames to existing -->
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="add-languages-entity" author="hiraethus" >
+        <createTable tableName="LanguageEntity">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="native_lang_name" type="varchar(255)" >
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
