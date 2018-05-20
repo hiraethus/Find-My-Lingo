@@ -33,12 +33,12 @@ class GwasanaethDao extends JpaDao<Long, GwasanaethEntity> implements Dao<Long, 
         return query.getResultList();
     }
 
-    public Collection<GwasanaethEntity> findByCategoryAndCity(String category, String city) {
+    public Collection<GwasanaethEntity> findByCategoryAndCity(Long categoryId, String city) {
         logger.trace("findByCategoryAndCity");
 
         TypedQuery<GwasanaethEntity> query =
                 entityManager.createNamedQuery("GwasanaethEntity.findByCategoryAndCity", GwasanaethEntity.class)
-                        .setParameter("category", "%"+category+"%")
+                        .setParameter("category", categoryId)
                         .setParameter("city", "%"+city+"%");
 
         return query.getResultList();

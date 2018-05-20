@@ -32,7 +32,12 @@
 <div class="row">
 <ul class="list-group">
   <li class="list-group-item"><em>Language</em> ${searchCriteria.language}</li>
-  <li class="list-group-item"><em>Category</em> ${searchCriteria.category}</li>
+  <li class="list-group-item">
+    <em>Category</em>
+    <c:if test="${not empty searchCriteria.category}">
+      <spring:message code="${searchCriteria.category}" />
+    </c:if>
+  </li>
   <li class="list-group-item"><em>Location</em> ${searchCriteria.city}</li>
 </ul>
 </div>

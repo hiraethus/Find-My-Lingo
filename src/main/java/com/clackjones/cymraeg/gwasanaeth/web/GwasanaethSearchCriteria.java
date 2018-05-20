@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class GwasanaethSearchCriteria implements Serializable {
     private String language;
+    private Long categoryId;
     private String category;
     private String city;
 
@@ -21,6 +22,14 @@ public class GwasanaethSearchCriteria implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getCity() {

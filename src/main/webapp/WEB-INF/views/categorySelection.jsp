@@ -19,10 +19,12 @@
 <div class="row">
   <c:forEach var="category" items="${categories}">
     <div class="col-sm-4">
-        <a href="#" onclick="chooseCategory('${category.categori}')">
+        <a href="#" onclick="chooseCategory('${category.id}', '${category.categori}')">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-text">${category.categori}</div>
+                    <div class="card-text">
+                        <spring:message code="${category.categori}" />
+                    </div>
                 </div>
             </div>
         </a>
@@ -33,19 +35,26 @@
 <div class="row">
 <ul class="list-group">
   <li class="list-group-item"><em>Language</em> ${searchCriteria.language}</li>
-  <li class="list-group-item"><em>Category</em> ${searchCriteria.category}</li>
+  <li class="list-group-item">
+      <em>Category</em>
+      <c:if test="${not empty searchCriteria.category}">
+        <spring:message code="${searchCriteria.category}" />
+      </c:if>
+  </li>
   <li class="list-group-item"><em>Location</em> ${searchCriteria.city}</li>
 </ul>
 </div>
 
 <form:form style="display: none;" action="${flowExecutionUrl}" method="post" modelAttribute="searchCriteria">
+  <form:input path="categoryId" id="categoryId" />
   <form:input path="category" id="category" />
   <input id="submit" type="submit" name="_eventId_selectCategory" />
 </form:form>
 
 <script type="text/javascript">
-    var chooseCategory = (lang) => {
-        $('#category').val(lang);
+    var chooseCategory = (catId, cat) => {
+        $('#categoryId').val(catId);
+        $('#category').val(cat);
         $('#submit').click();
     };
 </script>
