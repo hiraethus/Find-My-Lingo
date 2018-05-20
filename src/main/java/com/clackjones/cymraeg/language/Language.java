@@ -1,6 +1,6 @@
 package com.clackjones.cymraeg.language;
 
-public class Language {
+public class Language implements java.io.Serializable {
     private Long id;
     private String nativeLanguageName;
 

@@ -17,39 +17,17 @@
     <h3>1. Choose service language</h3>
 </div>
 <div class="row">
+<c:forEach var="language" items="${languages}">
   <div class="col-sm-4">
-  <a href="#" onclick="chooseLang('welsh')">
+  <a href="#" onclick="chooseLang('${language.nativeLanguageName}')">
       <div class="card">
         <div class="card-body">
-          <div class="card-text">Welsh</div>
-
+          <div class="card-text">${language.nativeLanguageName}</div>
         </div>
       </div>
   </a>
   </div>
-
-    <div class="col-sm-4">
-    <a href="#" onclick="chooseLang('russian')">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-text">Russian</div>
-
-          </div>
-        </div>
-    </a>
-    </div>
-
-        <div class="col-sm-4">
-        <a href="#" onclick="chooseLang('french')">
-            <div class="card">
-              <div class="card-body">
-                <div class="card-text">French</div>
-
-              </div>
-            </div>
-        </a>
-        </div>
-
+</c:forEach>
 </div>
 
 
