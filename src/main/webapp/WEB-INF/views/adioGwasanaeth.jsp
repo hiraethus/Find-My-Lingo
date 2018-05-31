@@ -12,6 +12,23 @@
         <div class="col-md-6">
             <h4><spring:message code="form.details" /></h4>
             <fieldset class="form-group">
+                <form:errors path="language" cssStyle="color: red;"/>
+                <form:label path="language">Language</form:label>
+                <form:select path="language" cssClass="form-control">
+                    <c:forEach var="l" items="${languages}">
+                    <c:choose>
+                        <c:when test="${gwasanaeth.language.id == l.id}">
+                            <form:option value="${l.id}" label="${l.nativeLanguageName}" selected="selected" />
+                        </c:when>
+                        <c:otherwise>
+                            <form:option value="${l.id}" label="${l.nativeLanguageName}" />
+                        </c:otherwise>
+                    </c:choose>
+                    </c:forEach>
+
+                </form:select>
+            </fieldset>
+            <fieldset class="form-group">
                 <form:label path="enw"><spring:message code="form.service.name" /></form:label>
                 <form:input path="enw" htmlEscape="false" class="form-control" />
                 <form:errors path="enw" cssStyle="color: red;"/>

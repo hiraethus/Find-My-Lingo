@@ -28,7 +28,16 @@
 
     <mvc:view-controller path="/amdanom/**" view-name="contact"/>
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven conversion-service="conversionService" />
+
+    <bean id="conversionService"
+          class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <ref bean="languageConversionService" />
+            </list>
+        </property>
+    </bean>
 
     <mvc:resources mapping="/webjars/**" location="/webjars/">
     <mvc:resource-chain resource-cache="false" />

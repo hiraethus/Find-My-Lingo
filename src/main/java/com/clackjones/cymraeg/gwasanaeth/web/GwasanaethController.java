@@ -1,6 +1,7 @@
 package com.clackjones.cymraeg.gwasanaeth.web;
 
 import com.clackjones.cymraeg.gwasanaeth.*;
+import com.clackjones.cymraeg.language.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -41,11 +42,15 @@ public class GwasanaethController {
     @Autowired
     private GwasanaethValidator gwasanaethValidator;
 
+    @Autowired
+    private LanguageService languageService;
+
     @Resource(name = "messageSource")
     private MessageSource messageSource;
 
     @InitBinder("gwasanaeth")
     public void initBinder(WebDataBinder binder) {
+        //TODO convert to CategoriConverter
         binder.addValidators(gwasanaethValidator);
         binder.registerCustomEditor(Categori.class, categoriEditor);
     }
@@ -73,6 +78,7 @@ public class GwasanaethController {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("gwasanaeth", gwasanaeth);
         map.put("categoris", localizedCategoris(locale));
+        map.put("languages", languageService.listAllLanguages());
 
         return new ModelAndView("adioGwasanaeth", map);
     }

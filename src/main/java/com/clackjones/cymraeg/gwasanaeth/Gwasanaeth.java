@@ -1,6 +1,7 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
 import com.clackjones.cymraeg.address.GeoLocation;
+import com.clackjones.cymraeg.language.Language;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,6 +23,7 @@ public class Gwasanaeth implements java.io.Serializable {
     private Collection<Sylw> sylwadau = new ArrayList<>();
     private String owner;
     private GeoLocation geoLocation;
+    private Language language;
 
     public Long getId() {
         return id;
@@ -133,5 +135,13 @@ public class Gwasanaeth implements java.io.Serializable {
 
     public void setGeoLocation(GeoLocation geoLocation) {
         this.geoLocation = geoLocation;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public Language getLanguage() {
+        return language;
     }
 }

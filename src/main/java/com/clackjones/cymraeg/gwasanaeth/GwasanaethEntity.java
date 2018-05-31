@@ -1,5 +1,6 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
+import com.clackjones.cymraeg.language.LanguageEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -56,6 +57,10 @@ public class GwasanaethEntity {
 
     @Column(name = "OWNER_USERNAME", nullable = false)
     private String ownerUsername;
+
+    @OneToOne(targetEntity = LanguageEntity.class, fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "id")
+    private LanguageEntity language;
 
     public Long getId() {
         return id;
@@ -128,5 +133,13 @@ public class GwasanaethEntity {
 
     public void setOwnerUsername(String ownerUsername) {
         this.ownerUsername = ownerUsername;
+    }
+
+    public LanguageEntity getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(LanguageEntity language) {
+        this.language = language;
     }
 }

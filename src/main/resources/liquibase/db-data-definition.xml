@@ -276,4 +276,18 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="add-lang-fk-to-service" author="hiraethus">
+        <addColumn tableName="GwasanaethEntity">
+            <column name="language" type="BIGINT" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="language" baseTableName="GwasanaethEntity" constraintName="fk_to_lang"
+                                 onDelete="RESTRICT"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="LanguageEntity" />
+
+    </changeSet>
+
 </databaseChangeLog>

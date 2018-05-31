@@ -2,6 +2,7 @@ package com.clackjones.cymraeg.gwasanaeth;
 
 import com.clackjones.cymraeg.address.GeoLocation;
 import com.clackjones.cymraeg.address.LocationService;
+import com.clackjones.cymraeg.language.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -58,6 +59,13 @@ public class GwasanaethEntityToGwasanaethMapper {
         }
 
         if (entity.getOwnerUsername() != null) gwasanaeth.setOwner(entity.getOwnerUsername());
+
+        if (entity.getLanguage() != null) {
+            Language l = new Language();
+            l.setId(entity.getLanguage().getId());
+            l.setNativeLanguageName(entity.getLanguage().getNativeLangName());
+            gwasanaeth.setLanguage(l);
+        }
 
         Optional<GeoLocation> location = locationService.findLocationForPostcode(gwasanaeth.getCyfeiriadCodPost());
         gwasanaeth.setGeoLocation(location.orElse(null));

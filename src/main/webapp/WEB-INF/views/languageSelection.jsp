@@ -30,7 +30,6 @@
 </c:forEach>
 </div>
 
-
 <div class="row">
 <ul class="list-group">
   <li class="list-group-item"><em>Language</em> ${searchCriteria.language}</li>
