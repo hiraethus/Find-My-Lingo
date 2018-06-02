@@ -38,6 +38,7 @@
 
 
     <import resource="classpath:META-INF/annotated-beans.xml"/>
+    <import resource="classpath:META-INF/geolocation.xml"/>
     <import resource="classpath:META-INF/jpa-context.xml"/>
     <import resource="classpath:META-INF/security.xml"/>
 </beans>

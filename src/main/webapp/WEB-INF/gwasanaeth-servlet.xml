@@ -27,6 +27,5 @@
         <property name="defaultLocale" value="cy" />
     </bean>
 
-     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
-
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
 </beans>

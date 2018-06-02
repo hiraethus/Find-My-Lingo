@@ -1,6 +1,8 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
+import com.clackjones.cymraeg.geolocation.GeolocationFinder;
 import com.clackjones.cymraeg.gwasanaeth.web.GwasanaethSearchCriteria;
+import com.google.maps.model.LatLng;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ public class GwasanaethService {
     private GwasanaethDao gwasanaethDao;
     private GwasanaethToGwasanaethEntityMapper gwasanaethToEntity;
     private GwasanaethEntityToGwasanaethMapper entityToGwasanaeth;
+    private GeolocationFinder geolocationFinder;
 
     @Autowired
     public GwasanaethService(
@@ -32,7 +35,8 @@ public class GwasanaethService {
             SylwDao sylwDao,
             GwasanaethDao gwasanaethDao,
             GwasanaethToGwasanaethEntityMapper gwasanaethToEntity,
-            GwasanaethEntityToGwasanaethMapper entityToGwasanaeth
+            GwasanaethEntityToGwasanaethMapper entityToGwasanaeth,
+            GeolocationFinder geolocationFinder
     ) {
         this.sylwToEntity = sylwToEntity;
         this.entityToSylw = entityToSylw;
@@ -40,6 +44,7 @@ public class GwasanaethService {
         this.gwasanaethDao = gwasanaethDao;
         this.gwasanaethToEntity = gwasanaethToEntity;
         this.entityToGwasanaeth = entityToGwasanaeth;
+        this.geolocationFinder = geolocationFinder;
     }
 
     @Transactional
@@ -92,6 +97,12 @@ public class GwasanaethService {
      */
     @Transactional
     public Long saveGwasanaeth(Gwasanaeth gwasanaeth, String username) {
+        // TODO: check this works, then save to database
+        LatLng latlng = geolocationFinder.findLocation(gwasanaeth);
+        System.out.println("---------");
+        System.out.println(latlng);
+        System.out.println("---------");
+
         GwasanaethEntity gwasanaethEntity = gwasanaethToEntity.map(gwasanaeth);
         gwasanaethEntity.setOwnerUsername(username);
         gwasanaethDao.persist(gwasanaethEntity);

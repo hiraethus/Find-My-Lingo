@@ -48,6 +48,7 @@
         <param-value>
             /WEB-INF/gwasanaeth-servlet.xml,
             classpath:META-INF/annotated-beans.xml,
+            classpath:META-INF/geolocation.xml,
             classpath:META-INF/h2-datasource.xml,
             classpath:META-INF/jpa-context.xml,
             classpath:META-INF/liquibase-context.xml,
