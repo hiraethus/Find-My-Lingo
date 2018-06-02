@@ -3,17 +3,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
 
-<div><a href="?locale=en_US">English</a> | <a href="?locale=cy">Cymraeg</a></div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Find my Lingo</a>
+  <div class="container">
+  <a class="navbar-brand" href='<c:url value="/" />'>Find my Lingo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href='<c:url value="/" />'><spring:message code="menu.home" /><span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href='<c:url value="/adio" />'><spring:message code="service.add" /></a></li>
       </li>
@@ -48,5 +45,8 @@
       </c:otherwise>
     </c:choose>
   </div>
+  <div><a href="?locale=en_US">English</a> | <a href="?locale=cy">Cymraeg</a></div>
+  </div>
+
 </nav>
 

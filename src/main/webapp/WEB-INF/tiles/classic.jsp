@@ -20,8 +20,8 @@
   <body>
   <tilesx:useAttribute name="heading" ignore="true" />
 
+  <tiles:insertAttribute name="menu" />
   <div class="container">
-        <tiles:insertAttribute name="menu" />
         <div class="page-header">
             <h1>${heading}</h1>
         </div>
