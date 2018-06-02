@@ -38,6 +38,7 @@
 
         <div class="col-lg-6">
             <h2><spring:message code='service.description' /></h2>
+            <div>Service Language: ${gwasanaeth.language.nativeLanguageName}</div>
             <em>${gwasanaeth.disgrifiad}</em>
             <div><spring:message code='service.category' />: <span class="${gwasanaeth.categori.categori}"><spring:message code="${gwasanaeth.categori.categori}" /></span></div>
             <div><spring:message code='service.maintained.by' arguments='${gwasanaeth.owner}' /></div>
