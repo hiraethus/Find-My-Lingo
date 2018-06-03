@@ -1,18 +1,14 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
-import com.clackjones.cymraeg.address.GeoLocation;
-import com.clackjones.cymraeg.address.LocationService;
 import com.clackjones.cymraeg.language.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
 public class GwasanaethEntityToGwasanaethMapper {
-    private LocationService locationService;
     private CategoriEntityToCategoriMapper entityToCategory;
     private SylwEntityToSylwMapper entityToSylw;
 
@@ -20,12 +16,10 @@ public class GwasanaethEntityToGwasanaethMapper {
     public GwasanaethEntityToGwasanaethMapper
             (
                 CategoriEntityToCategoriMapper entityToCategory,
-                SylwEntityToSylwMapper entityToSylw,
-                LocationService locationService
+                SylwEntityToSylwMapper entityToSylw
             ) {
         this.entityToCategory = entityToCategory;
         this.entityToSylw = entityToSylw;
-        this.locationService = locationService;
     }
 
     public Gwasanaeth map(GwasanaethEntity entity) {
@@ -66,9 +60,6 @@ public class GwasanaethEntityToGwasanaethMapper {
             l.setNativeLanguageName(entity.getLanguage().getNativeLangName());
             gwasanaeth.setLanguage(l);
         }
-
-        Optional<GeoLocation> location = locationService.findLocationForPostcode(gwasanaeth.getCyfeiriadCodPost());
-        gwasanaeth.setGeoLocation(location.orElse(null));
 
         gwasanaeth.setLongitude(entity.getLongitude());
         gwasanaeth.setLatitude(entity.getLatitude());

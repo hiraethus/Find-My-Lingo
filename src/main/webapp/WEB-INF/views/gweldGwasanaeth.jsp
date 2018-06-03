@@ -57,7 +57,7 @@
                 <div class="email">${gwasanaeth.ebost}</div>
             </div>
        </div>
-       <c:if test="${gwasanaeth.geoLocation != null}">
+       <c:if test="${gwasanaeth.latitude != null}">
        <div class="col-lg-6">
         <div id="map"></div>
        </div>
@@ -74,7 +74,7 @@
     </sec:authorize>
 </div>
 
-<c:if test="${gwasanaeth.geoLocation != null}">
+<c:if test="${gwasanaeth.latitude != null}">
 <script type="text/javascript">
     var map;
     var latLng = {lat: ${gwasanaeth.latitude}, lng: ${gwasanaeth.longitude}};

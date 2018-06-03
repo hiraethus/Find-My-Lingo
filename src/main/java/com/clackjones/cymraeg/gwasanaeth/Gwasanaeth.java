@@ -1,12 +1,10 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
-import com.clackjones.cymraeg.address.GeoLocation;
 import com.clackjones.cymraeg.language.Language;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
 
 public class Gwasanaeth implements java.io.Serializable {
 
@@ -23,7 +21,6 @@ public class Gwasanaeth implements java.io.Serializable {
     private Categori categori;
     private Collection<Sylw> sylwadau = new ArrayList<>();
     private String owner;
-    private GeoLocation geoLocation;
     private Language language;
 
     private BigDecimal longitude;
@@ -131,14 +128,6 @@ public class Gwasanaeth implements java.io.Serializable {
 
     public void setOwner(String owner) {
         this.owner = owner;
-    }
-
-    public GeoLocation getGeoLocation() {
-        return geoLocation;
-    }
-
-    public void setGeoLocation(GeoLocation geoLocation) {
-        this.geoLocation = geoLocation;
     }
 
     public void setLanguage(Language language) {
