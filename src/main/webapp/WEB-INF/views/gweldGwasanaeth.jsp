@@ -77,7 +77,7 @@
 <c:if test="${gwasanaeth.geoLocation != null}">
 <script type="text/javascript">
     var map;
-    var latLng = {lat: ${gwasanaeth.geoLocation.latitude}, lng: ${gwasanaeth.geoLocation.longitude}};
+    var latLng = {lat: ${gwasanaeth.latitude}, lng: ${gwasanaeth.longitude}};
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: latLng,

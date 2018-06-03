@@ -290,4 +290,15 @@
 
     </changeSet>
 
+    <changeSet id="add-long-lat-to-service" author="hiraethus">
+        <addColumn tableName="GwasanaethEntity">
+            <column name="latitude" type="DECIMAL(10,8)">
+                <constraints nullable="true" />
+            </column>
+            <column name="longitude" type="DECIMAL(11,8)">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

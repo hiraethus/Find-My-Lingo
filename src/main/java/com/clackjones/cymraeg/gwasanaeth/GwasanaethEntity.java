@@ -4,6 +4,7 @@ import com.clackjones.cymraeg.language.LanguageEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -61,6 +62,12 @@ public class GwasanaethEntity {
     @OneToOne(targetEntity = LanguageEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "id")
     private LanguageEntity language;
+
+    @Column(name = "longitude", nullable = true)
+    private BigDecimal longitude;
+
+    @Column(name = "latitude", nullable = true)
+    private BigDecimal latitude;
 
     public Long getId() {
         return id;
@@ -141,5 +148,21 @@ public class GwasanaethEntity {
 
     public void setLanguage(LanguageEntity language) {
         this.language = language;
+    }
+
+    public BigDecimal getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+        this.longitude = longitude;
+    }
+
+    public BigDecimal getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+        this.latitude = latitude;
     }
 }

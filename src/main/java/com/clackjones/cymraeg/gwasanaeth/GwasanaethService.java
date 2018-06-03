@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.naming.NoPermissionException;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -97,11 +99,13 @@ public class GwasanaethService {
      */
     @Transactional
     public Long saveGwasanaeth(Gwasanaeth gwasanaeth, String username) {
-        // TODO: check this works, then save to database
-        LatLng latlng = geolocationFinder.findLocation(gwasanaeth);
-        System.out.println("---------");
-        System.out.println(latlng);
-        System.out.println("---------");
+        logger.info("Saving new service for user {} username", username);
+        // find latitude and longitude
+        geolocationFinder.findLocation(gwasanaeth).ifPresent(ltlng -> {
+                logger.debug("Saving lat lng coordinates to service for user {} username", username);
+                gwasanaeth.setLongitude(BigDecimal.valueOf(ltlng.lng));
+                gwasanaeth.setLatitude(BigDecimal.valueOf(ltlng.lat));
+        });
 
         GwasanaethEntity gwasanaethEntity = gwasanaethToEntity.map(gwasanaeth);
         gwasanaethEntity.setOwnerUsername(username);

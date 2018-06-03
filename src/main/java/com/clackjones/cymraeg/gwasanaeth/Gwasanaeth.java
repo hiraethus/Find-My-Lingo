@@ -3,6 +3,7 @@ package com.clackjones.cymraeg.gwasanaeth;
 import com.clackjones.cymraeg.address.GeoLocation;
 import com.clackjones.cymraeg.language.Language;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
@@ -24,6 +25,9 @@ public class Gwasanaeth implements java.io.Serializable {
     private String owner;
     private GeoLocation geoLocation;
     private Language language;
+
+    private BigDecimal longitude;
+    private BigDecimal latitude;
 
     public Long getId() {
         return id;
@@ -143,5 +147,21 @@ public class Gwasanaeth implements java.io.Serializable {
 
     public Language getLanguage() {
         return language;
+    }
+
+    public BigDecimal getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+        this.longitude = longitude;
+    }
+
+    public BigDecimal getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+        this.latitude = latitude;
     }
 }

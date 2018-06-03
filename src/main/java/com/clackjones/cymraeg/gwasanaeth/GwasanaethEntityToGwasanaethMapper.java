@@ -70,6 +70,9 @@ public class GwasanaethEntityToGwasanaethMapper {
         Optional<GeoLocation> location = locationService.findLocationForPostcode(gwasanaeth.getCyfeiriadCodPost());
         gwasanaeth.setGeoLocation(location.orElse(null));
 
+        gwasanaeth.setLongitude(entity.getLongitude());
+        gwasanaeth.setLatitude(entity.getLatitude());
+
         return gwasanaeth;
     }
 }
