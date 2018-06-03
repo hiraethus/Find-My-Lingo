@@ -61,8 +61,10 @@ public class GwasanaethEntityToGwasanaethMapper {
             gwasanaeth.setLanguage(l);
         }
 
-        gwasanaeth.setLongitude(entity.getLongitude());
-        gwasanaeth.setLatitude(entity.getLatitude());
+        if (entity.getLongitude() != null) {
+            gwasanaeth.setLongitude(entity.getLongitude());
+            gwasanaeth.setLatitude(entity.getLatitude());
+        }
 
         return gwasanaeth;
     }

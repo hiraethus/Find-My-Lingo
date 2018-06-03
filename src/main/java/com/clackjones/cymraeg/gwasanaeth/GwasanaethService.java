@@ -150,6 +150,12 @@ public class GwasanaethService {
                     String.format("User %s doesn't have permission to modify this gwasanaeth",name));
         }
 
+        geolocationFinder.findLocation(gwasanaeth).ifPresent(ltlng -> {
+            logger.debug("Updating lat lng coordinates for service for user {} username", name);
+            gwasanaeth.setLongitude(BigDecimal.valueOf(ltlng.lng));
+            gwasanaeth.setLatitude(BigDecimal.valueOf(ltlng.lat));
+        });
+
         gwasanaethToEntity.map(gwasanaeth, entity);
         gwasanaethDao.merge(entity);
     }

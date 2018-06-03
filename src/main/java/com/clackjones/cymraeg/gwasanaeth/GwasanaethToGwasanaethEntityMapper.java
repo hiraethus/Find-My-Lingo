@@ -35,8 +35,10 @@ class GwasanaethToGwasanaethEntityMapper {
             setCategoriForGwasanaethEntity(entity, gwasanaeth);
         }
 
-        entity.setLongitude(gwasanaeth.getLongitude());
-        entity.setLatitude(gwasanaeth.getLatitude());
+        if (gwasanaeth.getLongitude() != null) {
+            entity.setLongitude(gwasanaeth.getLongitude());
+            entity.setLatitude(gwasanaeth.getLatitude());
+        }
 
         return entity;
     }
