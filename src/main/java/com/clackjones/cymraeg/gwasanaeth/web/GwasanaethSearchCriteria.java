@@ -1,12 +1,16 @@
 package com.clackjones.cymraeg.gwasanaeth.web;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class GwasanaethSearchCriteria implements Serializable {
     private String language;
     private Long categoryId;
     private String category;
     private String city;
+
+    private BigDecimal longitude;
+    private BigDecimal latitude;
 
     public String getLanguage() {
         return language;
@@ -38,5 +42,21 @@ public class GwasanaethSearchCriteria implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public BigDecimal getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+        this.longitude = longitude;
+    }
+
+    public BigDecimal getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+        this.latitude = latitude;
     }
 }
