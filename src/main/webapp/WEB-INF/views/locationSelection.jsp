@@ -16,18 +16,18 @@
     <h3>3. Type your location</h3>
 </div>
 
-<div class="row">
-    <div id="map"></div>
-</div>
-
 
 <div class="row">
-    <form class="form-inline">
+    <form class="form">
         <div class="form-group">
-            <label for="address">Address</label>
-            <input class="form-control mx-sm-3" type="text" id="address" style="width: 40em" />
-            <input class="btn" type="button" id="findAddress" value="Find Address" />
-            <input class="invisible" type="button" id="go" value="Go" />
+            <div id="map"></div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" id="address" placeholder="Address" />
+        </div>
+        <div class="form-group">
+            <input class="btn" type="button" id="findAddress" value="Find" />
+            <input class="invisible" type="button" id="go" value="Go" style="padding-left: 1em" />
         </div>
     </form>
 </div>
