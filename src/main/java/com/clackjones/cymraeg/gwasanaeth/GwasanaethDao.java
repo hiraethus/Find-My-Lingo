@@ -44,6 +44,17 @@ class GwasanaethDao extends JpaDao<Long, GwasanaethEntity> implements Dao<Long, 
         return query.getResultList();
     }
 
+    public Collection<GwasanaethEntity> findByCategoryAndLanguage(Long categoryId, String language) {
+        logger.trace("findByCategoryAndLanguage");
+
+        TypedQuery<GwasanaethEntity> query =
+                entityManager.createNamedQuery("GwasanaethEntity.findByCategoryAndLanguage", GwasanaethEntity.class)
+                        .setParameter("category", categoryId)
+                        .setParameter("language", language);
+
+        return query.getResultList();
+    }
+
     public List<String> findUniqueFirstCharacters() {
         logger.trace("findUniqueFirstCharacters()");
 

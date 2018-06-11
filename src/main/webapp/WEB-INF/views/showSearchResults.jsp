@@ -22,8 +22,8 @@
     var map;
     var latLng = [
         <c:forEach var="g" items="${gwasanaethau}">
-        <c:if test="${not empty g.latitude}">
-        {lat: ${g.latitude}, lng: ${g.longitude}},
+        <c:if test="${not empty g.gwasanaeth.latitude}">
+        {lat: ${g.gwasanaeth.latitude}, lng: ${g.gwasanaeth.longitude}},
         </c:if>
         </c:forEach>
         ];

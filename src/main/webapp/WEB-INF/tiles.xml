@@ -60,7 +60,7 @@
         <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
         <put-attribute name="body">
             <definition template="/WEB-INF/views/showSearchResults.jsp">
-                <put-attribute name="serviceList" value="/WEB-INF/components/rhestrGwasanaethau.jsp" />
+                <put-attribute name="serviceList" value="/WEB-INF/components/serviceListWithDistance.jsp" />
             </definition>
         </put-attribute>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />

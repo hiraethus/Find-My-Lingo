@@ -19,8 +19,10 @@ import java.util.Collection;
                 query = "SELECT DISTINCT UPPER(SUBSTRING(g.enw, 1, 1)) AS first_letter FROM GwasanaethEntity g ORDER BY first_letter ASC"),
         @NamedQuery(name = "GwasanaethEntity.findByCategoryAndCity",
                 query = "SELECT g FROM GwasanaethEntity g WHERE g.categori.id = :category AND UPPER(g.cyfeiriad.dinas) LIKE UPPER(:city)"
+        ),
+        @NamedQuery(name = "GwasanaethEntity.findByCategoryAndLanguage",
+                query = "SELECT g FROM GwasanaethEntity g WHERE g.categori.id = :category AND UPPER(g.language.nativeLangName) LIKE UPPER(:language)"
         )
-
 })
 public class GwasanaethEntity {
     @Id

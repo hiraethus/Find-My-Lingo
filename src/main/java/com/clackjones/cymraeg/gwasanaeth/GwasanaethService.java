@@ -58,10 +58,12 @@ public class GwasanaethService {
     }
 
     @Transactional
-    public List<Gwasanaeth> searchForServices(GwasanaethSearchCriteria searchCriteria) {
-        // TODO: add language
-        Collection<GwasanaethEntity> result = gwasanaethDao.findByCategoryAndCity(searchCriteria.getCategoryId(), searchCriteria.getCity());
-        return result.stream().map(entityToGwasanaeth::map).collect(Collectors.toList());
+    public List<GwasanaethDistanceResult> searchForServices(GwasanaethSearchCriteria searchCriteria) {
+        Collection<GwasanaethEntity> result = gwasanaethDao.findByCategoryAndLanguage(searchCriteria.getCategoryId(), searchCriteria.getLanguage());
+        return result.stream()
+                .map(entityToGwasanaeth::map)
+                .map(gwasanaeth -> new GwasanaethDistanceResult(BigDecimal.valueOf(-1), gwasanaeth))
+                .collect(Collectors.toList());
     }
 
     @Transactional
