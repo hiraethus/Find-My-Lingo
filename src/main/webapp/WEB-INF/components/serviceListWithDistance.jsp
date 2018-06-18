@@ -16,7 +16,7 @@
             <th><spring:message code="list.name" /></th>
             <th><spring:message code="list.category" /></th>
             <th><spring:message code="list.city" /></th>
-            <th>Distance</th>
+            <th>Distance <em>(km)</em></th>
         </thead>
         <tbody>
             <c:forEach var="gwasanaethDistPair" items="${gwasanaethau}">

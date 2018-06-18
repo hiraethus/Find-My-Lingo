@@ -2,7 +2,9 @@ package com.clackjones.cymraeg.gwasanaeth;
 
 import com.clackjones.cymraeg.geolocation.GeolocationFinder;
 import com.clackjones.cymraeg.gwasanaeth.web.GwasanaethSearchCriteria;
-import com.google.maps.model.LatLng;
+import org.gavaghan.geodesy.Ellipsoid;
+import org.gavaghan.geodesy.GeodeticCalculator;
+import org.gavaghan.geodesy.GlobalCoordinates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,6 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -61,9 +62,25 @@ public class GwasanaethService {
     public List<GwasanaethDistanceResult> searchForServices(GwasanaethSearchCriteria searchCriteria) {
         Collection<GwasanaethEntity> result = gwasanaethDao.findByCategoryAndLanguage(searchCriteria.getCategoryId(), searchCriteria.getLanguage());
         return result.stream()
+                .filter(gwasEntity -> gwasEntity.getLongitude() != null && gwasEntity.getLatitude() != null)
                 .map(entityToGwasanaeth::map)
-                .map(gwasanaeth -> new GwasanaethDistanceResult(BigDecimal.valueOf(-1), gwasanaeth))
+                .map(gwasanaeth -> new GwasanaethDistanceResult(calcGeoDistanceKm(searchCriteria, gwasanaeth), gwasanaeth))
                 .collect(Collectors.toList());
+    }
+
+    private BigDecimal calcGeoDistanceKm(GwasanaethSearchCriteria searchCriteria, Gwasanaeth gwasanaeth) {
+        return calcGeoDistanceKm(searchCriteria.getLatitude(), searchCriteria.getLongitude(),
+                gwasanaeth.getLatitude(), gwasanaeth.getLongitude());
+    }
+
+    private BigDecimal calcGeoDistanceKm(BigDecimal thisLat, BigDecimal thisLng, BigDecimal thatLat, BigDecimal thatLng) {
+        GeodeticCalculator geoCalc = new GeodeticCalculator();
+
+        GlobalCoordinates thisCoord = new GlobalCoordinates(thisLat.doubleValue(), thisLng.doubleValue());
+        GlobalCoordinates thatCoord = new GlobalCoordinates(thatLat.doubleValue(), thatLng.doubleValue());
+
+        return BigDecimal.valueOf(geoCalc.calculateGeodeticCurve(Ellipsoid.WGS84, thisCoord, thatCoord).getEllipsoidalDistance())
+                .divide(BigDecimal.valueOf(1000));
     }
 
     @Transactional
