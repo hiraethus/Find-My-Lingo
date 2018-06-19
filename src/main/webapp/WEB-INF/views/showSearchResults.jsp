@@ -29,7 +29,7 @@
         ];
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            center: latLng[1],
+            center: latLng[0],
             zoom: 8
         });
 
