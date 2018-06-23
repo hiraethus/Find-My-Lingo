@@ -21,7 +21,9 @@ Find My Lingo <sup>alpha</sup></a>
       <li class="nav-item">
         <a class="nav-link" href="/amdanom">About</a>
       </li>
+    </ul>
 
+    <ul class="navbar-nav ml-auto">
     <c:choose>
       <c:when test="${empty pageContext.request.remoteUser}">
         <span class="navbar-text">
