@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 import java.util.Collection;
 
 @Repository
-class LanguageDao extends JpaDao<Long, LanguageEntity> implements Dao<Long, LanguageEntity> {
+public class LanguageDao extends JpaDao<Long, LanguageEntity> implements Dao<Long, LanguageEntity> {
     final static Logger logger = LoggerFactory.getLogger(LanguageDao.class);
 
     public Collection<LanguageEntity> findAll() {

@@ -61,8 +61,9 @@ public class GwasanaethEntity {
     @Column(name = "OWNER_USERNAME", nullable = false)
     private String ownerUsername;
 
-    @OneToOne(targetEntity = LanguageEntity.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "id")
+//    @OneToOne(targetEntity = LanguageEntity.class, fetch = FetchType.EAGER)
+//    @JoinColumn(nullable = false, name = "id")
+    @ManyToOne
     private LanguageEntity language;
 
     @Column(name = "longitude", nullable = true)

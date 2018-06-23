@@ -134,6 +134,8 @@ public class GwasanaethController {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("gwasanaeth", gwasanaeth);
         map.put("categoris", localizedCategoris(locale));
+        map.put("languages", languageService.listAllLanguages());
+
         return new ModelAndView("adolyguGwasanaeth", map);
     }
 

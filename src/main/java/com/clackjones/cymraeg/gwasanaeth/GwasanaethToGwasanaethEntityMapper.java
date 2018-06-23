@@ -1,13 +1,22 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
 
+import com.clackjones.cymraeg.language.Language;
+import com.clackjones.cymraeg.language.LanguageEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.clackjones.cymraeg.language.LanguageDao;
 
 @Component
 class GwasanaethToGwasanaethEntityMapper {
-    @Autowired
     private CategoriDao categoriDao;
+    private LanguageDao languageDao;
+
+    @Autowired
+    public GwasanaethToGwasanaethEntityMapper(CategoriDao categoriDao, LanguageDao languageDao) {
+        this.categoriDao = categoriDao;
+        this.languageDao = languageDao;
+    }
 
     public GwasanaethEntity map(Gwasanaeth gwasanaeth) {
         return map(gwasanaeth, new GwasanaethEntity());
@@ -32,7 +41,11 @@ class GwasanaethToGwasanaethEntityMapper {
         }
 
         if (gwasanaeth.getCategori() != null) {
-            setCategoriForGwasanaethEntity(entity, gwasanaeth);
+            setCategori(entity, gwasanaeth);
+        }
+
+        if (gwasanaeth.getLanguage() != null) {
+            setLanguage(entity, gwasanaeth);
         }
 
         if (gwasanaeth.getLongitude() != null) {
@@ -51,13 +64,23 @@ class GwasanaethToGwasanaethEntityMapper {
                 || gwasanaeth.getCyfeiriadCodPost() != null;
     }
 
-    private void setCategoriForGwasanaethEntity(GwasanaethEntity entity, Gwasanaeth gwasanaeth) {
+    private void setCategori(GwasanaethEntity entity, Gwasanaeth gwasanaeth) {
         Categori categori = gwasanaeth.getCategori();
         if (categori != null) {
             // check to see if its in the database
             CategoriEntity categoriEntity = categoriDao.findById(categori.getId());
             if (categoriEntity != null) {
                 entity.setCategori(categoriEntity);
+            }
+        }
+    }
+
+    private void setLanguage(GwasanaethEntity entity, Gwasanaeth gwasanaeth) {
+        Language language = gwasanaeth.getLanguage();
+        if (language != null) {
+            LanguageEntity languageEntity = languageDao.findById(language.getId());
+            if (languageEntity != null) {
+                entity.setLanguage(languageEntity);
             }
         }
     }
