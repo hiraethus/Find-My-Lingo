@@ -24,7 +24,7 @@
 
     <bean id="localeResolver"
           class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-        <property name="defaultLocale" value="cy" />
+        <property name="defaultLocale" value="en" />
     </bean>
 
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />

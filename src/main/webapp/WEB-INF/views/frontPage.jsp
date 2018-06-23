@@ -8,12 +8,6 @@
  border-top: 16px solid blue;
  border-bottom: 16px solid blue;
 }
-
-@media (max-width:1081px)  {
-    div.twitter {
-        display: none;
-    }
-}
 </style>
 <c:if test="${param.allgofnodi ne null}" >
 <div class="row">
@@ -38,20 +32,28 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-3 twitter">
-            <a class="twitter-timeline" data-theme="light" data-link-color="#E81C4F" href="https://twitter.com/gwasanaethaucym?ref_src=twsrc%5Etfw">Tweets by gwasanaethaucym</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <h1>Welcome to <span class><em>Find My Lingo</em></span><sup>alpha</sup></h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-5" style="overflow: hidden">
+            <img style="transform: skewY(1deg);" src="https://cdn.pixabay.com/photo/2015/01/15/16/17/hands-600497_960_720.jpg" class="rounded img-thumbnail">
         </div>
-        <div class="col-md-9" style="overflow: hidden">
-            <h1><spring:message code="service.wales" /></h1>
-            <p style="padding-top: 1em;"><spring:message code="welcome.add.business" /></p>
-                <div class="form-inline" style="width: 100%">
-                    <input name="searchTerm" class="form-control" type="text" style="width: calc(80% - 7em);"
-                        placeholder="<spring:message code='search.name.or.city' />"
-                        required ic-get-from="/search" ic-trigger-on="keyup changed"
-                         ic-trigger-delay="500ms" ic-target="#result-table" />
-                </div>
-                <div id="result-table"></div>
+        <div class="col-lg-7" style="overflow: hidden">
+            <p>
+                Find My Lingo<sup>alpha</sup> is a new website for expats around the World that want to find and share
+                services in their native language.
+            </p>
+            <p>
+                If you've recently moved to a new country or are missing speaking in your own language or if you want to
+                find a restaurant or coffee shop where you can practise your language of choice, then use Find My Lingo.
+            </p>
+            <p>
+                If you own a service, feel free to add your service to the website to find new customers who will
+                appreciate your language and cultural skills.
+            </p>
+            <p>To get started, please <a href="/find">find a service</a> and <a href="#">create an account</a>. Thanks!</p>
         </div>
+
     </div>
 </div>
 
