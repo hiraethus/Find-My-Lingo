@@ -3,9 +3,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav style="margin-bottom: 1.5em" class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-  <a class="navbar-brand" href='<c:url value="/" />'><img style="transform: skewY(1deg); width: 2em" src="https://cdn.pixabay.com/photo/2015/01/15/16/17/hands-600497_960_720.jpg" class="rounded">
+  <a class="navbar-brand" href='<c:url value="/" />'><img style="transform: skewY(1deg); width: 2em" src="/images/hands-600497_960_720.jpg" class="rounded">
 Find My Lingo <sup>alpha</sup></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -13,10 +13,13 @@ Find My Lingo <sup>alpha</sup></a>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href='<c:url value="/adio" />'><spring:message code="service.add" /></a></li>
+        <a class="nav-link" href='<c:url value="/find" />'>Find Service</a></li>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/amdanom"><spring:message code="menu.aboutus" /></a>
+        <a class="nav-link" href='<c:url value="/adio" />'>Add Service</a></li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/amdanom">About</a>
       </li>
 
     <c:choose>

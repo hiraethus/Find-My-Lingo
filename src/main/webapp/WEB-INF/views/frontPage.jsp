@@ -36,7 +36,7 @@
     </div>
     <div class="row">
         <div class="col-lg-5" style="overflow: hidden">
-            <img style="transform: skewY(1deg);" src="https://cdn.pixabay.com/photo/2015/01/15/16/17/hands-600497_960_720.jpg" class="rounded img-thumbnail">
+            <img style="transform: skewY(1deg);" src="/images/hands-600497_960_720.jpg" class="rounded img-thumbnail">
         </div>
         <div class="col-lg-7" style="overflow: hidden">
             <p>
