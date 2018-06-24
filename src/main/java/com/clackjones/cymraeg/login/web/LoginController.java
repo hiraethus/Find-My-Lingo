@@ -18,7 +18,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/mewngofnodi")
+@RequestMapping("/login")
 public class LoginController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping(path = "/cofrestru", method= RequestMethod.POST)
+    @RequestMapping(path = "/register", method= RequestMethod.POST)
     public ModelAndView registerEndUser(@ModelAttribute("registrationDetails") RegistrationDetails registrationDetails,
                                         RedirectAttributes attr, Locale locale) {
         try {
@@ -48,7 +48,7 @@ public class LoginController {
             registrationDetailsNoPass.setUsername(registrationDetails.getUsername());
             attr.addFlashAttribute("registrationDetails", registrationDetailsNoPass);
 
-            return new ModelAndView ("redirect:/mewngofnodi");
+            return new ModelAndView ("redirect:/login");
         }
 
         String regSuccessfulMessage = messageSource.getMessage("registration.successful",
@@ -83,7 +83,7 @@ public class LoginController {
         return new ModelAndView ("checkEmail");
     }
 
-    @RequestMapping(path = "/ailosod/tocyn/{token}", method = RequestMethod.GET)
+    @RequestMapping(path = "/reset/token/{token}", method = RequestMethod.GET)
     public ModelAndView enterNewPassword(@PathVariable("token") String token,
                                          @ModelAttribute("registrationDetails") RegistrationDetails registrationDetails) {
         ModelAndView resetPasswordView =  new ModelAndView("enterNewPassword");
@@ -92,7 +92,7 @@ public class LoginController {
         return resetPasswordView;
     }
 
-    @RequestMapping(path = "/ailosod/tocyn/{token}", method = RequestMethod.POST)
+    @RequestMapping(path = "/reset/token/{token}", method = RequestMethod.POST)
     public ModelAndView submitNewPassword(@PathVariable("token") String token,
                                          @ModelAttribute("registrationDetails") RegistrationDetails registrationDetails,
                                           RedirectAttributes attr) {
@@ -100,7 +100,7 @@ public class LoginController {
             registrationService.resetPassword(registrationDetails, token);
         } catch(RegistrationException exc) {
             attr.addFlashAttribute("registrationException", exc.getKind());
-            return new ModelAndView("redirect:/mewngofnodi/ailosod/tocyn/{token}");
+            return new ModelAndView("redirect:/login/reset/token/{token}");
         }
         return new ModelAndView("passwordChangedSuccessfully");
     }

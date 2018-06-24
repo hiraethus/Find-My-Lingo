@@ -5,10 +5,10 @@
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
     <http use-expressions="true" auto-config="true">
-        <intercept-url pattern="/adio" method="GET"
+        <intercept-url pattern="/add" method="GET"
                        access="hasRole('ROLE_CREATE_GWASANAETH')" />
 
-        <intercept-url pattern="/adolygu/**" method="GET"
+        <intercept-url pattern="/edit/**" method="GET"
                        access="hasRole('ROLE_CREATE_GWASANAETH')" />
 
         <intercept-url pattern="/" method="POST"
@@ -19,8 +19,8 @@
 
         <intercept-url pattern="/**" access="permitAll" />
 
-        <form-login default-target-url="/" login-page="/mewngofnodi" />
-        <logout logout-success-url="/?allgofnodi" />
+        <form-login default-target-url="/" login-page="/login" />
+        <logout logout-success-url="/?logout" />
     </http>
 
     <global-method-security pre-post-annotations="enabled" />

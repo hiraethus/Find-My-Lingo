@@ -65,7 +65,7 @@
     </div>
     <sec:authorize access="isAuthenticated()">
     <div class="row">
-        <a href="<c:url value='/adolygu/${gwasanaeth.id}' />">
+        <a href="<c:url value='/edit/${gwasanaeth.id}' />">
         <div style="float: right; display: block;">
             <spring:message code='service.edit' />
         </div>

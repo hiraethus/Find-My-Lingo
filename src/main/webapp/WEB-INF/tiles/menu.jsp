@@ -16,10 +16,10 @@ Find My Lingo <sup>alpha</sup></a>
         <a class="nav-link" href='<c:url value="/find" />'>Find Service</a></li>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href='<c:url value="/adio" />'>Add Service</a></li>
+        <a class="nav-link" href='<c:url value="/add" />'>Add Service</a></li>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/amdanom">About</a>
+        <a class="nav-link" href="/about">About</a>
       </li>
     </ul>
 
@@ -27,7 +27,7 @@ Find My Lingo <sup>alpha</sup></a>
     <c:choose>
       <c:when test="${empty pageContext.request.remoteUser}">
         <span class="navbar-text">
-          <a href='<c:url value="/mewngofnodi" />'><spring:message code="menu.login.or.register" /></a>
+          <a href='<c:url value="/login" />'><spring:message code="menu.login.or.register" /></a>
         </span>
       </c:when>
       <c:otherwise>

@@ -60,7 +60,7 @@ public class GwasanaethController {
         binder.registerCustomEditor(SafonEnum.class, safonEditor);
     }
 
-    @RequestMapping(path = "adio", method = RequestMethod.GET)
+    @RequestMapping(path = "add", method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_CREATE_GWASANAETH')")
     public ModelAndView addForm(Model model, Principal principal, Locale locale) {
         List<Categori> categoris = categoriManager.findAll();
@@ -89,7 +89,7 @@ public class GwasanaethController {
         if (result.hasErrors()) {
             attr.addFlashAttribute("org.springframework.validation.BindingResult.gwasanaeth", result);
             attr.addFlashAttribute("gwasanaeth", gwasanaeth);
-            return new ModelAndView("redirect:adio");
+            return new ModelAndView("redirect:add");
         }
 
         Long id = gwasanaethService.saveGwasanaeth(gwasanaeth, principal.getName());
@@ -104,7 +104,7 @@ public class GwasanaethController {
         if (result.hasErrors()) {
             attr.addFlashAttribute("org.springframework.validation.BindingResult.gwasanaeth", result);
             attr.addFlashAttribute("gwasanaeth", gwasanaeth);
-            return new ModelAndView("redirect:adolygu");
+            return new ModelAndView("redirect:edit");
         }
 
         try {
@@ -119,7 +119,7 @@ public class GwasanaethController {
     }
 
 
-    @RequestMapping(path = "adolygu/{gwasanaethId}", method = RequestMethod.GET)
+    @RequestMapping(path = "edit/{gwasanaethId}", method = RequestMethod.GET)
     @PreAuthorize("hasRole('ROLE_CREATE_GWASANAETH')")
     public ModelAndView adolyguGwasanaeth(@PathVariable("gwasanaethId") Long gwasanaethId,
                                           Principal principal, Locale locale) {

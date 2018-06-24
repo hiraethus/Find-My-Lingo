@@ -9,7 +9,7 @@
  border-bottom: 16px solid blue;
 }
 </style>
-<c:if test="${param.allgofnodi ne null}" >
+<c:if test="${param.logout ne null}" >
 <div class="row">
     <div class="col-lg-12">
         <div class="alert alert-success" role="alert">

@@ -32,12 +32,12 @@
                     <input class="btn btn-primary" type="submit" value="<spring:message code='login.login' />" />
                 </fieldset>
             </form>
-            <a href="${pageContext.request.contextPath}/mewngofnodi/ailosod"><em><spring:message code="login.password.reset" /></em></a>
+            <a href="${pageContext.request.contextPath}/login/ailosod"><em><spring:message code="login.password.reset" /></em></a>
         </div>
     </div>
     <div class="col-lg-6">
         <div class="jumbotron">
-            <form:form action="${pageContext.request.contextPath}/mewngofnodi/cofrestru" modelAttribute="registrationDetails" method="POST">
+            <form:form action="${pageContext.request.contextPath}/login/register" modelAttribute="registrationDetails" method="POST">
                 <h2><spring:message code="login.register" /></h2>
                 <c:if test="${not empty registrationError}">
                     <c:choose>
