@@ -5,7 +5,11 @@
 <tiles-definitions>
 <definition name="contact" template="/WEB-INF/tiles/large-body.jsp">
     <put-attribute name="title" value="Find My Lingo - About" />
-    <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+    <put-attribute name="menu">
+        <definition template="/WEB-INF/tiles/menu.jsp">
+            <put-attribute name="current_tab" value="about" />
+        </definition>
+    </put-attribute>
     <put-attribute name="body">
         <definition template="/WEB-INF/views/contact_en.jsp">
             <put-attribute name="rhestrGwasanaethau" value="/WEB-INF/components/rhestrGwasanaethau.jsp" />
@@ -15,9 +19,13 @@
 </definition>
 
 <definition name="adioGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
-    <put-attribute name="title" value="Services Wales - Add Service" />
+    <put-attribute name="title" value="Find My Lingo - Add Service" />
     <put-attribute name="heading" value="Add Service" /> <!-- should be Adio gwasanaeth or the english -->
-    <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+    <put-attribute name="menu">
+        <definition template="/WEB-INF/tiles/menu.jsp">
+            <put-attribute name="current_tab" value="add" />
+        </definition>
+    </put-attribute>
     <put-attribute name="body">
         <definition template="/WEB-INF/views/adioGwasanaeth.jsp">
             <put-attribute name="formMethod" value="POST" />
@@ -28,7 +36,11 @@
 
 <definition name="adolyguGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
     <put-attribute name="title" value="Services Wales - Edit Service" />
-    <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+    <put-attribute name="menu">
+        <definition template="/WEB-INF/tiles/menu.jsp">
+            <put-attribute name="current_tab" value="add" />
+        </definition>
+    </put-attribute>
     <put-attribute name="heading" value="Edit Service" />
     <put-attribute name="body">
         <definition template="/WEB-INF/views/adioGwasanaeth.jsp">

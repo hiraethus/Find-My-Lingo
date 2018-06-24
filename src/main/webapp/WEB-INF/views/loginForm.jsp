@@ -32,7 +32,7 @@
                     <input class="btn btn-primary" type="submit" value="<spring:message code='login.login' />" />
                 </fieldset>
             </form>
-            <a href="${pageContext.request.contextPath}/login/ailosod"><em><spring:message code="login.password.reset" /></em></a>
+            <a href="${pageContext.request.contextPath}/login/reset"><em><spring:message code="login.password.reset" /></em></a>
         </div>
     </div>
     <div class="col-lg-6">

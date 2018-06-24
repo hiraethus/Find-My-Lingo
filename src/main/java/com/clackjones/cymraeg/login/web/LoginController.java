@@ -57,7 +57,7 @@ public class LoginController {
         return new ModelAndView ("redirect:/");
     }
 
-    @RequestMapping(path = "/ailosod", method = RequestMethod.GET)
+    @RequestMapping(path = "/reset", method = RequestMethod.GET)
     public ModelAndView resetPasswordInitialScreen(
             @ModelAttribute("registrationDetails") RegistrationDetails registrationDetails, RedirectAttributes attr) {
         Map<String, ?> flashAttributes = attr.getFlashAttributes();
@@ -67,7 +67,7 @@ public class LoginController {
         return modelView;
     }
 
-    @RequestMapping(path = "/ailosod", method = RequestMethod.POST)
+    @RequestMapping(path = "/reset", method = RequestMethod.POST)
     public ModelAndView resetPasswordSubmitRequest(@ModelAttribute("registrationDetails") RegistrationDetails registrationDetails,
                                                    RedirectAttributes attr, Locale locale) {
         String email = registrationDetails.getUsername();
@@ -75,7 +75,7 @@ public class LoginController {
             String emailNotFound = messageSource.getMessage("registration.email.not.found",
                     null, locale);
             attr.addFlashAttribute("emailNotFoundError", emailNotFound);
-            return new ModelAndView ("redirect:ailosod");
+            return new ModelAndView ("redirect:reset");
         }
 
         registrationService.sendResetToken(registrationDetails, locale);

@@ -7,14 +7,21 @@
 
     <definition name="gweldGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
         <put-attribute name="title" value="Find My Lingo - Gweld" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/gweldGwasanaeth.jsp" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="home" />
+            </definition>
+        </put-attribute>        <put-attribute name="body" value="/WEB-INF/views/gweldGwasanaeth.jsp" />
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
     <definition name="tudalenFlaen" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Find My Lingo - Croeso" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="home" />
+            </definition>
+        </put-attribute>
         <put-attribute name="body">
             <definition template="/WEB-INF/views/frontPage.jsp">
                 <put-attribute name="rhestrGwasanaethau" value="/WEB-INF/components/rhestrGwasanaethau.jsp" />
@@ -36,28 +43,44 @@
 
     <definition name="chooseServiceLanguage" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Find My Lingo - 1. Language Selection" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="find" />
+            </definition>
+        </put-attribute>
         <put-attribute name="body" value="/WEB-INF/views/languageSelection.jsp" />
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
     <definition name="chooseCategory" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Find My Lingo - 2. Category Selection" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="find" />
+            </definition>
+        </put-attribute>
         <put-attribute name="body" value="/WEB-INF/views/categorySelection.jsp" />
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
     <definition name="chooseLocation" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Find My Lingo - 3. Location Selection" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="find" />
+            </definition>
+        </put-attribute>
         <put-attribute name="body" value="/WEB-INF/views/locationSelection.jsp" />
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
     <definition name="showSearchResults" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Find My Lingo - Search Results" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="find" />
+            </definition>
+        </put-attribute>
         <put-attribute name="body">
             <definition template="/WEB-INF/views/showSearchResults.jsp">
                 <put-attribute name="serviceList" value="/WEB-INF/components/serviceListWithDistance.jsp" />
@@ -68,36 +91,54 @@
 
     <definition name="loginForm" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Find My Lingo - Logio mewn" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/loginForm.jsp" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="login" />
+            </definition>
+        </put-attribute>        <put-attribute name="body" value="/WEB-INF/views/loginForm.jsp" />
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
     <definition name="resetPassword" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Find My Lingo - Ailosod Cyfrinair" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="title" value="Find My Lingo - Reset Password" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="login" />
+            </definition>
+        </put-attribute>
         <put-attribute name="body" value="/WEB-INF/views/resetPassword.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
     <definition name="checkEmail" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Find My Lingo - Check Email" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="home" />
+            </definition>
+        </put-attribute>
         <put-attribute name="body" value="/WEB-INF/views/checkEmail.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
     <definition name="enterNewPassword" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Find My Lingo - Enter new password" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="login" />
+            </definition>
+        </put-attribute>
         <put-attribute name="body" value="/WEB-INF/views/enterNewPassword.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
     <definition name="passwordChangedSuccessfully" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Find My Lingo - Changed password successfully" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
-        <put-attribute name="body" value="/WEB-INF/views/passwordChangedSuccessfully.jsp"/>
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="login" />
+            </definition>
+        </put-attribute>        <put-attribute name="body" value="/WEB-INF/views/passwordChangedSuccessfully.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
