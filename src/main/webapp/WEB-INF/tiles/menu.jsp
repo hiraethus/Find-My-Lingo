@@ -44,7 +44,7 @@ Find My Lingo <sup>alpha</sup></a>
                  <spring:message code="menu.my.services" />
                </a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                 <a class="dropdown-item" href="<c:url value="/defnyddiwr/proffil" />"><spring:message code="menu.my.services" /></a>
+                 <a class="dropdown-item" href="<c:url value="/user/profile" />"><spring:message code="menu.my.services" /></a>
                  <div class="dropdown-divider"></div>
                  <a onclick="$('#logoutButton').click();" class="dropdown-item" href="#"><spring:message code='menu.logout' /></a>
                </div>

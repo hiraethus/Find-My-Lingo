@@ -6,7 +6,7 @@
 
 
     <definition name="gweldGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
-        <put-attribute name="title" value="Find My Lingo - Gweld" />
+        <put-attribute name="title" value="Find My Lingo - View Service" />
         <put-attribute name="menu">
             <definition template="/WEB-INF/tiles/menu.jsp">
                 <put-attribute name="current_tab" value="home" />
@@ -16,7 +16,7 @@
     </definition>
 
     <definition name="tudalenFlaen" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Find My Lingo - Croeso" />
+        <put-attribute name="title" value="Find My Lingo - Home" />
         <put-attribute name="menu">
             <definition template="/WEB-INF/tiles/menu.jsp">
                 <put-attribute name="current_tab" value="home" />
@@ -31,8 +31,12 @@
     </definition>
 
     <definition name="proffil" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Find My Lingo - Proffil" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
+        <put-attribute name="title" value="Find My Lingo - Profile" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="login" />
+            </definition>
+        </put-attribute>
         <put-attribute name="body">
             <definition template="/WEB-INF/views/profile.jsp">
                 <put-attribute name="rhestrGwasanaethau" value="/WEB-INF/components/rhestrGwasanaethau.jsp" />
@@ -90,7 +94,7 @@
     </definition>
 
     <definition name="loginForm" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Find My Lingo - Logio mewn" />
+        <put-attribute name="title" value="Find My Lingo - Log in" />
         <put-attribute name="menu">
             <definition template="/WEB-INF/tiles/menu.jsp">
                 <put-attribute name="current_tab" value="login" />

@@ -10,12 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("/defnyddiwr")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserManager userManager;
 
-    @RequestMapping(path = "/proffil", method = RequestMethod.GET)
+    @RequestMapping(path = "/profile", method = RequestMethod.GET)
     public ModelAndView viewUserProfile(Principal principal) {
         // get user object
         if (principal.getName() == null) {
