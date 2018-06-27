@@ -58,22 +58,22 @@
                         </c:when>
                         <c:when test="${registrationError == 'UNMATCHED_PASSWORDS'}">
                         <div class="alert alert-danger" role="alert">
-                            Nid yw'r cyfrineiriau yn cyfateb. Ceisiwch eto.
+                            The passwords do not match, please try again.
                         </div>
                         </c:when>
                         <c:when test="${registrationError == 'USER_TOO_LONG'}">
                         <div class="alert alert-danger" role="alert">
-                            Mae'r enw defnyddwir yn rhy hir. Ceisiwch eto.
+                            The username is too long, please try again.
                         </div>
                         </c:when>
                         <c:when test="${registrationError == 'USER_TOO_SHORT'}">
                         <div class="alert alert-danger" role="alert">
-                            Mae'r enw defnyddwir yn rhy fyr. Ceisiwch eto.
+                            The username is too short, please try again.
                         </div>
                         </c:when>
                         <c:when test="${registrationError == 'PASS_TOO_SHORT'}">
                         <div class="alert alert-danger" role="alert">
-                            Mae'r cyfrinair yn rhy fyr. Ceisiwch eto.
+                            The password is too long, please try again.
                         </div>
                         </c:when>
                     </c:choose>
