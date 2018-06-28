@@ -308,4 +308,11 @@
                       tableName="GwasanaethEntity"/>
     </changeSet>
 
+    <changeSet author="hiraethus" id="add-lang-img-to-lang-entity">
+        <addColumn tableName="LanguageEntity">
+            <column name="language_flag_img" type="VARCHAR(255)">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

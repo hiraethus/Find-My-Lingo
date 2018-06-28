@@ -3,6 +3,7 @@ package com.clackjones.cymraeg.language;
 public class Language implements java.io.Serializable {
     private Long id;
     private String nativeLanguageName;
+    private String languageFlagImg;
 
     public Long getId() {
         return id;
@@ -18,5 +19,13 @@ public class Language implements java.io.Serializable {
 
     public void setNativeLanguageName(String nativeLanguageName) {
         this.nativeLanguageName = nativeLanguageName;
+    }
+
+    public String getLanguageFlagImg() {
+        return languageFlagImg;
+    }
+
+    public void setLanguageFlagImg(String languageFlagImg) {
+        this.languageFlagImg = languageFlagImg;
     }
 }

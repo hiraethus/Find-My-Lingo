@@ -28,6 +28,7 @@ public class LanguageService {
             Language l = new Language();
             l.setId(langEntity.getId());
             l.setNativeLanguageName(langEntity.getNativeLangName());
+            l.setLanguageFlagImg(langEntity.getLanguageFlagImg());
             return l;
         }).collect(Collectors.toList());
     }

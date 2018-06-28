@@ -16,6 +16,9 @@ public class LanguageEntity {
     @Column(name="native_lang_name", nullable = false)
     private String nativeLangName;
 
+    @Column(name="language_flag_img", nullable = true)
+    private String languageFlagImg;
+
     public Long getId() {
         return id;
     }
@@ -26,5 +29,13 @@ public class LanguageEntity {
 
     public void setNativeLangName(String nativeLangName) {
         this.nativeLangName = nativeLangName;
+    }
+
+    public void setLanguageFlagImg(String languageFlagImg) {
+        this.languageFlagImg = languageFlagImg;
+    }
+
+    public String getLanguageFlagImg() {
+        return languageFlagImg;
     }
 }
