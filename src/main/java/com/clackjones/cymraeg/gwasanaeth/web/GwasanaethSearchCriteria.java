@@ -8,6 +8,7 @@ public class GwasanaethSearchCriteria implements Serializable {
     private Long categoryId;
     private String category;
     private String city;
+    private String languageImg;
 
     private BigDecimal longitude;
     private BigDecimal latitude;
@@ -58,5 +59,13 @@ public class GwasanaethSearchCriteria implements Serializable {
 
     public void setLatitude(BigDecimal latitude) {
         this.latitude = latitude;
+    }
+
+    public void setLanguageImg(String languageImg) {
+        this.languageImg = languageImg;
+    }
+
+    public String getLanguageImg() {
+        return languageImg;
     }
 }

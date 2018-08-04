@@ -10,7 +10,12 @@
 
 <div class="col-sm-2">
 <ul class="list-group">
-  <li class="list-group-item"><em>Language</em> ${searchCriteria.language}</li>
+  <li class="list-group-item">
+  <em>Language</em>
+  <c:if test="${not empty searchCriteria.languageImg}">
+    <img class="card-img-top" src="/images/${searchCriteria.languageImg}">
+  </c:if>
+  </li>
   <li class="list-group-item">
     <em>Category</em>
     <c:if test="${not empty searchCriteria.category}">
@@ -23,7 +28,7 @@
 
 <c:forEach var="language" items="${languages}">
 <div class="col-sm-2">
-  <a href="#" onclick="chooseLang('${language.nativeLanguageName}')">
+  <a href="#" onclick="chooseLang('${language.nativeLanguageName}', '${language.languageFlagImg}')">
       <div class="card" style="max-width: 10rem">
         <img class="card-img-top" src="/images/${language.languageFlagImg}">
       </div>
@@ -47,13 +52,15 @@
 </nav>
 
 <form:form style="display: none;" action="${flowExecutionUrl}" method="post" modelAttribute="searchCriteria">
+  <form:input path="languageImg" id="languageImg" />
   <form:input path="language" id="language" />
   <input id="submit" type="submit" name="_eventId_selectLang" />
 </form:form>
 
 <script type="text/javascript">
-    var chooseLang = (lang) => {
+    var chooseLang = (lang, langImg) => {
         $('#language').val(lang);
+        $('#languageImg').val(langImg);
         $('#submit').click();
     };
 </script>
