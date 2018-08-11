@@ -52,7 +52,12 @@
                 <put-attribute name="current_tab" value="find" />
             </definition>
         </put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/languageSelection.jsp" />
+        <put-attribute name="body">
+            <definition template="/WEB-INF/components/wizardStep.jsp">
+                <put-attribute name="stepName" value="1. Language Selection" />
+                <put-attribute name="body" value="/WEB-INF/views/languageSelection.jsp" />
+            </definition>
+        </put-attribute>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
@@ -63,7 +68,12 @@
                 <put-attribute name="current_tab" value="find" />
             </definition>
         </put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/categorySelection.jsp" />
+        <put-attribute name="body">
+            <definition template="/WEB-INF/components/wizardStep.jsp">
+                <put-attribute name="stepName" value="2. Category Selection" />
+                <put-attribute name="body" value="/WEB-INF/views/categorySelection.jsp" />
+            </definition>
+        </put-attribute>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
@@ -74,7 +84,12 @@
                 <put-attribute name="current_tab" value="find" />
             </definition>
         </put-attribute>
-        <put-attribute name="body" value="/WEB-INF/views/locationSelection.jsp" />
+        <put-attribute name="body">
+            <definition template="/WEB-INF/components/wizardStep.jsp">
+                <put-attribute name="stepName" value="3. Location Selection" />
+                <put-attribute name="body" value="/WEB-INF/views/locationSelection.jsp" />
+            </definition>
+        </put-attribute>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 

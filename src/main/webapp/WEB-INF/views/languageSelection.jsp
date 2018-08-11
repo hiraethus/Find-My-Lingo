@@ -4,30 +4,8 @@
 <%@ page isELIgnored="false" %>
 
 <div class="row">
-    <h3>1. Choose service language</h3>
-</div>
-<div class="row">
-
-<div class="col-sm-2">
-<ul class="list-group">
-  <li class="list-group-item">
-  <em>Language</em>
-  <c:if test="${not empty searchCriteria.languageImg}">
-    <img class="card-img-top" src="/images/${searchCriteria.languageImg}">
-  </c:if>
-  </li>
-  <li class="list-group-item">
-    <em>Category</em>
-    <c:if test="${not empty searchCriteria.category}">
-      <spring:message code="${searchCriteria.category}" />
-    </c:if>
-  </li>
-  <li class="list-group-item"><em>Location</em> ${searchCriteria.city}</li>
-</ul>
-</div>
-
 <c:forEach var="language" items="${languages}">
-<div class="col-sm-2">
+<div class="col-sm-3">
   <a href="#" onclick="chooseLang('${language.nativeLanguageName}', '${language.languageFlagImg}')">
       <div class="card" style="max-width: 10rem">
         <img class="card-img-top" src="/images/${language.languageFlagImg}">
@@ -35,15 +13,12 @@
   </a>
 </div>
 </c:forEach>
-
-
-</div>
 </div>
 
 <nav style="padding-top: 1em" aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item disabled">
-      <a class="page-link" href="${flowExecutionUrl}&_eventId=previous" tabindex="-1">Previous</a>
+      <a class="page-link" href="${flowExecutionUrl}&_eventId=previous">Previous</a>
     </li>
     <li class="page-item">
       <a class="page-link" href="${flowExecutionUrl}&_eventId=next">Next</a>
