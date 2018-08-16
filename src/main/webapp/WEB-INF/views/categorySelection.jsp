@@ -5,8 +5,9 @@
 <div class="row">
 <c:forEach var="category" items="${categories}">
 <div class="col-sm-3">
-    <a href="#" onclick="chooseCategory('${category.id}', '${category.categori}')">
+    <a href="#" onclick="chooseCategory('${category.id}', '${category.categori}', '${category.categoriImg}')">
         <div class="card">
+            <img class="card-img-top" src="/images/${category.categoriImg}">
             <div class="card-body">
                 <div class="card-text">
                     <spring:message code="${category.categori}" />
@@ -32,13 +33,15 @@
 <form:form style="display: none;" action="${flowExecutionUrl}" method="post" modelAttribute="searchCriteria">
   <form:input path="categoryId" id="categoryId" />
   <form:input path="category" id="category" />
+  <form:input path="categoryImg" id="categoryImg" />
   <input id="submit" type="submit" name="_eventId_selectCategory" />
 </form:form>
 
 <script type="text/javascript">
-    var chooseCategory = (catId, cat) => {
+    var chooseCategory = (catId, cat, catImg) => {
         $('#categoryId').val(catId);
         $('#category').val(cat);
+        $('#categoryImg').val(catImg);
         $('#submit').click();
     };
 </script>

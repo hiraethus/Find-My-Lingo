@@ -19,8 +19,8 @@
       </li>
       <li class="list-group-item">
         <em>Category</em>
-        <c:if test="${not empty searchCriteria.category}">
-          <spring:message code="${searchCriteria.category}" />
+        <c:if test="${not empty searchCriteria.categoryImg}">
+          <img class="card-img-top" src="/images/${searchCriteria.categoryImg}">
         </c:if>
       </li>
       <li class="list-group-item"><em>Location</em> ${searchCriteria.city}</li>
