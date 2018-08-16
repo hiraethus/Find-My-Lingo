@@ -63,7 +63,7 @@
         </update>
     </changeSet>
 
-    <changeSet author="hiraethus" id="add-categori-imgs">
+    <changeSet author="hiraethus" id="add-categori-imgs-2">
         <update tableName="CategoriEntity">
             <column name="category_img" value="restaurant-691397_1280_small.jpg" />
             <where>id = 1</where>
@@ -73,11 +73,11 @@
             <where>id = 2</where>
         </update>
         <update tableName="CategoriEntity">
-            <column name="category_img" value="restaurant-691397_1280_small.jpg" />
+            <column name="category_img" value="london-530055_1280_small.jpg" />
             <where>id = 3</where>
         </update>
         <update tableName="CategoriEntity">
-            <column name="category_img" value="london-530055_1280_small.jpg" />
+            <column name="category_img" value="restaurant-691397_1280_small.jpg" />
             <where>id = 4</where>
         </update>
     </changeSet>
