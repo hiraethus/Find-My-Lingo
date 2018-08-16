@@ -12,6 +12,7 @@ public class CategoriEntityToCategoriMapperTest {
         CategoriEntity categoriEntity = new CategoriEntity();
         categoriEntity.setId(118118l);
         categoriEntity.setCategori("My categori");
+        categoriEntity.setCategoryImg("my_img.jpg");
 
 
         // when
@@ -20,5 +21,6 @@ public class CategoriEntityToCategoriMapperTest {
 
         assertThat(result.getId(), equalTo(categoriEntity.getId()));
         assertThat(result.getCategori(), equalTo(categoriEntity.getCategori()));
+        assertThat(result.getCategoriImg(), equalTo(categoriEntity.getCategoryImg()));
     }
 }

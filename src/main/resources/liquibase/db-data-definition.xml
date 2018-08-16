@@ -315,4 +315,12 @@
             </column>
         </addColumn>
     </changeSet>
+
+    <changeSet author="hiraethus" id="hiraethus">
+        <addColumn tableName="CategoriEntity">
+            <column name="category_img" type="VARCHAR(255)">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

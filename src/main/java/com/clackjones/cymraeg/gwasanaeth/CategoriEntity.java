@@ -17,6 +17,9 @@ class CategoriEntity {
     @Column(name = "categori")
     protected String categori;
 
+    @Column(name="category_img", nullable = true)
+    private String categoryImg;
+
     public Long getId() {
         return id;
     }
@@ -40,5 +43,13 @@ class CategoriEntity {
 
     public void setGwasanaethau(Collection<GwasanaethEntity> gwasanaethau) {
         this.gwasanaethau = gwasanaethau;
+    }
+
+    public String getCategoryImg() {
+        return categoryImg;
+    }
+
+    public void setCategoryImg(String categoryImg) {
+        this.categoryImg = categoryImg;
     }
 }
