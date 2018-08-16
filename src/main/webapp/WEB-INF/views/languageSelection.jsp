@@ -9,7 +9,13 @@
   <a href="#" onclick="chooseLang('${language.nativeLanguageName}', '${language.languageFlagImg}')">
       <div class="card" style="max-width: 10rem">
         <img class="card-img-top" src="/images/${language.languageFlagImg}">
+          <div class="card-body">
+              <div class="card-text">
+                  ${language.nativeLanguageName}
+              </div>
+          </div>
       </div>
+
   </a>
 </div>
 </c:forEach>
