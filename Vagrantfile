@@ -65,7 +65,7 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    dnf upgrade -y
+    # dnf upgrade -y
 
     dnf install -y httpd
     dnf install -y java-1.8.0-openjdk # TODO: might need javac
@@ -87,19 +87,21 @@ Vagrant.configure("2") do |config|
     popd
 
     # add httpd configuration file
-    mkdir /var/www/findmylingo.local
+    mkdir -p /var/www/findmylingo.local/static
+    # TODO put static content in /var/www/findmylingo.local/static
     echo 'Hello, world!' > /var/www/findmylingo.local/index.html
-    cat /findmylingo/conf/httpd.conf >> /etc/httpd/conf/httpd.conf
 
-    systemctl enable httpd
-    systemctl start httpd
+    # copy findmylingo VirtualHosts config to httpd
+    cp /findmylingo/conf/find_my_lingo_httpd.conf /etc/httpd/conf.d/
 
     systemctl enable tomcat
     systemctl start tomcat
 
-    # TODO firewalld
-    # TODO httpd proxy traffic to tomcat
+    systemctl enable httpd
+    systemctl start httpd
 
+    # TODO firewalld - block all ports -
+    # TODO don't allow direct access to port 8080 - Tomcat
 
   SHELL
 end
