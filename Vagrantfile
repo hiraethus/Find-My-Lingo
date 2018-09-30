@@ -44,6 +44,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder ".", "/findmylingo"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -85,6 +86,11 @@ Vagrant.configure("2") do |config|
     source /etc/profile.d/maven.sh
     popd
 
+    # add httpd configuration file
+    mkdir /var/www/findmylingo.local
+    echo 'Hello, world!' > /var/www/findmylingo.local/index.html
+    cat /findmylingo/conf/httpd.conf >> /etc/httpd/conf/httpd.conf
+
     systemctl enable httpd
     systemctl start httpd
 
@@ -92,6 +98,7 @@ Vagrant.configure("2") do |config|
     systemctl start tomcat
 
     # TODO firewalld
+    # TODO httpd proxy traffic to tomcat
 
 
   SHELL
