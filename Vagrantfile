@@ -43,7 +43,6 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
   config.vm.synced_folder ".", "/findmylingo"
 
   # Provider-specific configuration so you can fine-tune various
@@ -68,9 +67,9 @@ Vagrant.configure("2") do |config|
     # dnf upgrade -y
 
     dnf install -y httpd
-    dnf install -y java-1.8.0-openjdk # TODO: might need javac
+    dnf install -y java-1.8.0-openjdk
 
-    dnf install -y tomcat tomcat-webapps tomcat-admin-webapps
+    dnf install -y tomcat
 
     # install xfce desktop for testing
     # install mariadb # TODO
@@ -89,10 +88,13 @@ Vagrant.configure("2") do |config|
     # add httpd configuration file
     mkdir -p /var/www/findmylingo.local/static
     # TODO put static content in /var/www/findmylingo.local/static
-    echo 'Hello, world!' > /var/www/findmylingo.local/index.html
 
     # copy findmylingo VirtualHosts config to httpd
     cp /findmylingo/conf/find_my_lingo_httpd.conf /etc/httpd/conf.d/
+
+    # deploy war as root (make sure run mvn clean package first
+    # copy war to webapps
+    cp  /findmylingo/target/ROOT.war /var/lib/tomcat/webapps/
 
     systemctl enable tomcat
     systemctl start tomcat
