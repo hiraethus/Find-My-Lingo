@@ -88,6 +88,7 @@ Vagrant.configure("2") do |config|
     # add httpd configuration file
     mkdir -p /var/www/findmylingo.local/static
     # TODO put static content in /var/www/findmylingo.local/static
+    cp -R /findmylingo/static/* /var/www/findmylingo.local/static
 
     # copy findmylingo VirtualHosts config to httpd
     cp /findmylingo/conf/find_my_lingo_httpd.conf /etc/httpd/conf.d/

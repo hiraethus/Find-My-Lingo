@@ -12,7 +12,7 @@ $( document ).ready(() => {
 </script>
 <nav style="margin-bottom: 1.5em" class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-  <a id="home" class="navbar-brand" href='<c:url value="/" />'><img style="transform: skewY(1deg); width: 2em" src="/images/hands-600497_960_720.jpg" class="rounded">
+  <a id="home" class="navbar-brand" href='<c:url value="/" />'><img style="transform: skewY(1deg); width: 2em" src="/static/img/logo.png" class="rounded">
 Find My Lingo <sup>alpha</sup></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
