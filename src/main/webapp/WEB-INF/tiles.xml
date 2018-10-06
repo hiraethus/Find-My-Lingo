@@ -164,4 +164,22 @@
     <!-- intercooler js ajax views -->
     <definition name="searchTable" template="/WEB-INF/components/rhestrGwasanaethau.jsp">
     </definition>
+
+
+    <!-- Add Service Wizard -->
+    <definition name="addNameLangCategory" template="/WEB-INF/tiles/large-body.jsp">
+        <put-attribute name="title" value="Find My Lingo - 1. Add Service - Name, Language and Category" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="add" />
+            </definition>
+        </put-attribute>
+        <put-attribute name="body">
+            <definition template="/WEB-INF/components/wizardStep.jsp">
+                <put-attribute name="stepName" value="1. Add Service - Name, Language and Category" />
+                <put-attribute name="body" value="/WEB-INF/views/addServiceNameCategoryLanguage.jsp" />
+            </definition>
+        </put-attribute>
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+    </definition>
 </tiles-definitions>

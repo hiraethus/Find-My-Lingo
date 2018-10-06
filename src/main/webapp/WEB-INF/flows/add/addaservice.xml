@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <var name="aService" class="com.clackjones.cymraeg.gwasanaeth.Gwasanaeth" />
+
+    <view-state id="addNameLangCategory" view="addNameLangCategory" model="aService">
+        <on-entry>
+            <evaluate expression="languageService.listAllLanguages()" result="viewScope.languages" />
+            <evaluate expression="categoriManager.findAll()" result="viewScope.categories" />
+        </on-entry>
+        <transition on="next" to="addContactDetails" />
+    </view-state>
+
+    <view-state id="addContactDetails" view="addContactDetails" model="searchCriteria">
+        <transition on="next" to="addServiceImages" />
+        <transition on="previous" to="addNameLangCategory" />
+    </view-state>
+
+    <view-state id="addServiceImages" view="addServiceImages" model="searchCriteria">
+        <transition on="previous" to="addContactDetails" />
+        <!-- TODO: on exit, persist gwasanaeth and redirect to page containing service -->
+        <!-- TODO: create views -->
+    </view-state>
+
+    <view-state id="showSearchResults" view="showSearchResults" model="searchCriteria">
+        <on-entry>
+            <evaluate expression="gwasanaethService.searchForServices(searchCriteria)" result="viewScope.gwasanaethau" />
+        </on-entry>
+    </view-state>
+</flow>
