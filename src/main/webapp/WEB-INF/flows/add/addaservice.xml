@@ -11,7 +11,7 @@
             <evaluate expression="languageService.listAllLanguages()" result="viewScope.languages" />
             <evaluate expression="categoriManager.findAll()" result="viewScope.categories" />
         </on-entry>
-        <transition on="next" to="addContactDetails" />
+        <transition on="next" to="setServiceNameLangAndCategory" />
     </view-state>
 
     <view-state id="addContactDetails" view="addContactDetails" model="searchCriteria">
