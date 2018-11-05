@@ -28,7 +28,14 @@
     <webflow:flow-executor id="flowExecutor" />
 
     <!-- configure view resolver -->
-    <webflow:flow-builder-services id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator"/>
+    <!-- conversion-service taken from mvc xml -->
+    <webflow:flow-builder-services id="flowBuilderServices"
+                                   view-factory-creator="mvcViewFactoryCreator"
+                                   conversion-service="flowConversionService" />
+
+    <bean id="flowConversionService" class="org.springframework.binding.convert.service.DefaultConversionService">
+        <constructor-arg ref="conversionService"/>
+    </bean>
 
     <bean id="mvcViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
         <property name="viewResolvers" ref="jspViewResolver"/>

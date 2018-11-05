@@ -35,6 +35,8 @@
         <property name="converters">
             <list>
                 <ref bean="languageConversionService" />
+                <ref bean="languageToStringConversionService" />
+                <ref bean="categoriConversionService" />
             </list>
         </property>
     </bean>

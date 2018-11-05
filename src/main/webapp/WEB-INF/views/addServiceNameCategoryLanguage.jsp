@@ -27,7 +27,7 @@ input[type="radio"]:checked+label{ opacity: 1.0; }
   <div class="row">
       <c:forEach var="language" items="${languages}">
         <div class="form-check form-check-inline">
-          <form:radiobutton class="form-check-input" path="language" id="${language.nativeLanguageName}" value="${language.nativeLanguageName}" />
+          <form:radiobutton class="form-check-input" path="language" id="${language.nativeLanguageName}" value="${language.id}" />
           <form:label path="language" class="form-check-label" for="${language.nativeLanguageName}">
           <div class="card" style="max-width: 10rem">
               <img id="${language.nativeLanguageName}" class="lang-img card-img-top inactive" src="/images/${language.languageFlagImg}">
@@ -48,7 +48,7 @@ input[type="radio"]:checked+label{ opacity: 1.0; }
   <div class="row">
       <c:forEach var="category" items="${categories}">
         <div class="form-check form-check-inline">
-          <form:radiobutton class="form-check-input" path="categori" id="${category.categori}" value="${category.categori}" />
+          <form:radiobutton class="form-check-input" path="categori" id="${category.categori}" value="${category.id}" />
           <form:label path="categori" class="form-check-label" for="${category.categori}">
              <div class="card" style="max-width: 10rem">
                  <img class="card-img-top" src="/images/${category.categoriImg}">
