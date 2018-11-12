@@ -50,10 +50,10 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
    config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
+     # Display the VirtualBox GUI when booting the machine
+     vb.gui = false
+
+     # Customize the amount of memory on the VM:
      vb.memory = "4096"
    end
   #
@@ -63,48 +63,5 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
-    # dnf upgrade -y
-
-    dnf install -y httpd
-    dnf install -y java-1.8.0-openjdk
-
-    dnf install -y tomcat
-
-    # install xfce desktop for testing
-    # install mariadb # TODO
-
-    # install maven
-    pushd /opt
-    wget https://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
-    tar xzf apache-maven-3.5.4-bin.tar.gz
-    ln -s apache-maven-3.5.4 maven
-
-    echo 'export M2_HOME=/opt/maven' >> /etc/profile.d/maven.sh
-    echo 'export PATH=${M2_HOME}/bin:${PATH}' >> /etc/profile.d/maven.sh
-    source /etc/profile.d/maven.sh
-    popd
-
-    # add httpd configuration file
-    mkdir -p /var/www/findmylingo.local/static
-    # TODO put static content in /var/www/findmylingo.local/static
-    cp -R /findmylingo/static/* /var/www/findmylingo.local/static
-
-    # copy findmylingo VirtualHosts config to httpd
-    cp /findmylingo/conf/find_my_lingo_httpd.conf /etc/httpd/conf.d/
-
-    # deploy war as root (make sure run mvn clean package first
-    # copy war to webapps
-    cp  /findmylingo/target/ROOT.war /var/lib/tomcat/webapps/
-
-    systemctl enable tomcat
-    systemctl start tomcat
-
-    systemctl enable httpd
-    systemctl start httpd
-
-    # TODO firewalld - block all ports -
-    # TODO don't allow direct access to port 8080 - Tomcat
-
-  SHELL
+  config.vm.provision "shell", path: "./scripts/vagrant-provision.sh"
 end
