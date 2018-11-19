@@ -18,21 +18,6 @@
     <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 </definition>
 
-<definition name="adioGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
-    <put-attribute name="title" value="Find My Lingo - Add Service" />
-    <put-attribute name="heading" value="Add Service" /> <!-- should be Adio gwasanaeth or the english -->
-    <put-attribute name="menu">
-        <definition template="/WEB-INF/tiles/menu.jsp">
-            <put-attribute name="current_tab" value="add" />
-        </definition>
-    </put-attribute>
-    <put-attribute name="body">
-        <definition template="/WEB-INF/views/adioGwasanaeth.jsp">
-            <put-attribute name="formMethod" value="POST" />
-        </definition>
-    </put-attribute>
-    <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
-</definition>
 
 <definition name="adolyguGwasanaeth" template="/WEB-INF/tiles/classic.jsp">
     <put-attribute name="title" value="Services Wales - Edit Service" />

@@ -5,7 +5,7 @@
 <%@ page isELIgnored="false" %>
 
 <c:set var="httpMethod"><tiles:getAsString name='formMethod' /></c:set>
-<form:form action="${pageContext.request.contextPath}/" modelAttribute="gwasanaeth" method='${httpMethod}'>
+<form:form action="${flowExecutionUrl}" modelAttribute="aService" method='${httpMethod}'>
     <form:hidden path="id" />
 
     <div class="row">
@@ -17,7 +17,7 @@
                 <form:select path="language" cssClass="form-control">
                     <c:forEach var="l" items="${languages}">
                     <c:choose>
-                        <c:when test="${gwasanaeth.language.id == l.id}">
+                        <c:when test="${aService.language.id == l.id}">
                             <form:option value="${l.id}" label="${l.nativeLanguageName}" selected="selected" />
                         </c:when>
                         <c:otherwise>
@@ -38,7 +38,7 @@
                 <form:select path="categori" cssClass="form-control">
                     <c:forEach var="c" items="${categoris}">
                     <c:choose>
-                        <c:when test="${gwasanaeth.categori.id == c.id}">
+                        <c:when test="${aService.categori.id == c.id}">
                             <form:option value="${c.id}" label="${c.categori}" selected="selected" />
                         </c:when>
                         <c:otherwise>
@@ -90,18 +90,22 @@
             </fieldset>
         </div>
     </div>
-
-    <div class="row">
-        <fieldset class="form-group">
-            <form:label path="disgrifiad"><spring:message code="form.description" /></form:label>
-            <form:textarea path="disgrifiad" rows="5" cols="30" class="form-control" />
-            <form:errors path="disgrifiad" cssStyle="color: red;"/>
-        </fieldset>
-    </div>
-
-    <div class="row">
-        <fieldset class="form-group">
-            <input type="submit" value='<spring:message code="form.submit" />' class="btn btn-primary" />
-        </fieldset>
-    </div>
+    <input style="display: none" id="submit" type="submit" name="_eventId_setServiceAddress" />
 </form:form>
+
+<nav style="padding-top: 1em" aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link" href="${flowExecutionUrl}&_eventId=previous">Previous</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#" onclick="next()">Next</a>
+    </li>
+  </ul>
+</nav>
+
+<script type="text/javascript">
+    var next = () => {
+        $('#submit').click();
+    };
+</script>

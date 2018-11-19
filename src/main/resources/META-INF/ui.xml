@@ -37,6 +37,7 @@
                 <ref bean="languageConversionService" />
                 <ref bean="languageToStringConversionService" />
                 <ref bean="categoriConversionService" />
+                <ref bean="categoriToStringConverter" />
             </list>
         </property>
     </bean>

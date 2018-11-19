@@ -11,8 +11,15 @@
             <evaluate expression="languageService.listAllLanguages()" result="viewScope.languages" />
             <evaluate expression="categoriManager.findAll()" result="viewScope.categories" />
         </on-entry>
-        <transition on="next" to="addNameLangCategory" />
+        <transition on="next" to="addAddress" />
+        <transition on="setServiceNameLangAndCategory" to="addAddress" />
     </view-state>
 
-
+    <!-- adioGwasanaeth -->
+    <view-state id="addAddress" view="adioGwasanaeth" model="aService">
+        <on-entry>
+            <evaluate  expression="categoriManager.findAll()" result="viewScope.categoris" />
+            <evaluate expression="languageService.listAllLanguages()" result="viewScope.languages" />
+        </on-entry>
+    </view-state>
 </flow>
