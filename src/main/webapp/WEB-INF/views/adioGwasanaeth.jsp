@@ -10,58 +10,6 @@
 
     <div class="row">
         <div class="col-md-6">
-            <h4><spring:message code="form.details" /></h4>
-            <fieldset class="form-group">
-                <form:errors path="language" cssStyle="color: red;"/>
-                <form:label path="language">Language</form:label>
-                <form:select path="language" cssClass="form-control">
-                    <c:forEach var="l" items="${languages}">
-                    <c:choose>
-                        <c:when test="${aService.language.id == l.id}">
-                            <form:option value="${l.id}" label="${l.nativeLanguageName}" selected="selected" />
-                        </c:when>
-                        <c:otherwise>
-                            <form:option value="${l.id}" label="${l.nativeLanguageName}" />
-                        </c:otherwise>
-                    </c:choose>
-                    </c:forEach>
-
-                </form:select>
-            </fieldset>
-            <fieldset class="form-group">
-                <form:label path="enw"><spring:message code="form.service.name" /></form:label>
-                <form:input path="enw" htmlEscape="false" class="form-control" />
-                <form:errors path="enw" cssStyle="color: red;"/>
-            </fieldset>
-            <fieldset class="form-group">
-                <form:label path="categori"><spring:message code="form.category" /></form:label>
-                <form:select path="categori" cssClass="form-control">
-                    <c:forEach var="c" items="${categoris}">
-                    <c:choose>
-                        <c:when test="${aService.categori.id == c.id}">
-                            <form:option value="${c.id}" label="${c.categori}" selected="selected" />
-                        </c:when>
-                        <c:otherwise>
-                            <form:option value="${c.id}" label="${c.categori}" />
-                        </c:otherwise>
-                    </c:choose>
-                    </c:forEach>
-
-                </form:select>
-            </fieldset>
-            <fieldset class="form-group">
-                <form:label path="rhifFfon"><spring:message code="form.phonenumber" /></form:label>
-                <form:input path="rhifFfon" class="form-control" />
-                <form:errors path="rhifFfon" cssStyle="color: red;"/>
-            </fieldset>
-            <fieldset class="form-group">
-                <form:label path="ebost"><spring:message code="form.email" /></form:label>
-                <form:input path="ebost" class="form-control" />
-                <form:errors path="ebost" cssStyle="color: red;"/>
-            </fieldset>
-        </div>
-
-        <div class="col-md-6">
             <h4><spring:message code="form.address" /></h4>
             <fieldset class="form-group">
                 <form:label path="cyfeiriadLlinellGyntaf"><spring:message code="form.first.line" /></form:label>
@@ -89,13 +37,26 @@
                 <form:errors path="cyfeiriadCodPost" cssStyle="color: red;"/>
             </fieldset>
         </div>
+            <div class="col-md-6">
+                <h4><spring:message code="form.details" /></h4>
+                <fieldset class="form-group">
+                    <form:label path="rhifFfon"><spring:message code="form.phonenumber" /></form:label>
+                    <form:input path="rhifFfon" class="form-control" />
+                    <form:errors path="rhifFfon" cssStyle="color: red;"/>
+                </fieldset>
+                <fieldset class="form-group">
+                    <form:label path="ebost"><spring:message code="form.email" /></form:label>
+                    <form:input path="ebost" class="form-control" />
+                    <form:errors path="ebost" cssStyle="color: red;"/>
+                </fieldset>
+            </div>
     </div>
     <input style="display: none" id="submit" type="submit" name="_eventId_setServiceAddress" />
 </form:form>
 
 <nav style="padding-top: 1em" aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
+    <li class="page-item">
       <a class="page-link" href="${flowExecutionUrl}&_eventId=previous">Previous</a>
     </li>
     <li class="page-item">

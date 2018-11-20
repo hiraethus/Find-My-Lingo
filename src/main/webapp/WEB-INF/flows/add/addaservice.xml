@@ -17,9 +17,7 @@
 
     <!-- adioGwasanaeth -->
     <view-state id="addAddress" view="adioGwasanaeth" model="aService">
-        <on-entry>
-            <evaluate  expression="categoriManager.findAll()" result="viewScope.categoris" />
-            <evaluate expression="languageService.listAllLanguages()" result="viewScope.languages" />
-        </on-entry>
+        <transition on="previous" to="addNameLangCategory" />
+        <transition on="next" to="addNameLangCategory" />
     </view-state>
 </flow>
