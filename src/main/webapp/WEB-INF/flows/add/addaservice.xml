@@ -18,6 +18,12 @@
     <!-- adioGwasanaeth -->
     <view-state id="addAddress" view="adioGwasanaeth" model="aService">
         <transition on="previous" to="addNameLangCategory" />
-        <transition on="next" to="addNameLangCategory" />
+        <transition on="next" to="serviceImageUpload" />
+        <transition on="setServiceAddress" to="serviceImageUpload" />
+    </view-state>
+
+    <!-- upload images -->
+    <view-state id="serviceImageUpload" view="serviceImageUpload" model="aService">
+
     </view-state>
 </flow>
