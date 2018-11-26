@@ -6,10 +6,10 @@
 
 <!-- image1 -->
 <form:form id="form1" action="/image/upload" method="POST" enctype="multipart/form-data">
-    <img id="img1" src="#"></div>
-    <input name="serviceId" style="display: none" value="42" type="number" />
+    <input name="serviceId" style="display: none" value="${aService.id}" type="text" />
     <table>
         <tr>
+            <!-- TODO: add image preview thumbnail -->
             <td><input type="file" name="file" /></td>
             <td><a href="#" onclick="uploadImg('form1')">Upload Image</a></td>
         </tr>
@@ -29,7 +29,7 @@
 
 <script type="text/javascript">
 uploadImg = (formId) => {
-    var formElement = document.querySelector("form")
+    var formElement = document.getElementById("form1")
     var request = new XMLHttpRequest()
     request.open("POST", "/uploadImg")
     request.send(new FormData(formElement))

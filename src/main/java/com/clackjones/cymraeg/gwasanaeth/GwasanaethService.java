@@ -130,6 +130,8 @@ public class GwasanaethService {
         gwasanaethEntity.setOwnerUsername(username);
         gwasanaethDao.persist(gwasanaethEntity);
 
+        gwasanaeth.setId(gwasanaethEntity.getId());
+
         return gwasanaethEntity.getId();
     }
 
@@ -177,6 +179,15 @@ public class GwasanaethService {
 
         gwasanaethToEntity.map(gwasanaeth, entity);
         gwasanaethDao.merge(entity);
+    }
+
+    @Transactional
+    public void saveOrUpdate(Gwasanaeth gwasanaeth, String name) throws GwasanaethNotFound, NoPermissionException {
+        if (gwasanaeth.getId() == null) {
+            saveGwasanaeth(gwasanaeth, name);
+        } else {
+            updateGwasanaeth(gwasanaeth, name);
+        }
     }
 
     public List<String> calculateAZServiceNames() {

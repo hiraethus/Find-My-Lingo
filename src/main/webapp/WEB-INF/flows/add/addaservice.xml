@@ -20,10 +20,13 @@
         <transition on="previous" to="addNameLangCategory" />
         <transition on="next" to="serviceImageUpload" />
         <transition on="setServiceAddress" to="serviceImageUpload" />
+        <on-exit>
+            <evaluate expression="gwasanaethService.saveOrUpdate(aService, currentUser.name)" />
+        </on-exit>
     </view-state>
 
     <!-- upload images -->
     <view-state id="serviceImageUpload" view="serviceImageUpload" model="aService">
-
+        <transition on="previous" to="addAddress" />
     </view-state>
 </flow>

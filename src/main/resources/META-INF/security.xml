@@ -8,6 +8,10 @@
         <intercept-url pattern="/add" method="GET"
                        access="hasRole('ROLE_CREATE_GWASANAETH')" />
 
+        <!-- TODO remove when rename add2 to add and delete add in Spring MVC -->
+        <intercept-url pattern="/add2/**" method="GET"
+                       access="hasRole('ROLE_CREATE_GWASANAETH')" />
+
         <intercept-url pattern="/edit/**" method="GET"
                        access="hasRole('ROLE_CREATE_GWASANAETH')" />
 
