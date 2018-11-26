@@ -7,12 +7,13 @@
 <!-- image1 -->
 <form:form id="form1" action="/image/upload" method="POST" enctype="multipart/form-data">
     <img id="img1" src="#"></div>
+    <input name="serviceId" style="display: none" value="42" type="number" />
     <table>
         <tr>
             <td><input type="file" name="file" /></td>
+            <td><a href="#" onclick="uploadImg('form1')">Upload Image</a></td>
         </tr>
     </table>
-    <a href="#" onclick="uploadImg('form1')">Upload Image</a>
 </form:form>
 
 <nav style="padding-top: 1em" aria-label="Page navigation example">

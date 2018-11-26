@@ -11,6 +11,11 @@
     <task:executor id="myExecutor" pool-size="5"/>
     <task:scheduler id="myScheduler" pool-size="10"/>
 
+    <!-- path to images directory -->
+    <bean id="imgRootDirectory" class="java.nio.file.Paths" factory-method="get">
+        <constructor-arg value="file:///images" />
+    </bean>
+
     <bean id="dbDialect" class="java.lang.String">
         <!--<constructor-arg value="org.hibernate.dialect.PostgreSQL91Dialect"/>-->
         <constructor-arg value="org.hibernate.dialect.H2Dialect"/>
