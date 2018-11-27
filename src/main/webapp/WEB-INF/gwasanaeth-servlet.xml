@@ -13,7 +13,7 @@
 
     <!-- path to images directory -->
     <bean id="imgRootDirectory" class="java.nio.file.Paths" factory-method="get">
-        <constructor-arg value="file:///images" />
+        <constructor-arg value="file:///var/www/findmylingo.local/static/service/images" />
     </bean>
 
     <bean id="dbDialect" class="java.lang.String">

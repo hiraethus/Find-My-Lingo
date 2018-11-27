@@ -10,6 +10,7 @@ dnf install -y tomcat
 # add httpd configuration file
 mkdir -p /var/www/findmylingo.local/static
 cp -R /findmylingo/static/* /var/www/findmylingo.local/static
+mkdir -p /var/www/findmylingo.local/static/service/images
 
 # copy findmylingo VirtualHosts config to httpd
 cp /findmylingo/conf/find_my_lingo_httpd.conf /etc/httpd/conf.d/
