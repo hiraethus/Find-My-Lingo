@@ -4,16 +4,17 @@ import org.springframework.stereotype.Repository
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
+import java.util.stream.Collectors
+import java.util.stream.Stream
 
 interface ImageRepo {
     fun addImageForService(serviceId: Long, img: java.io.File)
-//    fun getImagesForService(serviceId : Long): List<java.io.File>
+    fun getImagesForService(serviceId : Long): List<java.io.File>
 //    fun removeImageForService(serviceId: Long, img: java.io.File)
 }
 
 @Repository
 class FSImageRepo(private val rootDirectory: Path) : ImageRepo {
-
     override fun addImageForService(serviceId: Long, img: File) {
         if (!rootDirectory.toFile().exists()) {
             throw NoSuchFileException(rootDirectory.toFile(),
@@ -36,4 +37,16 @@ class FSImageRepo(private val rootDirectory: Path) : ImageRepo {
         return serviceDir
     }
 
+    override fun getImagesForService(serviceId: Long): List<File> {
+        val servicePath = rootDirectory.resolve(serviceId.toString())
+
+        if (!Files.exists(servicePath)) {
+            return listOf()
+        }
+
+        return Files.list(servicePath)
+                .filter{ Files.isRegularFile(it)}
+                .map { it.toFile() }
+                .collect(Collectors.toList())
+    }
 }
