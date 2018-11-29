@@ -27,11 +27,29 @@
   </ul>
 </nav>
 
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 <script type="text/javascript">
 uploadImg = (formId) => {
     var formElement = document.getElementById("form1")
     var request = new XMLHttpRequest()
     request.open("POST", "/uploadImg")
     request.send(new FormData(formElement))
+}
+
+getServiceImgs = (serviceId) => {
+    var csrfToken = document.getElementsByName('_csrf')[0].getAttribute('content')
+    var csrfHeader = document.getElementsByName('_csrf_header')[0].getAttribute('content')
+
+    var request = new XMLHttpRequest()
+
+    request.open("GET", "/getServiceImgs/"+serviceId)
+    request.setRequestHeader(csrfHeader, csrfToken)
+    request.onload = (e) => {
+        console.log(request.responseText)
+    }
+
+    request.send()
 }
 </script>
