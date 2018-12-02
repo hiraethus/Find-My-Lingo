@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import java.io.File
 import java.nio.file.Files
-import java.nio.file.Path
 
 @RestController
 class ImageUploadController(val imageRepo: ImageRepo) {
@@ -31,10 +30,14 @@ class ImageUploadController(val imageRepo: ImageRepo) {
     }
 
     @RequestMapping(path=["/getServiceImgs/{serviceId}"], method = arrayOf(RequestMethod.GET))
-    fun getServiceImgURLs(@PathVariable(name = "serviceId") serviceId: String) : List<String> {
+    fun getServiceImgURLs(@PathVariable(name = "serviceId") serviceId: String) : String {
         //TODO: marshall to json and show images in <div id="imgs" /> in serviceImageUpload
-        return this.imageRepo.getImagesForService(serviceId.toLong())
+        val serviceImgPaths = this.imageRepo.getImagesForService(serviceId.toLong())
                 .map { it.toPath() }
                 .map { it.subpath(3, it.nameCount).toString() }
+
+        return serviceImgPaths
+                .map{ "\"${it.toString()}\""}
+                .joinToString(",", prefix = "[", postfix = "]")
     }
 }

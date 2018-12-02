@@ -4,6 +4,8 @@
 <%@ page isELIgnored="false" %>
 
 
+<div id="service-images"></div>
+
 <!-- image1 -->
 <form:form id="form1" action="/image/upload" method="POST" enctype="multipart/form-data">
     <input name="serviceId" style="display: none" value="${aService.id}" type="text" />
@@ -35,21 +37,42 @@ uploadImg = (formId) => {
     var formElement = document.getElementById("form1")
     var request = new XMLHttpRequest()
     request.open("POST", "/uploadImg")
+    request.onload = (e) => {
+        serviceId = document.getElementsByName("serviceId")[0].value
+        getServiceImgs(serviceId)
+    }
     request.send(new FormData(formElement))
 }
 
 getServiceImgs = (serviceId) => {
-    var csrfToken = document.getElementsByName('_csrf')[0].getAttribute('content')
-    var csrfHeader = document.getElementsByName('_csrf_header')[0].getAttribute('content')
+    csrfToken = document.getElementsByName('_csrf')[0].getAttribute('content')
+    csrfHeader = document.getElementsByName('_csrf_header')[0].getAttribute('content')
 
-    var request = new XMLHttpRequest()
+    request = new XMLHttpRequest()
 
     request.open("GET", "/getServiceImgs/"+serviceId)
     request.setRequestHeader(csrfHeader, csrfToken)
     request.onload = (e) => {
         console.log(request.responseText)
+        arrayOfImgs = JSON.parse(request.responseText)
+
+        imgsDiv = document.getElementById("service-images")
+        while (imgsDiv.firstChild) {
+            imgsDiv.removeChild(imgsDiv.firstChild);
+        }
+
+        arrayOfImgs.forEach((imgUrl) => {
+            nxtImg = document.createElement("img")
+            nxtImg.setAttribute("src", "/" + imgUrl)
+            imgsDiv.appendChild(nxtImg)
+        })
     }
 
     request.send()
+}
+
+window.onload = () => {
+    serviceId = document.getElementsByName("serviceId")[0].value
+    getServiceImgs(serviceId)
 }
 </script>
