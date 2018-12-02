@@ -62,13 +62,19 @@ getServiceImgs = (serviceId) => {
         }
 
         arrayOfImgs.forEach((imgUrl) => {
-            nxtImg = document.createElement("img")
-            nxtImg.setAttribute("src", "/" + imgUrl)
-            imgsDiv.appendChild(nxtImg)
+            imgsDiv.appendChild(createImgCard(imgUrl))
         })
     }
 
     request.send()
+}
+
+createImgCard = (imgUrl) => {
+    cardTemplate = document.querySelector("template")
+    card = document.importNode(cardTemplate.content, true)
+    card.querySelector("img").setAttribute("src", "/" + imgUrl)
+
+    return card
 }
 
 window.onload = () => {
@@ -76,3 +82,9 @@ window.onload = () => {
     getServiceImgs(serviceId)
 }
 </script>
+
+<template>
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="...">
+    </div>
+</template>
