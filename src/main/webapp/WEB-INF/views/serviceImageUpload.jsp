@@ -4,16 +4,14 @@
 <%@ page isELIgnored="false" %>
 
 
-<div id="service-images"></div>
+<div id="service-images" class="d-flex flex-wrap"></div>
 
 <!-- image1 -->
 <form:form id="form1" action="/image/upload" method="POST" enctype="multipart/form-data">
     <input name="serviceId" style="display: none" value="${aService.id}" type="text" />
     <table>
         <tr>
-            <!-- TODO: add image preview thumbnail -->
-            <td><input type="file" name="file" /></td>
-            <td><a href="#" onclick="uploadImg('form1')">Upload Image</a></td>
+            <td><input type="file" name="file" onchange="uploadImg('form1')" /></td>
         </tr>
     </table>
 </form:form>
@@ -84,7 +82,7 @@ window.onload = () => {
 </script>
 
 <template>
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 10rem;">
       <img class="card-img-top" src="...">
     </div>
 </template>
