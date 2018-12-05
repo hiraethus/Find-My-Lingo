@@ -5,11 +5,7 @@
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
     <http use-expressions="true" auto-config="true">
-        <intercept-url pattern="/add" method="GET"
-                       access="hasRole('ROLE_CREATE_GWASANAETH')" />
-
-        <!-- TODO remove when rename add2 to add and delete add in Spring MVC -->
-        <intercept-url pattern="/add2/**" method="GET"
+        <intercept-url pattern="/add/**" method="GET"
                        access="hasRole('ROLE_CREATE_GWASANAETH')" />
 
         <intercept-url pattern="/edit/**" method="GET"

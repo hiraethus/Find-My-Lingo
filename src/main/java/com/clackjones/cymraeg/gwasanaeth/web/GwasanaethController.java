@@ -60,43 +60,6 @@ public class GwasanaethController {
         binder.registerCustomEditor(SafonEnum.class, safonEditor);
     }
 
-    @RequestMapping(path = "add", method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ROLE_CREATE_GWASANAETH')")
-    public ModelAndView addForm(Model model, Principal principal, Locale locale) {
-        List<Categori> categoris = categoriManager.findAll();
-
-        // for when incorrect details entered and we need to pass the
-        // same gwasanaeth back in
-        Gwasanaeth gwasanaeth;
-        if (model.containsAttribute("gwasanaeth")) {
-            gwasanaeth = (Gwasanaeth)model.asMap().get("gwasanaeth");
-        } else {
-            gwasanaeth = new Gwasanaeth();
-            gwasanaeth.setEbost(principal.getName());
-        }
-
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("gwasanaeth", gwasanaeth);
-        map.put("categoris", localizedCategoris(locale));
-        map.put("languages", languageService.listAllLanguages());
-
-        return new ModelAndView("adioGwasanaeth", map);
-    }
-
-    @RequestMapping(path = "/", method = RequestMethod.POST)
-    public ModelAndView submitForm(@Valid @ModelAttribute("gwasanaeth") Gwasanaeth gwasanaeth, BindingResult result,
-                                   RedirectAttributes attr, Principal principal) {
-        if (result.hasErrors()) {
-            attr.addFlashAttribute("org.springframework.validation.BindingResult.gwasanaeth", result);
-            attr.addFlashAttribute("gwasanaeth", gwasanaeth);
-            return new ModelAndView("redirect:add");
-        }
-
-        Long id = gwasanaethService.saveGwasanaeth(gwasanaeth, principal.getName());
-
-        return new ModelAndView("redirect:id/"+id);
-    }
-
     @RequestMapping(path = "/", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('ROLE_CREATE_GWASANAETH')")
     public ModelAndView updateGwasanaeth(@Valid @ModelAttribute("gwasanaeth") Gwasanaeth gwasanaeth, BindingResult result,
