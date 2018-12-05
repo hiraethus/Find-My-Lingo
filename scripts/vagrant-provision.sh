@@ -11,6 +11,8 @@ dnf install -y tomcat
 mkdir -p /var/www/findmylingo.local/static
 cp -R /findmylingo/static/* /var/www/findmylingo.local/static
 mkdir -p /var/www/findmylingo.local/static/service/images
+# TODO: find out how to make these permissions tighter
+sudo chmod 777 /var/www/findmylingo.local/static/service/images
 
 # copy findmylingo VirtualHosts config to httpd
 cp /findmylingo/conf/find_my_lingo_httpd.conf /etc/httpd/conf.d/
