@@ -7,7 +7,7 @@ import java.nio.file.Files
 
 @RestController
 class ImageUploadController(val imageRepo: ImageRepo) {
-    @RequestMapping(path= ["/uploadImg"], method = arrayOf(RequestMethod.POST))
+    @RequestMapping(path= arrayOf("/uploadImg"), method = arrayOf(RequestMethod.POST))
     fun uploadImg(@RequestParam(name = "serviceId") serviceId : String,
                   @RequestParam(name = "file") file: MultipartFile): Int {
 
@@ -20,6 +20,13 @@ class ImageUploadController(val imageRepo: ImageRepo) {
         return 1
     }
 
+    @RequestMapping(path = arrayOf("/removeImg"), method = arrayOf(RequestMethod.POST))
+    fun removeImg(@RequestParam(name = "imgUrl") imgUrl  : String): Int {
+        this.imageRepo.removeImageForService(File(imgUrl))
+
+        return 1
+    }
+
     private fun multipartToFile(multipartFile: MultipartFile) : File {
         val tempDir = Files.createTempDirectory("tempImages")
         val imgFile = tempDir.resolve(multipartFile.originalFilename)
@@ -29,7 +36,7 @@ class ImageUploadController(val imageRepo: ImageRepo) {
         return createdImgFile
     }
 
-    @RequestMapping(path=["/getServiceImgs/{serviceId}"], method = arrayOf(RequestMethod.GET))
+    @RequestMapping(path=arrayOf("/getServiceImgs/{serviceId}"), method = arrayOf(RequestMethod.GET))
     fun getServiceImgURLs(@PathVariable(name = "serviceId") serviceId: String) : String {
         //TODO: marshall to json and show images in <div id="imgs" /> in serviceImageUpload
         val serviceImgPaths = this.imageRepo.getImagesForService(serviceId.toLong())

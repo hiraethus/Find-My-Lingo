@@ -1,0 +1,12 @@
+
+.img-card {
+    width: 25rem;
+}
+
+.card-delete-btn {
+    bottom: 1em;
+    left: calc(50% - 3em);
+    position: absolute;
+    width: 6em;
+    z-index: 1;
+}

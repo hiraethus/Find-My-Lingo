@@ -3,10 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
 
-
 <div id="service-images" class="d-flex flex-wrap"></div>
 
-<!-- image1 -->
 <form:form id="form1" action="/image/upload" method="POST" enctype="multipart/form-data">
     <input name="serviceId" style="display: none" value="${aService.id}" type="text" />
     <table>
@@ -71,8 +69,29 @@ createImgCard = (imgUrl) => {
     cardTemplate = document.querySelector("template")
     card = document.importNode(cardTemplate.content, true)
     card.querySelector("img").setAttribute("src", "/" + imgUrl)
+    card.querySelector('a').onclick = () => deleteImg("/" + imgUrl)
 
     return card
+}
+
+deleteImg = (imgUrl) => {
+    console.log('Deleting img at ' + imgUrl)
+    csrfHeader = document.getElementsByName('_csrf_header')[0].getAttribute('content')
+
+
+    request = new XMLHttpRequest()
+    request.open("POST", "/removeImg")
+    request.setRequestHeader(csrfHeader, '${_csrf.token}')
+    request.onload = (e) => {
+        serviceId = document.getElementsByName("serviceId")[0].value
+        getServiceImgs(serviceId)
+    }
+
+    formData = new FormData()
+    formData.append('imgUrl', imgUrl)
+    formData.append('_csrf', '${_csrf.token}')
+
+    request.send(formData)
 }
 
 window.onload = () => {
@@ -82,7 +101,8 @@ window.onload = () => {
 </script>
 
 <template>
-    <div class="card" style="width: 10rem;">
+    <div class="card img-card"">
       <img class="card-img-top" src="...">
+      <a href="#" class="btn btn-danger card-delete-btn">Delete</a>
     </div>
 </template>

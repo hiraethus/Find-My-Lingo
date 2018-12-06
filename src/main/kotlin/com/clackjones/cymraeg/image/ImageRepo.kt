@@ -1,20 +1,37 @@
 package com.clackjones.cymraeg.image
 
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Repository
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 import java.util.stream.Collectors
-import java.util.stream.Stream
 
 interface ImageRepo {
     fun addImageForService(serviceId: Long, img: java.io.File)
     fun getImagesForService(serviceId : Long): List<java.io.File>
-//    fun removeImageForService(serviceId: Long, img: java.io.File)
+    fun removeImageForService(img: java.io.File)
 }
 
 @Repository
 class FSImageRepo(private val rootDirectory: Path) : ImageRepo {
+    final val logger = LoggerFactory.getLogger(FSImageRepo::class.java)
+
+    override fun removeImageForService(img: File) {
+        val imgPath = img.toPath()
+        val relativeImgPath = imgPath.subpath(3, imgPath.nameCount)
+
+        val imgFile = rootDirectory.resolve(relativeImgPath).toFile()
+        logger.trace("imgFile path: ${imgFile.toPath()}")
+
+        val deletedSuccess = imgFile.delete()
+        if (deletedSuccess) {
+            logger.info("Deleted ${imgPath} successfully")
+        } else {
+            logger.info(" Failed to deleted ${imgPath} successfully")
+        }
+    }
+
     override fun addImageForService(serviceId: Long, img: File) {
         if (!rootDirectory.toFile().exists()) {
             throw NoSuchFileException(rootDirectory.toFile(),

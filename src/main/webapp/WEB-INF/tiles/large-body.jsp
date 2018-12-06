@@ -15,6 +15,7 @@
     <link href="${pageContext.request.contextPath}/css/logo.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/sticky-footer.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/categories.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/css/findmylingo.css" rel="stylesheet" />
   </head>
   <body>
 
