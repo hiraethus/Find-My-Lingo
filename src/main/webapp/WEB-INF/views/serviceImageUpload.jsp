@@ -20,7 +20,7 @@
       <a class="page-link" href="${flowExecutionUrl}&_eventId=previous">Previous</a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#" onclick="next()">Next</a>
+      <a class="page-link" href="${flowExecutionUrl}&_eventId=next">Finish</a>
     </li>
   </ul>
 </nav>

@@ -28,5 +28,8 @@
     <!-- upload images -->
     <view-state id="serviceImageUpload" view="serviceImageUpload" model="aService">
         <transition on="previous" to="addAddress" />
+        <transition on="next" to="finish" />
     </view-state>
+
+    <end-state id="finish" view="externalRedirect:/id/#{aService.id}" />
 </flow>
