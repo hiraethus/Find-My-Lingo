@@ -7,32 +7,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page isELIgnored="false" %>
 
-<style type="text/css">
-    input[type='radio'] {
-        background: none;
-    }
-
-    input[type='radio'] + label {
-        font-size: 1.5em;
-    }
-
-    input[type='radio'] + label.DA:after {
-        content: "\1F44C";
-    }
-
-    input[type='radio'] + label.GWEDDOL:after {
-        content: "\1F44D";
-    }
-
-    input[type='radio'] + label.GWAEL:after {
-        content: "\1F44E";
-    }
-
-     input[type='radio']:checked + label:after {
-            box-shadow: 0 4px 2px -2px gray;
-     }
-</style>
-
 <div class="jumbotron">
     <div class="row">
 
@@ -100,3 +74,10 @@
     }
 </style>
 </c:if>
+
+<template>
+    <div class="card img-card">
+      <img class="card-img-top" src="...">
+      <a href="#" class="btn btn-danger card-delete-btn">Delete</a>
+    </div>
+</template>

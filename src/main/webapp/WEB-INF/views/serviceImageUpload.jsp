@@ -3,7 +3,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
 
-<div id="service-images" class="d-flex flex-wrap"></div>
+<template>
+    <div class="card img-card"">
+      <img class="card-img-top" src="...">
+      <a href="#" class="btn btn-danger card-delete-btn">Delete</a>
+    </div>
+</template>
 
 <form:form id="form1" action="/image/upload" method="POST" enctype="multipart/form-data">
     <input name="serviceId" style="display: none" value="${aService.id}" type="text" />
@@ -101,7 +106,7 @@ window.onload = () => {
 </script>
 
 <template>
-    <div class="card img-card"">
+    <div class="card img-card">
       <img class="card-img-top" src="...">
       <a href="#" class="btn btn-danger card-delete-btn">Delete</a>
     </div>

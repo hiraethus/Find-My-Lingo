@@ -135,7 +135,7 @@ public class GwasanaethController {
     public ModelAndView viewGwasanaeth(@PathVariable("id") Long id) {
         Gwasanaeth gwasanaeth = gwasanaethService.findById(id);
 
-        ModelAndView modelAndView = new ModelAndView("gweldGwasanaeth", "gwasanaeth", gwasanaeth);
+        ModelAndView modelAndView = new ModelAndView("viewService", "gwasanaeth", gwasanaeth);
         modelAndView.addObject("heading", gwasanaeth.getEnw());
         modelAndView.addObject("sylw", new Sylw());
         modelAndView.addObject("safonnau", SafonEnum.values());
