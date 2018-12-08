@@ -20,10 +20,10 @@ Find My Lingo <sup>alpha</sup></a>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a id="find" class="nav-link" href='<c:url value="/find" />'>Find Service</a></li>
+        <a id="find" class="nav-link" href='<c:url value="/find" />'>Find Service</a>
       </li>
       <li class="nav-item">
-        <a id="add" class="nav-link" href='<c:url value="/add" />'>Add Service</a></li>
+        <a id="add" class="nav-link" href='<c:url value="/add" />'>Add Service</a>
       </li>
       <li class="nav-item">
         <a id="about" class="nav-link" href="/about">About</a>
@@ -38,18 +38,16 @@ Find My Lingo <sup>alpha</sup></a>
         </span>
       </c:when>
       <c:otherwise>
-      <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 <spring:message code="menu.my.services" />
-               </a>
-               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                 <a class="dropdown-item" href="<c:url value="/user/profile" />"><spring:message code="menu.my.services" /></a>
-                 <div class="dropdown-divider"></div>
-                 <a onclick="$('#logoutButton').click();" class="dropdown-item" href="#"><spring:message code='menu.logout' /></a>
-               </div>
-             </li>
-        </ul>
+        <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <spring:message code="menu.my.services" />
+           </a>
+           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+             <a class="dropdown-item" href="<c:url value="/user/profile" />"><spring:message code="menu.my.services" /></a>
+             <div class="dropdown-divider"></div>
+             <a onclick="$('#logoutButton').click();" class="dropdown-item" href="#"><spring:message code='menu.logout' /></a>
+           </div>
+         </li>
         <c:url var="logoutUrl" value="/logout"/>
         <form style="display: none" action="${logoutUrl}" method="post">
             <input id="logoutButton" type="submit" />
@@ -57,6 +55,7 @@ Find My Lingo <sup>alpha</sup></a>
         </form>
       </c:otherwise>
     </c:choose>
+    </ul>
   </div>
   </div>
 
