@@ -5,13 +5,14 @@
 <tiles-definitions>
 
 
-    <definition name="viewService" template="/WEB-INF/tiles/classic.jsp">
+    <definition name="viewService" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Find My Lingo - View Service" />
         <put-attribute name="menu">
             <definition template="/WEB-INF/tiles/menu.jsp">
                 <put-attribute name="current_tab" value="home" />
             </definition>
-        </put-attribute>        <put-attribute name="body" value="/WEB-INF/views/viewService.jsp" />
+        </put-attribute>
+        <put-attribute name="body" value="/WEB-INF/views/viewService.jsp" />
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 

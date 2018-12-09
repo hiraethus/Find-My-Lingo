@@ -10,3 +10,9 @@
     width: 6em;
     z-index: 1;
 }
+
+/* google maps */
+#map {
+    height: 30em;
+    width: 30em;
+}

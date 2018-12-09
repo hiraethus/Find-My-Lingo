@@ -11,6 +11,8 @@ class ImageUploadController(val imageRepo: ImageRepo) {
     fun uploadImg(@RequestParam(name = "serviceId") serviceId : String,
                   @RequestParam(name = "file") file: MultipartFile): Int {
 
+        // TODO: check owner is logged in
+
 //        TODO: reject file if not png/jpg/tif etc.
 //        TODO: reject if file size too large.
         val imgFile = multipartToFile(file)
@@ -22,6 +24,7 @@ class ImageUploadController(val imageRepo: ImageRepo) {
 
     @RequestMapping(path = arrayOf("/removeImg"), method = arrayOf(RequestMethod.POST))
     fun removeImg(@RequestParam(name = "imgUrl") imgUrl  : String): Int {
+        // TODO: check owner is logged in - get from the servlet
         this.imageRepo.removeImageForService(File(imgUrl))
 
         return 1

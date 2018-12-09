@@ -58,6 +58,7 @@ public class GwasanaethEntityToGwasanaethMapper {
             Language l = new Language();
             l.setId(entity.getLanguage().getId());
             l.setNativeLanguageName(entity.getLanguage().getNativeLangName());
+            l.setLanguageFlagImg(entity.getLanguage().getLanguageFlagImg());
             gwasanaeth.setLanguage(l);
         }
 
