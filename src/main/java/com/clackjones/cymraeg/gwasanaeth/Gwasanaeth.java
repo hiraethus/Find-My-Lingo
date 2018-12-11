@@ -4,6 +4,7 @@ import com.clackjones.cymraeg.language.Language;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -121,12 +122,13 @@ public class Gwasanaeth implements java.io.Serializable {
         this.cyfeiriadCodPost = cyfeiriadCodPost;
     }
 
-    public void setCategori(Categori categori) {
-        this.categori = categori;
-    }
-
+    @NotNull(message = "Please choose a category", groups = Screen1.class)
     public Categori getCategori() {
         return categori;
+    }
+
+    public void setCategori(Categori categori) {
+        this.categori = categori;
     }
 
     public Collection<Sylw> getSylwadau() {
@@ -145,12 +147,13 @@ public class Gwasanaeth implements java.io.Serializable {
         this.owner = owner;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
-
+    @NotNull(message = "Please choose a language", groups = Screen1.class)
     public Language getLanguage() {
         return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
     public BigDecimal getLongitude() {

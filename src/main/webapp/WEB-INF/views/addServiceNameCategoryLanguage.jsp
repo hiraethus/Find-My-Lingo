@@ -26,6 +26,9 @@ input[type="radio"]:checked+label{ opacity: 1.0; }
     <h5>Language</h5>
   </div>
   <div class="row">
+    <form:errors path="language" element="div" cssClass="alert alert-warning" />
+  </div>
+  <div class="row">
       <c:forEach var="language" items="${languages}">
         <div class="form-check form-check-inline">
           <c:choose>
@@ -52,6 +55,9 @@ input[type="radio"]:checked+label{ opacity: 1.0; }
 
   <div class="row">
     <h5>Category</h5>
+  </div>
+  <div class="row">
+    <form:errors path="categori" element="div" cssClass="alert alert-warning" />
   </div>
   <div class="row">
       <c:forEach var="category" items="${categories}">
