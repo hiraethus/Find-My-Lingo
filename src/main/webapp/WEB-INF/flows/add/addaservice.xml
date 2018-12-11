@@ -29,6 +29,9 @@
     <view-state id="serviceImageUpload" view="serviceImageUpload" model="aService">
         <transition on="previous" to="addAddress" />
         <transition on="next" to="finish" />
+        <on-exit>
+            <evaluate expression="gwasanaethService.saveOrUpdate(aService, currentUser.name)" />
+        </on-exit>
     </view-state>
 
     <end-state id="finish" view="externalRedirect:/id/#{aService.id}" />

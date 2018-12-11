@@ -67,6 +67,6 @@
 
 <script type="text/javascript">
     var next = () => {
-        $('#submit').click();
-    };
+        $('#submit').click()
+    }
 </script>
