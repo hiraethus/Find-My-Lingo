@@ -6,7 +6,7 @@
 
     <var name="aService" class="com.clackjones.cymraeg.gwasanaeth.Gwasanaeth" />
 
-    <view-state id="addNameLangCategory" view="addNameLangCategory" model="aService">
+    <view-state id="addNameLangCategory" view="addNameLangCategory" model="aService" validation-hints="'screen1'">
         <on-entry>
             <evaluate expression="languageService.listAllLanguages()" result="viewScope.languages" />
             <evaluate expression="categoriManager.findAll()" result="viewScope.categories" />
@@ -16,7 +16,7 @@
     </view-state>
 
     <!-- adioGwasanaeth -->
-    <view-state id="addAddress" view="adioGwasanaeth" model="aService">
+    <view-state id="addAddress" view="adioGwasanaeth" model="aService"  validation-hints="'screen2'">
         <transition on="previous" to="addNameLangCategory" />
         <transition on="next" to="serviceImageUpload" />
         <transition on="setServiceAddress" to="serviceImageUpload" />

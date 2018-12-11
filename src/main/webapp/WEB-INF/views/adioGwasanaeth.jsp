@@ -13,41 +13,41 @@
             <h4><spring:message code="form.address" /></h4>
             <fieldset class="form-group">
                 <form:label path="cyfeiriadLlinellGyntaf"><spring:message code="form.first.line" /></form:label>
+                <form:errors path="cyfeiriadLlinellGyntaf" element="div" cssClass="alert alert-warning"/>
                 <form:input path="cyfeiriadLlinellGyntaf" class="form-control"/>
-                <form:errors path="cyfeiriadLlinellGyntaf" cssStyle="color: red;"/>
             </fieldset>
             <fieldset class="form-group">
                 <form:label path="cyfeiriadAilLinell"><spring:message code="form.second.line" /></form:label>
+                <form:errors path="cyfeiriadAilLinell" element="div" cssClass="alert alert-warning"/>
                 <form:input path="cyfeiriadAilLinell" class="form-control"/>
-                <form:errors path="cyfeiriadAilLinell" cssStyle="color: red;"/>
             </fieldset>
             <fieldset class="form-group">
                 <form:label path="cyfeiriadDinas"><spring:message code="form.city" /></form:label>
+                <form:errors path="cyfeiriadDinas" element="div" cssClass="alert alert-warning"/>
                 <form:input path="cyfeiriadDinas" class="form-control"/>
-                <form:errors path="cyfeiriadDinas" cssStyle="color: red;"/>
             </fieldset>
             <fieldset class="form-group">
                 <form:label path="cyfeiriadSir"><spring:message code="form.county" /></form:label>
+                <form:errors path="cyfeiriadSir" element="div" cssClass="alert alert-warning"/>
                 <form:input path="cyfeiriadSir" class="form-control"/>
-                <form:errors path="cyfeiriadSir" cssStyle="color: red;"/>
             </fieldset>
             <fieldset class="form-group">
                 <form:label path="cyfeiriadCodPost"><spring:message code="form.postcode" /></form:label>
+                <form:errors path="cyfeiriadCodPost" element="div" cssClass="alert alert-warning"/>
                 <form:input path="cyfeiriadCodPost" class="form-control"/>
-                <form:errors path="cyfeiriadCodPost" cssStyle="color: red;"/>
             </fieldset>
         </div>
             <div class="col-md-6">
                 <h4><spring:message code="form.details" /></h4>
                 <fieldset class="form-group">
                     <form:label path="rhifFfon"><spring:message code="form.phonenumber" /></form:label>
+                    <form:errors path="rhifFfon" element="div" cssClass="alert alert-warning"/>
                     <form:input path="rhifFfon" class="form-control" />
-                    <form:errors path="rhifFfon" cssStyle="color: red;"/>
                 </fieldset>
                 <fieldset class="form-group">
                     <form:label path="ebost"><spring:message code="form.email" /></form:label>
+                    <form:errors path="ebost" element="div" cssClass="alert alert-warning"/>
                     <form:input path="ebost" class="form-control" />
-                    <form:errors path="ebost" cssStyle="color: red;"/>
                 </fieldset>
             </div>
     </div>

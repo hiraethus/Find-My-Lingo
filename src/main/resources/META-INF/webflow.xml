@@ -31,7 +31,10 @@
     <!-- conversion-service taken from mvc xml -->
     <webflow:flow-builder-services id="flowBuilderServices"
                                    view-factory-creator="mvcViewFactoryCreator"
-                                   conversion-service="flowConversionService" />
+                                   conversion-service="flowConversionService"
+                                   validator="validator"/>
+
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
     <bean id="flowConversionService" class="org.springframework.binding.convert.service.DefaultConversionService">
         <constructor-arg ref="conversionService"/>

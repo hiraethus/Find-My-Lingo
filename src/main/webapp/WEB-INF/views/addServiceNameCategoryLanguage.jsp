@@ -19,6 +19,7 @@ input[type="radio"]:checked+label{ opacity: 1.0; }
 </style>
 
 <form:form action="${flowExecutionUrl}" method="post" modelAttribute="aService">
+  <form:errors path="enw" element="div" cssClass="alert alert-warning" />
   <form:input path="enw" id="enw" class="name-input" placeholder="Type Service Name Here"/>
 
   <div class="row">
