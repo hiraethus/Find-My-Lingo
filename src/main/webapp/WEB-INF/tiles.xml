@@ -169,7 +169,7 @@
 
     <!-- Add Service Wizard -->
     <definition name="addNameLangCategory" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Find My Lingo - 1. Add Service - Name, Language and Category" />
+        <put-attribute name="title" value="Find My Lingo - 1. Name, Language and Category" />
         <put-attribute name="menu">
             <definition template="/WEB-INF/tiles/menu.jsp">
                 <put-attribute name="current_tab" value="add" />
@@ -177,7 +177,7 @@
         </put-attribute>
         <put-attribute name="body">
             <definition template="/WEB-INF/components/wizardStep.jsp">
-                <put-attribute name="stepName" value="1. Add Service - Name, Language and Category" />
+                <put-attribute name="stepName" value="1. Name, Language and Category" />
                 <put-attribute name="body" value="/WEB-INF/views/addServiceNameCategoryLanguage.jsp" />
             </definition>
         </put-attribute>
@@ -186,7 +186,7 @@
 
     <!-- Add Service Wizard -->
     <definition name="adioGwasanaeth" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Find My Lingo - Adio" />
+        <put-attribute name="title" value="Find My Lingo - 2. Contact Details" />
         <put-attribute name="menu">
             <definition template="/WEB-INF/tiles/menu.jsp">
                 <put-attribute name="current_tab" value="add" />
@@ -207,7 +207,7 @@
 
     <!-- Add Service Wizard -->
     <definition name="serviceImageUpload" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Find My Lingo - Adio" />
+        <put-attribute name="title" value="Find My Lingo - 3. Images and Service Description" />
         <put-attribute name="menu">
             <definition template="/WEB-INF/tiles/menu.jsp">
                 <put-attribute name="current_tab" value="add" />
@@ -215,7 +215,7 @@
         </put-attribute>
         <put-attribute name="body">
             <definition template="/WEB-INF/components/wizardStep.jsp">
-                <put-attribute name="stepName" value="3. Image Upload" />
+                <put-attribute name="stepName" value="3. Images and Service Description" />
                 <put-attribute name="body">
                     <definition template="/WEB-INF/views/serviceImageUpload.jsp">
                         <put-attribute name="formMethod" value="POST" />
