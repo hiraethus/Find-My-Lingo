@@ -12,14 +12,12 @@
             <evaluate expression="categoriManager.findAll()" result="viewScope.categories" />
         </on-entry>
         <transition on="next" to="addAddress" />
-        <transition on="setServiceNameLangAndCategory" to="addAddress" />
     </view-state>
 
     <!-- adioGwasanaeth -->
     <view-state id="addAddress" view="adioGwasanaeth" model="aService"  validation-hints="'screen2'">
         <transition on="previous" to="addNameLangCategory" />
         <transition on="next" to="serviceImageUpload" />
-        <transition on="setServiceAddress" to="serviceImageUpload" />
         <on-exit>
             <evaluate expression="gwasanaethService.saveOrUpdate(aService, currentUser.name)" />
         </on-exit>

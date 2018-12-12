@@ -84,22 +84,24 @@ input[type="radio"]:checked+label{ opacity: 1.0; }
       </c:forEach>
   </div>
 
-  <input style="display: none" id="submit" type="submit" name="_eventId_setServiceNameLangAndCategory" />
+  <input style="display: none" id="submit_next" type="submit" name="_eventId_next" />
 </form:form>
 
 <nav style="padding-top: 1em" aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item disabled">
-      <a class="page-link" href="${flowExecutionUrl}&_eventId=previous">Previous</a>
+      <a class="page-link" href="#">Previous</a>
     </li>
-    <li class="page-item">
-      <a class="page-link" href="#" onclick="next()">Next</a>
+    <li class="page-item" >
+      <a id="next_pg" class="page-link" href="#">Next</a>
     </li>
   </ul>
 </nav>
 
 <script type="text/javascript">
-    var next = () => {
-        $('#submit').click();
-    };
+    window.onload = () => {
+        document.getElementById("next_pg").onclick = () => {
+            document.getElementById("submit_next").click()
+        }
+    }
 </script>

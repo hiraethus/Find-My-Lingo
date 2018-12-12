@@ -19,16 +19,17 @@
         <form:errors path="disgrifiad" element="div" cssClass="alert alert-warning"/>
         <form:textarea path="disgrifiad" class="form-control"/>
     </div>
-    <input style="display: none" id="submit" type="submit" name="_eventId_next" />
+    <input style="display: none" id="submit_next" type="submit" name="_eventId_next" />
+    <input style="display: none" id="submit_prev" type="submit" name="_eventId_previous" />
 </form:form>
 
 <nav style="padding-top: 1em" aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" href="${flowExecutionUrl}&_eventId=previous">Previous</a>
+      <a id="prev_pg" class="page-link" href="#">Previous</a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#" onclick="next()">Finish</a>
+      <a id="next_pg" class="page-link" href="#">Finish</a>
     </li>
   </ul>
 </nav>
@@ -102,13 +103,17 @@ deleteImg = (imgUrl) => {
     request.send(formData)
 }
 
-var next = () => {
-    $('#submit').click()
-}
-
 window.onload = () => {
     serviceId = document.getElementsByName("serviceId")[0].value
     getServiceImgs(serviceId)
+
+    document.getElementById("next_pg").onclick = () => {
+        document.getElementById("submit_next").click()
+    }
+
+    document.getElementById("prev_pg").onclick = () => {
+        document.getElementById("submit_prev").click()
+    }
 }
 </script>
 
