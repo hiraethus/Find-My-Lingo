@@ -221,7 +221,7 @@
         <dependency>
             <groupId>com.google.maps</groupId>
             <artifactId>google-maps-services</artifactId>
-            <version>0.2.7</version>
+            <version>0.9.1</version>
         </dependency>
 
         <!-- for circular distance -->
