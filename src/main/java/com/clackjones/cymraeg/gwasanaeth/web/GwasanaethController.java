@@ -82,26 +82,6 @@ public class GwasanaethController {
     }
 
 
-    @RequestMapping(path = "edit/{gwasanaethId}", method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ROLE_CREATE_GWASANAETH')")
-    public ModelAndView adolyguGwasanaeth(@PathVariable("gwasanaethId") Long gwasanaethId,
-                                          Principal principal, Locale locale) {
-        Gwasanaeth gwasanaeth = gwasanaethService.findById(gwasanaethId);
-
-        String name = principal.getName();
-        if (!gwasanaeth.getOwner().equals(name)) {
-            throw new AccessDeniedException(
-                    String.format("User %s doesn't have permission to modify this gwasanaeth",name));
-        }
-
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("gwasanaeth", gwasanaeth);
-        map.put("categoris", localizedCategoris(locale));
-        map.put("languages", languageService.listAllLanguages());
-
-        return new ModelAndView("adolyguGwasanaeth", map);
-    }
-
     private List<Categori> localizedCategoris(Locale locale) {
         return categoriManager.findAll().stream().map(c -> {
             Categori localizedCategori = new Categori();

@@ -4,7 +4,10 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
-    <var name="aService" class="com.clackjones.cymraeg.gwasanaeth.Gwasanaeth" />
+    <action-state id="getOrCreateService">
+        <evaluate expression="createOrRetrieveService" />
+        <transition on="success" to="addNameLangCategory" />
+    </action-state>
 
     <view-state id="addNameLangCategory" view="addNameLangCategory" model="aService" validation-hints="'screen1'">
         <on-entry>

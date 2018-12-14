@@ -1,5 +1,6 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
+import com.clackjones.cymraeg.InvalidUserException;
 import com.clackjones.cymraeg.geolocation.GeolocationFinder;
 import com.clackjones.cymraeg.gwasanaeth.web.GwasanaethSearchCriteria;
 import org.gavaghan.geodesy.Ellipsoid;
@@ -51,11 +52,28 @@ public class GwasanaethService {
     }
 
     @Transactional
+    @Deprecated
+    // TODO: replace every instance of this with retrieveService for security
     public Gwasanaeth findById(Long id) {
 
         GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(id);
 
         return entityToGwasanaeth.map(gwasanaethEntity);
+    }
+
+    @Transactional
+    public Gwasanaeth retrieveService(Long serviceId, String username) throws ServiceDoesntExistException, InvalidUserException {
+        GwasanaethEntity service = gwasanaethDao.findById(serviceId);
+        if (service == null) {
+            throw new ServiceDoesntExistException("Service with id " + serviceId + " doesn't exist");
+        }
+
+        boolean isCorrectServiceOwner = service.getOwnerUsername().equals(username);
+        if (!isCorrectServiceOwner) {
+            throw new InvalidUserException("The current user has no permission to access this service");
+        }
+
+        return entityToGwasanaeth.map(service);
     }
 
     @Transactional

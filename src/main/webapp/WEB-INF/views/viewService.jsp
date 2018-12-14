@@ -12,7 +12,7 @@
     <div class="col-lg-6">
         <h1>${gwasanaeth.enw}</h1>
         <p>
-          <em><spring:message code="${gwasanaeth.categori.categori}" /> | ${gwasanaeth.language.nativeLanguageName} <sec:authorize access="isAuthenticated()">| <a href="<c:url value='/edit/${gwasanaeth.id}' />"><spring:message code='service.edit' /></a></sec:authorize></em>
+          <em><spring:message code="${gwasanaeth.categori.categori}" /> | ${gwasanaeth.language.nativeLanguageName} <sec:authorize access="isAuthenticated()">| <a href="<c:url value='/edit?serviceId=${gwasanaeth.id}' />"><spring:message code='service.edit' /></a></sec:authorize></em>
         </p>
     </div>
 </div>
