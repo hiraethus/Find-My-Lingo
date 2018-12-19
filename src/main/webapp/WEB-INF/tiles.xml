@@ -46,38 +46,6 @@
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
 
-    <definition name="chooseServiceLanguage" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Find My Lingo - 1. Language Selection" />
-        <put-attribute name="menu">
-            <definition template="/WEB-INF/tiles/menu.jsp">
-                <put-attribute name="current_tab" value="find" />
-            </definition>
-        </put-attribute>
-        <put-attribute name="body">
-            <definition template="/WEB-INF/components/wizardStep.jsp">
-                <put-attribute name="stepName" value="1. Language Selection" />
-                <put-attribute name="body" value="/WEB-INF/views/languageSelection.jsp" />
-            </definition>
-        </put-attribute>
-        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
-    </definition>
-
-    <definition name="chooseCategory" template="/WEB-INF/tiles/large-body.jsp">
-        <put-attribute name="title" value="Find My Lingo - 2. Category Selection" />
-        <put-attribute name="menu">
-            <definition template="/WEB-INF/tiles/menu.jsp">
-                <put-attribute name="current_tab" value="find" />
-            </definition>
-        </put-attribute>
-        <put-attribute name="body">
-            <definition template="/WEB-INF/components/wizardStep.jsp">
-                <put-attribute name="stepName" value="2. Category Selection" />
-                <put-attribute name="body" value="/WEB-INF/views/categorySelection.jsp" />
-            </definition>
-        </put-attribute>
-        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
-    </definition>
-
     <definition name="chooseLocation" template="/WEB-INF/tiles/large-body.jsp">
         <put-attribute name="title" value="Find My Lingo - 3. Location Selection" />
         <put-attribute name="menu">

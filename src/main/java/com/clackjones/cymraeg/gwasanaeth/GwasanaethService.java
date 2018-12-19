@@ -2,7 +2,6 @@ package com.clackjones.cymraeg.gwasanaeth;
 
 import com.clackjones.cymraeg.InvalidUserException;
 import com.clackjones.cymraeg.geolocation.GeolocationFinder;
-import com.clackjones.cymraeg.gwasanaeth.web.GwasanaethSearchCriteria;
 import org.gavaghan.geodesy.Ellipsoid;
 import org.gavaghan.geodesy.GeodeticCalculator;
 import org.gavaghan.geodesy.GlobalCoordinates;
@@ -77,8 +76,8 @@ public class GwasanaethService {
     }
 
     @Transactional
-    public List<GwasanaethDistanceResult> searchForServices(GwasanaethSearchCriteria searchCriteria) {
-        Collection<GwasanaethEntity> result = gwasanaethDao.findByCategoryAndLanguage(searchCriteria.getCategoryId(), searchCriteria.getLanguage());
+    public List<GwasanaethDistanceResult> searchForServices(Gwasanaeth searchCriteria) {
+        Collection<GwasanaethEntity> result = gwasanaethDao.findByCategoryAndLanguage(searchCriteria);
         return result.stream()
                 .filter(gwasEntity -> gwasEntity.getLongitude() != null && gwasEntity.getLatitude() != null)
                 .map(entityToGwasanaeth::map)
@@ -86,7 +85,7 @@ public class GwasanaethService {
                 .collect(Collectors.toList());
     }
 
-    private BigDecimal calcGeoDistanceKm(GwasanaethSearchCriteria searchCriteria, Gwasanaeth gwasanaeth) {
+    private BigDecimal calcGeoDistanceKm(Gwasanaeth searchCriteria, Gwasanaeth gwasanaeth) {
         return calcGeoDistanceKm(searchCriteria.getLatitude(), searchCriteria.getLongitude(),
                 gwasanaeth.getLatitude(), gwasanaeth.getLongitude());
     }

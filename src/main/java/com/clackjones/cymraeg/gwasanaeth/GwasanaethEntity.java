@@ -21,7 +21,7 @@ import java.util.Collection;
                 query = "SELECT g FROM GwasanaethEntity g WHERE g.categori.id = :category AND UPPER(g.cyfeiriad.dinas) LIKE UPPER(:city)"
         ),
         @NamedQuery(name = "GwasanaethEntity.findByCategoryAndLanguage",
-                query = "SELECT g FROM GwasanaethEntity g WHERE g.categori.id = :category AND UPPER(g.language.nativeLangName) LIKE UPPER(:language)"
+                query = "SELECT g FROM GwasanaethEntity g WHERE (:category is null OR g.categori.id = :category) AND (:language is null OR UPPER(g.language.nativeLangName) LIKE UPPER(:language))"
         )
 })
 public class GwasanaethEntity {

@@ -21,9 +21,9 @@
 <div class="row">
 
 <div class="text-centered">
-<form:form class="form-inline" action="${flowExecutionUrl}" method="post" modelAttribute="searchCriteria">
+<form:form class="form-inline" action="${flowExecutionUrl}" method="post" modelAttribute="aService">
   <div class="form-group">
-    <form:input path="city" id="city" class="invisible" />
+    <form:input path="cyfeiriadDinas" id="city" class="invisible" />
     <form:input id="longitude" path="longitude" class="invisible" />
     <form:input id="latitude" path="latitude" class="invisible" />
     <input id="submitForm" class="invisible" type="submit" name="_eventId_selectLocation" />
