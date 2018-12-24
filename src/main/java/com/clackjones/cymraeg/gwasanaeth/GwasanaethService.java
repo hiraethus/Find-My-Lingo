@@ -54,8 +54,10 @@ public class GwasanaethService {
     @Deprecated
     // TODO: replace every instance of this with retrieveService for security
     public Gwasanaeth findById(Long id) {
-
         GwasanaethEntity gwasanaethEntity = gwasanaethDao.findById(id);
+        if (gwasanaethEntity == null) {
+            return null;
+        }
 
         return entityToGwasanaeth.map(gwasanaethEntity);
     }
