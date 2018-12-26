@@ -68,12 +68,7 @@ public class GwasanaethService {
         if (service == null) {
             throw new ServiceDoesntExistException("Service with id " + serviceId + " doesn't exist");
         }
-
-        boolean isCorrectServiceOwner = service.getOwnerUsername().equals(username);
-        if (!isCorrectServiceOwner) {
-            throw new InvalidUserException("The current user has no permission to access this service");
-        }
-
+    
         return entityToGwasanaeth.map(service);
     }
 

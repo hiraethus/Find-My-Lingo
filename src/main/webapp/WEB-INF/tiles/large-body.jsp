@@ -16,6 +16,7 @@
     <link href="${pageContext.request.contextPath}/css/sticky-footer.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/categories.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/findmylingo.css" rel="stylesheet" />
+    <%@ include file="/WEB-INF/components/open-graph-header.jsp" %>
   </head>
   <body>
 

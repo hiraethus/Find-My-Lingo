@@ -1,7 +1,9 @@
 package com.clackjones.cymraeg.gwasanaeth.web;
 
+import com.clackjones.cymraeg.InvalidUserException;
 import com.clackjones.cymraeg.gwasanaeth.*;
 import com.clackjones.cymraeg.language.LanguageService;
+import com.clackjones.cymraeg.opengraph.OpenGraphDataGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -44,6 +46,9 @@ public class GwasanaethController {
 
     @Autowired
     private LanguageService languageService;
+
+    @Autowired
+    OpenGraphDataGenerator openGraphDataGenerator;
 
     @Resource(name = "messageSource")
     private MessageSource messageSource;
@@ -112,13 +117,17 @@ public class GwasanaethController {
     }
 
     @RequestMapping(path = "id/{id}", method = RequestMethod.GET)
-    public ModelAndView viewGwasanaeth(@PathVariable("id") Long id) {
-        Gwasanaeth gwasanaeth = gwasanaethService.findById(id);
+    public ModelAndView viewGwasanaeth(@PathVariable("id") Long id, Principal principal) throws InvalidUserException, ServiceDoesntExistException {
+        String username = principal != null ? principal.getName() : null;
+        Gwasanaeth gwasanaeth = gwasanaethService.retrieveService(id, username);
 
         ModelAndView modelAndView = new ModelAndView("viewService", "gwasanaeth", gwasanaeth);
         modelAndView.addObject("heading", gwasanaeth.getEnw());
         modelAndView.addObject("sylw", new Sylw());
         modelAndView.addObject("safonnau", SafonEnum.values());
+
+        modelAndView.addObject("og",
+                openGraphDataGenerator.serviceToOpenGraphData(gwasanaeth, username));
 
         return modelAndView;
     }
@@ -131,8 +140,4 @@ public class GwasanaethController {
 
         return new ModelAndView("redirect:/id/"+gwasanaethId);
     }
-
-    @ExceptionHandler(NullPointerException.class)
-    @ResponseStatus(value= HttpStatus.NOT_FOUND, reason = "Methu canfod y wasanaeth hon")
-    public void resourceNotFound () { }
 }

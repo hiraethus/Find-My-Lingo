@@ -13,7 +13,7 @@ import java.util.stream.Collectors
 
 interface ImageRepo {
     fun addImageForService(serviceId: Long, img: java.io.File, username: String)
-    fun getImagesForService(serviceId : Long, username: String): List<java.io.File>
+    fun getImagesForService(serviceId : Long, username: String?): List<java.io.File>
     fun removeImageForService(img: java.io.File, username: String)
 }
 
@@ -69,9 +69,7 @@ class FSImageRepo(private val rootDirectory: Path,
     }
 
     @Throws(InvalidUserException::class, ServiceDoesntExistException::class)
-    override fun getImagesForService(serviceId: Long, username: String): List<File> {
-        checkCanAccessService(serviceId, username)
-
+    override fun getImagesForService(serviceId: Long, username: String?): List<File> {
         val servicePath = rootDirectory.resolve(serviceId.toString())
 
         if (!Files.exists(servicePath)) {
