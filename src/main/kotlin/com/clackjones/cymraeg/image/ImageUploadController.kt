@@ -42,9 +42,8 @@ class ImageUploadController(val imageRepo: ImageRepo) {
     }
 
     @RequestMapping(path=arrayOf("/getServiceImgs/{serviceId}"), method = arrayOf(RequestMethod.GET))
-    fun getServiceImgURLs(@PathVariable(name = "serviceId") serviceId: String, principal: Principal) : String {
-        //TODO: marshall to json and show images in <div id="imgs" /> in serviceImageUpload
-        val serviceImgPaths = this.imageRepo.getImagesForService(serviceId.toLong(), principal.name)
+    fun getServiceImgURLs(@PathVariable(name = "serviceId") serviceId: String, principal: Principal?) : String {
+        val serviceImgPaths = this.imageRepo.getImagesForService(serviceId.toLong(), principal?.name)
                 .map { it.toPath() }
                 .map { it.subpath(3, it.nameCount).toString() }
 
