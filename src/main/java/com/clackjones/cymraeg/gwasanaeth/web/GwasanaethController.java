@@ -42,9 +42,6 @@ public class GwasanaethController {
     private GwasanaethService gwasanaethService;
 
     @Autowired
-    private GwasanaethValidator gwasanaethValidator;
-
-    @Autowired
     private LanguageService languageService;
 
     @Autowired
@@ -56,7 +53,6 @@ public class GwasanaethController {
     @InitBinder("gwasanaeth")
     public void initBinder(WebDataBinder binder) {
         //TODO convert to CategoriConverter
-        binder.addValidators(gwasanaethValidator);
         binder.registerCustomEditor(Categori.class, categoriEditor);
     }
 
