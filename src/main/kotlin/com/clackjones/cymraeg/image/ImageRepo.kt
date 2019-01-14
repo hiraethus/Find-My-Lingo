@@ -21,6 +21,7 @@ interface ImageRepo {
 class FSImageRepo(private val rootDirectory: Path,
                   private val gwasanaethService: GwasanaethService) : ImageRepo {
     val logger = LoggerFactory.getLogger(FSImageRepo::class.java)
+    val SERVICE_DIR_NAME = "service"
 
     //TODO: add usrname param
     override fun removeImageForService(img: File, username: String) {
@@ -60,9 +61,9 @@ class FSImageRepo(private val rootDirectory: Path,
     }
 
     private fun createServiceDirIfNonExistent(serviceId: Long): Path {
-        val serviceDir =  rootDirectory.resolve(serviceId.toString())
+        val serviceDir =  rootDirectory.resolve(SERVICE_DIR_NAME).resolve(serviceId.toString())
         if (!serviceDir.toFile().exists()) {
-            return Files.createDirectory(serviceDir)
+            return Files.createDirectories(serviceDir)
         }
 
         return serviceDir
@@ -70,7 +71,7 @@ class FSImageRepo(private val rootDirectory: Path,
 
     @Throws(InvalidUserException::class, ServiceDoesntExistException::class)
     override fun getImagesForService(serviceId: Long, username: String?): List<File> {
-        val servicePath = rootDirectory.resolve(serviceId.toString())
+        val servicePath = rootDirectory.resolve(SERVICE_DIR_NAME).resolve(serviceId.toString())
 
         if (!Files.exists(servicePath)) {
             return listOf()

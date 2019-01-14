@@ -50,7 +50,7 @@ public class FSImageRepoTest {
         imageRepo.addImageForService(serviceId, someImage, "username");
 
         // then
-        assertThat(tempDir.resolve("42").resolve(someImage.getName()).toFile().exists(),
+        assertThat(tempDir.resolve("service").resolve("42").resolve(someImage.getName()).toFile().exists(),
                 equalTo(true));
     }
 
@@ -76,7 +76,7 @@ public class FSImageRepoTest {
         ImageRepo imageRepo = new FSImageRepo(tempDir, gwasanaethService);
 
         // add dir for service 42
-        Path service42Path = Files.createDirectory(tempDir.resolve("42"));
+        Path service42Path = Files.createDirectories(tempDir.resolve("service").resolve("42"));
 
         // add couple of blank image files to service42
         Files.createFile(service42Path.resolve("img1.png"));
