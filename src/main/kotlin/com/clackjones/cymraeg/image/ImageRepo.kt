@@ -15,22 +15,95 @@ interface ImageRepo {
     fun addImageForService(serviceId: Long, img: java.io.File, username: String)
     fun getImagesForService(serviceId : Long, username: String?): List<java.io.File>
     fun removeImageForService(img: java.io.File, username: String)
+
+    fun addImageForCategori(categoriId: Long, img: java.io.File, username: String)
+    fun getImagesForCategori(catgoriId : Long, username: String?): List<java.io.File>
+    fun removeImageForCategori(img: java.io.File, username: String)
 }
+
+const val SERVICE_DIR_NAME: String = "service"
+const val CATEGORI_DIR_NAME = "categori"
 
 @Repository
 class FSImageRepo(private val rootDirectory: Path,
                   private val gwasanaethService: GwasanaethService) : ImageRepo {
+
     val logger = LoggerFactory.getLogger(FSImageRepo::class.java)
-    val SERVICE_DIR_NAME = "service"
 
-    //TODO: add usrname param
+    override fun addImageForCategori(categoriId: Long, img: File, username: String) {
+        //TODO permissions - check username is superuser
+        addImageForThing(CATEGORI_DIR_NAME, categoriId, img)
+    }
+
+    override fun getImagesForCategori(catgoriId: Long, username: String?): List<File> {
+        return getImagesForThing(CATEGORI_DIR_NAME, catgoriId)
+    }
+
+    override fun removeImageForCategori(img: File, username: String) {
+        //TODO permissions - check username is superuser
+        removeImageForThing(img)
+    }
+
     override fun removeImageForService(img: File, username: String) {
-        // example imgUrl: /static/service/images/3/IMG_20141215_204826025.jpg
-
         val imgPath = img.toPath()
         val serviceId = imgPath.parent.fileName.toString().toLong()
         checkCanAccessService(serviceId, username)
 
+        removeImageForThing(img)
+    }
+
+    @Throws(InvalidUserException::class, ServiceDoesntExistException::class)
+    override fun addImageForService(serviceId: Long, img: File, username: String) {
+        checkCanAccessService(serviceId, username)
+        addImageForThing(SERVICE_DIR_NAME, serviceId, img)
+    }
+
+    @Throws(InvalidUserException::class, ServiceDoesntExistException::class)
+    override fun getImagesForService(serviceId: Long, username: String?): List<File> {
+        return getImagesForThing(SERVICE_DIR_NAME, serviceId)
+    }
+
+    @Throws(InvalidUserException::class, ServiceDoesntExistException::class)
+    private fun checkCanAccessService(serviceId: Long, username: String): Gwasanaeth? =
+            gwasanaethService.retrieveService(serviceId, username)
+
+    private fun getImagesForThing(imageType: String, id: Long): List<File>  {
+        val thingPath = rootDirectory.resolve(imageType).resolve(id.toString())
+
+        if (!Files.exists(thingPath)) {
+            return listOf()
+        }
+
+        return Files.list(thingPath)
+                .filter{ Files.isRegularFile(it)}
+                .map { it.toFile() }
+                .collect(Collectors.toList())
+    }
+
+    private fun addImageForThing(imageType: String, id: Long, img: File) {
+        if (!rootDirectory.toFile().exists()) {
+            throw NoSuchFileException(rootDirectory.toFile(),
+                    reason = "Please create this directory to hold images")
+        }
+
+        val origImgPath = img.absoluteFile.toPath()
+
+        val imgDirPath = createThingDirIfNonExistent(imageType, id)
+        val destPath = imgDirPath.resolve(img.name)
+        Files.move(origImgPath, destPath)
+    }
+
+    private fun createThingDirIfNonExistent(imageType: String, id: Long): Path {
+        val imgDir =  rootDirectory.resolve(imageType).resolve(id.toString())
+        if (!imgDir.toFile().exists()) {
+            return Files.createDirectories(imgDir)
+        }
+
+        return imgDir
+    }
+
+    private fun removeImageForThing(img: File) {
+        val imgPath = img.toPath()
         val relativeImgPath = imgPath.subpath(3, imgPath.nameCount)
 
         val imgFile = rootDirectory.resolve(relativeImgPath).toFile()
@@ -44,46 +117,4 @@ class FSImageRepo(private val rootDirectory: Path,
         }
     }
 
-    @Throws(InvalidUserException::class, ServiceDoesntExistException::class)
-    override fun addImageForService(serviceId: Long, img: File, username: String) {
-        checkCanAccessService(serviceId, username)
-
-        if (!rootDirectory.toFile().exists()) {
-            throw NoSuchFileException(rootDirectory.toFile(),
-                    reason = "Please create this directory to hold service images")
-        }
-
-        val origImgPath = img.absoluteFile.toPath()
-
-        val serviceDirPath = createServiceDirIfNonExistent(serviceId)
-        val destPath = serviceDirPath.resolve(img.name)
-        Files.move(origImgPath, destPath)
-    }
-
-    private fun createServiceDirIfNonExistent(serviceId: Long): Path {
-        val serviceDir =  rootDirectory.resolve(SERVICE_DIR_NAME).resolve(serviceId.toString())
-        if (!serviceDir.toFile().exists()) {
-            return Files.createDirectories(serviceDir)
-        }
-
-        return serviceDir
-    }
-
-    @Throws(InvalidUserException::class, ServiceDoesntExistException::class)
-    override fun getImagesForService(serviceId: Long, username: String?): List<File> {
-        val servicePath = rootDirectory.resolve(SERVICE_DIR_NAME).resolve(serviceId.toString())
-
-        if (!Files.exists(servicePath)) {
-            return listOf()
-        }
-
-        return Files.list(servicePath)
-                .filter{ Files.isRegularFile(it)}
-                .map { it.toFile() }
-                .collect(Collectors.toList())
-    }
-
-    @Throws(InvalidUserException::class, ServiceDoesntExistException::class)
-    private fun checkCanAccessService(serviceId: Long, username: String): Gwasanaeth? =
-            gwasanaethService.retrieveService(serviceId, username)
 }
