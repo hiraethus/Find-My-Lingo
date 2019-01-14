@@ -27,6 +27,7 @@
     <mvc:resources mapping="/css/**" location="/css/" />
 
     <mvc:view-controller path="/about/**" view-name="contact"/>
+    <mvc:view-controller path="/admin/**" view-name="adminPage"/>
 
     <mvc:annotation-driven conversion-service="conversionService" />
 

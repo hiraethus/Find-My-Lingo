@@ -17,6 +17,9 @@
     <link href="${pageContext.request.contextPath}/css/categories.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/css/findmylingo.css" rel="stylesheet" />
     <%@ include file="/WEB-INF/components/open-graph-header.jsp" %>
+
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
   </head>
   <body>
 

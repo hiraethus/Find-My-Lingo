@@ -209,4 +209,18 @@
         </put-attribute>
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
     </definition>
+
+    <definition name="adminPage" template="/WEB-INF/tiles/large-body.jsp">
+        <put-attribute name="title" value="Find My Lingo - Admin" />
+        <put-attribute name="menu">
+            <definition template="/WEB-INF/tiles/menu.jsp">
+                <put-attribute name="current_tab" value="find" />
+            </definition>
+        </put-attribute>
+        <put-attribute name="body">
+            <definition template="/WEB-INF/components/adminPage.jsp">
+            </definition>
+        </put-attribute>
+        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+    </definition>
 </tiles-definitions>
