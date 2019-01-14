@@ -41,7 +41,7 @@
 uploadImg = (formId) => {
     var formElement = document.getElementById("form1")
     var request = new XMLHttpRequest()
-    request.open("POST", "/uploadImg")
+    request.open("POST", "/uploadServiceImg")
     request.onload = (e) => {
         serviceId = document.getElementsByName("serviceId")[0].value
         getServiceImgs(serviceId)
@@ -89,7 +89,7 @@ deleteImg = (imgUrl) => {
 
 
     request = new XMLHttpRequest()
-    request.open("POST", "/removeImg")
+    request.open("POST", "/removeServiceImg")
     request.setRequestHeader(csrfHeader, '${_csrf.token}')
     request.onload = (e) => {
         serviceId = document.getElementsByName("serviceId")[0].value
