@@ -1,9 +1,12 @@
 
-<section >
+<section>
     <h3>Categories</h3>
-    <ul id="category-list"></ul>
-    <input id="categoryName" />
-    <input id="addCategoryButton" type="button" value="Add Category" />
+    <form class="form-inline">
+        <input id="categoryName" class="form-control mb-2" />
+        <input id="addCategoryButton" class="btn btn-primary" type="button" value="Add Category" />
+    </form>
+
+    <div id="category-list"></div>
 </section>
 
 <script type="text/javascript">
@@ -13,6 +16,17 @@
         let categoryName = document.getElementById('categoryName').value
         fetch(`/categories/\${categoryName}`, {
             method: 'post',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
+        }).then(refreshCategoryList)
+    }
+
+    const removeCategory = (categoryName) => {
+        console.log(`Removing category \${categoryName}`)
+
+        fetch(`/categories/\${categoryName}`, {
+            method: 'delete',
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             }
@@ -35,17 +49,32 @@
             categoryList.removeChild(categoryList.firstChild)
         }
 
-        categories.forEach((cat) => {
-            listItem = document.createElement('li')
-            listItem.innerText = cat.categori
-            categoryList.appendChild(listItem)
+        categories.map((cat) => cat.categori)
+                  .forEach((categoryName) => categoryList.appendChild(createCategoryRow(categoryName)))
+    }
+
+    const createCategoryRow = (categoryName) => {
+        categoryRowTmplt = document.querySelector("#category-row")
+        categoryRow = document.importNode(categoryRowTmplt.content, true)
+        categoryRow.querySelector(".category__name").innerText = categoryName
+
+        categoryRow.querySelector('.category__delete').addEventListener('click', () => {
+            removeCategory(categoryName)
         })
+
+        return categoryRow
     }
 
     document.getElementById('addCategoryButton').addEventListener('click', (event) => {
         addNewCategory()
     })
 
-    refreshCategoryList()
-
+    window.onload = () => refreshCategoryList()
 </script>
+
+<template id="category-row">
+    <div class="category">
+        <input class="category__delete btn btn-danger" type="button" value="Delete" />
+        <span class="category__name">Category Name</span>
+    </div>
+</template>
