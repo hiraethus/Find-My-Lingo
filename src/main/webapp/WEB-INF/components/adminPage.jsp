@@ -49,18 +49,29 @@
             categoryList.removeChild(categoryList.firstChild)
         }
 
-        categories.map((cat) => cat.categori)
-                  .forEach((categoryName) => categoryList.appendChild(createCategoryRow(categoryName)))
+        categories.forEach((category) => categoryList.appendChild(createCategoryRow(category.id, category.categori)))
     }
 
-    const createCategoryRow = (categoryName) => {
+    const createCategoryRow = (id, categoryName) => {
         categoryRowTmplt = document.querySelector("#category-row")
         categoryRow = document.importNode(categoryRowTmplt.content, true)
         categoryRow.querySelector(".category__name").innerText = categoryName
+        categoryRow.querySelector(".category__id").innerText = id
 
         categoryRow.querySelector('.category__delete').addEventListener('click', () => {
             removeCategory(categoryName)
         })
+
+        categoryRow.querySelector('.category__img-upload')
+            .addEventListener("change", function(evt) {
+                const selectedFile = evt.target.files[0]
+                console.log(selectedFile.name)
+                evt.target.parentNode.querySelector('.category__thumbnail').src = window.URL.createObjectURL(selectedFile)
+
+                const categoryId = evt.target.parentNode.querySelector('.category__id').innerText
+                // TODO upload image to uploadimagecontroller and then change categori bean to
+                // search for images for this categori
+            }, false)
 
         return categoryRow
     }
@@ -69,12 +80,17 @@
         addNewCategory()
     })
 
+
     window.onload = () => refreshCategoryList()
 </script>
 
 <template id="category-row">
     <div class="category">
+        <!--TODO hide ID -->
+        <div class="category__id .d-none">ID</div>
         <input class="category__delete btn btn-danger" type="button" value="Delete" />
         <span class="category__name">Category Name</span>
+        <input class="category__img-upload" type="file" value="Upload img" /> <!--TODO hidden if not null -->
+        <img class="category__thumbnail" src="TODO from categori img url or hidden if null" />
     </div>
 </template>
