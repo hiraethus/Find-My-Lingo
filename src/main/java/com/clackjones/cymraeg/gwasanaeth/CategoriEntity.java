@@ -17,6 +17,7 @@ class CategoriEntity {
     @Column(name = "categori")
     protected String categori;
 
+    @Deprecated
     @Column(name="category_img", nullable = true)
     private String categoryImg;
 

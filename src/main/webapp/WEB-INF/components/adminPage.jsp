@@ -49,14 +49,24 @@
             categoryList.removeChild(categoryList.firstChild)
         }
 
-        categories.forEach((category) => categoryList.appendChild(createCategoryRow(category.id, category.categori)))
+        categories.forEach((category) => {
+            categoryList.appendChild(createCategoryRow(category.id, category.categori, category.categoriImg))
+        })
     }
 
-    const createCategoryRow = (id, categoryName) => {
+    const createCategoryRow = (id, categoryName, imgUrl) => {
         categoryRowTmplt = document.querySelector("#category-row")
         categoryRow = document.importNode(categoryRowTmplt.content, true)
         categoryRow.querySelector(".category__name").innerText = categoryName
         categoryRow.querySelector(".category__id").innerText = id
+        if (imgUrl) {
+            categoryRow.querySelector('.category__thumbnail').src = imgUrl
+            categoryRow.querySelector('.category__img-upload').style.display = 'none'
+            categoryRow.querySelector('.category__thumbnail').style.display = 'inline'
+        } else {
+            categoryRow.querySelector('.category__thumbnail').style.display = 'none'
+            categoryRow.querySelector('.category__img-upload').style.display = 'inline'
+        }
 
         categoryRow.querySelector('.category__delete').addEventListener('click', () => {
             removeCategory(categoryName)
@@ -66,11 +76,18 @@
             .addEventListener("change", function(evt) {
                 const selectedFile = evt.target.files[0]
                 console.log(selectedFile.name)
-                evt.target.parentNode.querySelector('.category__thumbnail').src = window.URL.createObjectURL(selectedFile)
 
                 const categoryId = evt.target.parentNode.querySelector('.category__id').innerText
-                // TODO upload image to uploadimagecontroller and then change categori bean to
-                // search for images for this categori
+                const formData  = new FormData()
+                formData.append('file', selectedFile)
+
+                fetch(`/CategoryImgs/\${categoryId}`, {
+                    method: 'post',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                    },
+                    body: formData
+                }).then(refreshCategoryList)
             }, false)
 
         return categoryRow
@@ -87,10 +104,10 @@
 <template id="category-row">
     <div class="category">
         <!--TODO hide ID -->
-        <div class="category__id .d-none">ID</div>
+        <div class="category__id d-none">ID</div>
         <input class="category__delete btn btn-danger" type="button" value="Delete" />
         <span class="category__name">Category Name</span>
         <input class="category__img-upload" type="file" value="Upload img" /> <!--TODO hidden if not null -->
-        <img class="category__thumbnail" src="TODO from categori img url or hidden if null" />
+        <img class="category__thumbnail" src="" />
     </div>
 </template>

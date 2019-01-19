@@ -51,7 +51,7 @@ class ImageUploadController(val imageRepo: ImageRepo) {
                 .joinToString(",", prefix = "[", postfix = "]")
     }
 
-    @RequestMapping(path=arrayOf("/CategoryImg/{categoryId}"), method = arrayOf(RequestMethod.POST))
+    @RequestMapping(path=arrayOf("/CategoryImgs/{categoryId}"), method = arrayOf(RequestMethod.POST))
     fun postCategoriImg(@PathVariable(name = "categoryId") categoryId: String,
                         @RequestParam(name = "file") file: MultipartFile,
                         principal: Principal) {

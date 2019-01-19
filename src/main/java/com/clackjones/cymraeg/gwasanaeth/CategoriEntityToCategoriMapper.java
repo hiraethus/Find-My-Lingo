@@ -10,9 +10,6 @@ public class CategoriEntityToCategoriMapper {
         if (entity.getCategori() != null) {
             categori.setCategori(entity.getCategori());
         }
-        if (entity.getCategoryImg() != null) {
-            categori.setCategoriImg(entity.getCategoryImg());
-        }
 
         return categori;
     }
