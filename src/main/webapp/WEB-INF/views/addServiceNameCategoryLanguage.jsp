@@ -72,11 +72,9 @@ input[type="radio"]:checked+label{ opacity: 1.0; }
           </c:choose>
           <form:label path="categori" class="form-check-label" for="${category.categori}">
              <div class="card" style="max-width: 10rem">
-                 <img class="card-img-top" src="/images/${category.categoriImg}">
+                 <img class="card-img-top" src="${category.categoriImg}">
                  <div class="card-body">
-                     <div class="card-text">
-                         <spring:message code="${category.categori}" />
-                     </div>
+                     <div class="card-text">${category.categori}</div>
                  </div>
              </div>
           </form:label>
