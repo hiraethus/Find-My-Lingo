@@ -6,25 +6,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet author="hiraethus" id="load-categori-data-001" >
-        <insert tableName="CategoriEntity">
-            <column name="id" value="1"/>
-            <column name="categori" value="bwyti"/>
-        </insert>
-        <insert tableName="CategoriEntity">
-            <column name="id" value="2"/>
-            <column name="categori" value="tafarn"/>
-        </insert>
-        <insert tableName="CategoriEntity">
-            <column name="id" value="3"/>
-            <column name="categori" value="llywodraeth"/>
-        </insert>
-        <insert tableName="CategoriEntity">
-            <column name="id" value="4"/>
-            <column name="categori" value="coffi"/>
-        </insert>
-    </changeSet>
-
     <changeSet author="hiraethus" id="insert-test-languages" >
         <insert tableName="LanguageEntity">
             <column name="id" value="1"/>
@@ -63,22 +44,4 @@
         </update>
     </changeSet>
 
-    <changeSet author="hiraethus" id="add-categori-imgs-2">
-        <update tableName="CategoriEntity">
-            <column name="category_img" value="restaurant-691397_1280_small.jpg" />
-            <where>id = 1</where>
-        </update>
-        <update tableName="CategoriEntity">
-            <column name="category_img" value="bar-209148_1280_small.jpg" />
-            <where>id = 2</where>
-        </update>
-        <update tableName="CategoriEntity">
-            <column name="category_img" value="london-530055_1280_small.jpg" />
-            <where>id = 3</where>
-        </update>
-        <update tableName="CategoriEntity">
-            <column name="category_img" value="restaurant-691397_1280_small.jpg" />
-            <where>id = 4</where>
-        </update>
-    </changeSet>
 </databaseChangeLog>

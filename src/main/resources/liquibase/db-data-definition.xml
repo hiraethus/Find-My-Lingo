@@ -323,4 +323,8 @@
             </column>
         </addColumn>
     </changeSet>
+
+    <changeSet id="remove-categori-entity-img-column" author="hiraethus">
+        <dropColumn tableName="CategoriEntity" columnName="category_img" />
+    </changeSet>
 </databaseChangeLog>

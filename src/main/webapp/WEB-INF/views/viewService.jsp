@@ -20,7 +20,7 @@
     <div class="col-lg-6">
         <h1>${gwasanaeth.enw}</h1>
         <p>
-          <em><spring:message code="${gwasanaeth.categori.categori}" /> | ${gwasanaeth.language.nativeLanguageName} <sec:authorize access="isAuthenticated()">| <a href="<c:url value='/edit?serviceId=${gwasanaeth.id}' />"><spring:message code='service.edit' /></a></sec:authorize></em>
+          <em>${gwasanaeth.categori.categori} | ${gwasanaeth.language.nativeLanguageName} <sec:authorize access="isAuthenticated()">| <a href="<c:url value='/edit?serviceId=${gwasanaeth.id}' />"><spring:message code='service.edit' /></a></sec:authorize></em>
         </p>
         <p><div class="fb-like" data-href="${requestScope['javax.servlet.forward.request_uri']}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></p>
     </div>

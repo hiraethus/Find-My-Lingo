@@ -24,7 +24,7 @@
                     <a href='<c:url value="/id/${gwasanaeth.id}" />'>${gwasanaeth.enw}</a>
                 </td>
                 <td>
-                    <spring:message code="${gwasanaeth.categori.categori}" />
+                    ${gwasanaeth.categori.categori}
                     <span class="${gwasanaeth.categori.categori}"></span>
                 </td>
                 <td>
