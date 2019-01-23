@@ -1,6 +1,7 @@
-.idea/libraries
-gwasanaeth-gymraeg-website.iml
+.idea/
+**/*.iml
 target/
 .vagrant/
 src/main/resources/codepo_gb
 .env
+

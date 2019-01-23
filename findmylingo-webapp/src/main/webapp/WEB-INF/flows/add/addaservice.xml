@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <action-state id="getOrCreateService">
+        <evaluate expression="createOrRetrieveService" />
+        <transition on="success" to="addNameLangCategory" />
+    </action-state>
+
+    <view-state id="addNameLangCategory" view="addNameLangCategory" model="aService" validation-hints="'screen1'">
+        <on-entry>
+            <evaluate expression="languageService.listAllLanguages()" result="viewScope.languages" />
+            <evaluate expression="categoriManager.findAll()" result="viewScope.categories" />
+        </on-entry>
+        <transition on="next" to="addAddress" />
+    </view-state>
+
+    <!-- adioGwasanaeth -->
+    <view-state id="addAddress" view="adioGwasanaeth" model="aService"  validation-hints="'screen2'">
+        <transition on="previous" to="addNameLangCategory" />
+        <transition on="next" to="serviceImageUpload" />
+        <on-exit>
+            <evaluate expression="gwasanaethService.saveOrUpdate(aService, currentUser.name)" />
+        </on-exit>
+    </view-state>
+
+    <!-- upload images -->
+    <view-state id="serviceImageUpload" view="serviceImageUpload" model="aService">
+        <transition on="previous" to="addAddress" />
+        <transition on="next" to="finish" />
+        <on-exit>
+            <evaluate expression="gwasanaethService.saveOrUpdate(aService, currentUser.name)" />
+        </on-exit>
+    </view-state>
+
+    <end-state id="finish" view="externalRedirect:/id/#{aService.id}" />
+</flow>
