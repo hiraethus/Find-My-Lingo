@@ -82,18 +82,6 @@ public class GwasanaethController {
         return new ModelAndView("redirect:id/"+gwasanaeth.getId());
     }
 
-
-    private List<Categori> localizedCategoris(Locale locale) {
-        return categoriManager.findAll().stream().map(c -> {
-            Categori localizedCategori = new Categori();
-            localizedCategori.setId(c.getId());
-            String localizedCategoriName = messageSource.getMessage(c.getCategori(), null, locale);
-            localizedCategori.setCategori(localizedCategoriName);
-
-            return localizedCategori;
-        }).collect(Collectors.toList());
-    }
-
     @Transactional
     @RequestMapping(path = "/search", method = RequestMethod.GET)
     public ModelAndView listAllGwasanaethau(@RequestParam Map<String, String> params) {

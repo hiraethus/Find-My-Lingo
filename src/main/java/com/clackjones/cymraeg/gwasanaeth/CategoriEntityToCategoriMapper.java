@@ -11,6 +11,8 @@ public class CategoriEntityToCategoriMapper {
             categori.setCategori(entity.getCategori());
         }
 
+        categori.setCanDelete(entity.getGwasanaethau() == null || entity.getGwasanaethau().isEmpty());
+
         return categori;
     }
 

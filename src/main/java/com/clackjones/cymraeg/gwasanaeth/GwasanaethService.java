@@ -30,6 +30,7 @@ public class GwasanaethService {
     private GwasanaethToGwasanaethEntityMapper gwasanaethToEntity;
     private GwasanaethEntityToGwasanaethMapper entityToGwasanaeth;
     private GeolocationFinder geolocationFinder;
+    private CategoriDao categoriDao;
 
     @Autowired
     public GwasanaethService(
@@ -39,7 +40,8 @@ public class GwasanaethService {
             GwasanaethDao gwasanaethDao,
             GwasanaethToGwasanaethEntityMapper gwasanaethToEntity,
             GwasanaethEntityToGwasanaethMapper entityToGwasanaeth,
-            GeolocationFinder geolocationFinder
+            GeolocationFinder geolocationFinder,
+            CategoriDao categoriDao
     ) {
         this.sylwToEntity = sylwToEntity;
         this.entityToSylw = entityToSylw;
@@ -48,6 +50,7 @@ public class GwasanaethService {
         this.gwasanaethToEntity = gwasanaethToEntity;
         this.entityToGwasanaeth = entityToGwasanaeth;
         this.geolocationFinder = geolocationFinder;
+        this.categoriDao = categoriDao;
     }
 
     @Transactional
@@ -131,10 +134,19 @@ public class GwasanaethService {
         GwasanaethEntity gwasanaethEntity = gwasanaethToEntity.map(gwasanaeth);
         gwasanaethEntity.setOwnerUsername(username);
         gwasanaethDao.persist(gwasanaethEntity);
+        addNewServiceToCategory(gwasanaethEntity);
 
         gwasanaeth.setId(gwasanaethEntity.getId());
 
         return gwasanaethEntity.getId();
+    }
+
+    private void addNewServiceToCategory(GwasanaethEntity gwasanaethEntity) {
+        if (gwasanaethEntity.getCategori() != null) {
+            CategoriEntity category = gwasanaethEntity.getCategori();
+            category.getGwasanaethau().add(gwasanaethEntity);
+            categoriDao.merge(category);
+        }
     }
 
     @Transactional

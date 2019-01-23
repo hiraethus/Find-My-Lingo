@@ -4,6 +4,7 @@ public class Categori implements java.io.Serializable {
     private Long id;
     private String categori;
     private String categoriImg;
+    private Boolean canDelete;
 
     public Long getId() {
         return id;
@@ -27,5 +28,13 @@ public class Categori implements java.io.Serializable {
 
     public void setCategoriImg(String categoriImg) {
         this.categoriImg = categoriImg;
+    }
+
+    public Boolean getCanDelete() {
+        return canDelete;
+    }
+
+    public void setCanDelete(Boolean canDelete) {
+        this.canDelete = canDelete;
     }
 }

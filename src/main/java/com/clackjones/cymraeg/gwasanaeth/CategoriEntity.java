@@ -1,6 +1,7 @@
 package com.clackjones.cymraeg.gwasanaeth;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -23,8 +24,8 @@ class CategoriEntity {
 
     public void setId(Long id) { }
 
-    @OneToMany
-    protected Collection<GwasanaethEntity> gwasanaethau;
+    @OneToMany(fetch = FetchType.EAGER)
+    protected Collection<GwasanaethEntity> gwasanaethau = new ArrayList<>();
 
     public String getCategori() {
         return categori;

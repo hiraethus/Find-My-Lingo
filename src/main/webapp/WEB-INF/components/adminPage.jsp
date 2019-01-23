@@ -50,17 +50,17 @@
         }
 
         categories.forEach((category) => {
-            categoryList.appendChild(createCategoryRow(category.id, category.categori, category.categoriImg))
+            categoryList.appendChild(createCategoryRow(category))
         })
     }
 
-    const createCategoryRow = (id, categoryName, imgUrl) => {
+    const createCategoryRow = (cat) => {
         categoryRowTmplt = document.querySelector("#category-row")
         categoryRow = document.importNode(categoryRowTmplt.content, true)
-        categoryRow.querySelector(".category__name").innerText = categoryName
-        categoryRow.querySelector(".category__id").innerText = id
-        if (imgUrl) {
-            categoryRow.querySelector('.category__thumbnail').src = imgUrl
+        categoryRow.querySelector(".category__name").innerText = cat.categori
+        categoryRow.querySelector(".category__id").innerText = cat.id
+        if (cat.categoriImg) {
+            categoryRow.querySelector('.category__thumbnail').src = cat.categoriImg
             categoryRow.querySelector('.category__img-upload').style.display = 'none'
             categoryRow.querySelector('.category__thumbnail').style.display = 'inline'
         } else {
@@ -68,9 +68,13 @@
             categoryRow.querySelector('.category__img-upload').style.display = 'inline'
         }
 
-        categoryRow.querySelector('.category__delete').addEventListener('click', () => {
-            removeCategory(categoryName)
-        })
+        if (cat.canDelete) {
+            categoryRow.querySelector('.category__delete').addEventListener('click', () => {
+                removeCategory(cat.categori)
+            })
+        } else {
+            categoryRow.querySelector('.category__delete').disabled = true
+        }
 
         categoryRow.querySelector('.category__img-upload')
             .addEventListener("change", function(evt) {

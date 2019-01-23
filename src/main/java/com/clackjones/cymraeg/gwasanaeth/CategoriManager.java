@@ -50,6 +50,7 @@ public class CategoriManager {
         return c;
     };
 
+    @Transactional
     public List<Categori> findAll() {
         Collection<CategoriEntity> categoriEntities = categoriDao.findAll();
         return categoriEntities.stream()
