@@ -327,4 +327,29 @@
     <changeSet id="remove-categori-entity-img-column" author="hiraethus">
         <dropColumn tableName="CategoriEntity" columnName="category_img" />
     </changeSet>
+
+    <changeSet author="hiraethus" id="add-admin-user-group">
+        <insert tableName="groups">
+            <column name="group_name" value="admin_users" />
+        </insert>
+
+        <insert tableName="group_authorities">
+            <column name="authority" value="ROLE_CREATE_GWASANAETH" />
+            <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'admin_users')" />
+        </insert>
+        <insert tableName="group_authorities">
+            <column name="authority" value="ROLE_ADD_COMMENT" />
+            <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'admin_users')" />
+        </insert>
+
+        <insert tableName="group_authorities">
+            <column name="authority" value="ADD_REMOVE_CATEGORY" />
+            <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'admin_users')" />
+        </insert>
+
+        <insert tableName="group_authorities">
+            <column name="authority" value="VIEW_ADMIN_UI" />
+            <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'admin_users')" />
+        </insert>
+    </changeSet>
 </databaseChangeLog>

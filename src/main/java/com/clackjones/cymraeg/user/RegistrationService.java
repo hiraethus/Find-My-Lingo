@@ -48,6 +48,15 @@ public class RegistrationService {
 
     @Transactional
     public boolean register(RegistrationDetails details, Locale locale) throws RegistrationException {
+        return register(details, "end_users", locale);
+    }
+
+    @Transactional
+    public boolean registerAdmin(RegistrationDetails details, Locale locale) throws RegistrationException {
+        return register(details, "admin_users", locale);
+    }
+
+    public boolean register(RegistrationDetails details, String groupName, Locale locale) throws RegistrationException {
         userPassValidator.validate(details);
 
         if (jdbcUserDetailsManager.userExists(details.getUsername())) {
@@ -62,7 +71,7 @@ public class RegistrationService {
 
         encryptPassword(details);
         createUser(details);
-        jdbcUserDetailsManager.addUserToGroup(details.getUsername(), "end_users");
+        jdbcUserDetailsManager.addUserToGroup(details.getUsername(), groupName);
 
         // TODO reintroduce emailService.createAndSendRegistrationSuccessEmail(details, locale);
         logger.info("Registered user with username {}", details.getUsername());
