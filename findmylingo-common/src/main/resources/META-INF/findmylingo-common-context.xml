@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <import resource="classpath:META-INF/annotated-beans.xml"/>
+    <import resource="classpath:META-INF/geolocation.xml"/>
+    <import resource="classpath:META-INF/h2-datasource.xml"/>
+    <import resource="classpath:META-INF/jpa-context.xml"/>
+    <import resource="classpath:META-INF/liquibase-context.xml"/>
+    <import resource="classpath:META-INF/mail.xml"/>
+    <import resource="classpath:META-INF/security.xml"/>
+</beans>

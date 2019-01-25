@@ -53,13 +53,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/gwasanaeth-servlet.xml,
-            classpath:META-INF/annotated-beans.xml,
-            classpath:META-INF/geolocation.xml,
-            classpath:META-INF/h2-datasource.xml,
-            classpath:META-INF/jpa-context.xml,
-            classpath:META-INF/liquibase-context.xml,
-            classpath:META-INF/mail.xml,
-            classpath:META-INF/security.xml,
+            classpath:META-INF/findmylingo-common-context.xml,
             classpath:META-INF/security-web.xml,
             classpath:META-INF/ui.xml,
             classpath:META-INF/webflow.xml
