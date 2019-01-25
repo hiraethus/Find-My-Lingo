@@ -23,7 +23,7 @@
 
     <!--<filter>
         <filter-name>htmlEscapeFilter</filter-name>
-        <filter-class>com.clackjones.cymraeg.filter.EscapeHtmlInputFilter</filter-class>
+        <filter-class>EscapeHtmlInputFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>htmlEscapeFilter</filter-name>
@@ -60,6 +60,7 @@
             classpath:META-INF/liquibase-context.xml,
             classpath:META-INF/mail.xml,
             classpath:META-INF/security.xml,
+            classpath:META-INF/security-web.xml,
             classpath:META-INF/ui.xml,
             classpath:META-INF/webflow.xml
         </param-value>
