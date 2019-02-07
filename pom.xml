@@ -13,6 +13,7 @@
     <modules>
         <module>findmylingo-webapp</module>
         <module>findmylingo-common</module>
+        <module>findmylingo-admintools</module>
     </modules>
 
     <properties>
