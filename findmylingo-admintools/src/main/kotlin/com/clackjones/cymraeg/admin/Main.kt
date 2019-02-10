@@ -1,15 +1,26 @@
 package com.clackjones.cymraeg.admin
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext
-import org.springframework.core.env.SimpleCommandLinePropertySource
+import org.springframework.context.support.beans
+import org.springframework.context.support.GenericApplicationContext
+import org.springframework.beans.factory.getBean
+
+class GreetingProvider(_greeting: String) {
+    val greeting = _greeting
+}
+
+class GreetingPrinter(private val _greetingProvider: GreetingProvider) {
+    fun printGreeting() = println(_greetingProvider.greeting)
+}
 
 fun main(args: Array<String>) {
-    val cliPropertySource = SimpleCommandLinePropertySource()
+    val myBeans = beans {
+        bean { GreetingProvider("Hello, there!") }
+        bean { GreetingPrinter( ref<GreetingProvider>())}
+    }
 
-    val appCtxt  = AnnotationConfigApplicationContext()
-    appCtxt.environment.propertySources.addFirst(cliPropertySource)
-    appCtxt.register(AppConfig::class.java)
-    appCtxt.refresh()
+    val context = GenericApplicationContext()
+    myBeans.initialize(context)
+    context.refresh()
 
-    appCtxt.getBean(OtherClass::class.java).printString()
+    context.getBean<GreetingPrinter>().printGreeting()
 }
