@@ -18,8 +18,6 @@
     <properties>
         <logback.version>1.2.3</logback.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <hibernate.version>5.2.13.Final</hibernate.version>
-        <hibernate.validator.version>6.0.7.Final</hibernate.validator.version>
     </properties>
    <dependencies>
         <dependency>
