@@ -22,17 +22,17 @@
 
     <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
         <property name="dataSource" ref="dataSource" />
-        <property name="changeLog" value="classpath:liquibase/db-changelog.xml" />
+        <property name="changeLog" value="classpath:META-INF/liquibase/db-changelog.xml" />
     </bean>
 
     <bean id="liquibase2" class="liquibase.integration.spring.SpringLiquibase">
         <property name="dataSource" ref="dataSource" />
-        <property name="changeLog" value="/liquibase/db-changelog-test-users.xml" />
+        <property name="changeLog" value="classpath:META-INF/liquibase/db-changelog-test-users.xml" />
     </bean>
 
     <bean id="liquibase3" class="liquibase.integration.spring.SpringLiquibase">
         <property name="dataSource" ref="dataSource" />
-        <property name="changeLog" value="/liquibase/db-gwasanaeth-dao.xml" />
+        <property name="changeLog" value="classpath:META-INF/liquibase/db-gwasanaeth-dao.xml" />
     </bean>
 
     <!-- mock out the mail service as won't need during test -->

@@ -6,6 +6,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="classpath:liquibase/db-data-definition.xml" />
-    <include file="classpath:liquibase/db-test-data.xml" />
+    <include file="classpath:META-INF/liquibase/db-data-definition.xml" />
+    <include file="classpath:META-INF/liquibase/db-test-data.xml" />
 </databaseChangeLog>
