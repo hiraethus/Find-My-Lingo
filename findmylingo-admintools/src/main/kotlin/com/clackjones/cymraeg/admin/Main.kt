@@ -14,7 +14,7 @@ import com.beust.jcommander.JCommander
 
 fun main(args: Array<String>) {
     val myBeans = beans {
-        bean("dbDialect"){"org.hibernate.dialect.H2Dialect"}
+        bean("dbDialect"){"org.hibernate.dialect.PostgreSQL95Dialect"}
         bean("imgRootDirectory") { java.nio.file.Paths.get("/var/www/findmylingo.local/static/service/images")}
     }
     println("beans")

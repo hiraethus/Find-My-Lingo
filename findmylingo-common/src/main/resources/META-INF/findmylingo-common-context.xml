@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <import resource="classpath:META-INF/annotated-beans.xml"/>
     <import resource="classpath:META-INF/geolocation.xml"/>
-    <import resource="classpath:META-INF/h2-datasource.xml"/>
+    <import resource="classpath:META-INF/postgresql-datasource.xml"/>
     <import resource="classpath:META-INF/jpa-context.xml"/>
     <import resource="classpath:META-INF/liquibase-context.xml"/>
     <import resource="classpath:META-INF/mail.xml"/>
