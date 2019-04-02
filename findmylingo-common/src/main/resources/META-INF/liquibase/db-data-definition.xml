@@ -45,7 +45,7 @@
             <column name="id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="amserSylw" type="time"/>
+            <column name="amserSylw" type="datetime"/>
             <column name="safonArwyddiaeth" type="VARCHAR(255)"/>
             <column name="safonGwasanaeth" type="VARCHAR(255)"/>
             <column name="safonIaith" type="VARCHAR(255)"/>
@@ -251,11 +251,11 @@
                                  referencedTableName="users" />
     </changeSet>
 
-    <changeSet author="hiraethus (generated)" id="20180407-change-datatype-amsersylw" >
+    <!--<changeSet author="hiraethus (generated)" id="20180407-change-datatype-amsersylw" >
         <modifyDataType columnName="amserSylw"
                         newDataType="datetime"
                         tableName="SylwEntity"/>
-    </changeSet>
+    </changeSet>-->
 
     <changeSet id="create-nickname-column" author="hiraethus" >
         <addColumn tableName="users">
