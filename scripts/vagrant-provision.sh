@@ -27,6 +27,12 @@ systemctl start httpd
 #--- PostgreSQL - see https://fedoraproject.org/wiki/PostgreSQL#Installation
 sudo dnf install -y postgresql-server postgresql-contrib
 
+
+# install and setup ident server
+sudo dnf install -y oidentd
+sudo systemctl enable oidentd
+sudo systemctl start  oidentd
+
 # initialize the db
 sudo postgresql-setup --initdb --unit postgresql
 
@@ -34,11 +40,7 @@ sudo postgresql-setup --initdb --unit postgresql
 sudo systemctl enable postgresql
 sudo systemctl start postgresql
 
-# create user and database etc. In production user and password should be more securly entered
-export DB_USER=findmylingo
-export DB_PASS='3~Nd!rC.XR5FN+By'
-
-sudo -i -u postgres psql -c "CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';"
-sudo -i -u postgres psql -c "CREATE SCHEMA IF NOT EXISTS $DB_USER AUTHORIZATION $DB_USER;"
+sudo -i -u postgres createuser tomcat
+sudo -i -u postgres createdb   tomcat
 
 # TODO: firewalld configuration - open port 80, block everything else
