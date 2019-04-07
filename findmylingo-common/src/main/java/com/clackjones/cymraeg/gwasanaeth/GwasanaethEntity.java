@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-@Table(name="GwasanaethEntity")
+@Table(name="fml_service")
 @NamedQueries({
         @NamedQuery(name = "GwasanaethEntity.findAll",
                 query = "SELECT g FROM GwasanaethEntity g"),

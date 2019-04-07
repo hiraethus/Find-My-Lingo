@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="SylwEntity")
+@Table(name="fml_comment")
 class SylwEntity {
     @Id
     @GenericGenerator(

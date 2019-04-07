@@ -3,7 +3,7 @@ package com.clackjones.cymraeg.language;
 import javax.persistence.*;
 
 @Entity
-@Table(name="LanguageEntity")
+@Table(name="fml_language")
 @NamedQueries({
         @NamedQuery(name = "LanguageEntity.findAll",
                 query = "SELECT l FROM LanguageEntity l")

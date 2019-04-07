@@ -352,4 +352,13 @@
             <column name="group_id" valueComputed="(SELECT id from groups WHERE group_name LIKE 'admin_users')" />
         </insert>
     </changeSet>
+
+    <changeSet author="hiraethus" id="make-table-names-lower-case">
+        <renameTable oldTableName="CategoriEntity"   newTableName="fml_category" />
+        <renameTable oldTableName="GwasanaethEntity" newTableName="fml_service" />
+        <renameTable oldTableName="LanguageEntity" newTableName="fml_language" />
+        <renameTable oldTableName="PasswordResetTokenEntity" newTableName="fml_password_reset_token" />
+        <renameTable oldTableName="CategoriEntity_GwasanaethEntity" newTableName="fml_category_fml_service" />
+        <renameTable oldTableName="SylwEntity" newTableName="fml_comment" />
+    </changeSet>
 </databaseChangeLog>

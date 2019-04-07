@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-@Table(name="CategoriEntity")
+@Table(name="fml_category")
 @NamedQueries({
         @NamedQuery(name = "CategoriEntity.findAll",
                 query = "SELECT c FROM CategoriEntity c")
