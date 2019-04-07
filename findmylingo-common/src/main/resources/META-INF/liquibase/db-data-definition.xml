@@ -375,6 +375,9 @@
         <renameColumn tableName="fml_service" oldColumnName="dinas" newColumnName="city" />
         <renameColumn tableName="fml_service" oldColumnName="sir" newColumnName="county" />
         <renameColumn tableName="fml_service" oldColumnName="codPost" newColumnName="postcode" />
+
+        <renameColumn tableName="fml_category_fml_service" oldColumnName="CategoriEntity_id" newColumnName="category_id" />
+        <renameColumn tableName="fml_category_fml_service" oldColumnName="gwasanaethau_id" newColumnName="service_id" />
     </changeSet>
         <!-- TODO: maybe modify NamedQuery fields -->
 

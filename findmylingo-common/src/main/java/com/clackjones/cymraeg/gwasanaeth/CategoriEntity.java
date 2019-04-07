@@ -24,7 +24,7 @@ class CategoriEntity {
 
     public void setId(Long id) { }
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "categori")
     protected Collection<GwasanaethEntity> gwasanaethau = new ArrayList<>();
 
     public String getCategori() {

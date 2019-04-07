@@ -41,6 +41,7 @@ class SylwEntity {
     private Date amserSylw;
 
     @ManyToOne
+    @JoinColumn(name="gwasanaeth_id")
     private GwasanaethEntity gwasanaeth;
 
     public Long getId() {

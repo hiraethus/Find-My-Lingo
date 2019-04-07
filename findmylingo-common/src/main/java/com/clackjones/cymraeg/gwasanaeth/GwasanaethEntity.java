@@ -56,6 +56,7 @@ public class GwasanaethEntity {
     private Collection<SylwEntity> sylwadau = new ArrayList<>();
 
     @ManyToOne
+    @JoinColumn(name="categori_id")
     private CategoriEntity categori;
 
     @Column(name = "owner_username", nullable = false)
