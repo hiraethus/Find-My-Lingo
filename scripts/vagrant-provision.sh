@@ -19,10 +19,9 @@ cp /findmylingo/conf/find_my_lingo_httpd.conf /etc/httpd/conf.d/
 
 # start tomcat and httpd
 systemctl enable tomcat
-systemctl start tomcat
+
 
 systemctl enable httpd
-systemctl start httpd
 
 #--- PostgreSQL - see https://fedoraproject.org/wiki/PostgreSQL#Installation
 sudo dnf install -y postgresql-server postgresql-contrib
@@ -44,3 +43,6 @@ sudo -i -u postgres createuser tomcat
 sudo -i -u postgres createdb   tomcat
 
 # TODO: firewalld configuration - open port 80, block everything else
+# DO manually:
+# systemctl start tomcat
+# systemctl start httpd

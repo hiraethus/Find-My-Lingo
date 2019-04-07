@@ -6,24 +6,24 @@
     <changeSet author="hiraethus" id="db-gwasanaeth-dao-add-user-0001">
         <insert tableName="fml_service">
             <column name="id" value="1" />
-            <column name="enw" value="Baa" />
-            <column name="OWNER_USERNAME" value="sian" />
+            <column name="name" value="Baa" />
+            <column name="owner_username" value="sian" />
         </insert>
         <insert tableName="fml_service">
             <column name="id" value="2" />
-            <column name="enw" value="Daa" />
-            <column name="OWNER_USERNAME" value="sian" />
+            <column name="name" value="Daa" />
+            <column name="owner_username" value="sian" />
         </insert>
         <insert tableName="fml_service">
             <column name="id" value="3" />
-            <column name="enw" value="aaa" />
-            <column name="OWNER_USERNAME" value="sian" />
+            <column name="name" value="aaa" />
+            <column name="owner_username" value="sian" />
         </insert>
         <insert tableName="fml_service">
             <column name="id" value="4" />
-            <column name="enw" value="aaa" />
-            <column name="dinas" value="YDdinas" />
-            <column name="OWNER_USERNAME" value="sian" />
+            <column name="name" value="aaa" />
+            <column name="city" value="YDdinas" />
+            <column name="owner_username" value="sian" />
         </insert>
     </changeSet>
 </databaseChangeLog>

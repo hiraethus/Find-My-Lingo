@@ -38,16 +38,16 @@ public class GwasanaethEntity {
     @GeneratedValue(generator = "gwasanaeth-sequence", strategy=GenerationType.TABLE)
     private Long id;
 
-    @Column(name = "enw")
+    @Column(name = "name")
     private String enw;
 
-    @Column(name = "rhifFfon")
+    @Column(name = "phone_number")
     private String rhifFfon;
 
-    @Column(name = "ebost")
+    @Column(name = "email")
     private String ebost;
 
-    @Column(name = "disgrifiad")
+    @Column(name = "description")
     private String disgrifiad;
 
     private CyfeiriadEntity cyfeiriad;
@@ -58,11 +58,9 @@ public class GwasanaethEntity {
     @ManyToOne
     private CategoriEntity categori;
 
-    @Column(name = "OWNER_USERNAME", nullable = false)
+    @Column(name = "owner_username", nullable = false)
     private String ownerUsername;
 
-//    @OneToOne(targetEntity = LanguageEntity.class, fetch = FetchType.EAGER)
-//    @JoinColumn(nullable = false, name = "id")
     @ManyToOne
     private LanguageEntity language;
 

@@ -22,7 +22,7 @@ class PasswordResetTokenEntity {
     @JoinColumn(nullable = false, name = "username")
     private UserEntity user;
 
-    @Column(name="CREATION_TS", insertable=false, updatable=false)
+    @Column(name="creation_ts", insertable=false, updatable=false)
     private Calendar dateCreated;
 
     public PasswordResetTokenEntity() {}

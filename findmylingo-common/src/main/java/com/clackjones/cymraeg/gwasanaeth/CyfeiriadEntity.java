@@ -6,19 +6,19 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CyfeiriadEntity {
 
-    @Column(name = "llinellGyntaf")
+    @Column(name = "first_line")
     protected String llinellGyntaf;
 
-    @Column(name = "ailLinell")
+    @Column(name = "second_line")
     protected String ailLinell;
 
-    @Column(name = "dinas")
+    @Column(name = "city")
     protected String dinas;
 
-    @Column(name = "sir")
+    @Column(name = "county")
     protected String sir;
 
-    @Column(name = "codPost")
+    @Column(name = "postcode")
     protected String codPost;
 
     protected CyfeiriadEntity() { }

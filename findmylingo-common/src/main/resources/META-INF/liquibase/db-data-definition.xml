@@ -251,12 +251,6 @@
                                  referencedTableName="users" />
     </changeSet>
 
-    <!--<changeSet author="hiraethus (generated)" id="20180407-change-datatype-amsersylw" >
-        <modifyDataType columnName="amserSylw"
-                        newDataType="datetime"
-                        tableName="SylwEntity"/>
-    </changeSet>-->
-
     <changeSet id="create-nickname-column" author="hiraethus" >
         <addColumn tableName="users">
             <column name="NICKNAME" type="varchar(50)">
@@ -361,4 +355,27 @@
         <renameTable oldTableName="CategoriEntity_GwasanaethEntity" newTableName="fml_category_fml_service" />
         <renameTable oldTableName="SylwEntity" newTableName="fml_comment" />
     </changeSet>
+
+    <changeSet author="hiraethus" id="make-column-names-lower-case">
+        <renameColumn tableName="fml_comment" oldColumnName="safonArwyddiaeth" newColumnName="standard_of_signage" />
+        <renameColumn tableName="fml_comment" oldColumnName="safonIaith" newColumnName="standard_of_language" />
+        <renameColumn tableName="fml_comment" oldColumnName="safonGwasanaeth" newColumnName="standard_of_service" />
+        <renameColumn tableName="fml_comment" oldColumnName="amserSylw" newColumnName="created_date" />
+
+        <renameColumn tableName="fml_category" oldColumnName="categori" newColumnName="category" />
+
+        <renameColumn tableName="fml_service" oldColumnName="enw" newColumnName="name" />
+        <renameColumn tableName="fml_service" oldColumnName="rhifFfon" newColumnName="phone_number" />
+        <renameColumn tableName="fml_service" oldColumnName="ebost" newColumnName="email" />
+        <renameColumn tableName="fml_service" oldColumnName="disgrifiad" newColumnName="description" />
+
+        <!-- CyfeiriadEntity -->
+        <renameColumn tableName="fml_service" oldColumnName="llinellGyntaf" newColumnName="first_line" />
+        <renameColumn tableName="fml_service" oldColumnName="ailLinell" newColumnName="second_line" />
+        <renameColumn tableName="fml_service" oldColumnName="dinas" newColumnName="city" />
+        <renameColumn tableName="fml_service" oldColumnName="sir" newColumnName="county" />
+        <renameColumn tableName="fml_service" oldColumnName="codPost" newColumnName="postcode" />
+    </changeSet>
+        <!-- TODO: maybe modify NamedQuery fields -->
+
 </databaseChangeLog>

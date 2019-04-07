@@ -21,22 +21,22 @@ class SylwEntity {
     @GeneratedValue(generator = "sylw-sequence", strategy= GenerationType.TABLE)
     private Long id;
 
-    @Column(name = "safonArwyddiaeth")
+    @Column(name = "standard_of_signage")
     @Enumerated(EnumType.STRING)
     private  Safon safonArwyddiaeth;
 
-    @Column(name = "safonIaith")
+    @Column(name = "standard_of_language")
     @Enumerated(EnumType.STRING)
     private Safon safonIaith;
 
-    @Column(name = "safonGwasanaeth")
+    @Column(name = "standard_of_service")
     @Enumerated(EnumType.STRING)
     private Safon safonGwasanaeth;
 
-    @Column(name = "sylw", columnDefinition = "text")
+    @Column(name = "comment", columnDefinition = "text")
     private String sylw;
 
-    @Column(name = "amserSylw")
+    @Column(name = "created_date")
     @Temporal(TemporalType.DATE)
     private Date amserSylw;
 
