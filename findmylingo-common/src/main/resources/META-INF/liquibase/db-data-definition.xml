@@ -361,6 +361,7 @@
         <renameColumn tableName="fml_comment" oldColumnName="safonIaith" newColumnName="standard_of_language" />
         <renameColumn tableName="fml_comment" oldColumnName="safonGwasanaeth" newColumnName="standard_of_service" />
         <renameColumn tableName="fml_comment" oldColumnName="amserSylw" newColumnName="created_date" />
+        <renameColumn tableName="fml_comment" oldColumnName="sylw" newColumnName="comment" />
 
         <renameColumn tableName="fml_category" oldColumnName="categori" newColumnName="category" />
 
