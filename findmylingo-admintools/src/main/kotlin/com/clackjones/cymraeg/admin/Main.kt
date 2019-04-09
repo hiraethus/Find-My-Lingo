@@ -17,20 +17,16 @@ fun main(args: Array<String>) {
         bean("dbDialect"){"org.hibernate.dialect.PostgreSQL95Dialect"}
         bean("imgRootDirectory") { java.nio.file.Paths.get("/var/www/findmylingo.local/static/service/images")}
     }
-    println("beans")
 
     val context = GenericApplicationContext()
 
-    print("load context")
     // load the application context for findmylingo-common first
     val xmlReader = XmlBeanDefinitionReader(context)
     xmlReader.loadBeanDefinitions(ClassPathResource("META-INF/findmylingo-common-context.xml"))
 
     myBeans.initialize(context)
-    println("refresh context")
     context.refresh()
 
-    println("create admin")
     val adminArgs = CreateAdminArgs()
     JCommander.newBuilder()
             .addObject(adminArgs)
@@ -43,11 +39,28 @@ fun main(args: Array<String>) {
 }
 
 fun registerAdmin(createAdminArgs: CreateAdminArgs, registrationService: RegistrationService) {
+    if (createAdminArgs.help) {
+        println("""
+            Find My Lingo Admin tools
+
+            Tool to create admin users for Find My Lingo. This cannot be preformed through
+            the Web User Interface. The example syntax can be seen below.
+
+            Admin users are the same as regular users but are able to add new categories,
+            languages and approve/decline new services and comments queued to the site.
+
+            Syntax:
+                java -jar findmylingo-admintools-1.0.jar
+        """.trimIndent())
+
+        return
+    }
+
     val regDetails = RegistrationDetails()
     regDetails.nickname = createAdminArgs.nickname
-    regDetails.password = "MyVerySecretPassword"
-    regDetails.passwordSecondTimeEntered = "MyVerySecretPassword"
-    regDetails.username = "admin2@example.com"
+    regDetails.password = createAdminArgs.password
+    regDetails.passwordSecondTimeEntered = createAdminArgs.password
+    regDetails.username = createAdminArgs.username
 
     registrationService.registerAdmin(regDetails, Locale.ENGLISH)
 }

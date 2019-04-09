@@ -5,8 +5,8 @@ def user_home = System.getProperty( "user.dir" )
 
 appender("FILE", FileAppender) {
     // add a status message regarding the file property
-    addInfo("Setting [file] property to [/var/log/findmylingo.log]")
-    file = "/var/log/findmylingo.log"
+    addInfo("Setting [file] property to [/var/log/findmylingo/findmylingo.log]")
+    file = "/var/log/findmylingo/findmylingo.log"
     encoder(PatternLayoutEncoder) {
         pattern = DEFAULT_PATTERN
     }
@@ -19,4 +19,4 @@ appender("CONSOLE", ConsoleAppender) {
 }
 
 root(OFF, ["Console-Appender"])
-logger("org.springframework", ALL, ["CONSOLE", "FILE"])
+logger("com.clackjones", INFO, ["CONSOLE", "FILE"])

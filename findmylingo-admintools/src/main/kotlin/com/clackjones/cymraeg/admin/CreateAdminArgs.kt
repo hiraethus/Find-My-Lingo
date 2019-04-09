@@ -3,6 +3,9 @@ package com.clackjones.cymraeg.admin
 import com.beust.jcommander.Parameter;
 
 class CreateAdminArgs {
+    @Parameter(names = ["--help"], help = true)
+    var help: Boolean = false
+
     @Parameter(names = arrayOf("-n", "--nickname"), description = "The name seen by other users", required = true)
     var nickname: String? = null
     @Parameter(names = arrayOf("-u", "--user"), description = "The email address used as username and password reset", required = true)

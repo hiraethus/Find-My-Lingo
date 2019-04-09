@@ -9,3 +9,4 @@
         <property name="changeLog" value="classpath:META-INF/liquibase/db-changelog.xml" />
     </bean>
 </beans>
+<!-- TODO: consider move this to webapp -->

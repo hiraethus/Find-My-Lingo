@@ -20,6 +20,7 @@ cp /findmylingo/conf/find_my_lingo_httpd.conf /etc/httpd/conf.d/
 # start tomcat and httpd
 systemctl enable tomcat
 
+mkdir -p /var/log/findmylingo/
 
 systemctl enable httpd
 
