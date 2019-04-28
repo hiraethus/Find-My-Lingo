@@ -1,11 +1,11 @@
 #!/bin/bash
 
-dnf upgrade -y
-
-dnf install -y httpd
-dnf install -y java-1.8.0-openjdk
-
-dnf install -y tomcat
+yum install -y \
+    httpd \
+    java-1.8.0-openjdk \
+    tomcat \
+    postgresql-server \
+    postgresql-contrib
 
 # add httpd configuration file
 mkdir -p /var/www/findmylingo.local/static
@@ -25,25 +25,25 @@ mkdir -p /var/log/findmylingo/
 systemctl enable httpd
 
 #--- PostgreSQL - see https://fedoraproject.org/wiki/PostgreSQL#Installation
-sudo dnf install -y postgresql-server postgresql-contrib
-
-
-# install and setup ident server
-sudo dnf install -y oidentd
-sudo systemctl enable oidentd
-sudo systemctl start  oidentd
 
 # initialize the db
-sudo postgresql-setup --initdb --unit postgresql
+sudo postgresql-setup initdb
+
+#--- allow password auth TODO: mount all of these files- don't copy them
+cp /conf/postgresql/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf
 
 # enable and start
 sudo systemctl enable postgresql
 sudo systemctl start postgresql
 
-sudo -i -u postgres createuser tomcat
-sudo -i -u postgres createdb   tomcat
+sudo -i -u postgres psql -c "CREATE USER ${PG_USER} WITH PASSWORD '${PG_PASS}';"
+sudo -i -u postgres psql -c "CREATE DATABASE ${PG_DB} OWNER ${PG_USER};"
 
 # TODO: firewalld configuration - open port 80, block everything else
+
+sudo cp -R /opt/findmylingo-webapp/ /var/lib/tomcat/webapps
+sudo chown -R root:tomcat /usr/share/tomcat/webapps/
+
 # DO manually:
 # systemctl start tomcat
 # systemctl start httpd

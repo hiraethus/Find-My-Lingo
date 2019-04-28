@@ -7,10 +7,9 @@
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/tomcat" />
-        <property name="username" value="tomcat" />
-        <!--<property name="password" value="3~Nd!rC.XR5FN+By" />-->
-        <!--<property name="socketTimeout" value="10"/>-->
+        <property name="url" value="jdbc:postgresql://localhost:5432/#{systemEnvironment['PG_DB']}" />
+        <property name="username" value="#{systemEnvironment['PG_USER']}" />
+        <property name="password" value="#{systemEnvironment['PG_PASS']}" />
 
         <property name="connectionProperties">
             <props>
