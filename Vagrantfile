@@ -19,3 +19,6 @@ Vagrant.configure("2") do |config|
     "PG_DB"   => "findmylingo"
   }
 end
+
+# TODO: database not connecting - fix issue
+# SET LOG level to DEBUG and restart

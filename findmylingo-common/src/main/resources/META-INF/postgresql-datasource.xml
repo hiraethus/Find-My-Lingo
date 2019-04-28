@@ -7,9 +7,9 @@
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/#{systemEnvironment['PG_DB']}" />
-        <property name="username" value="#{systemEnvironment['PG_USER']}" />
-        <property name="password" value="#{systemEnvironment['PG_PASS']}" />
+        <property name="url" value="jdbc:postgresql://127.0.0.1:5432/findmylingo" />
+        <property name="username" value="findmylingo" />
+        <property name="password" value="findmylingo" />
 
         <property name="connectionProperties">
             <props>

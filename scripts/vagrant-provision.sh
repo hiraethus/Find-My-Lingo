@@ -1,5 +1,7 @@
 #!/bin/bash
 
+yum update -y && yum upgrade -y
+
 yum install -y \
     httpd \
     java-1.8.0-openjdk \
@@ -39,11 +41,13 @@ sudo systemctl start postgresql
 sudo -i -u postgres psql -c "CREATE USER ${PG_USER} WITH PASSWORD '${PG_PASS}';"
 sudo -i -u postgres psql -c "CREATE DATABASE ${PG_DB} OWNER ${PG_USER};"
 
+# required by centos
+sudo setsebool -P tomcat_can_network_connect_db on
+
 # TODO: firewalld configuration - open port 80, block everything else
 
-sudo cp -R /opt/findmylingo-webapp/ /var/lib/tomcat/webapps
-sudo chown -R root:tomcat /usr/share/tomcat/webapps/
-
 # DO manually:
+# sudo cp -r /opt/findmylingo-webapp/. /var/lib/tomcat/webapps/
+#  sudo chown -R root:tomcat /usr/share/tomcat/webapps/
 # systemctl start tomcat
 # systemctl start httpd
