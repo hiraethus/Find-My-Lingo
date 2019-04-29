@@ -39,17 +39,17 @@ sudo systemctl start postgresql
 sudo -i -u postgres psql -c "CREATE USER ${PG_USER} WITH PASSWORD '${PG_PASS}';"
 sudo -i -u postgres psql -c "CREATE DATABASE ${PG_DB} OWNER ${PG_USER};"
 
-# required by centos
 sudo setsebool -P tomcat_can_network_connect_db on
+sudo setsebool -P httpd_can_network_connect on
 
 # log folder
 sudo mkdir -p /var/log/findmylingo
 sudo chown tomcat:tomcat -R /var/log/findmylingo
 
-# TODO: firewalld configuration - open port 80, block everything else
+# firewall - open port 80
+sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
+firewall-cmd --reload
+
 
 # DO manually:
-# sudo cp -r /opt/findmylingo-webapp/. /var/lib/tomcat/webapps/
-#  sudo chown -R root:tomcat /usr/share/tomcat/webapps/
-# systemctl start tomcat
-# systemctl start httpd
+# sudo cp -r /opt/findmylingo-webapp/ROOT /usr/share/tomcat/webapps
