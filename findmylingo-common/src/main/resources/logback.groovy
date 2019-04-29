@@ -19,4 +19,5 @@ appender("CONSOLE", ConsoleAppender) {
 }
 
 root(OFF, ["Console-Appender"])
-logger("com.clackjones", INFO, ["CONSOLE", "FILE"])
+logger("com.clackjones", DEBUG, ["CONSOLE"])
+logger("org.springframework", DEBUG, ["CONSOLE"])

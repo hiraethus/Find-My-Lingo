@@ -2,15 +2,17 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos/7"
+  config.vm.box = "generic/fedora28"
 
   config.vm.synced_folder "./findmylingo-webapp", "/findmylingo"
   config.vm.synced_folder "./findmylingo-webapp/target/webapps", "/opt/findmylingo-webapp"
   config.vm.synced_folder "./findmylingo-admintools/target/", "/findmylingo-admin"
   config.vm.synced_folder "./conf", "/conf"
 
-   config.vm.provider "hyperv" do |h|
-     h.memory = "4096"
+  config.vm.network "private_network", ip: "192.168.33.10"
+
+   config.vm.provider "virtualbox" do |vb|
+     vb.memory = "4096"
    end
 
   config.vm.provision "shell", path: "./scripts/vagrant-provision.sh", env: {

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-yum update -y && yum upgrade -y
-
 yum install -y \
     httpd \
     java-1.8.0-openjdk \
@@ -43,6 +41,10 @@ sudo -i -u postgres psql -c "CREATE DATABASE ${PG_DB} OWNER ${PG_USER};"
 
 # required by centos
 sudo setsebool -P tomcat_can_network_connect_db on
+
+# log folder
+sudo mkdir -p /var/log/findmylingo
+sudo chown tomcat:tomcat -R /var/log/findmylingo
 
 # TODO: firewalld configuration - open port 80, block everything else
 
