@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "./findmylingo-webapp", "/findmylingo"
   config.vm.synced_folder "./findmylingo-webapp/target/webapps", "/opt/findmylingo-webapp"
-  config.vm.synced_folder "./findmylingo-admintools/target/", "/findmylingo-admin"
+  config.vm.synced_folder "./findmylingo-admintools/target/", "/opt/findmylingo/tools"
   config.vm.synced_folder "./conf", "/conf"
 
   config.vm.network "private_network", ip: "192.168.33.10"
