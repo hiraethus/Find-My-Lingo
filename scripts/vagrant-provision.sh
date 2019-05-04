@@ -32,6 +32,7 @@ sudo postgresql-setup initdb
 #--- allow password auth TODO: mount all of these files- don't copy them
 cp /conf/postgresql/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf
 
+
 # enable and start
 sudo systemctl enable postgresql
 sudo systemctl start postgresql
@@ -50,6 +51,16 @@ sudo chown tomcat:tomcat -R /var/log/findmylingo
 sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
 firewall-cmd --reload
 
+#--- Copy war to Tomcat
+sudo cp -r /opt/findmylingo-webapp/ROOT /usr/share/tomcat/webapps
 
-# DO manually:
-# sudo cp -r /opt/findmylingo-webapp/ROOT /usr/share/tomcat/webapps
+#--- Create database file
+sudo mkdir -p /etc/findmylingo
+sudo touch /etc/findmylingo/database.properties
+sudo chmod 766 /etc/findmylingo/database.properties
+
+sudo echo "db.name=${PG_DB}" >> /etc/findmylingo/database.properties
+sudo echo "db.user=${PG_USER}" >> /etc/findmylingo/database.properties
+sudo echo "db.pass=${PG_PASS}" >> /etc/findmylingo/database.properties
+
+# Manually start tomcat and httpd
