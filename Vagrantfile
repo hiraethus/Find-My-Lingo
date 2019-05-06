@@ -2,6 +2,12 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
+   # Fix for vb-guest issue
+   # https://github.com/dotless-de/vagrant-vbguest/issues/333
+   if Vagrant.has_plugin?("vagrant-vbguest")
+      config.vbguest.auto_update = false
+   end
+
   config.vm.box = "generic/fedora28"
 
   config.vm.synced_folder "./findmylingo-webapp", "/findmylingo"
