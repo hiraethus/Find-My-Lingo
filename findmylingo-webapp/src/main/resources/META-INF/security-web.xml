@@ -19,6 +19,9 @@
         <intercept-url pattern="/" method="PUT"
                        access="hasRole('ROLE_CREATE_GWASANAETH')" />
 
+        <intercept-url pattern="/admin" method="GET"
+                       access="hasAuthority('VIEW_ADMIN_UI')" />
+
         <intercept-url pattern="/**" access="permitAll" />
 
         <form-login default-target-url="/" login-page="/login" />
