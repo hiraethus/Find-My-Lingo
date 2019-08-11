@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
       config.vbguest.auto_update = false
    end
 
-  config.vm.box = "generic/fedora28"
+  config.vm.box = "bento/fedora-28"
 
   config.vm.synced_folder "./findmylingo-webapp", "/findmylingo"
   config.vm.synced_folder "./findmylingo-webapp/target/webapps", "/opt/findmylingo-webapp"
