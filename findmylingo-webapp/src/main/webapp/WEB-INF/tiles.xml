@@ -214,7 +214,7 @@
         <put-attribute name="title" value="Find My Lingo - Admin" />
         <put-attribute name="menu">
             <definition template="/WEB-INF/tiles/menu.jsp">
-                <put-attribute name="current_tab" value="find" />
+                <put-attribute name="current_tab" value="admin" />
             </definition>
         </put-attribute>
         <put-attribute name="body">

@@ -19,6 +19,11 @@ Find My Lingo <sup>alpha</sup></a>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
+      <sec:authorize access="hasAuthority('VIEW_ADMIN_UI')">
+          <li class="nav-item">
+            <a id="admin" class="nav-link" href="/admin">Admin</a>
+          </li>
+      </sec:authorize>
       <li class="nav-item">
         <a id="find" class="nav-link" href='<c:url value="/find" />'>Find Service</a>
       </li>
