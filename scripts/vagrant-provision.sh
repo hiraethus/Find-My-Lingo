@@ -40,6 +40,9 @@ sudo systemctl start postgresql
 sudo -i -u postgres psql -c "CREATE USER ${PG_USER} WITH PASSWORD '${PG_PASS}';"
 sudo -i -u postgres psql -c "CREATE DATABASE ${PG_DB} OWNER ${PG_USER};"
 
+# se-linux stuff
+# allow r/w permissions to httpd on /var/www/findmylingo.local with subdirs
+sudo chcon -R -t httpd_sys_rw_content_t /var/www/findmylingo.local/
 sudo setsebool -P tomcat_can_network_connect_db on
 sudo setsebool -P httpd_can_network_connect on
 
